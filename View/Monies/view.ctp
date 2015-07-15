@@ -1,6 +1,6 @@
 <?php
 //スタイル
-$html->css(array('monies'), 'stylesheet', array('inline' => false));
+$this->Html->css(array('monies'), 'stylesheet', array('inline' => false));
 ?>
 <div class="content">
 	<h2><?php echo $pageData["Moneycategory"]["str"]?>とは？</h2>
@@ -22,7 +22,7 @@ $html->css(array('monies'), 'stylesheet', array('inline' => false));
 <div class="content">
 	<h2><?php echo $pageData["Moneycategory"]["str"]?>以外に無料で稼ぐ方法</h2>
 <?php foreach($moneycategories as $category):?>
-	<h3><?php echo $html->link($category["Moneycategory"]["str"] , array("path" => $category["Moneycategory"]["path"]))?></h3>
+	<h3><?php echo $this->Html->link($category["Moneycategory"]["str"] , array("path" => $category["Moneycategory"]["path"]))?></h3>
 	<p><?php echo nl2br($category["Moneycategory"]["summary"])?></p>
 <?php endforeach;?>
 </div>

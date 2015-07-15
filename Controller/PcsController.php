@@ -48,19 +48,19 @@ class PcsController extends AppController {
 	 */
 	function sys_index() {
 		//リダイレクト
-		if(!empty($this->params["url"]["w"])
-			or !empty($this->params["url"]["title_id"])
-			or !empty($this->params["url"]["pcshop_id"])
-			or !empty($this->params["url"]["pctype_id"])
-			or !empty($this->params["url"]["pcgrade_id"]))
+		if(!empty($this->request->params["url"]["w"])
+			or !empty($this->request->params["url"]["title_id"])
+			or !empty($this->request->params["url"]["pcshop_id"])
+			or !empty($this->request->params["url"]["pctype_id"])
+			or !empty($this->request->params["url"]["pcgrade_id"]))
 		{
 			$url = array();
-			if(!empty($this->params["url"]["w"]))			{ $url["w"]			= $this->params["url"]["w"]; }
-			if(!empty($this->params["url"]["title_id"]))	{ $url["title_id"]	= $this->params["url"]["title_id"]; }
-			if(!empty($this->params["url"]["pcshop_id"]))	{ $url["pcshop_id"]	= $this->params["url"]["pcshop_id"]; }
-			if(!empty($this->params["url"]["pctype_id"]))	{ $url["pctype_id"]	= $this->params["url"]["pctype_id"]; }
-			if(!empty($this->params["url"]["pcgrade_id"]))	{ $url["pcgrade_id"]	= $this->params["url"]["pcgrade_id"]; }
-			$this->redirect($url);
+			if(!empty($this->request->params["url"]["w"]))			{ $url["w"]			= $this->request->params["url"]["w"]; }
+			if(!empty($this->request->params["url"]["title_id"]))	{ $url["title_id"]	= $this->request->params["url"]["title_id"]; }
+			if(!empty($this->request->params["url"]["pcshop_id"]))	{ $url["pcshop_id"]	= $this->request->params["url"]["pcshop_id"]; }
+			if(!empty($this->request->params["url"]["pctype_id"]))	{ $url["pctype_id"]	= $this->request->params["url"]["pctype_id"]; }
+			if(!empty($this->request->params["url"]["pcgrade_id"]))	{ $url["pcgrade_id"]	= $this->request->params["url"]["pcgrade_id"]; }
+			return $this->redirect($url);
 		}
 		//
 		$conditions = array();
@@ -132,24 +132,24 @@ class PcsController extends AppController {
 
 //	function sys_view($id = null) {
 //		if (!$id) {
-//			$this->Session->setFlash(sprintf(__('Invalid %s', true), 'pc'));
-//			$this->redirect(array('action' => 'index'));
+//			$this->Session->setFlash(sprintf(__('Invalid %s'), 'pc'));
+//			return $this->redirect(array('action' => 'index'));
 //		}
 //		$this->set('pc', $this->Pc->read(null, $id));
 //	}
 
 	function sys_add() {
-		if (!empty($this->data)) {
+		if (!empty($this->request->data)) {
 			$this->Pc->create();
-			if ($this->Pc->save($this->data)) {
+			if ($this->Pc->save($this->request->data)) {
 				$this->Session->setFlash(Configure::read("Success.create"));
-				if(!empty($this->data["Pc"]["title_id"]))
+				if(!empty($this->request->data["Pc"]["title_id"]))
 				{
-					$this->redirect(array('action' => 'index' , 'title_id' => $this->data["Pc"]["title_id"]));
+					return $this->redirect(array('action' => 'index' , 'title_id' => $this->request->data["Pc"]["title_id"]));
 				}
 				else
 				{
-					$this->redirect(array('action' => 'index'));
+					return $this->redirect(array('action' => 'index'));
 				}
 			} else {
 				$this->Session->setFlash(Configure::read("Error.create"));
@@ -182,20 +182,20 @@ class PcsController extends AppController {
 	}
 
 	function sys_edit($id = null) {
-		if (!$id && empty($this->data)) {
+		if (!$id && empty($this->request->data)) {
 			$this->Session->setFlash(Configure::read("Error.id"));
-			$this->redirect(array('action' => 'index'));
+			return $this->redirect(array('action' => 'index'));
 		}
-		if (!empty($this->data)) {
-			if ($this->Pc->save($this->data)) {
+		if (!empty($this->request->data)) {
+			if ($this->Pc->save($this->request->data)) {
 				$this->Session->setFlash(Configure::read("Success.modify"));
-				$this->redirect(array('action' => 'index'));
+				return $this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(Configure::read("Error.modify"));
 			}
 		}
-		if (empty($this->data)) {
-			$this->data = $this->Pc->read(null, $id);
+		if (empty($this->request->data)) {
+			$this->request->data = $this->Pc->read(null, $id);
 		}
 		$titles = $this->Pc->Title->find('list' , array(
 			"order" => "Title.title_official",
@@ -213,19 +213,19 @@ class PcsController extends AppController {
 	}
 
 	function sys_lump() {
-		if (!empty($this->data)) {
+		if (!empty($this->request->data)) {
 			//変更チェック
-			if($this->LumpEdit->changeCheck($this->data["Pc"] , $this->Pc))
+			if($this->LumpEdit->changeCheck($this->request->data["Pc"] , $this->Pc))
 			{
-//				pr($this->data["Pc"]);
+//				pr($this->request->data["Pc"]);
 //				exit;
-				if ($this->Pc->saveAll($this->data["Pc"])) {
+				if ($this->Pc->saveAll($this->request->data["Pc"])) {
 					$this->Session->setFlash(Configure::read("Success.lump"));
 					if($this->Title->summaryUpdatePcs()){}
 					else{ $this->Session->setFlash(Configure::read("Error.summary")); }
 				} else {
 					$this->Session->setFlash(Configure::read("Error.lump"));
-					$this->redirect($this->referer(array('action' => 'index')));
+					return $this->redirect($this->referer(array('action' => 'index')));
 				}
 			}
 			else
@@ -233,40 +233,40 @@ class PcsController extends AppController {
 				$this->Session->setFlash(Configure::read("Error.lump_empty"));
 			}
 		}
-		$this->redirect($this->referer());
+		return $this->redirect($this->referer());
 	}
 
 	function sys_copy($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(Configure::read("Error.id"));
-			$this->redirect(array('action'=>'index'));
+			return $this->redirect(array('action'=>'index'));
 		}
 		$this->Pc->recursive = -1;
-		$this->data = $this->Pc->read(null , $id);
-//		pr($this->data);
+		$this->request->data = $this->Pc->read(null , $id);
+//		pr($this->request->data);
 //		exit;
-		$this->data["Pc"]["public"] = 0;
-		unset($this->data["Pc"]["id"]);
+		$this->request->data["Pc"]["public"] = 0;
+		unset($this->request->data["Pc"]["id"]);
 		$this->Pc->create();
-		if ($this->Pc->save($this->data)) {
+		if ($this->Pc->save($this->request->data)) {
 			$this->Session->setFlash(Configure::read("Success.copy"));
-			$this->redirect(array('action' => 'index' , $this->data["Pc"]["title_id"]));
+			return $this->redirect(array('action' => 'index' , $this->request->data["Pc"]["title_id"]));
 		}
 		$this->Session->setFlash(Configure::read("Error.copy"));
-		$this->redirect($this->referer());
+		return $this->redirect($this->referer());
 	}
 
 	function sys_delete($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(Configure::read("Error.id"));
-			$this->redirect(array('action'=>'index'));
+			return $this->redirect(array('action'=>'index'));
 		}
 		if ($this->Pc->delete($id)) {
 			$this->Session->setFlash(Configure::read("Success.delete"));
-			$this->redirect(array('action'=>'index'));
+			return $this->redirect(array('action'=>'index'));
 		}
 		$this->Session->setFlash(Configure::read("Error.delete"));
-		$this->redirect($this->referer());
+		return $this->redirect($this->referer());
 	}
 }
 ?>

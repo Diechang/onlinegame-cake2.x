@@ -43,7 +43,7 @@
 		<h1><?php echo $h1_for_layout ?></h1>
 
 <?php
-	echo $this->element('global_header' , array("cache" => array("time" => "999days" , "key" => null)));
+	// echo $this->element('global_header' , array("cache" => array("time" => "999days" , "key" => null)));
 ?>
 
 		<!-- Contents -->
@@ -66,7 +66,7 @@
 				<div class="info">
 					<div id="slideContainer">
 						<div class="slide">
-							<div class="startImage"><?php echo $html->image("design/index_newgames.gif" , array("alt" => "新作オンラインゲーム"))?></div>
+							<div class="startImage"><?php echo $this->Html->image("design/index_newgames.gif" , array("alt" => "新作オンラインゲーム"))?></div>
 						</div>
 <?php foreach($newGames as $newGame):?>
 						<div class="slide">
@@ -98,22 +98,22 @@
 				<div id="center" class="contents">
 				<?php
 					echo $content_for_layout;
-					echo $this->element("ad_center_bottoms" , array("cache" => array("time" => "999days" , "key" => null)));
+					// echo $this->element("ad_center_bottoms" , array("cache" => array("time" => "999days" , "key" => null)));
 				?>
 				</div>
 				<!-- Left -->
 				<div id="left">
 <?php
-	echo $this->element("ad_left_tops" , array("cache" => array("time" => "999days" , "key" => null)));
-	echo $this->element("left_category" , array("cache" => array("time" => "999days" , "key" => null)));
-	echo $this->element("left_style" , array("cache" => array("time" => "999days" , "key" => null)));
-	echo $this->element("left_service" , array("cache" => array("time" => "999days" , "key" => null)));
-	echo $this->element("left_pushsite");
-	echo $this->element("left_pcshop" , array("cache" => array("time" => "999days" , "key" => null)));
-	echo $this->element("left_feeds");
-	echo $this->element("left_share");
-	echo $this->element("left_ranking" , array("cache" => array("time" => "999days" , "key" => null)));
-	echo $this->element("ad_left_bottoms" , array("cache" => array("time" => "999days" , "key" => null)));
+	// echo $this->element("ad_left_tops" , array("cache" => array("time" => "999days" , "key" => null)));
+	// echo $this->element("left_category" , array("cache" => array("time" => "999days" , "key" => null)));
+	// echo $this->element("left_style" , array("cache" => array("time" => "999days" , "key" => null)));
+	// echo $this->element("left_service" , array("cache" => array("time" => "999days" , "key" => null)));
+	// echo $this->element("left_pushsite");
+	// echo $this->element("left_pcshop" , array("cache" => array("time" => "999days" , "key" => null)));
+	// echo $this->element("left_feeds");
+	// echo $this->element("left_share");
+	// echo $this->element("left_ranking" , array("cache" => array("time" => "999days" , "key" => null)));
+	// echo $this->element("ad_left_bottoms" , array("cache" => array("time" => "999days" , "key" => null)));
 ?>
 				</div>
 			</div>
@@ -121,19 +121,19 @@
 			<div id="right">
 
 <?php
-	echo $this->element("ad_right_tops" , array("cache" => array("time" => "999days" , "key" => null)));
-	echo $this->element('right_test' , array("cache" => array("time" => "999days" , "key" => null)));
-	echo $this->element('right_pickup' , array("cache" => array("time" => "999days" , "key" => null)));
-	echo $this->element('right_voted');
-	echo $this->element('right_fblikebox');
-	echo $this->element("ad_right_bottoms" , array("cache" => array("time" => "999days" , "key" => null)));
+	// echo $this->element("ad_right_tops" , array("cache" => array("time" => "999days" , "key" => null)));
+	// echo $this->element('right_test' , array("cache" => array("time" => "999days" , "key" => null)));
+	// echo $this->element('right_pickup' , array("cache" => array("time" => "999days" , "key" => null)));
+	// echo $this->element('right_voted');
+	// echo $this->element('right_fblikebox');
+	// echo $this->element("ad_right_bottoms" , array("cache" => array("time" => "999days" , "key" => null)));
 ?>
 
 			</div>
 		</div>
 <?php echo $this->element('sql_dump'); ?>
 <?php
-	echo $this->element('footer');
+	// echo $this->element('footer');
 ?>
 
 	</div>

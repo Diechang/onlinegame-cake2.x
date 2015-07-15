@@ -1,10 +1,10 @@
 <?php
 //スタイル
-$html->css(array('portals'), 'stylesheet', array('inline' => false));
+$this->Html->css(array('portals'), 'stylesheet', array('inline' => false));
 ?>
 <!--Description-->
 <div class="content description">
-	<h2 class="headimage"><?php echo $html->image("design/headline_title_portals.gif" , array("alt" => "オンラインゲームポータルサイト：窓口ひとつでいろんなゲームが楽しめる"))?></h2>
+	<h2 class="headimage"><?php echo $this->Html->image("design/headline_title_portals.gif" , array("alt" => "オンラインゲームポータルサイト：窓口ひとつでいろんなゲームが楽しめる"))?></h2>
 	<h3>オンラインゲームポータルサイトとは</h3>
 	<div class="thumb"><img src="http://capture.heartrails.com/200x300?http://wwww.hangame.co.jp/" alt="ハンゲーム" width="200" /></div>
 	<p> オンラインゲームポータルサイトとは複数のゲームを提供しているサイトのことです。</p>
@@ -24,11 +24,11 @@ $html->css(array('portals'), 'stylesheet', array('inline' => false));
 	<h2>オンラインゲームポータル一覧</h2>
 <?php foreach($portals as $portal):?>
 	<div class="item clearfix">
-		<h3><?php echo $html->link(
+		<h3><?php echo $this->Html->link(
 				$this->Common->titleWithCase($portal["Portal"]["title_official"] , $portal["Portal"]["title_read"]),
 				array("controller" => "portals" , "action" => "view" , "path" => $portal["Portal"]["url_str"] , "ext" => "html"))?></h3>
 		<div class="thumb">
-			<a href="<?php echo $html->url(array("controller" => "portals" , "action" => "view" , "path" => $portal["Portal"]["url_str"] , "ext" => "html"))?>">
+			<a href="<?php echo $this->Html->url(array("controller" => "portals" , "action" => "view" , "path" => $portal["Portal"]["url_str"] , "ext" => "html"))?>">
 				<img src="http://capture.heartrails.com/small?<?php echo $portal["Portal"]["official_url"]?>" alt="<?php echo $this->Common->titleWithCase($portal["Portal"]["title_official"] , $portal["Portal"]["title_read"])?>" width="120" />
 			</a>
 		</div>

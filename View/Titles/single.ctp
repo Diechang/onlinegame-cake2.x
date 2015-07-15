@@ -1,5 +1,5 @@
 <?php
-$html->css(array('titles'), 'stylesheet', array('inline' => false));
+$this->Html->css(array('titles'), 'stylesheet', array('inline' => false));
 //Title vars
 $titleWithStr["Case"]	= $this->Common->titleWithCase($title["Title"]["title_official"] , $title["Title"]["title_read"]);
 $titleWithStr["Span"]	= $this->Common->titleWithSpan($title["Title"]["title_official"] , $title["Title"]["title_read"]);
@@ -13,7 +13,7 @@ $nameWithType	= $posterName . "の" . $voteType;
 $postDate		= $this->Common->dateFormat($vote["Vote"]["created"] , "datetime");
 //Set
 $this->set("title_for_layout" , $voteTitle . $nameWithType . "(" . $postDate . ") | " . $titleWithStr["Abbr"]);
-$this->set("keywords_for_layout" , $posterName . "," . $postDate . "," . $this->TitlePage->metaKeywords($this->params["action"] , $title["Title"]["title_official"] , $title["Title"]["title_read"] , $title["Title"]["title_abbr"] , $title["Title"]["title_sub"]));
+$this->set("keywords_for_layout" , $posterName . "," . $postDate . "," . $this->TitlePage->metaKeywords($this->request->params["action"] , $title["Title"]["title_official"] , $title["Title"]["title_read"] , $title["Title"]["title_abbr"] , $title["Title"]["title_sub"]));
 $this->set("description_for_layout" , (!empty($vote["Vote"]["review"]) ? "" : "【" . $this->Common->pointFormat($vote["Vote"]["single_avg"]) . "点】") . $posterName . "が" . $titleWithStr["Case"] . "に投稿した" . $voteType . "です。投稿日：" . $postDate);
 $this->set("h1_for_layout" , $voteTitle . $nameWithType . " " . $titleWithStr["Case"]);
 $this->set("pankuz_for_layout" , array(
@@ -26,14 +26,14 @@ $this->set("pankuz_for_layout" , array(
 //OGP
 $this->element("title_ogp" , array(
 	"ogpTitle" => $this->viewVars["title_for_layout"],
-	"ogpUrl" => $this->here,
+	"ogpUrl" => $this->request->here,
 	"ogpDescription" => (!empty($vote["Vote"]["review"])) ? mb_strimwidth($vote["Vote"]["review"], 0, 120, " …", "UTF-8") : $titleWithStr["Case"] . "の評価",
 ));
 ?>
 
 <div<?php echo $this->RichSnippets->ns("Review")?>>
 
-<?php echo $session->flash()?>
+<?php echo $this->Session->flash()?>
 
 <div<?php echo $this->RichSnippets->property("itemreviewed")?>>
 <?php echo $this->element("title_head_title")?>
@@ -45,13 +45,13 @@ $this->element("title_ogp" , array(
 	<h2<?php echo $this->RichSnippets->property("summary")?>><?php echo $this->Common->voteTitle($vote["Vote"])?></h2>
 	<table class="data">
 		<tr>
-			<th><?php echo $html->image("design/icon_poster20.gif" , array("alt" => "投稿者"))?></th>
+			<th><?php echo $this->Html->image("design/icon_poster20.gif" , array("alt" => "投稿者"))?></th>
 			<td<?php echo $this->RichSnippets->property("reviewer")?>><?php echo $this->Common->posterName($vote["Vote"]["poster_name"])?></td>
-			<th><?php echo $html->image("design/icon_date20.gif" , array("alt" => "投稿日"))?></th>
+			<th><?php echo $this->Html->image("design/icon_date20.gif" , array("alt" => "投稿日"))?></th>
 			<td<?php echo $this->RichSnippets->property("dtreviewed")?><?php echo $this->RichSnippets->content($vote["Vote"]["created"])?>><?php echo $postDate?></td>
 <?php if(!empty($vote["Vote"]["pass"])):?>
-			<th><?php echo $html->image("design/icon_edit20.gif" , array("alt" => "編集"))?></th>
-			<td><?php echo $html->link("編集" , array("controller" => "votes" , "action" => "edit" , $vote["Vote"]["id"]) , array("rel" => "nofollow"))?></td>
+			<th><?php echo $this->Html->image("design/icon_edit20.gif" , array("alt" => "編集"))?></th>
+			<td><?php echo $this->Html->link("編集" , array("controller" => "votes" , "action" => "edit" , $vote["Vote"]["id"]) , array("rel" => "nofollow"))?></td>
 <?php endif;?>
 		</tr>
 	</table>
@@ -103,9 +103,9 @@ $this->element("title_ogp" , array(
 		<?php $neighborStr = array("prev" => "前" , "next" => "次")?>
 		<div class="neighbor <?php echo $key?>">
 		<?php if(!empty($neighbor)):?>
-			<h3><?php echo $html->image("design/titles_reviews_neighbor_" . $key . ".gif" , array("alt" => $neighborStr[$key] . "のレビュー"))?></h3>
+			<h3><?php echo $this->Html->image("design/titles_reviews_neighbor_" . $key . ".gif" , array("alt" => $neighborStr[$key] . "のレビュー"))?></h3>
 			<div class="body">
-				<h4 class="title"><?php echo $html->link($this->Common->voteTitle($neighbor["Vote"]) , array("path" => $title["Title"]["url_str"] , "voteid" => $neighbor["Vote"]["id"] , "ext" => "html"))?></h4>
+				<h4 class="title"><?php echo $this->Html->link($this->Common->voteTitle($neighbor["Vote"]) , array("path" => $title["Title"]["url_str"] , "voteid" => $neighbor["Vote"]["id"] , "ext" => "html"))?></h4>
 				<table class="total">
 					<tr>
 						<th>評価</th>
@@ -116,15 +116,15 @@ $this->element("title_ogp" , array(
 					</tr>
 				</table>
 				<p class="review">
-					<?php echo mb_strimwidth(h($neighbor["Vote"]["review"]), 0, 200, " … " . $html->link("続き" , array("path" => $title["Title"]["url_str"] , "voteid" => $neighbor["Vote"]["id"] , "ext" => "html")))?>
+					<?php echo mb_strimwidth(h($neighbor["Vote"]["review"]), 0, 200, " … " . $this->Html->link("続き" , array("path" => $title["Title"]["url_str"] , "voteid" => $neighbor["Vote"]["id"] , "ext" => "html")))?>
 				</p>
 				<table class="footer">
 					<tr>
-						<th><?php echo $html->image("design/icon_poster20.gif" , array("alt" => "投稿者"))?></th>
+						<th><?php echo $this->Html->image("design/icon_poster20.gif" , array("alt" => "投稿者"))?></th>
 						<td><?php echo $this->Common->posterName($neighbor["Vote"]["poster_name"])?></td>
 					</tr>
 					<tr>
-						<th><?php echo $html->image("design/icon_date20.gif" , array("alt" => "投稿日"))?></th>
+						<th><?php echo $this->Html->image("design/icon_date20.gif" , array("alt" => "投稿日"))?></th>
 						<td><?php echo $this->Common->dateFormat($neighbor["Vote"]["created"] , "datetime")?></td>
 					</tr>
 				</table>

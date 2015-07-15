@@ -1,6 +1,6 @@
 <?php
-$html->css(array('titles'), 'stylesheet', array('inline' => false));
-$html->script(array('tcc', 'rac'), false);
+$this->Html->css(array('titles'), 'stylesheet', array('inline' => false));
+$this->Html->script(array('tcc', 'rac'), false);
 //Title vars
 $titleWithStr["Case"]	= $this->Common->titleWithCase($title["Title"]["title_official"] , $title["Title"]["title_read"]);
 $titleWithStr["Span"]	= $this->Common->titleWithSpan($title["Title"]["title_official"] , $title["Title"]["title_read"]);
@@ -8,27 +8,27 @@ $titleWithStr["Abbr"]	= $this->Common->titleWithAbbr($title["Title"]["title_offi
 $titleWithStr["Sub"]	= $this->Common->titleWithSub($title["Title"]["title_official"] , $title["Title"]["title_read"] , $title["Title"]["title_sub"]);
 //Set
 $this->set("title_for_layout" , $titleWithStr["Abbr"] . " 評価点数");
-$this->set("keywords_for_layout" , $this->TitlePage->metaKeywords($this->params["action"] , $title["Title"]["title_official"] , $title["Title"]["title_read"] , $title["Title"]["title_abbr"] , $title["Title"]["title_sub"]));
+$this->set("keywords_for_layout" , $this->TitlePage->metaKeywords($this->request->params["action"] , $title["Title"]["title_official"] , $title["Title"]["title_read"] , $title["Title"]["title_abbr"] , $title["Title"]["title_sub"]));
 $this->set("description_for_layout" , $titleWithStr["Sub"] . "の評価点数です。投票期間・項目別にプレイヤーの評価を見ることができるのでオンラインゲーム選びの参考にどうぞ！");
 $this->set("h1_for_layout" , $titleWithStr["Abbr"] . " 評価点数");
 $this->set("pankuz_for_layout" , array(array("str" => $titleWithStr["Case"] , "url" => array("action" => "index" , "path" => $title["Title"]["url_str"] , "ext" => "html")) , "評価点数"));
 //OGP
 $this->element("title_ogp" , array("titleWithStr" => $titleWithStr));
 ?>
-<?php echo $session->flash()?>
+<?php echo $this->Session->flash()?>
 <?php echo $this->element("title_head_title")?>
 
 <?php echo $this->element("title_head_menu")?>
 
 <!--Rating-->
 <div class="content ratings">
-	<h2><?php echo $html->image("design/titles_ratings_title.gif" , array("alt" => "ユーザーの評価"))?></h2>
+	<h2><?php echo $this->Html->image("design/titles_ratings_title.gif" , array("alt" => "ユーザーの評価"))?></h2>
 	<p class="description"><?php echo $title["Title"]["title_official"]?>のユーザー評価</p>
 <?php if($ratings["all"]["ratings"]["vote_count_vote"] > 0):?>
 	<ul class="termTabs tccTabs">
-		<li class="all"><a href="javascript:void(0)"><?php echo $html->image("design/titles_ratings_termtab_all.gif" , array("alt" => "全期間"))?></a></li>
-		<li class="year"><a href="javascript:void(0)"><?php echo $html->image("design/titles_ratings_termtab_1year.gif" , array("alt" => "過去1年"))?></a></li>
-		<li class="days"><a href="javascript:void(0)"><?php echo $html->image("design/titles_ratings_termtab_90days.gif" , array("alt" => "過去90日"))?></a></li>
+		<li class="all"><a href="javascript:void(0)"><?php echo $this->Html->image("design/titles_ratings_termtab_all.gif" , array("alt" => "全期間"))?></a></li>
+		<li class="year"><a href="javascript:void(0)"><?php echo $this->Html->image("design/titles_ratings_termtab_1year.gif" , array("alt" => "過去1年"))?></a></li>
+		<li class="days"><a href="javascript:void(0)"><?php echo $this->Html->image("design/titles_ratings_termtab_90days.gif" , array("alt" => "過去90日"))?></a></li>
 	</ul>
 <?php endif;?>
 	<div class="points tccContents">
@@ -37,7 +37,7 @@ $this->element("title_ogp" , array("titleWithStr" => $titleWithStr));
 		<div class="tccContent<?php echo ($key != "all") ? " dispNone" : ""?>">
 			<div class="left">
 				<div class="total">
-					<div class="label"><?php echo $html->image("design/titles_ratings_total_label.gif" , array("alt" => "総合評価"))?></div>
+					<div class="label"><?php echo $this->Html->image("design/titles_ratings_total_label.gif" , array("alt" => "総合評価"))?></div>
 					<p class="point"><?php echo (!empty($rating["ratings"]["vote_avg_all"])) ? $this->Common->pointFormat($rating["ratings"]["vote_avg_all"]) : "--"?><span>pt</span></p>
 					<?php echo $this->Common->starBlock(200 , $rating["ratings"]["vote_avg_all"] , "総合評価")?>
 				</div>

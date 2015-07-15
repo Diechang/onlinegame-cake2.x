@@ -1,6 +1,6 @@
 <?php
 //スタイル
-$html->css(array('portals'), 'stylesheet', array('inline' => false));
+$this->Html->css(array('portals'), 'stylesheet', array('inline' => false));
 ?>
 <!--Description-->
 <div class="content description">
@@ -34,14 +34,14 @@ $html->css(array('portals'), 'stylesheet', array('inline' => false));
 			<p class="description"><?php echo mb_strimwidth(strip_tags($pTitle["description"]), 0, 100, " …", "UTF-8")?></p>
 			<table>
 				<tr>
-					<th><?php echo $html->image("design/icon_rating_total.gif" , array("alt" => "総合評価"))?></th>
+					<th><?php echo $this->Html->image("design/icon_rating_total.gif" , array("alt" => "総合評価"))?></th>
 					<td>
 						<?php echo $this->Common->starBlock(100 , $pTitle["Titlesummary"]["vote_avg_all"] , "総合評価：")?>
 					</td>
 					<td class="cRed wBold"><?php echo $this->Common->pointFormat($pTitle["Titlesummary"]["vote_avg_all"] , "--")?>点</td>
 				<tr>
 				<tr>
-					<th><?php echo $html->image("design/icon_genre.gif" , array("alt" => "ジャンル"))?></th>
+					<th><?php echo $this->Html->image("design/icon_genre.gif" , array("alt" => "ジャンル"))?></th>
 					<td colspan="2">
 						<?php echo $this->Common->categoriesLink($pTitle["Category"])?>
 					</td>
@@ -57,11 +57,11 @@ $html->css(array('portals'), 'stylesheet', array('inline' => false));
 	<h2>オンラインゲームポータル一覧</h2>
 <?php foreach($portals as $portal):?>
 	<div class="item clearfix">
-		<h3><?php echo $html->link(
+		<h3><?php echo $this->Html->link(
 				$this->Common->titleWithCase($portal["Portal"]["title_official"] , $portal["Portal"]["title_read"]),
 				array("controller" => "portals" , "action" => "view" , "path" => $portal["Portal"]["url_str"] , "ext" => "html"))?></h3>
 		<div class="thumb">
-			<a href="<?php echo $html->url(array("controller" => "portals" , "action" => "view" , "path" => $portal["Portal"]["url_str"] , "ext" => "html"))?>">
+			<a href="<?php echo $this->Html->url(array("controller" => "portals" , "action" => "view" , "path" => $portal["Portal"]["url_str"] , "ext" => "html"))?>">
 				<img src="http://capture.heartrails.com/small?<?php echo $portal["Portal"]["official_url"]?>" alt="<?php echo $this->Common->titleWithCase($portal["Portal"]["title_official"] , $portal["Portal"]["title_read"])?>" width="120" />
 			</a>
 		</div>

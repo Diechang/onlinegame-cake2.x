@@ -1,6 +1,6 @@
 <?php
-$html->css(array('titles' , 'shadowbox/shadowbox'), 'stylesheet', array('inline' => false));
-$html->script(array('http://www.google.com/jsapi' , 'shadowbox/shadowbox' , 'mbs'), false);
+$this->Html->css(array('titles' , 'shadowbox/shadowbox'), 'stylesheet', array('inline' => false));
+$this->Html->script(array('http://www.google.com/jsapi' , 'shadowbox/shadowbox' , 'mbs'), false);
 //Title vars
 $titleWithStr["Case"]	= $this->Common->titleWithCase($title["Title"]["title_official"] , $title["Title"]["title_read"]);
 $titleWithStr["Span"]	= $this->Common->titleWithSpan($title["Title"]["title_official"] , $title["Title"]["title_read"]);
@@ -8,7 +8,7 @@ $titleWithStr["Abbr"]	= $this->Common->titleWithAbbr($title["Title"]["title_offi
 $titleWithStr["Sub"]	= $this->Common->titleWithSub($title["Title"]["title_official"] , $title["Title"]["title_read"] , $title["Title"]["title_sub"]);
 //Set
 $this->set("title_for_layout" , $titleWithStr["Abbr"] . " 動画（ムービー）・ブログ記事検索");
-$this->set("keywords_for_layout" , $this->TitlePage->metaKeywords($this->params["action"] , $title["Title"]["title_official"] , $title["Title"]["title_read"] , $title["Title"]["title_abbr"] , $title["Title"]["title_sub"]));
+$this->set("keywords_for_layout" , $this->TitlePage->metaKeywords($this->request->params["action"] , $title["Title"]["title_official"] , $title["Title"]["title_read"] , $title["Title"]["title_abbr"] , $title["Title"]["title_sub"]));
 $this->set("description_for_layout" , $titleWithStr["Sub"] . "の動画（ムービー）・ブログ記事検索です。");
 $this->set("h1_for_layout" , $titleWithStr["Abbr"] . " 動画・ブログ検索");
 $this->set("pankuz_for_layout" , array(array("str" => $titleWithStr["Case"] , "url" => array("action" => "index" , "path" => $title["Title"]["url_str"] , "ext" => "html")) , "動画・ブログ検索"));

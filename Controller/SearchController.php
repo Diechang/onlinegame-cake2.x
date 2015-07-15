@@ -28,7 +28,7 @@ class SearchController extends AppController {
 	{
 		App::import('Sanitize');
 		
-		$url = $this->params["url"];
+		$url = $this->request->params["url"];
 		if(empty($url["page"]))
 		{
 			$url["page"] = 1;

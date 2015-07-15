@@ -1,42 +1,42 @@
 <div class="moneycategories view">
-<h2><?php  __('Moneycategory');?></h2>
+<h2><?php echo __('Moneycategory');?></h2>
 	<dl><?php $i = 0; $class = ' class="altrow"';?>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Id'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php echo __('Id'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $moneycategory['Moneycategory']['id']; ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Str'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php echo __('Str'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $moneycategory['Moneycategory']['str']; ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Path'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php echo __('Path'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $moneycategory['Moneycategory']['path']; ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Summary'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php echo __('Summary'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $moneycategory['Moneycategory']['summary']; ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Body'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php echo __('Body'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $moneycategory['Moneycategory']['body']; ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Sort'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php echo __('Sort'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $moneycategory['Moneycategory']['sort']; ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Created'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php echo __('Created'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $moneycategory['Moneycategory']['created']; ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Modified'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php echo __('Modified'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $moneycategory['Moneycategory']['modified']; ?>
 			&nbsp;
@@ -44,33 +44,33 @@
 	</dl>
 </div>
 <div class="actions">
-	<h3><?php __('Actions'); ?></h3>
+	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(sprintf(__('Edit %s', true), __('Moneycategory', true)), array('action' => 'edit', $moneycategory['Moneycategory']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(sprintf(__('Delete %s', true), __('Moneycategory', true)), array('action' => 'delete', $moneycategory['Moneycategory']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $moneycategory['Moneycategory']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(sprintf(__('List %s', true), __('Moneycategories', true)), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(sprintf(__('New %s', true), __('Moneycategory', true)), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(sprintf(__('List %s', true), __('Monies', true)), array('controller' => 'monies', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(sprintf(__('New %s', true), __('Money', true)), array('controller' => 'monies', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(sprintf(__('Edit %s'), __('Moneycategory')), array('action' => 'edit', $moneycategory['Moneycategory']['id'])); ?> </li>
+		<li><?php echo $this->Html->link(sprintf(__('Delete %s'), __('Moneycategory')), array('action' => 'delete', $moneycategory['Moneycategory']['id']), null, sprintf(__('Are you sure you want to delete # %s?'), $moneycategory['Moneycategory']['id'])); ?> </li>
+		<li><?php echo $this->Html->link(sprintf(__('List %s'), __('Moneycategories')), array('action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(sprintf(__('New %s'), __('Moneycategory')), array('action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(sprintf(__('List %s'), __('Monies')), array('controller' => 'monies', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(sprintf(__('New %s'), __('Money')), array('controller' => 'monies', 'action' => 'add')); ?> </li>
 	</ul>
 </div>
 <div class="related">
-	<h3><?php printf(__('Related %s', true), __('Monies', true));?></h3>
+	<h3><?php printf(__('Related %s'), __('Monies'));?></h3>
 	<?php if (!empty($moneycategory['Money'])):?>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
-		<th><?php __('Id'); ?></th>
-		<th><?php __('Title'); ?></th>
-		<th><?php __('Url Str'); ?></th>
-		<th><?php __('Description'); ?></th>
-		<th><?php __('Moneycategory Id'); ?></th>
-		<th><?php __('Ad Use'); ?></th>
-		<th><?php __('Ad Text'); ?></th>
-		<th><?php __('Ad Banner'); ?></th>
-		<th><?php __('Official Url'); ?></th>
-		<th><?php __('Created'); ?></th>
-		<th><?php __('Modified'); ?></th>
-		<th class="actions"><?php __('Actions');?></th>
+		<th><?php echo __('Id'); ?></th>
+		<th><?php echo __('Title'); ?></th>
+		<th><?php echo __('Url Str'); ?></th>
+		<th><?php echo __('Description'); ?></th>
+		<th><?php echo __('Moneycategory Id'); ?></th>
+		<th><?php echo __('Ad Use'); ?></th>
+		<th><?php echo __('Ad Text'); ?></th>
+		<th><?php echo __('Ad Banner'); ?></th>
+		<th><?php echo __('Official Url'); ?></th>
+		<th><?php echo __('Created'); ?></th>
+		<th><?php echo __('Modified'); ?></th>
+		<th class="actions"><?php echo __('Actions');?></th>
 	</tr>
 	<?php
 		$i = 0;
@@ -93,9 +93,9 @@
 			<td><?php echo $money['created'];?></td>
 			<td><?php echo $money['modified'];?></td>
 			<td class="actions">
-				<?php echo $this->Html->link(__('View', true), array('controller' => 'monies', 'action' => 'view', $money['id'])); ?>
-				<?php echo $this->Html->link(__('Edit', true), array('controller' => 'monies', 'action' => 'edit', $money['id'])); ?>
-				<?php echo $this->Html->link(__('Delete', true), array('controller' => 'monies', 'action' => 'delete', $money['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $money['id'])); ?>
+				<?php echo $this->Html->link(__('View'), array('controller' => 'monies', 'action' => 'view', $money['id'])); ?>
+				<?php echo $this->Html->link(__('Edit'), array('controller' => 'monies', 'action' => 'edit', $money['id'])); ?>
+				<?php echo $this->Html->link(__('Delete'), array('controller' => 'monies', 'action' => 'delete', $money['id']), null, sprintf(__('Are you sure you want to delete # %s?'), $money['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
@@ -104,7 +104,7 @@
 
 	<div class="actions">
 		<ul>
-			<li><?php echo $this->Html->link(sprintf(__('New %s', true), __('Money', true)), array('controller' => 'monies', 'action' => 'add'));?> </li>
+			<li><?php echo $this->Html->link(sprintf(__('New %s'), __('Money')), array('controller' => 'monies', 'action' => 'add'));?> </li>
 		</ul>
 	</div>
 </div>

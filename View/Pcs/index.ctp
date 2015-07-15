@@ -1,6 +1,6 @@
 <?php
 //スタイル
-$html->css(array('pcs'), 'stylesheet', array('inline' => false));
+$this->Html->css(array('pcs'), 'stylesheet', array('inline' => false));
 //
 $this->set("title_for_layout" , "オンラインゲーム用PC（パソコン）");
 $this->set("keywords_for_layout" , "オンラインゲーム,PC,パソコン,推奨,BTO");
@@ -9,7 +9,7 @@ $this->set("h1_for_layout" , "オンラインゲーム用PC");
 $this->set("pankuz_for_layout" , "オンラインゲーム用PC");
 ?>
 <div class="content titles">
-	<h2 class="headimage"><?php echo $html->image("design/headline_title_pcs.gif" , array("alt" => "オンラインゲーム用PCを探す：ゲームに特化したPCで快適プレイ！"))?></h2>
+	<h2 class="headimage"><?php echo $this->Html->image("design/headline_title_pcs.gif" , array("alt" => "オンラインゲーム用PCを探す：ゲームに特化したPCで快適プレイ！"))?></h2>
 	<p>派手な演出や、美しいグラフィックスが楽しめる3Dオンラインゲームなどでは、BTOパソコンショップなどからそれぞれのゲームの動作スペックを満たす推奨PCが販売されています。中にはPCを買うことで特典としてゲーム内アイテムや、非売品グッズがもらえるショップもありますので、ゲームをより楽しみたい方はオンラインゲーム用PCを一度チェックしてみてください。</p>
 	<p class="tCenter">
 		<?php echo $this->Gads->both468()?>

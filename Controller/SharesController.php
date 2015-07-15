@@ -23,7 +23,7 @@ class SharesController extends AppController {
 	}
 
 	function sys_post()	{
-		if(!empty($this->data))
+		if(!empty($this->request->data))
 		{
 			$return		= "";
 			$fbReturn	= null;
@@ -32,8 +32,8 @@ class SharesController extends AppController {
 			//Facebook
 			$this->Facebook->init();
 			$fbReturn = $this->Facebook->post(array(
-				"link" => $this->data["Share"]["link"],
-				"message" => $this->data["Share"]["body"],
+				"link" => $this->request->data["Share"]["link"],
+				"message" => $this->request->data["Share"]["body"],
 			));
 			//
 			if(!$fbReturn)
@@ -51,7 +51,7 @@ class SharesController extends AppController {
 				$this->Session->setFlash("SNS投稿成功");
 			}
 		}
-		$this->redirect(array('action' => 'index'));
+		return $this->redirect(array('action' => 'index'));
 	}
 }
 ?>

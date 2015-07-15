@@ -1,5 +1,5 @@
 <?php
-$html->css(array('titles'), 'stylesheet', array('inline' => false));
+$this->Html->css(array('titles'), 'stylesheet', array('inline' => false));
 //Title vars
 $titleWithStr["Case"]	= $this->Common->titleWithCase($title["Title"]["title_official"] , $title["Title"]["title_read"]);
 $titleWithStr["Span"]	= $this->Common->titleWithSpan($title["Title"]["title_official"] , $title["Title"]["title_read"]);
@@ -7,14 +7,14 @@ $titleWithStr["Abbr"]	= $this->Common->titleWithAbbr($title["Title"]["title_offi
 $titleWithStr["Sub"]	= $this->Common->titleWithSub($title["Title"]["title_official"] , $title["Title"]["title_read"] , $title["Title"]["title_sub"]);
 //Set
 $this->set("title_for_layout" , $titleWithStr["Abbr"] . " イベント・キャンペーン情報");
-$this->set("keywords_for_layout" , $this->TitlePage->metaKeywords($this->params["action"] , $title["Title"]["title_official"] , $title["Title"]["title_read"] , $title["Title"]["title_abbr"] , $title["Title"]["title_sub"]));
+$this->set("keywords_for_layout" , $this->TitlePage->metaKeywords($this->request->params["action"] , $title["Title"]["title_official"] , $title["Title"]["title_read"] , $title["Title"]["title_abbr"] , $title["Title"]["title_sub"]));
 $this->set("description_for_layout" , $titleWithStr["Sub"] . "ののイベント・キャンペーン情報一覧です。");
 $this->set("h1_for_layout" , $titleWithStr["Abbr"] . " イベント・キャンペーン情報");
 $this->set("pankuz_for_layout" , array(array("str" => $titleWithStr["Case"] , "url" => array("action" => "index" , "path" => $title["Title"]["url_str"] , "ext" => "html")) , "イベント・キャンペーン"));
 //OGP
 $this->element("title_ogp" , array("titleWithStr" => $titleWithStr));
 ?>
-<?php echo $session->flash()?>
+<?php echo $this->Session->flash()?>
 <?php echo $this->element("title_head_title")?>
 
 <?php echo $this->element("title_head_menu")?>
@@ -25,12 +25,12 @@ $this->element("title_ogp" , array("titleWithStr" => $titleWithStr));
 <?php endif;?>
 <?php if(!empty($events["current"])):?>
 <div class="content events">
-	<h2><?php echo $html->image("design/titles_events_title_current.gif" , array("alt" => "現在開催中のイベント・キャンペーン"))?></h2>
+	<h2><?php echo $this->Html->image("design/titles_events_title_current.gif" , array("alt" => "現在開催中のイベント・キャンペーン"))?></h2>
 	<p class="description"><?php echo $title["Title"]["title_official"]?>で現在開催中のイベント・キャンペーン情報です。</p>
 	<ul class="eventsList">
 	<?php foreach($events["current"] as $event):?>
 		<li>
-			<h3><?php echo $html->link($event["Event"]["name"] , array("controller" => "titles" , "action" => "event" , "path" => $title["Title"]["url_str"] , "eventid" => $event["Event"]["id"] , "ext" => "html"))?></h3>
+			<h3><?php echo $this->Html->link($event["Event"]["name"] , array("controller" => "titles" , "action" => "event" , "path" => $title["Title"]["url_str"] , "eventid" => $event["Event"]["id"] , "ext" => "html"))?></h3>
 			<p class="description"><?php echo $event["Event"]["summary"]?></p>
 			<table class="data">
 				<tr>
@@ -50,12 +50,12 @@ $this->element("title_ogp" , array("titleWithStr" => $titleWithStr));
 <?php endif;?>
 <?php if(!empty($events["future"])):?>
 <div class="content events">
-	<h2><?php echo $html->image("design/titles_events_title_future.gif" , array("alt" => "開催予定のイベント"))?></h2>
+	<h2><?php echo $this->Html->image("design/titles_events_title_future.gif" , array("alt" => "開催予定のイベント"))?></h2>
 	<p class="description"><?php echo $title["Title"]["title_official"]?>で予定されているイベント・キャンペーン情報です。</p>
 	<ul class="eventsList">
 	<?php foreach($events["future"] as $event):?>
 		<li>
-			<h3><?php echo $html->link($event["Event"]["name"] , array("controller" => "titles" , "action" => "event" , "path" => $title["Title"]["url_str"] , "eventid" => $event["Event"]["id"] , "ext" => "html"))?></h3>
+			<h3><?php echo $this->Html->link($event["Event"]["name"] , array("controller" => "titles" , "action" => "event" , "path" => $title["Title"]["url_str"] , "eventid" => $event["Event"]["id"] , "ext" => "html"))?></h3>
 			<p class="description"><?php echo $event["Event"]["summary"]?></p>
 			<table class="data">
 				<tr>
@@ -75,11 +75,11 @@ $this->element("title_ogp" , array("titleWithStr" => $titleWithStr));
 <?php endif;?>
 <?php if(!empty($events["back"])):?>
 <div class="content events">
-	<h2><?php echo $html->image("design/titles_events_title_back.gif" , array("alt" => "終了したイベント・キャンペーン"))?></h2>
+	<h2><?php echo $this->Html->image("design/titles_events_title_back.gif" , array("alt" => "終了したイベント・キャンペーン"))?></h2>
 	<ul class="eventsList">
 	<?php foreach($events["back"] as $event):?>
 		<li>
-			<h3><?php echo $html->link($event["Event"]["name"] , array("controller" => "titles" , "action" => "event" , "path" => $title["Title"]["url_str"] , "eventid" => $event["Event"]["id"] , "ext" => "html"))?></h3>
+			<h3><?php echo $this->Html->link($event["Event"]["name"] , array("controller" => "titles" , "action" => "event" , "path" => $title["Title"]["url_str"] , "eventid" => $event["Event"]["id"] , "ext" => "html"))?></h3>
 			<p class="description"><?php echo $event["Event"]["summary"]?></p>
 			<table class="data">
 				<tr>

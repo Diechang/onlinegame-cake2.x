@@ -1,5 +1,5 @@
 <?php
-$html->css(array('titles'), 'stylesheet', array('inline' => false));
+$this->Html->css(array('titles'), 'stylesheet', array('inline' => false));
 //Title vars
 $titleWithStr["Case"]	= $this->Common->titleWithCase($title["Title"]["title_official"] , $title["Title"]["title_read"]);
 $titleWithStr["Span"]	= $this->Common->titleWithSpan($title["Title"]["title_official"] , $title["Title"]["title_read"]);
@@ -7,7 +7,7 @@ $titleWithStr["Abbr"]	= $this->Common->titleWithAbbr($title["Title"]["title_offi
 $titleWithStr["Sub"]	= $this->Common->titleWithSub($title["Title"]["title_official"] , $title["Title"]["title_read"] , $title["Title"]["title_sub"]);
 //Set
 $this->set("title_for_layout" , $event["Event"]["name"] . " | " . $titleWithStr["Abbr"]);
-$this->set("keywords_for_layout" , $event["Event"]["name"] . "," . $this->TitlePage->metaKeywords($this->params["action"] , $title["Title"]["title_official"] , $title["Title"]["title_read"] , $title["Title"]["title_abbr"] , $title["Title"]["title_sub"]));
+$this->set("keywords_for_layout" , $event["Event"]["name"] . "," . $this->TitlePage->metaKeywords($this->request->params["action"] , $title["Title"]["title_official"] , $title["Title"]["title_read"] , $title["Title"]["title_abbr"] , $title["Title"]["title_sub"]));
 $this->set("description_for_layout" , $event["Event"]["summary"]);
 $this->set("h1_for_layout" , $event["Event"]["name"] . " " . $titleWithStr["Case"]);
 $this->set("pankuz_for_layout" , array(
@@ -18,11 +18,11 @@ $this->set("pankuz_for_layout" , array(
 //OGP
 $this->element("title_ogp" , array(
 	"ogpTitle" => $this->viewVars["title_for_layout"],
-	"ogpUrl" => $this->here,
+	"ogpUrl" => $this->request->here,
 	"ogpDescription" => mb_strimwidth($event["Event"]["summary"], 0, 120, " …", "UTF-8"),
 ));
 ?>
-<?php echo $session->flash()?>
+<?php echo $this->Session->flash()?>
 <?php echo $this->element("title_head_title")?>
 
 <?php echo $this->element("title_head_menu")?>
@@ -72,12 +72,12 @@ $this->element("title_ogp" , array(
 </div>
 <!--Events others-->
 <div class="content events">
-	<h2><?php echo $html->image("design/titles_events_title_list.gif" , array("alt" => "イベント一覧"))?></h2>
+	<h2><?php echo $this->Html->image("design/titles_events_title_list.gif" , array("alt" => "イベント一覧"))?></h2>
 	<p class="description"><?php echo $title["Title"]["title_official"]?>のイベント・キャンペーン情報一覧です。</p>
 	<ul class="eventsList">
 	<?php foreach($events as $event):?>
 		<li>
-			<h3><?php echo $html->link($event["Event"]["name"] , array("controller" => "titles" , "action" => "event" , "path" => $title["Title"]["url_str"] , "eventid" => $event["Event"]["id"] , "ext" => "html"))?></h3>
+			<h3><?php echo $this->Html->link($event["Event"]["name"] , array("controller" => "titles" , "action" => "event" , "path" => $title["Title"]["url_str"] , "eventid" => $event["Event"]["id"] , "ext" => "html"))?></h3>
 			<p class="description"><?php echo $event["Event"]["summary"]?></p>
 			<table class="data">
 				<tr>

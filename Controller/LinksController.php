@@ -10,7 +10,7 @@ class LinksController extends AppController {
 		if(empty($path))
 		{
 			//Redirect
-			$this->redirect(array("controller" => "links" , "path" => "index" , "ext" => "html"));
+			return $this->redirect(array("controller" => "links" , "path" => "index" , "ext" => "html"));
 		}
 		else
 		{
@@ -84,7 +84,7 @@ class LinksController extends AppController {
 			}
 			else
 			{
-				$this->cakeError("error404");
+				throw new NotFoundException();
 			}
 			//
 			$this->set("mainStr" , $str);
@@ -105,34 +105,34 @@ class LinksController extends AppController {
 	}
 
 	function add() {
-		if (!empty($this->data))
+		if (!empty($this->request->data))
 		{
 			//認証番号チェック
-			if($this->Common->spamCheck($this->data["Link"]["spam_num"]))
+			if($this->Common->spamCheck($this->request->data["Link"]["spam_num"]))
 			{
 				$this->Link->create();
-				if ($this->Link->save($this->data))
+				if ($this->Link->save($this->request->data))
 				{
 					//Send mail
-					$this->Email->from    = (!empty($this->data["Link"]["admin_mail"]) ? $this->data["Link"]["admin_mail"] : "zilow@dz-life.net");
+					$this->Email->from    = (!empty($this->request->data["Link"]["admin_mail"]) ? $this->request->data["Link"]["admin_mail"] : "zilow@dz-life.net");
 					$this->Email->to      = 'zilow@dz-life.net';
 					$this->Email->subject = '[DZ]相互リンク依頼';
 					$this->Email->send("
 ■サイト名
-{$this->data['Link']['site_name']}
+{$this->request->data['Link']['site_name']}
 
 ■サイトURL
-{$this->data['Link']['site_url']}
+{$this->request->data['Link']['site_url']}
 
 ■リンクURL
-{$this->data['Link']['link_url']}
+{$this->request->data['Link']['link_url']}
 
 ■メッセージ
-{$this->data['Link']['message']}
+{$this->request->data['Link']['message']}
 					");
 					//
 					$this->Session->setFlash("相互リンク申込ありがとうございます！<br />\n管理人の承認後に掲載されます。");
-					$this->redirect(array('action' => 'index'));
+					return $this->redirect(array('action' => 'index'));
 				}
 				else
 				{
@@ -159,7 +159,7 @@ class LinksController extends AppController {
 		}
 		else
 		{
-			$this->redirect("/");
+			return $this->redirect("/");
 		}
 	}
 
@@ -177,20 +177,20 @@ class LinksController extends AppController {
 
 //	function sys_view($id = null) {
 //		if (!$id) {
-//			$this->Session->setFlash(sprintf(__('Invalid %s', true), 'link'));
-//			$this->redirect(array('action' => 'index'));
+//			$this->Session->setFlash(sprintf(__('Invalid %s'), 'link'));
+//			return $this->redirect(array('action' => 'index'));
 //		}
 //		$this->set('link', $this->Link->read(null, $id));
 //	}
 
 	function sys_add() {
-		if (!empty($this->data)) {
-			if(empty($this->data["Link"]["admin_name"])){ $this->data["Link"]["admin_name"] = "zilow"; }
-			if(empty($this->data["Link"]["admin_mail"])){ $this->data["Link"]["admin_mail"] = "zilow@dz-life.net"; }
+		if (!empty($this->request->data)) {
+			if(empty($this->request->data["Link"]["admin_name"])){ $this->request->data["Link"]["admin_name"] = "zilow"; }
+			if(empty($this->request->data["Link"]["admin_mail"])){ $this->request->data["Link"]["admin_mail"] = "zilow@dz-life.net"; }
 			$this->Link->create();
-			if ($this->Link->save($this->data)) {
+			if ($this->Link->save($this->request->data)) {
 				$this->Session->setFlash(Configure::read("Success.create"));
-				$this->redirect(array('action' => 'index'));
+				return $this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(Configure::read("Error.create"));
 			}
@@ -201,20 +201,20 @@ class LinksController extends AppController {
 	}
 
 	function sys_edit($id = null) {
-		if (!$id && empty($this->data)) {
+		if (!$id && empty($this->request->data)) {
 			$this->Session->setFlash(Configure::read("Error.id"));
-			$this->redirect(array('action' => 'index'));
+			return $this->redirect(array('action' => 'index'));
 		}
-		if (!empty($this->data)) {
-			if ($this->Link->save($this->data)) {
+		if (!empty($this->request->data)) {
+			if ($this->Link->save($this->request->data)) {
 				$this->Session->setFlash(Configure::read("Success.modify"));
-				$this->redirect(array('action' => 'index'));
+				return $this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(Configure::read("Error.create"));
 			}
 		}
-		if (empty($this->data)) {
-			$this->data = $this->Link->read(null, $id);
+		if (empty($this->request->data)) {
+			$this->request->data = $this->Link->read(null, $id);
 		}
 		//
 		$this->set("linkcategories" , $this->Link->Linkcategory->find("list"));
@@ -225,28 +225,28 @@ class LinksController extends AppController {
 	}
 
 	function sys_lump() {
-		if (!empty($this->data)) {
-			if ($this->Link->saveAll($this->data["Link"])) {
+		if (!empty($this->request->data)) {
+			if ($this->Link->saveAll($this->request->data["Link"])) {
 				$this->Session->setFlash(Configure::read("Success.lump"));
 			} else {
 				$this->Session->setFlash(Configure::read("Error.lump"));
-				$this->redirect(array('action' => 'index'));
+				return $this->redirect(array('action' => 'index'));
 			}
 		}
-		$this->redirect(array('action' => 'index'));
+		return $this->redirect(array('action' => 'index'));
 	}
 
 	function sys_delete($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(Configure::read("Error.id"));
-			$this->redirect(array('action'=>'index'));
+			return $this->redirect(array('action'=>'index'));
 		}
 		if ($this->Link->delete($id)) {
 			$this->Session->setFlash(Configure::read("Success.delete"));
-			$this->redirect(array('action'=>'index'));
+			return $this->redirect(array('action'=>'index'));
 		}
 		$this->Session->setFlash(Configure::read("Error.delete"));
-		$this->redirect(array('action' => 'index'));
+		return $this->redirect(array('action' => 'index'));
 	}
 }
 ?>

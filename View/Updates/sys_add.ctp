@@ -1,17 +1,17 @@
 <div class="updates form">
 <?php echo $this->Form->create('Update');?>
 	<fieldset>
- 		<legend><?php printf(__('Sys Add %s', true), __('Update', true)); ?></legend>
+ 		<legend><?php printf(__('Sys Add %s'), __('Update')); ?></legend>
 	<?php
 		echo $this->Form->input('text');
 	?>
 	</fieldset>
-<?php echo $this->Form->end(__('Submit', true));?>
+<?php echo $this->Form->end(__('Submit'));?>
 </div>
 <div class="actions">
-	<h3><?php __('Actions'); ?></h3>
+	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 
-		<li><?php echo $this->Html->link(sprintf(__('List %s', true), __('Updates', true)), array('action' => 'index'));?></li>
+		<li><?php echo $this->Html->link(sprintf(__('List %s'), __('Updates')), array('action' => 'index'));?></li>
 	</ul>
 </div>

@@ -22,10 +22,10 @@
 ?>
 <!--Post-->
 <div class="content post" id="voteform">
-	<h2><?php echo $html->image($headImageSrc , array("alt" => "レビュー・評価を" . $text . "する"))?></h2>
+	<h2><?php echo $this->Html->image($headImageSrc , array("alt" => "レビュー・評価を" . $text . "する"))?></h2>
 	<p class="description"><?php echo $title . $desc?></p>
 <?php if(!empty($votable)):?>
-	<?php echo $form->create("Vote" , array(
+	<?php echo $this->Form->create("Vote" , array(
 		"url" => $formUrl,
 		"inputDefaults" => array(
 			"div" => false,
@@ -42,7 +42,7 @@
 		<tr>
 			<th><?php echo $voteItem["ask"]?></th>
 			<td class="tCenter radios">
-				<?php echo $form->input($key , array(
+				<?php echo $this->Form->input($key , array(
 					"type" => "radio",
 					"options" => array(
 						"1" => "",
@@ -57,7 +57,7 @@
 		<tr>
 			<th>編集用パスワード</th>
 			<td>
-				<?php echo $form->text("pass" , array(
+				<?php echo $this->Form->text("pass" , array(
 					"value" => "",
 					"size" => 8,
 					"maxLength" => 8))?><br />
@@ -66,12 +66,12 @@
 		</tr>
 		<tr>
 			<th>認証番号</th>
-			<td><?php echo $html->image("design/spamnum.gif" , array("alt" => "スパム防止番号"))?></td>
+			<td><?php echo $this->Html->image("design/spamnum.gif" , array("alt" => "スパム防止番号"))?></td>
 		</tr>
 		<tr>
 			<th class="cRed">認証</th>
 			<td><span class="attention">スパム防止のため上記認証番号を半角で入力してください。</span><br />
-				<?php echo $form->text("spam_num" , array(
+				<?php echo $this->Form->text("spam_num" , array(
 					"value" => "",
 					"size" => 4,
 					"maxLength" => 4))?>
@@ -80,7 +80,7 @@
 		<tr>
 			<th>&nbsp;</th>
 			<td>
-				<?php echo $form->button("評価点数を投稿！" , array(
+				<?php echo $this->Form->button("評価点数を投稿！" , array(
 					"type" => "submit",
 					"id" => "rateSubmit",
 					"class" => "button"))?><br />
@@ -93,21 +93,21 @@
 		<tr>
 			<th>投稿者名（HN）</th>
 			<td>
-				<?php echo $form->text("poster_name" , array(
+				<?php echo $this->Form->text("poster_name" , array(
 					"class" => "formText"))?><br />
 				<span class="attention">未入力の場合は「名無しさん」と表示されます</span></td>
 		</tr>
 		<tr>
 			<th>タイトル</th>
 			<td>
-				<?php echo $form->text("title" , array(
+				<?php echo $this->Form->text("title" , array(
 					"class" => "formText"))?><br />
 				<span class="attention">一言で言うと？</span></td>
 		</tr>
 		<tr>
 			<th>レビュー</th>
 			<td>
-				<?php echo $form->input("review" , array(
+				<?php echo $this->Form->input("review" , array(
 					"class" => "formText",
 					"cols" => false,
 					"rows" => 10))?>
@@ -122,10 +122,10 @@
 		<tr>
 			<th>&nbsp;</th>
 			<td>
-				<?php echo $form->hidden("title_id" , array(
+				<?php echo $this->Form->hidden("title_id" , array(
 					"value" => $titleId))?>
 
-				<?php echo $form->button("レビュー・評価を投稿！" , array(
+				<?php echo $this->Form->button("レビュー・評価を投稿！" , array(
 					"type" => "submit",
 					"id" => "reviewSubmit",
 					"class" => "button"))?><br />
@@ -134,7 +134,7 @@
 			</td>
 		</tr>
 	</table>
-	<?php echo $form->end()?>
+	<?php echo $this->Form->end()?>
 <?php else:?>
 	<p class="voteWait">現在評価・レビューの投稿は受け付けておりません。</p>
 <?php endif;?>

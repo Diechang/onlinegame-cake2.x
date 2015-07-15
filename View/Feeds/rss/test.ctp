@@ -8,5 +8,5 @@ function rss_transform($item)
 				"pubDate" => $item["Title"]["test_start"],
 				);
 }
-$this->set("items", $rss->items($titles, "rss_transform"));
+$this->set("items", $this->Rss->items($titles, "rss_transform"));
 ?>

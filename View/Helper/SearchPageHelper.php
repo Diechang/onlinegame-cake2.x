@@ -31,10 +31,10 @@ class SearchPageHelper extends AppHelper
 	 */
 	function checkList($item , $model , $controller)
 	{
-//		pr($this->params);
+//		pr($this->request->params);
 //		exit;
 		$checked = "";
-		if(!empty($this->params["url"][strtolower($model)]) && in_array($item[$model]["id"] , $this->params["url"][strtolower($model)]))
+		if(!empty($this->request->params["url"][strtolower($model)]) && in_array($item[$model]["id"] , $this->request->params["url"][strtolower($model)]))
 		{
 			$checked = ' checked=="checked"';
 		}
@@ -55,7 +55,7 @@ class SearchPageHelper extends AppHelper
 		$src = "";
 		foreach($this->others as $key => $val)
 		{
-			$checked = (!empty($this->params["url"][$key])) ? ' checked="checked"' : '';
+			$checked = (!empty($this->request->params["url"][$key])) ? ' checked="checked"' : '';
 			$src .= '<li><input type="checkbox" name="' . $key . '"' . $checked . ' /> ' . $val . '</li>' . "\n";
 		}
 		return $src;
@@ -75,11 +75,11 @@ class SearchPageHelper extends AppHelper
 		{
 			if($count == 0)
 			{
-				$checked = (!isset($this->params["url"]["order"]) || $this->params["url"]["order"] == $key) ? ' checked="checked"' : '';
+				$checked = (!isset($this->request->params["url"]["order"]) || $this->request->params["url"]["order"] == $key) ? ' checked="checked"' : '';
 			}
 			else
 			{
-				$checked = (isset($this->params["url"]["order"]) && $this->params["url"]["order"] == $key) ? ' checked="checked"' : '';
+				$checked = (isset($this->request->params["url"]["order"]) && $this->request->params["url"]["order"] == $key) ? ' checked="checked"' : '';
 			}
 			$src .= '<li><input type="radio" name="order" value="' . $key . '"' . $checked . ' /> ' . $val . '</li>' . "\n";
 			$count++;

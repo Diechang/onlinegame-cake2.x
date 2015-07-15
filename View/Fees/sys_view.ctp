@@ -1,22 +1,22 @@
 <div class="fees view">
-<h2><?php  __('Fee');?></h2>
+<h2><?php echo __('Fee');?></h2>
 	<dl><?php $i = 0; $class = ' class="altrow"';?>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Id'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php echo __('Id'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $fee['Fee']['id']; ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Str'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php echo __('Str'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $fee['Fee']['str']; ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Path'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php echo __('Path'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $fee['Fee']['path']; ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Sort'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php echo __('Sort'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $fee['Fee']['sort']; ?>
 			&nbsp;
@@ -24,47 +24,47 @@
 	</dl>
 </div>
 <div class="actions">
-	<h3><?php __('Actions'); ?></h3>
+	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(sprintf(__('Edit %s', true), __('Fee', true)), array('action' => 'edit', $fee['Fee']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(sprintf(__('Delete %s', true), __('Fee', true)), array('action' => 'delete', $fee['Fee']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $fee['Fee']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(sprintf(__('List %s', true), __('Fees', true)), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(sprintf(__('New %s', true), __('Fee', true)), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(sprintf(__('List %s', true), __('Titles', true)), array('controller' => 'titles', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(sprintf(__('New %s', true), __('Title', true)), array('controller' => 'titles', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(sprintf(__('Edit %s'), __('Fee')), array('action' => 'edit', $fee['Fee']['id'])); ?> </li>
+		<li><?php echo $this->Html->link(sprintf(__('Delete %s'), __('Fee')), array('action' => 'delete', $fee['Fee']['id']), null, sprintf(__('Are you sure you want to delete # %s?'), $fee['Fee']['id'])); ?> </li>
+		<li><?php echo $this->Html->link(sprintf(__('List %s'), __('Fees')), array('action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(sprintf(__('New %s'), __('Fee')), array('action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(sprintf(__('List %s'), __('Titles')), array('controller' => 'titles', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(sprintf(__('New %s'), __('Title')), array('controller' => 'titles', 'action' => 'add')); ?> </li>
 	</ul>
 </div>
 <div class="related">
-	<h3><?php printf(__('Related %s', true), __('Titles', true));?></h3>
+	<h3><?php printf(__('Related %s'), __('Titles'));?></h3>
 	<?php if (!empty($fee['Title'])):?>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
-		<th><?php __('Id'); ?></th>
-		<th><?php __('Public'); ?></th>
-		<th><?php __('Title Official'); ?></th>
-		<th><?php __('Title Read'); ?></th>
-		<th><?php __('Title Sub'); ?></th>
-		<th><?php __('Title Abbr'); ?></th>
-		<th><?php __('Url Str'); ?></th>
-		<th><?php __('Thumb Image'); ?></th>
-		<th><?php __('Thumb Name'); ?></th>
-		<th><?php __('Description'); ?></th>
-		<th><?php __('Service Id'); ?></th>
-		<th><?php __('Service Start'); ?></th>
-		<th><?php __('Test Start'); ?></th>
-		<th><?php __('Test End'); ?></th>
-		<th><?php __('Category Text'); ?></th>
-		<th><?php __('Fee Id'); ?></th>
-		<th><?php __('Fee Text'); ?></th>
-		<th><?php __('Ad Use'); ?></th>
-		<th><?php __('Ad Text'); ?></th>
-		<th><?php __('Ad Banner S'); ?></th>
-		<th><?php __('Ad Banner M'); ?></th>
-		<th><?php __('Ad Banner L'); ?></th>
-		<th><?php __('Official Url'); ?></th>
-		<th><?php __('Created'); ?></th>
-		<th><?php __('Modified'); ?></th>
-		<th class="actions"><?php __('Actions');?></th>
+		<th><?php echo __('Id'); ?></th>
+		<th><?php echo __('Public'); ?></th>
+		<th><?php echo __('Title Official'); ?></th>
+		<th><?php echo __('Title Read'); ?></th>
+		<th><?php echo __('Title Sub'); ?></th>
+		<th><?php echo __('Title Abbr'); ?></th>
+		<th><?php echo __('Url Str'); ?></th>
+		<th><?php echo __('Thumb Image'); ?></th>
+		<th><?php echo __('Thumb Name'); ?></th>
+		<th><?php echo __('Description'); ?></th>
+		<th><?php echo __('Service Id'); ?></th>
+		<th><?php echo __('Service Start'); ?></th>
+		<th><?php echo __('Test Start'); ?></th>
+		<th><?php echo __('Test End'); ?></th>
+		<th><?php echo __('Category Text'); ?></th>
+		<th><?php echo __('Fee Id'); ?></th>
+		<th><?php echo __('Fee Text'); ?></th>
+		<th><?php echo __('Ad Use'); ?></th>
+		<th><?php echo __('Ad Text'); ?></th>
+		<th><?php echo __('Ad Banner S'); ?></th>
+		<th><?php echo __('Ad Banner M'); ?></th>
+		<th><?php echo __('Ad Banner L'); ?></th>
+		<th><?php echo __('Official Url'); ?></th>
+		<th><?php echo __('Created'); ?></th>
+		<th><?php echo __('Modified'); ?></th>
+		<th class="actions"><?php echo __('Actions');?></th>
 	</tr>
 	<?php
 		$i = 0;
@@ -101,9 +101,9 @@
 			<td><?php echo $title['created'];?></td>
 			<td><?php echo $title['modified'];?></td>
 			<td class="actions">
-				<?php echo $this->Html->link(__('View', true), array('controller' => 'titles', 'action' => 'view', $title['id'])); ?>
-				<?php echo $this->Html->link(__('Edit', true), array('controller' => 'titles', 'action' => 'edit', $title['id'])); ?>
-				<?php echo $this->Html->link(__('Delete', true), array('controller' => 'titles', 'action' => 'delete', $title['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $title['id'])); ?>
+				<?php echo $this->Html->link(__('View'), array('controller' => 'titles', 'action' => 'view', $title['id'])); ?>
+				<?php echo $this->Html->link(__('Edit'), array('controller' => 'titles', 'action' => 'edit', $title['id'])); ?>
+				<?php echo $this->Html->link(__('Delete'), array('controller' => 'titles', 'action' => 'delete', $title['id']), null, sprintf(__('Are you sure you want to delete # %s?'), $title['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
@@ -112,7 +112,7 @@
 
 	<div class="actions">
 		<ul>
-			<li><?php echo $this->Html->link(sprintf(__('New %s', true), __('Title', true)), array('controller' => 'titles', 'action' => 'add'));?> </li>
+			<li><?php echo $this->Html->link(sprintf(__('New %s'), __('Title')), array('controller' => 'titles', 'action' => 'add'));?> </li>
 		</ul>
 	</div>
 </div>

@@ -1,7 +1,7 @@
 <div class="votes form">
 <?php echo $this->Form->create('Vote');?>
 	<fieldset>
- 		<legend><?php printf(__('Sys Add %s', true), __('Vote', true)); ?></legend>
+ 		<legend><?php printf(__('Sys Add %s'), __('Vote')); ?></legend>
 	<?php
 		echo $this->Form->input('public');
 		echo $this->Form->input('title_id');
@@ -21,14 +21,14 @@
 		echo $this->Form->input('host');
 	?>
 	</fieldset>
-<?php echo $this->Form->end(__('Submit', true));?>
+<?php echo $this->Form->end(__('Submit'));?>
 </div>
 <div class="actions">
-	<h3><?php __('Actions'); ?></h3>
+	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 
-		<li><?php echo $this->Html->link(sprintf(__('List %s', true), __('Votes', true)), array('action' => 'index'));?></li>
-		<li><?php echo $this->Html->link(sprintf(__('List %s', true), __('Titles', true)), array('controller' => 'titles', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(sprintf(__('New %s', true), __('Title', true)), array('controller' => 'titles', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(sprintf(__('List %s'), __('Votes')), array('action' => 'index'));?></li>
+		<li><?php echo $this->Html->link(sprintf(__('List %s'), __('Titles')), array('controller' => 'titles', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(sprintf(__('New %s'), __('Title')), array('controller' => 'titles', 'action' => 'add')); ?> </li>
 	</ul>
 </div>

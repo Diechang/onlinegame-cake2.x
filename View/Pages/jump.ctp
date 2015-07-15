@@ -1,1 +1,1 @@
-<div class="content"><p style="font-size:16px; font-weight:bold;"><?php echo $html->link($u , $u)?></p></div>
+<div class="content"><p style="font-size:16px; font-weight:bold;"><?php echo $this->Html->link($u , $u)?></p></div>

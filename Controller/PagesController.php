@@ -378,9 +378,9 @@ class PagesController extends AppController {
  */
 	function jump()
 	{
-		if(isset($this->params["url"]["u"]))
+		if(isset($this->request->params["url"]["u"]))
 		{
-			$this->set("u" , $this->params["url"]["u"]);
+			$this->set("u" , $this->request->params["url"]["u"]);
 			//Layout vars
 			$this->set("title_for_layout" , "JUMP");
 			$this->set("keywords_for_layout" , "");
@@ -390,7 +390,7 @@ class PagesController extends AppController {
 		}
 		else
 		{
-			$this->redirect("/");
+			return $this->redirect("/");
 		}
 	}
 
@@ -512,7 +512,7 @@ class PagesController extends AppController {
 		//homeだったらリダイレクト
 		if($path[0] == "home")
 		{
-			$this->redirect("/");
+			return $this->redirect("/");
 		}
 		//メソッドがあればそっちいってレンダリング
 		if(array_search($path[0] , get_class_methods(get_class())))
@@ -523,7 +523,7 @@ class PagesController extends AppController {
 		{
 			$count = count($path);
 			if (!$count) {
-				$this->redirect('/');
+				return $this->redirect('/');
 			}
 			$page = $subpage = $title_for_layout = null;
 

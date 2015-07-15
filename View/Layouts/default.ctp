@@ -62,7 +62,7 @@
 	echo $this->element("left_pushsite");
 	echo $this->element("left_pcshop" , array("cache" => array("time" => "999days" , "key" => null)));
 	echo $this->element("left_feeds");
-if($this->params["controller"] != "titles")
+if($this->request->params["controller"] != "titles")
 {
 	echo $this->element("left_share");
 }

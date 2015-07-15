@@ -1,7 +1,7 @@
 <?php if(!empty($relations)):?>
 <!--Relation-->
 <div class="content relations">
-	<h2><?php echo $html->image("design/titles_relations_title.gif" , array("alt" => "このゲームのユーザーにおすすめ"))?></h2>
+	<h2><?php echo $this->Html->image("design/titles_relations_title.gif" , array("alt" => "このゲームのユーザーにおすすめ"))?></h2>
 	<p class="description"><?php echo $title["Title"]["title_official"]?>のユーザーにはこちらのゲームがおすすめ</p>
 	<div class="body">
 		<ul>

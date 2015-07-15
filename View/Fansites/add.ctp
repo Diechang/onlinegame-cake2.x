@@ -1,6 +1,6 @@
 <?php
 //レビュー
-$html->css(array('titles' , 'review'), 'stylesheet', array('inline' => false));
+$this->Html->css(array('titles' , 'review'), 'stylesheet', array('inline' => false));
 //Title vars
 $titleWithStr["Case"]	= $this->Common->titleWithCase($title["Title"]["title_official"] , $title["Title"]["title_read"]);
 $titleWithStr["Span"]	= $this->Common->titleWithSpan($title["Title"]["title_official"] , $title["Title"]["title_read"]);
@@ -17,7 +17,7 @@ $this->set("pankuz_for_layout" , array(
 	"登録申込",
 ));
 ?>
-<?php echo $session->flash()?>
+<?php echo $this->Session->flash()?>
 <?php echo $this->element("title_head_title")?>
 <?php echo $this->element("title_head_menu")?>
 <?php echo $this->element("form_fansite" , array("title" => $title, "id" => $title["Title"]["id"]))?>

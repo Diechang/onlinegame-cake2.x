@@ -6,12 +6,12 @@ class PackagesController extends AppController {
 
 	function sys_index() {
 		//リダイレクト
-		if(!empty($this->params["url"]["title_id"]) or !empty($this->params["url"]["w"]))
+		if(!empty($this->request->params["url"]["title_id"]) or !empty($this->request->params["url"]["w"]))
 		{
 			$url = array();
-			if(!empty($this->params["url"]["title_id"]))	{ $url["title_id"]	= $this->params["url"]["title_id"]; }
-			if(!empty($this->params["url"]["w"]))			{ $url["w"]			= $this->params["url"]["w"]; }
-			$this->redirect($url);
+			if(!empty($this->request->params["url"]["title_id"]))	{ $url["title_id"]	= $this->request->params["url"]["title_id"]; }
+			if(!empty($this->request->params["url"]["w"]))			{ $url["w"]			= $this->request->params["url"]["w"]; }
+			return $this->redirect($url);
 		}
 		//
 		$title_id	= isset($this->passedArgs["title_id"])	? $this->passedArgs["title_id"] : null;
@@ -66,40 +66,40 @@ class PackagesController extends AppController {
 
 //	function sys_view($id = null) {
 //		if (!$id) {
-//			$this->Session->setFlash(__('Invalid package', true));
-//			$this->redirect(array('action' => 'index'));
+//			$this->Session->setFlash(__('Invalid package'));
+//			return $this->redirect(array('action' => 'index'));
 //		}
 //		$this->set('package', $this->Package->read(null, $id));
 //	}
 
 	function sys_add() {
-		if (!empty($this->data)) {
+		if (!empty($this->request->data)) {
 			$this->Package->create();
-			if ($this->Package->save($this->data)) {
+			if ($this->Package->save($this->request->data)) {
 				$this->Session->setFlash(Configure::read("Success.create"));
-				$this->redirect(array('action' => 'index' , "title_id" => $this->data["Package"]["title_id"]));
+				return $this->redirect(array('action' => 'index' , "title_id" => $this->request->data["Package"]["title_id"]));
 			} else {
 				$this->Session->setFlash(Configure::read("Error.input"));
-				$this->redirect(array('action' => 'index'));
+				return $this->redirect(array('action' => 'index'));
 			}
 		}
 	}
 
 	function sys_edit($id = null) {
-		if (!$id && empty($this->data)) {
+		if (!$id && empty($this->request->data)) {
 			$this->Session->setFlash(Configure::read("Error.id"));
-			$this->redirect(array('action' => 'index'));
+			return $this->redirect(array('action' => 'index'));
 		}
-		if (!empty($this->data)) {
-			if ($this->Package->save($this->data)) {
+		if (!empty($this->request->data)) {
+			if ($this->Package->save($this->request->data)) {
 				$this->Session->setFlash(Configure::read("Success.modify"));
-				$this->redirect(array('action' => 'index' , "title_id" => $this->data["Package"]["title_id"]));
+				return $this->redirect(array('action' => 'index' , "title_id" => $this->request->data["Package"]["title_id"]));
 			} else {
 				$this->Session->setFlash(Configure::read("Error.create"));
 			}
 		}
-		if (empty($this->data)) {
-			$this->data = $this->Package->read(null, $id);
+		if (empty($this->request->data)) {
+			$this->request->data = $this->Package->read(null, $id);
 		}
 		//
 		$this->set("titles" , $this->Package->Title->find('list'));
@@ -110,15 +110,15 @@ class PackagesController extends AppController {
 	}
 
 	function sys_lump() {
-		if (!empty($this->data)) {
+		if (!empty($this->request->data)) {
 			//変更チェック
-			if($this->LumpEdit->changeCheck($this->data["Package"] , $this->Package))
+			if($this->LumpEdit->changeCheck($this->request->data["Package"] , $this->Package))
 			{
-				if ($this->Package->saveAll($this->data["Package"])) {
+				if ($this->Package->saveAll($this->request->data["Package"])) {
 					$this->Session->setFlash(Configure::read("Success.lump"));
 				} else {
 					$this->Session->setFlash(Configure::read("Error.lump"));
-					$this->redirect(array('action' => 'index'));
+					return $this->redirect(array('action' => 'index'));
 				}
 			}
 			else
@@ -126,19 +126,19 @@ class PackagesController extends AppController {
 				$this->Session->setFlash(Configure::read("Error.lump_empty"));
 			}
 		}
-		$this->redirect(array('action' => 'index'));
+		return $this->redirect(array('action' => 'index'));
 	}
 
 	function sys_delete($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(Configure::read("Error.id"));
-			$this->redirect(array('action'=>'index'));
+			return $this->redirect(array('action'=>'index'));
 		}
 		if ($this->Package->delete($id)) {
 			$this->Session->setFlash(Configure::read("Success.delete"));
-			$this->redirect(array('action'=>'index'));
+			return $this->redirect(array('action'=>'index'));
 		}
 		$this->Session->setFlash(Configure::read("Error.delete"));
-		$this->redirect(array('action' => 'index'));
+		return $this->redirect(array('action' => 'index'));
 	}
 }

@@ -7,23 +7,23 @@ class LettersController extends AppController {
 
 	function add()
 	{
-		if (!empty($this->data)) {
+		if (!empty($this->request->data)) {
 
 			//認証番号チェック
-			if($this->Common->spamCheck($this->data["Letter"]["spam_num"]))
+			if($this->Common->spamCheck($this->request->data["Letter"]["spam_num"]))
 			{
-				$this->data["Letter"]["ip"]	= $this->ip;
-				$this->data["Letter"]["host"]	= $this->host;
+				$this->request->data["Letter"]["ip"]	= $this->ip;
+				$this->request->data["Letter"]["host"]	= $this->host;
 				$this->Letter->create();
-				if ($this->Letter->save($this->data)) {
-					$this->Email->from			= $this->data["Letter"]["name"] . " <" . $this->data["Letter"]["mail"] . ">";
+				if ($this->Letter->save($this->request->data)) {
+					$this->Email->from			= $this->request->data["Letter"]["name"] . " <" . $this->request->data["Letter"]["mail"] . ">";
 					$this->Email->to			= 'zilow@dz-life.net';
 					$this->Email->subject		= '[DZ]お問合せ';
 					$this->Email->lineLength	= 1000;
-					$this->Email->send($this->data["Letter"]["body"]);
+					$this->Email->send($this->request->data["Letter"]["body"]);
 					//
 					$this->Session->setFlash("お問合せありがとうございました");
-					$this->redirect(array('action' => 'add'));
+					return $this->redirect(array('action' => 'add'));
 				} else {
 					$this->Session->setFlash("入力エラーです");
 				}
@@ -54,7 +54,7 @@ class LettersController extends AppController {
 	function sys_view($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(Configure::read("Error.id"));
-			$this->redirect(array('action' => 'index'));
+			return $this->redirect(array('action' => 'index'));
 		}
 		$this->set('letter', $this->Letter->read(null, $id));
 		//
@@ -65,46 +65,46 @@ class LettersController extends AppController {
 	}
 
 //	function sys_add() {
-//		if (!empty($this->data)) {
+//		if (!empty($this->request->data)) {
 //			$this->Letter->create();
-//			if ($this->Letter->save($this->data)) {
-//				$this->Session->setFlash(sprintf(__('The %s has been saved', true), 'letter'));
-//				$this->redirect(array('action' => 'index'));
+//			if ($this->Letter->save($this->request->data)) {
+//				$this->Session->setFlash(sprintf(__('The %s has been saved'), 'letter'));
+//				return $this->redirect(array('action' => 'index'));
 //			} else {
-//				$this->Session->setFlash(sprintf(__('The %s could not be saved. Please, try again.', true), 'letter'));
+//				$this->Session->setFlash(sprintf(__('The %s could not be saved. Please, try again.'), 'letter'));
 //			}
 //		}
 //	}
 //
 //	function sys_edit($id = null) {
-//		if (!$id && empty($this->data)) {
-//			$this->Session->setFlash(sprintf(__('Invalid %s', true), 'letter'));
-//			$this->redirect(array('action' => 'index'));
+//		if (!$id && empty($this->request->data)) {
+//			$this->Session->setFlash(sprintf(__('Invalid %s'), 'letter'));
+//			return $this->redirect(array('action' => 'index'));
 //		}
-//		if (!empty($this->data)) {
-//			if ($this->Letter->save($this->data)) {
-//				$this->Session->setFlash(sprintf(__('The %s has been saved', true), 'letter'));
-//				$this->redirect(array('action' => 'index'));
+//		if (!empty($this->request->data)) {
+//			if ($this->Letter->save($this->request->data)) {
+//				$this->Session->setFlash(sprintf(__('The %s has been saved'), 'letter'));
+//				return $this->redirect(array('action' => 'index'));
 //			} else {
-//				$this->Session->setFlash(sprintf(__('The %s could not be saved. Please, try again.', true), 'letter'));
+//				$this->Session->setFlash(sprintf(__('The %s could not be saved. Please, try again.'), 'letter'));
 //			}
 //		}
-//		if (empty($this->data)) {
-//			$this->data = $this->Letter->read(null, $id);
+//		if (empty($this->request->data)) {
+//			$this->request->data = $this->Letter->read(null, $id);
 //		}
 //	}
 
 	function sys_delete($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(Configure::read("Error.id"));
-			$this->redirect(array('action'=>'index'));
+			return $this->redirect(array('action'=>'index'));
 		}
 		if ($this->Letter->delete($id)) {
 			$this->Session->setFlash(Configure::read("Success.delete"));
-			$this->redirect(array('action'=>'index'));
+			return $this->redirect(array('action'=>'index'));
 		}
 		$this->Session->setFlash(Configure::read("Error.delete"));
-		$this->redirect(array('action' => 'index'));
+		return $this->redirect(array('action' => 'index'));
 	}
 }
 ?>

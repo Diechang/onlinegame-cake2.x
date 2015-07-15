@@ -40,7 +40,7 @@ class FbappController extends AppController {
 		$this->signed_request = $this->facebook->getSignedRequest();
 		if(empty($this->signed_request))
 		{
-			$this->cakeError("error404");
+			throw new NotFoundException();
 		}
 //		pr($this->signed_request);
 
@@ -49,7 +49,7 @@ class FbappController extends AppController {
 
 		if(empty($this->userId))
 		{
-			$this->redirect($this->authUrl);
+			return $this->redirect($this->authUrl);
 		}
 		else
 		{

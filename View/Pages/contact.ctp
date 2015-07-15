@@ -1,5 +1,5 @@
 <?php
-$html->css(array('pages'), 'stylesheet', array('inline' => false));
+$this->Html->css(array('pages'), 'stylesheet', array('inline' => false));
 //
 $this->set("title_for_layout" , "お問合せ");
 $this->set("keywords_for_layout" , "お問合せ");

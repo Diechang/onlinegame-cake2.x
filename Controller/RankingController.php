@@ -9,7 +9,7 @@ class RankingController extends AppController {
 		if(empty($path))
 		{
 			//Redirect
-			$this->redirect(array("controller" => "ranking" , "path" => "index" , "ext" => "html"));
+			return $this->redirect(array("controller" => "ranking" , "path" => "index" , "ext" => "html"));
 		}
 		else
 		{
@@ -61,7 +61,7 @@ class RankingController extends AppController {
 			}
 			else
 			{
-				$this->redirect(array("controller" => "ranking" , "path" => "index" , "ext" => "html"));
+				return $this->redirect(array("controller" => "ranking" , "path" => "index" , "ext" => "html"));
 			}
 			//Create
 			//

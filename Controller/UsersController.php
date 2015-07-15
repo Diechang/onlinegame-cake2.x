@@ -12,7 +12,7 @@ class UsersController extends AppController {
 	}
 	function sys_logout()
 	{
-		$this->redirect($this->Auth->logout());
+		return $this->redirect($this->Auth->logout());
 	}
 }
 ?>

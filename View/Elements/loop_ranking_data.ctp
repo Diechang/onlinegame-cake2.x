@@ -8,7 +8,7 @@
 			<table class="head">
 				<tr>
 		<?php if($rankNum <= 5):?>
-					<td class="icon"><?php echo $html->image("design/icon_rank_no" . $rankNum . ".gif" , array("alt"=>"総合人気ランキング第" . $rankNum . "位"))?></td>
+					<td class="icon"><?php echo $this->Html->image("design/icon_rank_no" . $rankNum . ".gif" , array("alt"=>"総合人気ランキング第" . $rankNum . "位"))?></td>
 		<?php else:?>
 					<td class="iconS">No.<?php echo $rankNum?></td>
 		<?php endif;?>

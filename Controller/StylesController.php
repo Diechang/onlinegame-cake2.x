@@ -111,21 +111,21 @@ class StylesController extends AppController {
 
 //	function sys_view($id = null) {
 //		if (!$id) {
-//			$this->Session->setFlash(sprintf(__('Invalid %s', true), 'style'));
-//			$this->redirect(array('action' => 'index'));
+//			$this->Session->setFlash(sprintf(__('Invalid %s'), 'style'));
+//			return $this->redirect(array('action' => 'index'));
 //		}
 //		$this->set('style', $this->Style->read(null, $id));
 //	}
 
 	function sys_add() {
-		if (!empty($this->data)) {
+		if (!empty($this->request->data)) {
 			$this->Style->create();
-			if ($this->Style->save($this->data)) {
+			if ($this->Style->save($this->request->data)) {
 				$this->Session->setFlash(Configure::read("Success.create"));
-				$this->redirect(array('action' => 'index'));
+				return $this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(Configure::read("Error.input"));
-				$this->redirect(array('action' => 'index'));
+				return $this->redirect(array('action' => 'index'));
 			}
 		}
 		$titles = $this->Style->Title->find('list' , array("order" => "Title.title_official"));
@@ -133,23 +133,23 @@ class StylesController extends AppController {
 	}
 
 	function sys_edit($id = null) {
-		if (!$id && empty($this->data)) {
+		if (!$id && empty($this->request->data)) {
 			$this->Session->setFlash(Configure::read("Error.id"));
-			$this->redirect(array('action' => 'index'));
+			return $this->redirect(array('action' => 'index'));
 		}
-		if (!empty($this->data)) {
+		if (!empty($this->request->data)) {
 			//コンディションなし - Title.publicが見つからない…
 			$this->Style->hasAndBelongsToMany["Title"]["conditions"] = "";
-			if ($this->Style->save($this->data)) {
+			if ($this->Style->save($this->request->data)) {
 				$this->Session->setFlash(Configure::read("Success.modify"));
-				$this->redirect(array('action' => 'index'));
+				return $this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(Configure::read("Error.create"));
 			}
 		}
-		if (empty($this->data)) {
+		if (empty($this->request->data)) {
 //			$this->Style->recursive = -1;
-			$this->data = $this->Style->read(null, $id);
+			$this->request->data = $this->Style->read(null, $id);
 		}
 		$titles = $this->Style->Title->find('list' , array("order" => "Title.title_official"));
 		$this->set(compact('titles'));
@@ -157,28 +157,28 @@ class StylesController extends AppController {
 	}
 
 	function sys_lump() {
-		if (!empty($this->data)) {
-			if ($this->Style->saveAll($this->data["Style"])) {
+		if (!empty($this->request->data)) {
+			if ($this->Style->saveAll($this->request->data["Style"])) {
 				$this->Session->setFlash(Configure::read("Success.lump"));
 			} else {
 				$this->Session->setFlash(Configure::read("Error.lump"));
-				$this->redirect($this->referer(array('action' => 'index')));
+				return $this->redirect($this->referer(array('action' => 'index')));
 			}
 		}
-		$this->redirect($this->referer(array('action' => 'index')));
+		return $this->redirect($this->referer(array('action' => 'index')));
 	}
 
 	function sys_delete($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(Configure::read("Error.id"));
-			$this->redirect(array('action'=>'index'));
+			return $this->redirect(array('action'=>'index'));
 		}
 		if ($this->Style->delete($id)) {
 			$this->Session->setFlash(Configure::read("Success.delete"));
-			$this->redirect(array('action'=>'index'));
+			return $this->redirect(array('action'=>'index'));
 		}
 		$this->Session->setFlash(Configure::read("Error.delete"));
-		$this->redirect(array('action' => 'index'));
+		return $this->redirect(array('action' => 'index'));
 	}
 }
 ?>

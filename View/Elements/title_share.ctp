@@ -1,13 +1,13 @@
-<?php $url = "http://onlinegame.dz-life.net" . $html->url(array("controller" => "titles" , "action" => "index" , "path" => $title["Title"]["url_str"] , "ext" => "html"))?>
+<?php $url = "http://onlinegame.dz-life.net" . $this->Html->url(array("controller" => "titles" , "action" => "index" , "path" => $title["Title"]["url_str"] , "ext" => "html"))?>
 <!--Bookmark & Share-->
-<?php if($this->action == "index"):?>
+<?php if($this->request->action == "index"):?>
 <fb:comments href="<?php echo $url?>" num_posts="2" width="510"></fb:comments>
 <?php endif;?>
 <div class="content">
 	<!--Bookmark & Share-->
 	<div class="bmShare">
-		<h3><?php echo $html->image("design/content_bmshare_title.gif" , array("alt" => "Bookmark & Share"))?></h3>
-		<p class="comment"><?php echo $html->image("design/content_bmshare_comment.gif" , array("alt" => "このタイトルの評価・レビューを共有しよう！"))?></p>
+		<h3><?php echo $this->Html->image("design/content_bmshare_title.gif" , array("alt" => "Bookmark & Share"))?></h3>
+		<p class="comment"><?php echo $this->Html->image("design/content_bmshare_comment.gif" , array("alt" => "このタイトルの評価・レビューを共有しよう！"))?></p>
 		<div class="body">
 			<ul class="share clearfix">
 				<li><a href="http://twitter.com/share" class="twitter-share-button" data-url="<?php echo $url?>" data-count="horizontal" data-lang="ja">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script></li>

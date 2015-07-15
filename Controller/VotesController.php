@@ -18,12 +18,12 @@ class VotesController extends AppController {
 
 	function add()
 	{
-		if(!empty($this->data))
+		if(!empty($this->request->data))
 		{
 			//Title ID
-			$titleId = $this->data["Vote"]["title_id"];
+			$titleId = $this->request->data["Vote"]["title_id"];
 			//認証番号チェック
-			if($this->Common->spamCheck($this->data["Vote"]["spam_num"]))
+			if($this->Common->spamCheck($this->request->data["Vote"]["spam_num"]))
 			{
 				//cookey
 				if($this->cookey)
@@ -45,10 +45,10 @@ class VotesController extends AppController {
 				}
 				//
 
-				$this->data["Vote"]["ip"]	= $this->ip;
-				$this->data["Vote"]["host"]	= $this->host;
+				$this->request->data["Vote"]["ip"]	= $this->ip;
+				$this->request->data["Vote"]["host"]	= $this->host;
 				//Cookie
-				$this->data["Vote"]["cookey"] = $this->cookey;
+				$this->request->data["Vote"]["cookey"] = $this->cookey;
 
 				/**
 				 * 重複チェック
@@ -73,11 +73,11 @@ class VotesController extends AppController {
 				{
 					//Save
 					$this->Vote->create();
-					if($this->Vote->save($this->data))
+					if($this->Vote->save($this->request->data))
 					{
 						$this->_share($this->Vote->id);
 						$this->Session->setFlash("投稿ありがとうございました！");
-						$this->redirect(array("controller" => "votes" , "action" => "fin" , $this->Vote->id));
+						return $this->redirect(array("controller" => "votes" , "action" => "fin" , $this->Vote->id));
 					}
 					else
 					{
@@ -114,7 +114,7 @@ class VotesController extends AppController {
 		}
 		else
 		{
-			$this->redirect("/");
+			return $this->redirect("/");
 		}
 	}
 
@@ -147,19 +147,19 @@ class VotesController extends AppController {
 		//Check votable
 		$dataVote["Title"]["votable"] = true;
 
-		if(!empty($this->data)) //データチェック
+		if(!empty($this->request->data)) //データチェック
 		{
-			if($this->data["Vote"]["pass"] == $dataVote["Vote"]["pass"]) //パスワードチェック
+			if($this->request->data["Vote"]["pass"] == $dataVote["Vote"]["pass"]) //パスワードチェック
 			{
-				if($this->Common->spamCheck($this->data["Vote"]["spam_num"])) //スパムチェック
+				if($this->Common->spamCheck($this->request->data["Vote"]["spam_num"])) //スパムチェック
 				{
 					$this->Vote->id = $id;
 					//
 					//Save
-					if($this->Vote->save($this->data))
+					if($this->Vote->save($this->request->data))
 					{
 						$this->Session->setFlash("レビュー・評価の編集が完了しました");
-						$this->redirect(array("controller" => "votes" , "action" => "fin" , $id));
+						return $this->redirect(array("controller" => "votes" , "action" => "fin" , $id));
 					}
 					else
 					{
@@ -175,14 +175,14 @@ class VotesController extends AppController {
 			{
 				$this->Session->setFlash("パスワードが違います");
 			}
-			$this->data["Vote"]["id"] = $dataVote["Vote"]["id"];
-			$this->data["Title"] = $dataVote["Title"];
+			$this->request->data["Vote"]["id"] = $dataVote["Vote"]["id"];
+			$this->request->data["Title"] = $dataVote["Title"];
 		}
 		else
 		{
-			$this->data = $dataVote;
+			$this->request->data = $dataVote;
 		}
-//		pr($this->data);
+//		pr($this->request->data);
 		$this->set("voteItems" , $this->Title->Vote->voteItems);
 	}
 
@@ -219,7 +219,7 @@ class VotesController extends AppController {
 		}
 		else
 		{
-			$this->redirect("/");
+			return $this->redirect("/");
 		}
 	}
 
@@ -259,12 +259,12 @@ class VotesController extends AppController {
 	 */
 	function sys_index() {
 		//リダイレクト
-		if(!empty($this->params["url"]["title_id"]) or !empty($this->params["url"]["w"]))
+		if(!empty($this->request->params["url"]["title_id"]) or !empty($this->request->params["url"]["w"]))
 		{
 			$url = array();
-			if(!empty($this->params["url"]["title_id"]))	{ $url["title_id"]	= $this->params["url"]["title_id"]; }
-			if(!empty($this->params["url"]["w"]))			{ $url["w"]			= $this->params["url"]["w"]; }
-			$this->redirect($url);
+			if(!empty($this->request->params["url"]["title_id"]))	{ $url["title_id"]	= $this->request->params["url"]["title_id"]; }
+			if(!empty($this->request->params["url"]["w"]))			{ $url["w"]			= $this->request->params["url"]["w"]; }
+			return $this->redirect($url);
 		}
 		//
 		$title_id	= isset($this->passedArgs["title_id"])	? $this->passedArgs["title_id"] : null;
@@ -312,20 +312,20 @@ class VotesController extends AppController {
 
 //	function sys_view($id = null) {
 //		if (!$id) {
-//			$this->Session->setFlash(sprintf(__('Invalid %s', true), 'vote'));
-//			$this->redirect(array('action' => 'index'));
+//			$this->Session->setFlash(sprintf(__('Invalid %s'), 'vote'));
+//			return $this->redirect(array('action' => 'index'));
 //		}
 //		$this->set('vote', $this->Vote->read(null, $id));
 //	}
 
 //	function sys_add() {
-//		if (!empty($this->data)) {
+//		if (!empty($this->request->data)) {
 //			$this->Vote->create();
-//			if ($this->Vote->save($this->data)) {
-//				$this->Session->setFlash(sprintf(__('The %s has been saved', true), 'vote'));
-//				$this->redirect(array('action' => 'index'));
+//			if ($this->Vote->save($this->request->data)) {
+//				$this->Session->setFlash(sprintf(__('The %s has been saved'), 'vote'));
+//				return $this->redirect(array('action' => 'index'));
 //			} else {
-//				$this->Session->setFlash(sprintf(__('The %s could not be saved. Please, try again.', true), 'vote'));
+//				$this->Session->setFlash(sprintf(__('The %s could not be saved. Please, try again.'), 'vote'));
 //			}
 //		}
 //		$titles = $this->Vote->Title->find('list');
@@ -333,20 +333,20 @@ class VotesController extends AppController {
 //	}
 
 	function sys_edit($id = null) {
-		if (!$id && empty($this->data)) {
+		if (!$id && empty($this->request->data)) {
 			$this->Session->setFlash(Configure::read("Error.id"));
-			$this->redirect(array('action' => 'index'));
+			return $this->redirect(array('action' => 'index'));
 		}
-		if (!empty($this->data)) {
-			if ($this->Vote->save($this->data)) {
+		if (!empty($this->request->data)) {
+			if ($this->Vote->save($this->request->data)) {
 				$this->Session->setFlash(Configure::read("Success.modify"));
-				$this->redirect(array('action' => 'index'));
+				return $this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(Configure::read("Error.create"));
 			}
 		}
-		if (empty($this->data)) {
-			$this->data = $this->Vote->read(null, $id);
+		if (empty($this->request->data)) {
+			$this->request->data = $this->Vote->read(null, $id);
 		}
 		//
 		$this->set("titles" , $this->Vote->Title->find('list'));
@@ -358,19 +358,19 @@ class VotesController extends AppController {
 	}
 
 	function sys_lump() {
-		if (!empty($this->data)) {
+		if (!empty($this->request->data)) {
 			//変更チェック
-			if($this->LumpEdit->changeCheck($this->data["Vote"] , $this->Vote))
+			if($this->LumpEdit->changeCheck($this->request->data["Vote"] , $this->Vote))
 			{
-//				pr($this->data["Vote"]);
+//				pr($this->request->data["Vote"]);
 //				exit;
-				if ($this->Vote->saveAll($this->data["Vote"])) {
+				if ($this->Vote->saveAll($this->request->data["Vote"])) {
 					$this->Session->setFlash(Configure::read("Success.lump"));
 					if($this->Title->summaryUpdateVotes()){}
 					else{ $this->Session->setFlash(Configure::read("Error.summary")); }
 				} else {
 					$this->Session->setFlash(Configure::read("Error.lump"));
-					$this->redirect($this->referer(array('action' => 'index')));
+					return $this->redirect($this->referer(array('action' => 'index')));
 				}
 			}
 			else
@@ -378,20 +378,20 @@ class VotesController extends AppController {
 				$this->Session->setFlash(Configure::read("Error.lump_empty"));
 			}
 		}
-		$this->redirect($this->referer(array('action' => 'index')));
+		return $this->redirect($this->referer(array('action' => 'index')));
 	}
 
 	function sys_delete($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(Configure::read("Error.id"));
-			$this->redirect(array('action'=>'index'));
+			return $this->redirect(array('action'=>'index'));
 		}
 		if ($this->Vote->delete($id)) {
 			$this->Session->setFlash(Configure::read("Success.delete"));
-			$this->redirect(array('action'=>'index'));
+			return $this->redirect(array('action'=>'index'));
 		}
 		$this->Session->setFlash(Configure::read("Error.delete"));
-		$this->redirect(array('action' => 'index'));
+		return $this->redirect(array('action' => 'index'));
 	}
 }
 ?>

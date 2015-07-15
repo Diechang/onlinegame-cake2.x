@@ -1,6 +1,6 @@
 <!-- Information -->
 <div class="content information">
-	<h2 class="image"><?php echo $html->image("design/index_information_title.gif" , array("alt" => "Information：オンラインゲームライフへようこそ！"))?></h2>
+	<h2 class="image"><?php echo $this->Html->image("design/index_information_title.gif" , array("alt" => "Information：オンラインゲームライフへようこそ！"))?></h2>
 	<div class="body">
 		<p><strong>【オンラインゲームライフ】-無料オンラインゲーム情報-</strong>では、無料で遊べるオンラインゲーム情報やレビューなど、オンラインゲーム好きのあなたのために、MMORPGをはじめ、アクションやスポーツなど、無料のオンラインゲームだけではなく、月額課金制の本格オンラインゲームまで幅広く紹介していきます。</p>
 		<p><span class="wBold">レビューや評価点数の投稿</span>もドンドンお待ちしています。<br />
@@ -15,14 +15,14 @@
 
 <!-- Ranking -->
 <div class="content ranking">
-	<h2 class="image"><?php echo $html->image("design/content_ranking_title.gif" , array("alt" => "人気オンラインゲームランキング：ユーザーの評価投稿による人気オンラインゲームランキングです"))?></h2>
+	<h2 class="image"><?php echo $this->Html->image("design/content_ranking_title.gif" , array("alt" => "人気オンラインゲームランキング：ユーザーの評価投稿による人気オンラインゲームランキングです"))?></h2>
 	<div class="body">
 		<!--AllCategory-->
 		<div class="rankingWide">
 			<div class="top">
 				<div class="body">
 
-<?php echo $this->element("loop_ranking_data" , array("rankings" => $rankings))?>
+<?php // echo $this->element("loop_ranking_data" , array("rankings" => $rankings))?>
 
 				</div>
 			</div>
@@ -31,7 +31,7 @@
 		<ul class="rankingSmalls clearfix">
 <?php foreach($categoryRankings as $categoryRanking):?>
 			<li>
-				<h3><?php echo $html->link($categoryRanking["Category"]["str"] . "ランキング" , array("controller" => "ranking" , "action" => "index" , "path" => $categoryRanking["Category"]["path"] , "ext" => "html"))?></h3>
+				<h3><?php echo $this->Html->link($categoryRanking["Category"]["str"] . "ランキング" , array("controller" => "ranking" , "action" => "index" , "path" => $categoryRanking["Category"]["path"] , "ext" => "html"))?></h3>
 				<p><?php echo $this->Common->titleLinkText(
 						$this->Common->titleWithSpan($categoryRanking["Ranking"][0]["Title"]["title_official"] , $categoryRanking["Ranking"][0]["Title"]["title_read"]),
 						$categoryRanking["Ranking"][0]["Title"]["url_str"])?></p>
@@ -39,7 +39,7 @@
 <?php endforeach;?>
 		</ul>
 		<!--MoreLink-->
-		<p class="rankMore"><?php echo $html->link("人気オンラインゲームランキング詳細はこちら" , array("controller" => "ranking" , "action" => "index" , "path" => "index" , "ext" => "html"))?></p>
+		<p class="rankMore"><?php echo $this->Html->link("人気オンラインゲームランキング詳細はこちら" , array("controller" => "ranking" , "action" => "index" , "path" => "index" , "ext" => "html"))?></p>
 	</div>
 </div>
 
@@ -47,11 +47,11 @@
 <!-- Votes -->
 <div class="content votes">
 	<div class="body">
-		<h2 class="image"><?php echo $html->image("design/index_votes_recent_title.gif" , array("alt" => "最近投稿されたレビュー"))?></h2>
+		<h2 class="image"><?php echo $this->Html->image("design/index_votes_recent_title.gif" , array("alt" => "最近投稿されたレビュー"))?></h2>
 		<div class="recent">
 			<dl>
 <?php foreach($recents as $recent): ?>
-				<dt><?php echo $html->link($this->Common->voteTitle($recent["Vote"]) , array("controller" => "titles" , "action" => "single" , "path" => $recent["Title"]["url_str"] , "voteid" => $recent["Vote"]["id"] , "ext" => "html"))?></dt>
+				<dt><?php echo $this->Html->link($this->Common->voteTitle($recent["Vote"]) , array("controller" => "titles" , "action" => "single" , "path" => $recent["Title"]["url_str"] , "voteid" => $recent["Vote"]["id"] , "ext" => "html"))?></dt>
 				<dd>
 					<div class="thumb">
 						<?php echo $this->Common->titleLinkThumb(
@@ -61,7 +61,7 @@
 					</div>
 					<div class="review">
 						<p><?php echo (!empty($recent["Vote"]["review"])) ?
-							mb_strimwidth(h($recent["Vote"]["review"]), 0, 240, " … " . $html->link("続き" , array("controller" => "titles" , "action" => "single" , "path" => $recent["Title"]["url_str"] , "voteid" => $recent["Vote"]["id"] , "ext" => "html"))) :
+							mb_strimwidth(h($recent["Vote"]["review"]), 0, 240, " … " . $this->Html->link("続き" , array("controller" => "titles" , "action" => "single" , "path" => $recent["Title"]["url_str"] , "voteid" => $recent["Vote"]["id"] , "ext" => "html"))) :
 							"(評価投稿のみ)" ?></p>
 					</div>
 					<p class="title"><?php echo $this->Common->titleLinkText(
@@ -84,9 +84,9 @@
 				</dd>
 <?php endforeach; ?>
 			</dl>
-			<p class="icon_feed16"><?php echo $html->link("新着レビューをRSSで！" , "http://feeds.feedburner.com/dz-game/review")?></p>
+			<p class="icon_feed16"><?php echo $this->Html->link("新着レビューをRSSで！" , "http://feeds.feedburner.com/dz-game/review")?></p>
 		</div>
-		<h2 class="image"><?php echo $html->image("design/index_votes_wait_title.gif" , array("alt" => "レビュー・評価投稿募集中！：まだ投稿がされていないオンラインゲームの一部です"))?></h2>
+		<h2 class="image"><?php echo $this->Html->image("design/index_votes_wait_title.gif" , array("alt" => "レビュー・評価投稿募集中！：まだ投稿がされていないオンラインゲームの一部です"))?></h2>
 		<div class="wait">
 			<table>
 <?php for($i = 0; $i < 2; $i++):?>
@@ -117,7 +117,7 @@
 <!-- Tests -->
 <div class="content tests">
 	<div class="body">
-		<h2 class="image"><?php echo $html->image("design/index_tests_current_title.gif" , array("alt" => "無料テスト実施中タイトル：無料でゲームが体験できるテスト実施中タイトルです"))?></h2>
+		<h2 class="image"><?php echo $this->Html->image("design/index_tests_current_title.gif" , array("alt" => "無料テスト実施中タイトル：無料でゲームが体験できるテスト実施中タイトルです"))?></h2>
 		<div class="current">
 			<dl>
 <?php if(empty($testCurrents)):?>
@@ -149,9 +149,9 @@
 	<?php endforeach;?>
 <?php endif;?>
 			</dl>
-			<p class="icon_feed16"><?php echo $html->link("無料テスト情報をRSSで！" , "http://feeds.feedburner.com/dz-game/test")?></p>
+			<p class="icon_feed16"><?php echo $this->Html->link("無料テスト情報をRSSで！" , "http://feeds.feedburner.com/dz-game/test")?></p>
 		</div>
-		<h2 class="image"><?php echo $html->image("design/index_tests_future_title.gif" , array("alt" => "もうすぐ実施予定！：これから実施される予定のテスト情報です"))?></h2>
+		<h2 class="image"><?php echo $this->Html->image("design/index_tests_future_title.gif" , array("alt" => "もうすぐ実施予定！：これから実施される予定のテスト情報です"))?></h2>
 		<div class="future">
 <?php if(empty($testFutures)):?>
 			<p class="none">実施予定のテスト情報がありません</p>
@@ -181,11 +181,11 @@
 	</div>
 </div>
 
-<?php echo $this->element("search_title_form" , array("cache" => array("time" => "999days" , "key" => null)))?>
+<?php // echo $this->element("search_title_form" , array("cache" => array("time" => "999days" , "key" => null)))?>
 
 <!-- Newer -->
 <div class="content newer">
-	<h2 class="image"><?php echo $html->image("design/index_newer_title.gif" , array("alt" => "新着オンラインゲーム"))?></h2>
+	<h2 class="image"><?php echo $this->Html->image("design/index_newer_title.gif" , array("alt" => "新着オンラインゲーム"))?></h2>
 	<ul class="clearfix">
 <?php $newerCount = 0?>
 <?php foreach($newers as $newer): ?>
@@ -203,7 +203,7 @@
 		</li>
 <?php endforeach; ?>
 	</ul>
-	<p class="icon_feed16"><?php echo $html->link("新着オンラインゲームをRSSで！" , "http://feeds.feedburner.com/dz-game/newgames")?></p>
+	<p class="icon_feed16"><?php echo $this->Html->link("新着オンラインゲームをRSSで！" , "http://feeds.feedburner.com/dz-game/newgames")?></p>
 </div>
 
 
@@ -211,17 +211,17 @@
 <div class="content clearfix">
 	<!-- Fansite -->
 	<div class="fansite">
-	<h2 class="image"><?php echo $html->image("design/index_fansite_title.gif" , array("alt" => "新着ファンサイト"))?></h2>
+	<h2 class="image"><?php echo $this->Html->image("design/index_fansite_title.gif" , array("alt" => "新着ファンサイト"))?></h2>
 		<dl>
 <?php foreach($fansites as $fansite):?>
-			<dt><?php echo $html->link($fansite["Fansite"]["site_name"] , $fansite["Fansite"]["site_url"] , array("target" => "_blank"))?></dt>
-			<dd><?php echo $html->link($fansite["Title"]["title_official"] , array("controller" => "titles" , "action" => "link" , "path" => $fansite["Title"]["url_str"] , "ext" => "html"))?></dd>
+			<dt><?php echo $this->Html->link($fansite["Fansite"]["site_name"] , $fansite["Fansite"]["site_url"] , array("target" => "_blank"))?></dt>
+			<dd><?php echo $this->Html->link($fansite["Title"]["title_official"] , array("controller" => "titles" , "action" => "link" , "path" => $fansite["Title"]["url_str"] , "ext" => "html"))?></dd>
 <?php endforeach;?>
 		</dl>
 	</div>
 	<!-- Whats New -->
 	<div class="whats">
-	<h2 class="image"><?php echo $html->image("design/index_whats_title.gif" , array("alt" => "更新履歴"))?></h2>
+	<h2 class="image"><?php echo $this->Html->image("design/index_whats_title.gif" , array("alt" => "更新履歴"))?></h2>
 		<dl>
 <?php foreach($updates as $update):?>
 			<dt><?php echo $this->Common->dateFormat($update["Update"]["created"] , "date")?></dt>

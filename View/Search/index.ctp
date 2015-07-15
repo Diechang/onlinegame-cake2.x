@@ -1,6 +1,6 @@
 <?php
 //スタイル
-$html->css(array('search'), 'stylesheet', array('inline' => false));
+$this->Html->css(array('search'), 'stylesheet', array('inline' => false));
 //
 $this->set("title_for_layout" , "オンラインゲーム検索");
 $this->set("keywords_for_layout" , "検索,サーチ,オンラインゲーム");

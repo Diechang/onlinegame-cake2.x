@@ -111,21 +111,21 @@ class CategoriesController extends AppController {
 
 //	function sys_view($id = null) {
 //		if (!$id) {
-//			$this->Session->setFlash(sprintf(__('Invalid %s', true), 'category'));
-//			$this->redirect(array('action' => 'index'));
+//			$this->Session->setFlash(sprintf(__('Invalid %s'), 'category'));
+//			return $this->redirect(array('action' => 'index'));
 //		}
 //		$this->set('category', $this->Category->read(null, $id));
 //	}
 
 	function sys_add() {
-		if (!empty($this->data)) {
+		if (!empty($this->request->data)) {
 			$this->Category->create();
-			if ($this->Category->save($this->data)) {
+			if ($this->Category->save($this->request->data)) {
 				$this->Session->setFlash(Configure::read("Success.create"));
-				$this->redirect(array('action' => 'index'));
+				return $this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(Configure::read("Error.input"));
-				$this->redirect(array('action' => 'index'));
+				return $this->redirect(array('action' => 'index'));
 			}
 		}
 		$titles = $this->Category->Title->find('list' , array("order" => "Title.title_official"));
@@ -133,23 +133,23 @@ class CategoriesController extends AppController {
 	}
 
 	function sys_edit($id = null) {
-		if (!$id && empty($this->data)) {
+		if (!$id && empty($this->request->data)) {
 			$this->Session->setFlash(Configure::read("Error.id"));
-			$this->redirect(array('action' => 'index'));
+			return $this->redirect(array('action' => 'index'));
 		}
-		if (!empty($this->data)) {
+		if (!empty($this->request->data)) {
 			//コンディションなし - Title.publicが見つからない…
 			$this->Category->hasAndBelongsToMany["Title"]["conditions"] = "";
-			if ($this->Category->save($this->data)) {
+			if ($this->Category->save($this->request->data)) {
 				$this->Session->setFlash(Configure::read("Success.modify"));
-				$this->redirect(array('action' => 'index'));
+				return $this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(Configure::read("Error.create"));
 			}
 		}
-		if (empty($this->data)) {
+		if (empty($this->request->data)) {
 //			$this->Category->recursive = -1;
-			$this->data = $this->Category->read(null, $id);
+			$this->request->data = $this->Category->read(null, $id);
 		}
 		$titles = $this->Category->Title->find('list' , array("order" => "Title.title_official"));
 		$this->set(compact('titles'));
@@ -157,28 +157,28 @@ class CategoriesController extends AppController {
 	}
 
 	function sys_lump() {
-		if (!empty($this->data)) {
-			if ($this->Category->saveAll($this->data["Category"])) {
+		if (!empty($this->request->data)) {
+			if ($this->Category->saveAll($this->request->data["Category"])) {
 				$this->Session->setFlash(Configure::read("Success.lump"));
 			} else {
 				$this->Session->setFlash(Configure::read("Error.lump"));
-				$this->redirect($this->referer(array('action' => 'index')));
+				return $this->redirect($this->referer(array('action' => 'index')));
 			}
 		}
-		$this->redirect($this->referer(array('action' => 'index')));
+		return $this->redirect($this->referer(array('action' => 'index')));
 	}
 
 	function sys_delete($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(Configure::read("Error.id"));
-			$this->redirect(array('action'=>'index'));
+			return $this->redirect(array('action'=>'index'));
 		}
 		if ($this->Category->delete($id)) {
 			$this->Session->setFlash(Configure::read("Success.delete"));
-			$this->redirect(array('action'=>'index'));
+			return $this->redirect(array('action'=>'index'));
 		}
 		$this->Session->setFlash(Configure::read("Error.delete"));
-		$this->redirect(array('action' => 'index'));
+		return $this->redirect(array('action' => 'index'));
 	}
 }
 ?>

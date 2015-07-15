@@ -1,8 +1,8 @@
 <!-- PR -->
 <div class="leftBox leftAds">
-	<h2><?php echo $html->image("design/leftbox_ads_title.gif" , array("alt" => "PR - sponsored link"))?></h2>
+	<h2><?php echo $this->Html->image("design/leftbox_ads_title.gif" , array("alt" => "PR - sponsored link"))?></h2>
 	<div class="body">
-		<h3><?php echo $html->link("N3O" , array("path" => "n3o" , "controller" => "titles" , "action" => "index" , "ext" => "html"))?></h3>
+		<h3><?php echo $this->Html->link("N3O" , array("path" => "n3o" , "controller" => "titles" , "action" => "index" , "ext" => "html"))?></h3>
 		<div class="banner">
 			<a href="http://h.accesstrade.net/sp/cc?rk=0100avwy003ncs" target="_blank"><img src="http://h.accesstrade.net/sp/rr?rk=0100avwy003ncs" alt="" border="0" /></a>
 		</div>
@@ -10,7 +10,7 @@
 	</div>
 	<!--
 	<div class="body">
-		<h3><?php echo $html->link("晴空物語" , array("path" => "harezora" , "controller" => "titles" , "action" => "index" , "ext" => "html"))?></h3>
+		<h3><?php echo $this->Html->link("晴空物語" , array("path" => "harezora" , "controller" => "titles" , "action" => "index" , "ext" => "html"))?></h3>
 		<div class="banner">
 			<a href="http://h.accesstrade.net/sp/cc?rk=0100afpq003ncs" target="_blank"><img src="http://h.accesstrade.net/sp/rr?rk=0100afpq003ncs" alt="" border="0" /></a>
 		</div>
@@ -19,7 +19,7 @@
 	 -->
 	<!--
 	<div class="body">
-		<h3><?php echo $html->link("ウィザードリィオンライン" , array("path" => "wizardry" , "controller" => "titles" , "action" => "index" , "ext" => "html"))?></h3>
+		<h3><?php echo $this->Html->link("ウィザードリィオンライン" , array("path" => "wizardry" , "controller" => "titles" , "action" => "index" , "ext" => "html"))?></h3>
 		<div class="banner">
 			<a href="http://h.accesstrade.net/sp/cc?rk=0100ahi9003ncs" target="_blank"><img src="http://h.accesstrade.net/sp/rr?rk=0100ahi9003ncs" alt="" border="0" /></a>
 		</div>
@@ -28,7 +28,7 @@
 	 -->
 	<!-- 
 	<div class="body">
-		<h3><?php echo $html->link("ユグドラシル" , array("path" => "yggdrasill" , "controller" => "titles" , "action" => "index" , "ext" => "html"))?></h3>
+		<h3><?php echo $this->Html->link("ユグドラシル" , array("path" => "yggdrasill" , "controller" => "titles" , "action" => "index" , "ext" => "html"))?></h3>
 		<div class="banner">
 			<a href="http://www.accesstrade.net/at/c.html?rk=01009hhq003ncs" target="_blank"><img src="http://www.accesstrade.net/at/r.html?rk=01009hhq003ncs" alt="" border="0" /></a>
 		</div>

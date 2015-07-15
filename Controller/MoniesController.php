@@ -26,7 +26,7 @@ class MoniesController extends AppController {
 		if(empty($path))
 		{
 			//Redirect
-			$this->redirect(array("action" => "index" , "ext" => "html"));
+			return $this->redirect(array("action" => "index" , "ext" => "html"));
 		}
 		else
 		{
@@ -45,7 +45,7 @@ class MoniesController extends AppController {
 //			exit;
 			if(empty($pageData))
 			{
-				$this->redirect(array("action" => "index"));
+				return $this->redirect(array("action" => "index"));
 			}
 			$monies = $this->Money->find("all" , array(
 				"recursive" => -1,
@@ -94,18 +94,18 @@ class MoniesController extends AppController {
 
 //	function sys_view($id = null) {
 //		if (!$id) {
-//			$this->Session->setFlash(sprintf(__('Invalid %s', true), 'money'));
-//			$this->redirect(array('action' => 'index'));
+//			$this->Session->setFlash(sprintf(__('Invalid %s'), 'money'));
+//			return $this->redirect(array('action' => 'index'));
 //		}
 //		$this->set('money', $this->Money->read(null, $id));
 //	}
 
 	function sys_add() {
-		if (!empty($this->data)) {
+		if (!empty($this->request->data)) {
 			$this->Money->create();
-			if ($this->Money->save($this->data)) {
+			if ($this->Money->save($this->request->data)) {
 				$this->Session->setFlash(Configure::read("Success.create"));
-				$this->redirect(array('action' => 'index'));
+				return $this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(Configure::read("Error.create"));
 			}
@@ -120,20 +120,20 @@ class MoniesController extends AppController {
 	}
 
 	function sys_edit($id = null) {
-		if (!$id && empty($this->data)) {
+		if (!$id && empty($this->request->data)) {
 			$this->Session->setFlash(Configure::read("Error.id"));
-			$this->redirect(array('action' => 'index'));
+			return $this->redirect(array('action' => 'index'));
 		}
-		if (!empty($this->data)) {
-			if ($this->Money->save($this->data)) {
+		if (!empty($this->request->data)) {
+			if ($this->Money->save($this->request->data)) {
 				$this->Session->setFlash(Configure::read("Success.modify"));
-				$this->redirect(array('action' => 'index'));
+				return $this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(Configure::read("Error.create"));
 			}
 		}
-		if (empty($this->data)) {
-			$this->data = $this->Money->read(null, $id);
+		if (empty($this->request->data)) {
+			$this->request->data = $this->Money->read(null, $id);
 		}
 		$moneycategories = $this->Money->Moneycategory->find('list');
 		$this->set(compact('moneycategories'));
@@ -145,28 +145,28 @@ class MoniesController extends AppController {
 	}
 
 	function sys_lump() {
-		if (!empty($this->data)) {
-			if ($this->Money->saveAll($this->data["Money"])) {
+		if (!empty($this->request->data)) {
+			if ($this->Money->saveAll($this->request->data["Money"])) {
 				$this->Session->setFlash(Configure::read("Success.lump"));
 			} else {
 				$this->Session->setFlash(Configure::read("Error.lump"));
-				$this->redirect($this->referer(array('action' => 'index')));
+				return $this->redirect($this->referer(array('action' => 'index')));
 			}
 		}
-		$this->redirect($this->referer(array('action' => 'index')));
+		return $this->redirect($this->referer(array('action' => 'index')));
 	}
 
 	function sys_delete($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(Configure::read("Error.id"));
-			$this->redirect(array('action'=>'index'));
+			return $this->redirect(array('action'=>'index'));
 		}
 		if ($this->Money->delete($id)) {
 			$this->Session->setFlash(Configure::read("Success.delete"));
-			$this->redirect(array('action'=>'index'));
+			return $this->redirect(array('action'=>'index'));
 		}
 		$this->Session->setFlash(Configure::read("Error.delete"));
-		$this->redirect(array('action' => 'index'));
+		return $this->redirect(array('action' => 'index'));
 	}
 }
 ?>

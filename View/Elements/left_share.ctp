@@ -1,7 +1,7 @@
 <!-- Share -->
 <div class="leftBox leftBlue">
-	<h2><?php echo $html->image("design/leftbox_blue_title_share.gif" , array("alt" => "Share"))?></h2>
-	<div class="comment"><?php echo $html->image("design/leftbox_blue_comment_share.gif" , array("alt" => "共有しよう！してください！"))?></div>
+	<h2><?php echo $this->Html->image("design/leftbox_blue_title_share.gif" , array("alt" => "Share"))?></h2>
+	<div class="comment"><?php echo $this->Html->image("design/leftbox_blue_comment_share.gif" , array("alt" => "共有しよう！してください！"))?></div>
 	<div class="body">
 		<ul class="share">
 			<!--Hatena-->

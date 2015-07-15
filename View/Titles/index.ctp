@@ -1,6 +1,6 @@
 <?php
-$html->css(array('titles'), 'stylesheet', array('inline' => false));
-$html->script(array(
+$this->Html->css(array('titles'), 'stylesheet', array('inline' => false));
+$this->Html->script(array(
 	'http://www.google.com/jsapi',
 	'http://widgets.twimg.com/j/2/widget.js',
 	'imu'
@@ -12,14 +12,14 @@ $titleWithStr["Abbr"]	= $this->Common->titleWithAbbr($title["Title"]["title_offi
 $titleWithStr["Sub"]	= $this->Common->titleWithSub($title["Title"]["title_official"] , $title["Title"]["title_read"] , $title["Title"]["title_sub"]);
 //Set
 $this->set("title_for_layout" , $this->Common->titleAll($title["Title"]["title_official"] , $title["Title"]["title_read"] , $title["Title"]["title_abbr"] , $title["Title"]["title_sub"]));
-$this->set("keywords_for_layout" , $this->TitlePage->metaKeywords($this->params["action"] , $title["Title"]["title_official"] , $title["Title"]["title_read"] , $title["Title"]["title_abbr"] , $title["Title"]["title_sub"]));
+$this->set("keywords_for_layout" , $this->TitlePage->metaKeywords($this->request->params["action"] , $title["Title"]["title_official"] , $title["Title"]["title_read"] , $title["Title"]["title_abbr"] , $title["Title"]["title_sub"]));
 $this->set("description_for_layout" , $titleWithStr["Sub"] . "のトップページです。動作環境や関連動画、" . $titleWithStr["Case"] . "の評価点数やレビューページへもこちらからどうぞ");
 $this->set("h1_for_layout" , $titleWithStr["Abbr"]);
 $this->set("pankuz_for_layout" , array($titleWithStr["Case"]));
 //OGP
 $this->element("title_ogp" , array("titleWithStr" => $titleWithStr));
 ?>
-<?php echo $session->flash()?>
+<?php echo $this->Session->flash()?>
 <?php echo $this->element("title_head_title")?>
 
 <?php echo $this->element("title_head_menu")?>
@@ -31,7 +31,7 @@ $this->element("title_ogp" , array("titleWithStr" => $titleWithStr));
 <?php if(!empty($title["Titlesummary"]["package_count"])):?>
 <!-- Packages -->
 <div class="content packages">
-	<h2><?php echo $html->image("design/titles_packages_title.gif" , array("alt" => "パッケージ製品 - ダウンロード不要で特典アイテム付（かも）！"))?></h2>
+	<h2><?php echo $this->Html->image("design/titles_packages_title.gif" , array("alt" => "パッケージ製品 - ダウンロード不要で特典アイテム付（かも）！"))?></h2>
 	<p class="description"><?php echo $title["Title"]["title_official"]?>のパッケージ製品</p>
 	<?php foreach($title["Package"] as $package):?>
 	<div class="items clearfix">
@@ -52,20 +52,20 @@ $this->element("title_ogp" , array("titleWithStr" => $titleWithStr));
 
 <!--Specs-->
 <div class="content specs">
-	<h2><?php echo $html->image("design/titles_specs_title.gif" , array("alt" => "動作環境※動作環境は必ず公式サイトで確認をお願いします"))?></h2>
+	<h2><?php echo $this->Html->image("design/titles_specs_title.gif" , array("alt" => "動作環境※動作環境は必ず公式サイトで確認をお願いします"))?></h2>
 	<p class="description"><?php echo $title["Title"]["title_official"]?>の動作環境/PCスペック</p>
 	<?php echo $this->element("title_specs" , array("specs" => $title["Spec"]))?>
 	<?php if(!empty($title["Titlesummary"]["pc_count"])):?>
-	<p class="pcsLink"><?php echo $html->link("快適動作の推奨PCをチェックしてみる" , array("action" => "pc" , "path" => $title["Title"]["url_str"] , "ext" => "html"))?></p>
+	<p class="pcsLink"><?php echo $this->Html->link("快適動作の推奨PCをチェックしてみる" , array("action" => "pc" , "path" => $title["Title"]["url_str"] , "ext" => "html"))?></p>
 	<?php endif;?>
 </div>
 
 <!--Video-->
 <div class="content video">
-	<h2><?php echo $html->image("design/titles_video_title.gif" , array("alt" => "関連動画"))?></h2>
+	<h2><?php echo $this->Html->image("design/titles_video_title.gif" , array("alt" => "関連動画"))?></h2>
 	<p class="description"><?php echo $title["Title"]["title_official"]?>関連動画</p>
 <?php echo $this->TitlePage->videoEmbed($title["Title"]["video"])?>
-	<p class="search"><?php echo $html->link($title["Title"]["title_official"] . "の動画を探す" , array("action" => "search" , "path" => $title["Title"]["url_str"] , "ext" => "html"))?></p>
+	<p class="search"><?php echo $this->Html->link($title["Title"]["title_official"] . "の動画を探す" , array("action" => "search" , "path" => $title["Title"]["url_str"] , "ext" => "html"))?></p>
 	<p class="officialLink">
 		<?php echo $this->Common->officialLinkText(
 		$title["Title"]["title_official"],

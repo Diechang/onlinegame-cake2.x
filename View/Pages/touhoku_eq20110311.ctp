@@ -1,5 +1,5 @@
 <?php
-$html->css(array('pages'), 'stylesheet', array('inline' => false));
+$this->Html->css(array('pages'), 'stylesheet', array('inline' => false));
 //
 $this->set("title_for_layout" , "【特設】東北地方太平洋沖地震について");
 $this->set("keywords_for_layout" , "");

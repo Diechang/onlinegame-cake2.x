@@ -16,35 +16,35 @@ class FansitesController extends AppController {
 		));
 // 		pr($title);
 // 		exit;
-		if(!empty($this->data))
+		if(!empty($this->request->data))
 		{
 			//認証番号チェック
-			if($this->Common->spamCheck($this->data["Fansite"]["spam_num"]))
+			if($this->Common->spamCheck($this->request->data["Fansite"]["spam_num"]))
 			{
 				//Save
 				$this->Fansite->create();
-				if($this->Fansite->save($this->data))
+				if($this->Fansite->save($this->request->data))
 				{
 					//Send mail
-					$this->Email->from    = (!empty($this->data["Fansite"]["admin_mail"]) ? $this->data["Fansite"]["admin_mail"] : "zilow@dz-life.net");
+					$this->Email->from    = (!empty($this->request->data["Fansite"]["admin_mail"]) ? $this->request->data["Fansite"]["admin_mail"] : "zilow@dz-life.net");
 					$this->Email->to      = 'zilow@dz-life.net';
 					$this->Email->subject = '[DZ]ファンサイト登録依頼';
 					$this->Email->send("
 ■サイト名
-{$this->data['Fansite']['site_name']}
+{$this->request->data['Fansite']['site_name']}
 
 ■サイトURL
-{$this->data['Fansite']['site_url']}
+{$this->request->data['Fansite']['site_url']}
 
 ■リンクURL
-{$this->data['Fansite']['link_url']}
+{$this->request->data['Fansite']['link_url']}
 
 ■メッセージ
-{$this->data['Fansite']['message']}
+{$this->request->data['Fansite']['message']}
 					");
 					//
 					$this->Session->setFlash("サイト登録申込ありがとうございます！<br />\n管理人の承認後に掲載されます。");
-					$this->redirect(array("controller" => "titles" , "action" => "link" , "path" => $title["Title"]["url_str"] , "ext" => "html"));
+					return $this->redirect(array("controller" => "titles" , "action" => "link" , "path" => $title["Title"]["url_str"] , "ext" => "html"));
 				}
 				else
 				{
@@ -67,16 +67,16 @@ class FansitesController extends AppController {
 	{
 		$this->_emptyToHome($this->referer());
 		$this->_emptyToHome($id);
-		$this->data = $this->Fansite->find("first" , array(
+		$this->request->data = $this->Fansite->find("first" , array(
 			"conditions" => array(
 				"Fansite.id" => $id,
 			),
 		));
-		$reported = $this->data["Fansite"]["public"];
+		$reported = $this->request->data["Fansite"]["public"];
 		if($reported)
 		{
-			$this->data["Fansite"]["public"] = false;
-			if($this->Fansite->save($this->data))
+			$this->request->data["Fansite"]["public"] = false;
+			if($this->Fansite->save($this->request->data))
 			{
 				//Send mail
 				$this->Email->from    = "zilow@dz-life.net";
@@ -84,16 +84,16 @@ class FansitesController extends AppController {
 				$this->Email->subject = '[DZ]ファンサイトリンク切れ報告';
 				$this->Email->send("
 ■サイト名
-{$this->data['Fansite']['site_name']}
+{$this->request->data['Fansite']['site_name']}
 
 ■サイトURL
-{$this->data['Fansite']['site_url']}
+{$this->request->data['Fansite']['site_url']}
 
 ■編集URL
-http://onlinegame.dz-life.net/sys/fansites/edit/{$this->data['Fansite']['id']}
+http://onlinegame.dz-life.net/sys/fansites/edit/{$this->request->data['Fansite']['id']}
 
-■{$this->data['Title']['title_official']}ファンサイト一覧
-http://onlinegame.dz-life.net/sys/fansites/index/title_id:{$this->data['Fansite']['title_id']}
+■{$this->request->data['Title']['title_official']}ファンサイト一覧
+http://onlinegame.dz-life.net/sys/fansites/index/title_id:{$this->request->data['Fansite']['title_id']}
 
 				");
 				//
@@ -108,7 +108,7 @@ http://onlinegame.dz-life.net/sys/fansites/index/title_id:{$this->data['Fansite'
 		{
 			$this->Session->setFlash("すでに非公開リンクとなっています。<br />\nご協力ありがとうございます。");
 		}
-		$this->redirect($this->referer());
+		return $this->redirect($this->referer());
 	}
 
 	/**
@@ -116,12 +116,12 @@ http://onlinegame.dz-life.net/sys/fansites/index/title_id:{$this->data['Fansite'
 	 */
 	function sys_index() {
 		//リダイレクト
-		if(!empty($this->params["url"]["title_id"]) or !empty($this->params["url"]["w"]))
+		if(!empty($this->request->params["url"]["title_id"]) or !empty($this->request->params["url"]["w"]))
 		{
 			$url = array();
-			if(!empty($this->params["url"]["title_id"]))	{ $url["title_id"]	= $this->params["url"]["title_id"]; }
-			if(!empty($this->params["url"]["w"]))			{ $url["w"]			= $this->params["url"]["w"]; }
-			$this->redirect($url);
+			if(!empty($this->request->params["url"]["title_id"]))	{ $url["title_id"]	= $this->request->params["url"]["title_id"]; }
+			if(!empty($this->request->params["url"]["w"]))			{ $url["w"]			= $this->request->params["url"]["w"]; }
+			return $this->redirect($url);
 		}
 		//
 		$title_id	= isset($this->passedArgs["title_id"])	? $this->passedArgs["title_id"] : null;
@@ -178,40 +178,40 @@ http://onlinegame.dz-life.net/sys/fansites/index/title_id:{$this->data['Fansite'
 
 //	function sys_view($id = null) {
 //		if (!$id) {
-//			$this->Session->setFlash(sprintf(__('Invalid %s', true), 'fansite'));
-//			$this->redirect(array('action' => 'index'));
+//			$this->Session->setFlash(sprintf(__('Invalid %s'), 'fansite'));
+//			return $this->redirect(array('action' => 'index'));
 //		}
 //		$this->set('fansite', $this->Fansite->read(null, $id));
 //	}
 
 	function sys_add() {
-		if (!empty($this->data)) {
+		if (!empty($this->request->data)) {
 			$this->Fansite->create();
-			if ($this->Fansite->save($this->data)) {
+			if ($this->Fansite->save($this->request->data)) {
 				$this->Session->setFlash(Configure::read("Success.create"));
-				$this->redirect(array('action' => 'index' , "title_id" => $this->data["Fansite"]["title_id"]));
+				return $this->redirect(array('action' => 'index' , "title_id" => $this->request->data["Fansite"]["title_id"]));
 			} else {
 				$this->Session->setFlash(Configure::read("Error.input"));
-				$this->redirect(array('action' => 'index'));
+				return $this->redirect(array('action' => 'index'));
 			}
 		}
 	}
 
 	function sys_edit($id = null) {
-		if (!$id && empty($this->data)) {
+		if (!$id && empty($this->request->data)) {
 			$this->Session->setFlash(Configure::read("Error.id"));
-			$this->redirect(array('action' => 'index'));
+			return $this->redirect(array('action' => 'index'));
 		}
-		if (!empty($this->data)) {
-			if ($this->Fansite->save($this->data)) {
+		if (!empty($this->request->data)) {
+			if ($this->Fansite->save($this->request->data)) {
 				$this->Session->setFlash(Configure::read("Success.modify"));
-				$this->redirect(array('action' => 'index' , "title_id" => $this->data["Fansite"]["title_id"]));
+				return $this->redirect(array('action' => 'index' , "title_id" => $this->request->data["Fansite"]["title_id"]));
 			} else {
 				$this->Session->setFlash(Configure::read("Error.create"));
 			}
 		}
-		if (empty($this->data)) {
-			$this->data = $this->Fansite->read(null, $id);
+		if (empty($this->request->data)) {
+			$this->request->data = $this->Fansite->read(null, $id);
 		}
 		//
 		$this->set("titles" , $this->Fansite->Title->find('list'));
@@ -222,15 +222,15 @@ http://onlinegame.dz-life.net/sys/fansites/index/title_id:{$this->data['Fansite'
 	}
 
 	function sys_lump() {
-		if (!empty($this->data)) {
+		if (!empty($this->request->data)) {
 			//変更チェック
-			if($this->LumpEdit->changeCheck($this->data["Fansite"] , $this->Fansite))
+			if($this->LumpEdit->changeCheck($this->request->data["Fansite"] , $this->Fansite))
 			{
-				if ($this->Fansite->saveAll($this->data["Fansite"])) {
+				if ($this->Fansite->saveAll($this->request->data["Fansite"])) {
 					$this->Session->setFlash(Configure::read("Success.lump"));
 				} else {
 					$this->Session->setFlash(Configure::read("Error.lump"));
-					$this->redirect(array('action' => 'index'));
+					return $this->redirect(array('action' => 'index'));
 				}
 			}
 			else
@@ -238,20 +238,20 @@ http://onlinegame.dz-life.net/sys/fansites/index/title_id:{$this->data['Fansite'
 				$this->Session->setFlash(Configure::read("Error.lump_empty"));
 			}
 		}
-		$this->redirect(array('action' => 'index'));
+		return $this->redirect(array('action' => 'index'));
 	}
 
 	function sys_delete($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(Configure::read("Error.id"));
-			$this->redirect(array('action'=>'index'));
+			return $this->redirect(array('action'=>'index'));
 		}
 		if ($this->Fansite->delete($id)) {
 			$this->Session->setFlash(Configure::read("Success.delete"));
-			$this->redirect(array('action'=>'index'));
+			return $this->redirect(array('action'=>'index'));
 		}
 		$this->Session->setFlash(Configure::read("Error.delete"));
-		$this->redirect(array('action' => 'index'));
+		return $this->redirect(array('action' => 'index'));
 	}
 }
 ?>

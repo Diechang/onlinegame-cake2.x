@@ -11,7 +11,7 @@
 		</tr>
 		<tr>
 			<th nowrap="nowrap">メール</th>
-			<td><?php echo $text->autoLinkEmails($letter["Letter"]["mail"])?></td>
+			<td><?php echo $this->Text->autoLinkEmails($letter["Letter"]["mail"])?></td>
 		</tr>
 		<tr>
 			<th nowrap="nowrap">本文</th>
@@ -20,7 +20,7 @@
 		<tr>
 			<th nowrap="nowrap">戻る</th>
 			<td>
-				<?php echo $html->link("戻る" , array("action" => "index") , array("class" => "btn btn-info"))?>
+				<?php echo $this->Html->link("戻る" , array("action" => "index") , array("class" => "btn btn-info"))?>
 			</td>
 		</tr>
 	</table>

@@ -136,9 +136,9 @@ class TitlesController extends AppController {
 	function single()
 	{
 		$this->_checkParams();
-		if(empty($this->params["voteid"]))
+		if(empty($this->request->params["voteid"]))
 		{
-			$this->redirect(array("controller" => "titles" , "action" => "review" , "path" => $this->params["path"] , "ext" => "html"));
+			return $this->redirect(array("controller" => "titles" , "action" => "review" , "path" => $this->request->params["path"] , "ext" => "html"));
 		}
 
 		/**
@@ -156,7 +156,7 @@ class TitlesController extends AppController {
 			"recursive" => -1,
 			"conditions" => array(
 				"Vote.public" => 1,
-				"Vote.id" => $this->params["voteid"],
+				"Vote.id" => $this->request->params["voteid"],
 				"Vote.title_id" => $title["Title"]["id"],
 			),
 		));
@@ -269,9 +269,9 @@ class TitlesController extends AppController {
 	function _event()
 	{
 		$this->_checkParams();
-		if(empty($this->params["eventid"]))
+		if(empty($this->request->params["eventid"]))
 		{
-			$this->redirect(array("controller" => "titles" , "action" => "events" , "path" => $this->params["path"] , "ext" => "html"));
+			return $this->redirect(array("controller" => "titles" , "action" => "events" , "path" => $this->request->params["path"] , "ext" => "html"));
 		}
 
 		/**
@@ -289,7 +289,7 @@ class TitlesController extends AppController {
 			"recursive" => -1,
 			"conditions" => array(
 				"Event.public" => 1,
-				"Event.id" => $this->params["eventid"],
+				"Event.id" => $this->request->params["eventid"],
 				"Event.title_id" => $title["Title"]["id"],
 			),
 		));
@@ -483,13 +483,13 @@ class TitlesController extends AppController {
 	 */
 	function sys_index() {
 		//リダイレクト
-		if(!empty($this->params["url"]["w"]) or !empty($this->params["url"]["category"]) or !empty($this->params["url"]["service"]))
+		if(!empty($this->request->params["url"]["w"]) or !empty($this->request->params["url"]["category"]) or !empty($this->request->params["url"]["service"]))
 		{
 			$url = array();
-			if(!empty($this->params["url"]["w"]))			{ $url["w"]			= $this->params["url"]["w"]; }
-			if(!empty($this->params["url"]["category"]))	{ $url["category"]	= $this->params["url"]["category"]; }
-			if(!empty($this->params["url"]["service"]))		{ $url["service"]	= $this->params["url"]["service"]; }
-			$this->redirect($url);
+			if(!empty($this->request->params["url"]["w"]))			{ $url["w"]			= $this->request->params["url"]["w"]; }
+			if(!empty($this->request->params["url"]["category"]))	{ $url["category"]	= $this->request->params["url"]["category"]; }
+			if(!empty($this->request->params["url"]["service"]))		{ $url["service"]	= $this->request->params["url"]["service"]; }
+			return $this->redirect($url);
 		}
 
 		//SanitizepassedArgs
@@ -552,28 +552,28 @@ class TitlesController extends AppController {
 
 //	function sys_view($id = null) {
 //		if (!$id) {
-//			$this->Session->setFlash(sprintf(__('Invalid %s', true), 'title'));
-//			$this->redirect(array('action' => 'index'));
+//			$this->Session->setFlash(sprintf(__('Invalid %s'), 'title'));
+//			return $this->redirect(array('action' => 'index'));
 //		}
 //		$this->set('title', $this->Title->read(null, $id));
 //	}
 
 	function sys_add() {
-		if (!empty($this->data)) {
+		if (!empty($this->request->data)) {
 			//File upload
-			if(!empty($this->data["Title"]["thumb_image"]["name"]))
+			if(!empty($this->request->data["Title"]["thumb_image"]["name"]))
 			{
 				//アップロードするファイルの場所
 				$uploadprefix	= "thumb_";
 				$uploaddir		= WWW_ROOT . "img" . DS . "thumb";
-				$uploadfile		= $uploaddir . DS . basename($this->data["Title"]["thumb_image"]["name"]);
+				$uploadfile		= $uploaddir . DS . basename($this->request->data["Title"]["thumb_image"]["name"]);
 
 				$pathinfo		= pathinfo($uploadfile);
-				$filename		= $uploadprefix . $this->data["Title"]["url_str"] . "." . $pathinfo["extension"];
+				$filename		= $uploadprefix . $this->request->data["Title"]["url_str"] . "." . $pathinfo["extension"];
 				$uploadfile		= $pathinfo['dirname'] . DS . $filename;
-				$this->data["Title"]["thumb_image"]["name"] = $filename;
+				$this->request->data["Title"]["thumb_image"]["name"] = $filename;
 				//画像をテンポラリーの場所から、上記で設定したアップロードファイルの置き場所へ移動
-				if(move_uploaded_file($this->data["Title"]["thumb_image"]["tmp_name"], $uploadfile))
+				if(move_uploaded_file($this->request->data["Title"]["thumb_image"]["tmp_name"], $uploadfile))
 				{
 					//成功
 				}
@@ -582,21 +582,21 @@ class TitlesController extends AppController {
 					//失敗したら、errorを表示
 					$this->Session->setFlash(Configure::read("Error.upload"));
 				}
-				$this->data["Title"]["thumb_name"]	= $filename;
+				$this->request->data["Title"]["thumb_name"]	= $filename;
 			}
-			$this->data["Title"]["thumb_image"]	= NULL;
+			$this->request->data["Title"]["thumb_image"]	= NULL;
 			//
 			$this->Title->create();
-			if($this->Title->save($this->data))
+			if($this->Title->save($this->request->data))
 			{
-				$this->data["Titlesummary"]["id"]		= $this->Title->id;
-				$this->data["Titlesummary"]["title_id"] = $this->Title->id;
+				$this->request->data["Titlesummary"]["id"]		= $this->Title->id;
+				$this->request->data["Titlesummary"]["title_id"] = $this->Title->id;
 //				pr($this->Title);
 				$this->Title->Titlesummary->create();
-				if($this->Title->Titlesummary->save($this->data))
+				if($this->Title->Titlesummary->save($this->request->data))
 				{
 					$this->Session->setFlash(Configure::read("Success.create"));
-					$this->redirect('/sys');
+					return $this->redirect('/sys');
 				}
 				else
 				{
@@ -623,25 +623,25 @@ class TitlesController extends AppController {
 	}
 
 	function sys_edit($id = null) {
-		if (!$id && empty($this->data)) {
+		if (!$id && empty($this->request->data)) {
 			$this->Session->setFlash(Configure::read("Error.id"));
-			$this->redirect(array('action' => 'index'));
+			return $this->redirect(array('action' => 'index'));
 		}
-		if (!empty($this->data)) {
+		if (!empty($this->request->data)) {
 			//File upload
-			if(!empty($this->data["Title"]["thumb_image"]["name"]))
+			if(!empty($this->request->data["Title"]["thumb_image"]["name"]))
 			{
 				//アップロードするファイルの場所
 				$uploadprefix	= "thumb_";
 				$uploaddir		= WWW_ROOT . "img" . DS . "thumb";
-				$uploadfile		= $uploaddir . DS . basename($this->data["Title"]["thumb_image"]["name"]);
+				$uploadfile		= $uploaddir . DS . basename($this->request->data["Title"]["thumb_image"]["name"]);
 
 				$pathinfo		= pathinfo($uploadfile);
-				$filename		= $uploadprefix . $this->data["Title"]["url_str"] . "." . $pathinfo["extension"];
+				$filename		= $uploadprefix . $this->request->data["Title"]["url_str"] . "." . $pathinfo["extension"];
 				$uploadfile		= $pathinfo['dirname'] . DS . $filename;
-				$this->data["Title"]["thumb_image"]["name"] = $filename;
+				$this->request->data["Title"]["thumb_image"]["name"] = $filename;
 				//画像をテンポラリーの場所から、上記で設定したアップロードファイルの置き場所へ移動
-				if(move_uploaded_file($this->data["Title"]["thumb_image"]["tmp_name"], $uploadfile))
+				if(move_uploaded_file($this->request->data["Title"]["thumb_image"]["tmp_name"], $uploadfile))
 				{
 					//成功
 				}
@@ -650,19 +650,19 @@ class TitlesController extends AppController {
 					//失敗したら、errorを表示
 					$this->Session->setFlash(Configure::read("Error.upload"));
 				}
-				$this->data["Title"]["thumb_name"]	= $filename;
+				$this->request->data["Title"]["thumb_name"]	= $filename;
 			}
-			$this->data["Title"]["thumb_image"]	= NULL;
+			$this->request->data["Title"]["thumb_image"]	= NULL;
 			//
-			if ($this->Title->save($this->data)) {
+			if ($this->Title->save($this->request->data)) {
 				$this->Session->setFlash(Configure::read("Success.modify"));
-				$this->redirect('/sys');
+				return $this->redirect('/sys');
 			} else {
 				$this->Session->setFlash(Configure::read("Error.create"));
 			}
 		}
-		if (empty($this->data)) {
-			$this->data = $this->Title->read(null, $id);
+		if (empty($this->request->data)) {
+			$this->request->data = $this->Title->read(null, $id);
 		}
 		$services = $this->Title->Service->find('list');
 		$fees = $this->Title->Fee->find('list');
@@ -678,13 +678,13 @@ class TitlesController extends AppController {
 	}
 
 	function sys_lump() {
-		if (!empty($this->data)) {
+		if (!empty($this->request->data)) {
 			//変更チェック
-			if($this->LumpEdit->changeCheck($this->data["Title"] , $this->Title))
+			if($this->LumpEdit->changeCheck($this->request->data["Title"] , $this->Title))
 			{
-//				pr($this->data["Title"]);
+//				pr($this->request->data["Title"]);
 //				exit;
-				if ($this->Title->saveAll($this->data["Title"])) {
+				if ($this->Title->saveAll($this->request->data["Title"])) {
 					$this->Session->setFlash(Configure::read("Success.lump"));
 					if($this->Title->summaryUpdateAll()){}
 					else{ $this->Session->setFlash(Configure::read("Error.summary")); }
@@ -697,20 +697,20 @@ class TitlesController extends AppController {
 				$this->Session->setFlash(Configure::read("Error.lump_empty"));
 			}
 		}
-		$this->redirect($this->referer('/sys'));
+		return $this->redirect($this->referer('/sys'));
 	}
 
 	function sys_delete($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(Configure::read("Error.id"));
-			$this->redirect(array('action'=>'index'));
+			return $this->redirect(array('action'=>'index'));
 		}
 		if ($this->Title->delete($id)) {
 			$this->Session->setFlash(Configure::read("Success.delete"));
-			$this->redirect(array('action'=>'index'));
+			return $this->redirect(array('action'=>'index'));
 		}
 		$this->Session->setFlash(Configure::read("Error.delete"));
-		$this->redirect(array('action' => 'index'));
+		return $this->redirect(array('action' => 'index'));
 	}
 
 	function sys_update($id = null)
@@ -754,7 +754,7 @@ class TitlesController extends AppController {
 	{
 		return $this->Title->find("first", array(
 			"conditions" => array(
-				"Title.url_str" => $this->params["path"],
+				"Title.url_str" => $this->request->params["path"],
 			)
 		));
 	}

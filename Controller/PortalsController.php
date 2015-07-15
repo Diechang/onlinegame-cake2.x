@@ -98,18 +98,18 @@ class PortalsController extends AppController {
 
 //	function sys_view($id = null) {
 //		if (!$id) {
-//			$this->Session->setFlash(sprintf(__('Invalid %s', true), 'portal'));
-//			$this->redirect(array('action' => 'index'));
+//			$this->Session->setFlash(sprintf(__('Invalid %s'), 'portal'));
+//			return $this->redirect(array('action' => 'index'));
 //		}
 //		$this->set('portal', $this->Portal->read(null, $id));
 //	}
 
 	function sys_add() {
-		if (!empty($this->data)) {
+		if (!empty($this->request->data)) {
 			$this->Portal->create();
-			if ($this->Portal->save($this->data)) {
+			if ($this->Portal->save($this->request->data)) {
 				$this->Session->setFlash(Configure::read("Success.create"));
-				$this->redirect(array('action' => 'index'));
+				return $this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(Configure::read("Error.create"));
 			}
@@ -124,22 +124,22 @@ class PortalsController extends AppController {
 	}
 
 	function sys_edit($id = null) {
-		if (!$id && empty($this->data)) {
+		if (!$id && empty($this->request->data)) {
 			$this->Session->setFlash(Configure::read("Error.id"));
-			$this->redirect(array('action' => 'index'));
+			return $this->redirect(array('action' => 'index'));
 		}
-		if (!empty($this->data)) {
+		if (!empty($this->request->data)) {
 			//コンディションなし - Title.publicが見つからない…
 			$this->Portal->hasAndBelongsToMany["Title"]["conditions"] = "";
-			if ($this->Portal->save($this->data)) {
+			if ($this->Portal->save($this->request->data)) {
 				$this->Session->setFlash(Configure::read("Success.modify"));
-				$this->redirect(array('action' => 'index'));
+				return $this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(Configure::read("Error.create"));
 			}
 		}
-		if (empty($this->data)) {
-			$this->data = $this->Portal->read(null, $id);
+		if (empty($this->request->data)) {
+			$this->request->data = $this->Portal->read(null, $id);
 		}
 		$titles = $this->Portal->Title->find('list' , array("order" => "Title.title_official"));
 		$this->set(compact('titles'));
@@ -151,17 +151,17 @@ class PortalsController extends AppController {
 	}
 
 	function sys_lump() {
-		if (!empty($this->data)) {
+		if (!empty($this->request->data)) {
 			//変更チェック
-			if($this->LumpEdit->changeCheck($this->data["Portal"] , $this->Portal))
+			if($this->LumpEdit->changeCheck($this->request->data["Portal"] , $this->Portal))
 			{
-//				pr($this->data["Portal"]);
+//				pr($this->request->data["Portal"]);
 //				exit;
-				if ($this->Portal->saveAll($this->data["Portal"])) {
+				if ($this->Portal->saveAll($this->request->data["Portal"])) {
 					$this->Session->setFlash(Configure::read("Success.lump"));
 				} else {
 					$this->Session->setFlash(Configure::read("Error.lump"));
-					$this->redirect($this->referer(array('action' => 'index')));
+					return $this->redirect($this->referer(array('action' => 'index')));
 				}
 			}
 			else
@@ -169,20 +169,20 @@ class PortalsController extends AppController {
 				$this->Session->setFlash(Configure::read("Error.lump_empty"));
 			}
 		}
-		$this->redirect($this->referer(array('action' => 'index')));
+		return $this->redirect($this->referer(array('action' => 'index')));
 	}
 
 	function sys_delete($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(Configure::read("Error.id"));
-			$this->redirect(array('action'=>'index'));
+			return $this->redirect(array('action'=>'index'));
 		}
 		if ($this->Portal->delete($id)) {
 			$this->Session->setFlash(Configure::read("Success.delete"));
-			$this->redirect(array('action'=>'index'));
+			return $this->redirect(array('action'=>'index'));
 		}
 		$this->Session->setFlash(Configure::read("Error.delete"));
-		$this->redirect(array('action' => 'index'));
+		return $this->redirect(array('action' => 'index'));
 	}
 }
 ?>

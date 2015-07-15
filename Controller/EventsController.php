@@ -23,8 +23,8 @@ class EventsController extends AppController {
 	);
 
 	function _index() {
-		$page = (!empty($this->params["page"])) ? $this->params["page"] : 1;
-		$this->params["page"] = $page;
+		$page = (!empty($this->request->params["page"])) ? $this->request->params["page"] : 1;
+		$this->request->params["page"] = $page;
 
 		/**
 		 * Review Data
@@ -43,13 +43,13 @@ class EventsController extends AppController {
 	 */
 	function sys_index() {
 		//リダイレクト
-		if(!empty($this->params["url"]["w"])
-			or !empty($this->params["url"]["title_id"]))
+		if(!empty($this->request->params["url"]["w"])
+			or !empty($this->request->params["url"]["title_id"]))
 		{
 			$url = array();
-			if(!empty($this->params["url"]["w"]))			{ $url["w"]			= $this->params["url"]["w"]; }
-			if(!empty($this->params["url"]["title_id"]))	{ $url["title_id"]	= $this->params["url"]["title_id"]; }
-			$this->redirect($url);
+			if(!empty($this->request->params["url"]["w"]))			{ $url["w"]			= $this->request->params["url"]["w"]; }
+			if(!empty($this->request->params["url"]["title_id"]))	{ $url["title_id"]	= $this->request->params["url"]["title_id"]; }
+			return $this->redirect($url);
 		}
 		//
 		$conditions = array();
@@ -99,24 +99,24 @@ class EventsController extends AppController {
 
 //	function sys_view($id = null) {
 //		if (!$id) {
-//			$this->Session->setFlash(sprintf(__('Invalid %s', true), 'event'));
-//			$this->redirect(array('action' => 'index'));
+//			$this->Session->setFlash(sprintf(__('Invalid %s'), 'event'));
+//			return $this->redirect(array('action' => 'index'));
 //		}
 //		$this->set('event', $this->Event->read(null, $id));
 //	}
 
 	function sys_add() {
-		if (!empty($this->data)) {
+		if (!empty($this->request->data)) {
 			$this->Event->create();
-			if ($this->Event->save($this->data)) {
+			if ($this->Event->save($this->request->data)) {
 				$this->Session->setFlash(Configure::read("Success.create"));
-				if(!empty($this->data["Event"]["title_id"]))
+				if(!empty($this->request->data["Event"]["title_id"]))
 				{
-					$this->redirect(array('action' => 'index' , 'title_id' => $this->data["Event"]["title_id"]));
+					return $this->redirect(array('action' => 'index' , 'title_id' => $this->request->data["Event"]["title_id"]));
 				}
 				else
 				{
-					$this->redirect(array('action' => 'index'));
+					return $this->redirect(array('action' => 'index'));
 				}
 			} else {
 				$this->Session->setFlash(Configure::read("Error.create"));
@@ -146,20 +146,20 @@ class EventsController extends AppController {
 	}
 
 	function sys_edit($id = null) {
-		if (!$id && empty($this->data)) {
+		if (!$id && empty($this->request->data)) {
 			$this->Session->setFlash(Configure::read("Error.id"));
-			$this->redirect(array('action' => 'index'));
+			return $this->redirect(array('action' => 'index'));
 		}
-		if (!empty($this->data)) {
-			if ($this->Event->save($this->data)) {
+		if (!empty($this->request->data)) {
+			if ($this->Event->save($this->request->data)) {
 				$this->Session->setFlash(Configure::read("Success.modify"));
-				$this->redirect(array('action' => 'index'));
+				return $this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(Configure::read("Error.modify"));
 			}
 		}
-		if (empty($this->data)) {
-			$this->data = $this->Event->read(null, $id);
+		if (empty($this->request->data)) {
+			$this->request->data = $this->Event->read(null, $id);
 		}
 		$titles = $this->Event->Title->find('list' , array(
 			"order" => "Title.title_official",
@@ -174,19 +174,19 @@ class EventsController extends AppController {
 	}
 
 	function sys_lump() {
-		if (!empty($this->data)) {
+		if (!empty($this->request->data)) {
 			//変更チェック
-			if($this->LumpEdit->changeCheck($this->data["Event"] , $this->Event))
+			if($this->LumpEdit->changeCheck($this->request->data["Event"] , $this->Event))
 			{
-//				pr($this->data["Event"]);
+//				pr($this->request->data["Event"]);
 //				exit;
-				if ($this->Event->saveAll($this->data["Event"])) {
+				if ($this->Event->saveAll($this->request->data["Event"])) {
 					$this->Session->setFlash(Configure::read("Success.lump"));
 					if($this->Title->summaryUpdateEvents()){}
 					else{ $this->Session->setFlash(Configure::read("Error.summary")); }
 				} else {
 					$this->Session->setFlash(Configure::read("Error.lump"));
-					$this->redirect($this->referer(array('action' => 'index')));
+					return $this->redirect($this->referer(array('action' => 'index')));
 				}
 			}
 			else
@@ -194,20 +194,20 @@ class EventsController extends AppController {
 				$this->Session->setFlash(Configure::read("Error.lump_empty"));
 			}
 		}
-		$this->redirect($this->referer(array('action' => 'index')));
+		return $this->redirect($this->referer(array('action' => 'index')));
 	}
 
 	function sys_delete($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(Configure::read("Error.id"));
-			$this->redirect(array('action'=>'index'));
+			return $this->redirect(array('action'=>'index'));
 		}
 		if ($this->Event->delete($id)) {
 			$this->Session->setFlash(Configure::read("Success.delete"));
-			$this->redirect(array('action'=>'index'));
+			return $this->redirect(array('action'=>'index'));
 		}
 		$this->Session->setFlash(Configure::read("Error.delete"));
-		$this->redirect(array('action' => 'index'));
+		return $this->redirect(array('action' => 'index'));
 	}
 }
 ?>

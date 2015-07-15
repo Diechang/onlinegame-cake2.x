@@ -57,21 +57,21 @@ class SpecsController extends AppController {
 
 //	function sys_view($id = null) {
 //		if (!$id) {
-//			$this->Session->setFlash(sprintf(__('Invalid %s', true), 'spec'));
-//			$this->redirect(array('action' => 'index'));
+//			$this->Session->setFlash(sprintf(__('Invalid %s'), 'spec'));
+//			return $this->redirect(array('action' => 'index'));
 //		}
 //		$this->set('spec', $this->Spec->read(null, $id));
 //	}
 
 	function sys_add() {
-		if (!empty($this->data)) {
+		if (!empty($this->request->data)) {
 			$this->Spec->create();
-			if ($this->Spec->save($this->data)) {
+			if ($this->Spec->save($this->request->data)) {
 				$this->Session->setFlash(Configure::read("Success.create"));
-				$this->redirect(array('action' => 'index' , $this->data["Spec"]["title_id"]));
+				return $this->redirect(array('action' => 'index' , $this->request->data["Spec"]["title_id"]));
 			} else {
 				$this->Session->setFlash(Configure::read("Error.input"));
-				$this->redirect(array('action' => 'index'));
+				return $this->redirect(array('action' => 'index'));
 			}
 		}
 		$titles = $this->Spec->Title->find('list');
@@ -79,20 +79,20 @@ class SpecsController extends AppController {
 	}
 
 	function sys_edit($id = null) {
-		if (!$id && empty($this->data)) {
+		if (!$id && empty($this->request->data)) {
 			$this->Session->setFlash(Configure::read("Error.id"));
-			$this->redirect(array('action' => 'index'));
+			return $this->redirect(array('action' => 'index'));
 		}
-		if (!empty($this->data)) {
-			if ($this->Spec->save($this->data)) {
+		if (!empty($this->request->data)) {
+			if ($this->Spec->save($this->request->data)) {
 				$this->Session->setFlash(Configure::read("Success.modify"));
-				$this->redirect(array('action' => 'index' , $this->data["Spec"]["title_id"]));
+				return $this->redirect(array('action' => 'index' , $this->request->data["Spec"]["title_id"]));
 			} else {
 				$this->Session->setFlash(Configure::read("Error.create"));
 			}
 		}
-		if (empty($this->data)) {
-			$this->data = $this->Spec->read(null, $id);
+		if (empty($this->request->data)) {
+			$this->request->data = $this->Spec->read(null, $id);
 		}
 		//
 		$this->set("titles" , $this->Spec->Title->find('list'));
@@ -103,17 +103,17 @@ class SpecsController extends AppController {
 	}
 
 	function sys_lump() {
-		if (!empty($this->data)) {
+		if (!empty($this->request->data)) {
 			//変更チェック
-			if($this->LumpEdit->changeCheck($this->data["Spec"] , $this->Spec))
+			if($this->LumpEdit->changeCheck($this->request->data["Spec"] , $this->Spec))
 			{
-//				pr($this->data["Spec"]);
+//				pr($this->request->data["Spec"]);
 //				exit;
-				if ($this->Spec->saveAll($this->data["Spec"])) {
+				if ($this->Spec->saveAll($this->request->data["Spec"])) {
 					$this->Session->setFlash(Configure::read("Success.lump"));
 				} else {
 					$this->Session->setFlash(Configure::read("Error.lump"));
-					$this->redirect($this->referer(array('action' => 'index')));
+					return $this->redirect($this->referer(array('action' => 'index')));
 				}
 			}
 			else
@@ -121,39 +121,39 @@ class SpecsController extends AppController {
 				$this->Session->setFlash(Configure::read("Error.lump_empty"));
 			}
 		}
-		$this->redirect($this->referer(array('action' => 'index')));
+		return $this->redirect($this->referer(array('action' => 'index')));
 	}
 
 	function sys_copy($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(Configure::read("Error.id"));
-			$this->redirect(array('action'=>'index'));
+			return $this->redirect(array('action'=>'index'));
 		}
 		$this->Spec->recursive = -1;
-		$this->data = $this->Spec->read(null , $id);
-//		pr($this->data);
+		$this->request->data = $this->Spec->read(null , $id);
+//		pr($this->request->data);
 //		exit;
-		unset($this->data["Spec"]["id"]);
+		unset($this->request->data["Spec"]["id"]);
 		$this->Spec->create();
-		if ($this->Spec->save($this->data)) {
+		if ($this->Spec->save($this->request->data)) {
 			$this->Session->setFlash(Configure::read("Success.copy"));
-			$this->redirect(array('action' => 'index' , $this->data["Spec"]["title_id"]));
+			return $this->redirect(array('action' => 'index' , $this->request->data["Spec"]["title_id"]));
 		}
 		$this->Session->setFlash(Configure::read("Error.copy"));
-		$this->redirect(array('action' => 'index'));
+		return $this->redirect(array('action' => 'index'));
 	}
 
 	function sys_delete($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(Configure::read("Error.id"));
-			$this->redirect(array('action'=>'index'));
+			return $this->redirect(array('action'=>'index'));
 		}
 		if ($this->Spec->delete($id)) {
 			$this->Session->setFlash(Configure::read("Success.delete"));
-			$this->redirect(array('action'=>'index'));
+			return $this->redirect(array('action'=>'index'));
 		}
 		$this->Session->setFlash(Configure::read("Error.delete"));
-		$this->redirect(array('action' => 'index'));
+		return $this->redirect(array('action' => 'index'));
 	}
 }
 ?>
