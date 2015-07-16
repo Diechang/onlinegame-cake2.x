@@ -181,7 +181,7 @@
 	</div>
 </div>
 
-<?php // echo $this->element("search_title_form" , array("cache" => array("time" => "999days" , "key" => null)))?>
+<?php // echo $this->element("search_title_form", array(), array("cache" => true))?>
 
 <!-- Newer -->
 <div class="content newer">

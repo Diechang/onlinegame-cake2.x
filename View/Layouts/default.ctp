@@ -49,44 +49,44 @@
 				<div id="center" class="contents">
 					<?php
 						echo $content_for_layout;
-					echo $this->element("ad_center_bottoms" , array("cache" => array("time" => "999days" , "key" => null)));
+					echo $this->element("ad_center_bottoms", array(), array("cache" => true));
 					?>
 				</div>
 				<!-- Left -->
 				<div id="left">
 <?php
-	echo $this->element("ad_left_tops" , array("cache" => array("time" => "999days" , "key" => null)));
-	echo $this->element("left_category" , array("cache" => array("time" => "999days" , "key" => null)));
-	echo $this->element("left_style" , array("cache" => array("time" => "999days" , "key" => null)));
-	echo $this->element("left_service" , array("cache" => array("time" => "999days" , "key" => null)));
+	echo $this->element("ad_left_tops", array(), array("cache" => true));
+	echo $this->element("left_category", array(), array("cache" => true));
+	echo $this->element("left_style", array(), array("cache" => true));
+	echo $this->element("left_service", array(), array("cache" => true));
 	echo $this->element("left_pushsite");
-	echo $this->element("left_pcshop" , array("cache" => array("time" => "999days" , "key" => null)));
+	echo $this->element("left_pcshop", array(), array("cache" => true));
 	echo $this->element("left_feeds");
 if($this->request->params["controller"] != "titles")
 {
 	echo $this->element("left_share");
 }
-	echo $this->element("left_ranking" , array("cache" => array("time" => "999days" , "key" => null)));
-	echo $this->element("ad_left_bottoms" , array("cache" => array("time" => "999days" , "key" => null)));
+	echo $this->element("left_ranking", array(), array("cache" => true));
+	echo $this->element("ad_left_bottoms", array(), array("cache" => true));
 ?>
 				</div>
 			</div>
 			<!-- Right -->
 			<div id="right">
 <?php
-	echo $this->element("ad_right_tops" , array("cache" => array("time" => "999days" , "key" => null)));
-	echo $this->element('right_test' , array("cache" => array("time" => "999days" , "key" => null)));
-	echo $this->element('right_pickup' , array("cache" => array("time" => "999days" , "key" => null)));
+	echo $this->element("ad_right_tops", array(), array("cache" => true));
+	echo $this->element('right_test', array(), array("cache" => true));
+	echo $this->element('right_pickup', array(), array("cache" => true));
 	echo $this->element('right_voted');
 	echo $this->element('right_fblikebox');
-	echo $this->element("ad_right_bottoms" , array("cache" => array("time" => "999days" , "key" => null)));
+	echo $this->element("ad_right_bottoms", array(), array("cache" => true));
 ?>
 
 			</div>
 		</div>
 
 <?php
-	echo $this->element('global_header' , array("cache" => array("time" => "999days" , "key" => null)));
+	echo $this->element('global_header', array(), array("cache" => true));
 ?>
 <?php echo $this->element('sql_dump'); ?>
 <?php
