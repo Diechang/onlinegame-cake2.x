@@ -47,6 +47,8 @@ class AppController extends Controller {
 		/**
 		 * System maintenance
 		 */
+		// debug($this->request);
+		// exit;
 		if(isset($this->request->sys))
 		{
 			//デバッグ

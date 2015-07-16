@@ -10,7 +10,7 @@ class ElementPartsController extends AppController {
 	function beforeFilter()
 	{
 		//Auth allow
-		$this->Auth->allow("*");
+		$this->Auth->allow();
 	}
 	
 	/**

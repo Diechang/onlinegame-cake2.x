@@ -1,7 +1,7 @@
 <!--ランキング-->
 <div class="leftRanking leftBox leftPink">
-	<h2><?php echo $html->image("design/leftbox_pink_title_ranking.gif" , array("alt" => "人気ランキング"))?></h2>
-	<div class="comment"><?php echo $html->image("design/leftbox_pink_comment_ranking.gif" , array("alt" => "ゲーム選びの参考に"))?></div>
+	<h2><?php echo $this->Html->image("design/leftbox_pink_title_ranking.gif" , array("alt" => "人気ランキング"))?></h2>
+	<div class="comment"><?php echo $this->Html->image("design/leftbox_pink_comment_ranking.gif" , array("alt" => "ゲーム選びの参考に"))?></div>
 	<div class="body">
 <?php $rankNum = 1?>
 		<ul>
@@ -15,6 +15,6 @@
 			</li>
 <?php endforeach;?>
 		</ul>
-		<p class="more"><?php echo $html->link("≫ランキング詳細" , array("controller" => "ranking" , "action" => "index" , "path" => "index" , "ext" => "html"))?></p>
+		<p class="more"><?php echo $this->Html->link("≫ランキング詳細" , array("controller" => "ranking" , "action" => "index" , "path" => "index" , "ext" => "html"))?></p>
 	</div>
 </div>

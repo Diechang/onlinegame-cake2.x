@@ -66,6 +66,8 @@
 	//Review
 	Router::connect('/events/:page',
 					array('controller' => 'events' , 'action' => 'index' , 'page' => 1));
+	//Element parts
+	Router::connect('/element_parts/:action', array('controller' => 'element_parts'));
 	//
 	//Sys
 	Router::connect('/sys', array('controller' => 'pages', 'action' => 'home' , 'sys' => true));
@@ -75,6 +77,7 @@
 /**
  * ...and connect the rest of 'Pages' controller's urls.
  */
+
  	//Pages
 //	Router::connect('/pages/sitemap', array('controller' => 'pages', 'action' => 'sitemap'));
 //	Router::connect('/pages/jump', array('controller' => 'pages', 'action' => 'jump'));

@@ -1,7 +1,7 @@
 <!-- テスト -->
 <div class="rightBox rightTest">
-	<h2><?php echo $html->image("design/rightbox_test_title.gif" , array("alt" => "無料テスト中オンラインゲーム"))?></h2>
-	<div class="comment"><?php echo $html->image("design/rightbox_test_comment.gif" , array("alt" => "完全無料のテスト中タイトル"))?></div>
+	<h2><?php echo $this->Html->image("design/rightbox_test_title.gif" , array("alt" => "無料テスト中オンラインゲーム"))?></h2>
+	<div class="comment"><?php echo $this->Html->image("design/rightbox_test_comment.gif" , array("alt" => "完全無料のテスト中タイトル"))?></div>
 	<div class="body">
 <?php foreach($rightTests as $rightTest):?>
 		<div class="item">
@@ -27,6 +27,6 @@
 			</p>
 		</div>
 <?php endforeach;?>
-		<p class="icon_feed16"><?php echo $html->link("無料テスト情報RSS" , "http://feeds.feedburner.com/dz-game/test")?></p>
+		<p class="icon_feed16"><?php echo $this->Html->link("無料テスト情報RSS" , "http://feeds.feedburner.com/dz-game/test")?></p>
 	</div>
 </div>

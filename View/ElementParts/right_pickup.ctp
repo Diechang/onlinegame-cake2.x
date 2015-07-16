@@ -1,7 +1,7 @@
 <!-- 新作 -->
 <div class="rightBox rightPickup">
-	<h2><?php echo $html->image("design/rightbox_pickup_title.gif" , array("alt" => "新作ピックアップ"))?></h2>
-	<div class="comment"><?php echo $html->image("design/rightbox_pickup_comment.gif" , array("alt" => "最近正式サービスが始まった注目タイトル"))?></div>
+	<h2><?php echo $this->Html->image("design/rightbox_pickup_title.gif" , array("alt" => "新作ピックアップ"))?></h2>
+	<div class="comment"><?php echo $this->Html->image("design/rightbox_pickup_comment.gif" , array("alt" => "最近正式サービスが始まった注目タイトル"))?></div>
 	<div class="body">
 <?php foreach($rightPickups as $rightPickup):?>
 		<div class="item">
@@ -30,6 +30,6 @@
 			</p>
 		</div>
 <?php endforeach;?>
-		<p class="icon_feed16"><?php echo $html->link("新作情報RSS" , "http://feeds.feedburner.com/dz-game/newstart")?></p>
+		<p class="icon_feed16"><?php echo $this->Html->link("新作情報RSS" , "http://feeds.feedburner.com/dz-game/newstart")?></p>
 	</div>
 </div>

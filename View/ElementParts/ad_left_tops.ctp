@@ -3,7 +3,7 @@
 ?>
 <!-- PR -->
 <div class="leftBox leftAds">
-	<h2><?php echo $html->image("design/leftbox_ads_title.gif" , array("alt" => "PR - sponsored link"))?></h2>
+	<h2><?php echo $this->Html->image("design/leftbox_ads_title.gif" , array("alt" => "PR - sponsored link"))?></h2>
 	<div class="body">
 		<h3><?php echo $this->Common->titleLinkText($titleLinkStr , $adLeftTops["Title"]["url_str"])?></h3>
 		<div class="banner">

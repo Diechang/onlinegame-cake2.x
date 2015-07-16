@@ -22,7 +22,7 @@
 			<div class="top">
 				<div class="body">
 
-<?php // echo $this->element("loop_ranking_data" , array("rankings" => $rankings))?>
+<?php echo $this->element("loop_ranking_data" , array("rankings" => $rankings))?>
 
 				</div>
 			</div>

@@ -1,16 +1,16 @@
 <!-- Search -->
 <div class="content search">
-	<h2 class="image"><?php echo $html->image("design/content_search_title.gif", array("alt" => "オンラインゲーム検索：自分好みのオンラインゲームを探そう"))?></h2>
+	<h2 class="image"><?php echo $this->Html->image("design/content_search_title.gif", array("alt" => "オンラインゲーム検索：自分好みのオンラインゲームを探そう"))?></h2>
 	<div class="body">
-		<form name="SearchTitle" action="<?php echo $html->url(array("controller" => "search" , "action" => "result"))?>" method="get">
+		<form name="SearchTitle" action="<?php echo $this->Html->url(array("controller" => "search" , "action" => "result"))?>" method="get">
 		<div class="frameWide">
-			<h3><?php echo $html->image("design/content_search_title_keyword.gif" , array("alt" => "キーワード"))?></h3>
+			<h3><?php echo $this->Html->image("design/content_search_title_keyword.gif" , array("alt" => "キーワード"))?></h3>
 			<div class="body">
 				<input type="text" name="keyword" value="<?php if(isset($this->params["url"]["keyword"])){echo h($this->params["url"]["keyword"]);}?>" class="text" />
 			</div>
 		</div>
 		<div class="frameHalf flLeft">
-			<h3><?php echo $html->image("design/content_search_title_genre.gif" , array("alt" => "ジャンル"))?></h3>
+			<h3><?php echo $this->Html->image("design/content_search_title_genre.gif" , array("alt" => "ジャンル"))?></h3>
 			<div class="body">
 				<ul>
 <?php foreach($mstCategories as $mstCategory):?>
@@ -20,7 +20,7 @@
 			</div>
 		</div>
 		<div class="frameHalf flRight">
-			<h3><?php echo $html->image("design/content_search_title_style.gif" , array("alt" => "スタイル・環境"))?></h3>
+			<h3><?php echo $this->Html->image("design/content_search_title_style.gif" , array("alt" => "スタイル・環境"))?></h3>
 			<div class="body">
 				<ul>
 <?php foreach($mstStyles as $mstStyle):?>
@@ -30,7 +30,7 @@
 			</div>
 		</div>
 		<div class="frameWide">
-			<h3><?php echo $html->image("design/content_search_title_service.gif" , array("alt" => "サービス状態"))?></h3>
+			<h3><?php echo $this->Html->image("design/content_search_title_service.gif" , array("alt" => "サービス状態"))?></h3>
 			<div class="body">
 				<ul class="tile clearfix">
 <?php foreach($mstServices as $mstService):?>
@@ -40,7 +40,7 @@
 			</div>
 		</div>
 		<div class="frameWide">
-			<h3><?php echo $html->image("design/content_search_title_other.gif" , array("alt" => "ついでに"))?></h3>
+			<h3><?php echo $this->Html->image("design/content_search_title_other.gif" , array("alt" => "ついでに"))?></h3>
 			<div class="body">
 				<ul>
 					<?php echo $this->SearchPage->otherCheckList()?>
@@ -48,7 +48,7 @@
 			</div>
 		</div>
 		<div class="frameWide">
-			<h3><?php echo $html->image("design/content_search_title_order.gif" , array("alt" => "並び順"))?></h3>
+			<h3><?php echo $this->Html->image("design/content_search_title_order.gif" , array("alt" => "並び順"))?></h3>
 			<div class="body">
 				<ul>
 					<?php echo $this->SearchPage->orderCheckList()?>
