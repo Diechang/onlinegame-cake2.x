@@ -94,7 +94,7 @@ class AppController extends Controller {
 
 			//Use layout
 			$this->layout = "sys";
-			$this->set("params" , $this->params);
+			$this->set("params" , $this->request->params);
 
 			/**
 			 * Cookie
@@ -240,7 +240,7 @@ class AppController extends Controller {
 		}
 		else
 		{
-			$this->_emptyToHome($this->params["path"]);
+			$this->_emptyToHome($this->request->params["path"]);
 		}
 	}
 }

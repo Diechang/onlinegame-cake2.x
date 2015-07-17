@@ -131,7 +131,13 @@
 
 			</div>
 		</div>
-<?php echo $this->element('sql_dump'); ?>
+<?php
+if (Configure::read('debug') > 0)
+{
+	echo $this->element('sql_dump');
+	debug($this->request);
+}
+?>
 <?php
 	echo $this->element('footer');
 ?>
