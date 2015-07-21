@@ -43,7 +43,7 @@
 		<h1><?php echo $h1_for_layout ?></h1>
 
 <?php
-	echo $this->element('global_header', array(), array("cache" => true));
+	echo $this->element('global_header', array(), array("cache" => array("config" => "element")));
 ?>
 
 		<!-- Contents -->
@@ -98,22 +98,22 @@
 				<div id="center" class="contents">
 				<?php
 					echo $content_for_layout;
-					echo $this->element("ad_center_bottoms", array(), array("cache" => true));
+					echo $this->element("ad_center_bottoms", array(), array("cache" => array("config" => "element")));
 				?>
 				</div>
 				<!-- Left -->
 				<div id="left">
 <?php
-	echo $this->element("ad_left_tops", array(), array("cache" => true));
-	echo $this->element("left_category", array(), array("cache" => true));
-	echo $this->element("left_style", array(), array("cache" => true));
-	echo $this->element("left_service", array(), array("cache" => true));
+	echo $this->element("ad_left_tops", array(), array("cache" => array("config" => "element")));
+	echo $this->element("left_category", array(), array("cache" => array("config" => "element")));
+	echo $this->element("left_style", array(), array("cache" => array("config" => "element")));
+	echo $this->element("left_service", array(), array("cache" => array("config" => "element")));
 	echo $this->element("left_pushsite");
-	echo $this->element("left_pcshop", array(), array("cache" => true));
+	echo $this->element("left_pcshop", array(), array("cache" => array("config" => "element")));
 	echo $this->element("left_feeds");
 	echo $this->element("left_share");
-	echo $this->element("left_ranking", array(), array("cache" => true));
-	echo $this->element("ad_left_bottoms", array(), array("cache" => true));
+	echo $this->element("left_ranking", array(), array("cache" => array("config" => "element")));
+	echo $this->element("ad_left_bottoms", array(), array("cache" => array("config" => "element")));
 ?>
 				</div>
 			</div>
@@ -121,12 +121,12 @@
 			<div id="right">
 
 <?php
-	echo $this->element("ad_right_tops", array(), array("cache" => true));
-	echo $this->element('right_test', array(), array("cache" => true));
-	echo $this->element('right_pickup', array(), array("cache" => true));
+	echo $this->element("ad_right_tops", array(), array("cache" => array("config" => "element")));
+	echo $this->element('right_test', array(), array("cache" => array("config" => "element")));
+	echo $this->element('right_pickup', array(), array("cache" => array("config" => "element")));
 	echo $this->element('right_voted');
 	echo $this->element('right_fblikebox');
-	echo $this->element("ad_right_bottoms", array(), array("cache" => true));
+	echo $this->element("ad_right_bottoms", array(), array("cache" => array("config" => "element")));
 ?>
 
 			</div>

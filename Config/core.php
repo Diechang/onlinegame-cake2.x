@@ -384,3 +384,15 @@ Cache::config('_cake_model_', array(
 	'serialize' => ($engine === 'File'),
 	'duration' => $duration
 ));
+
+
+/**
+ * Elements cache
+ */
+Cache::config('element', array(
+	'engine' => $engine,
+	'prefix' => $prefix . 'element_',
+	'path' => CACHE . 'elements' . DS,
+	'serialize' => ($engine === 'File'),
+	'duration' => $duration
+));
