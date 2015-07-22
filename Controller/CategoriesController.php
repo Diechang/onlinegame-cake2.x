@@ -1,9 +1,9 @@
 <?php
 class CategoriesController extends AppController {
 
-	var $name	= 'Categories';
+	var $name = 'Categories';
 
-	function index($path)
+	function index($path = null)
 	{
 		$this->_checkParams();
 		/**
@@ -29,6 +29,7 @@ class CategoriesController extends AppController {
 		$titles = $this->Title->find("all" , array(
 			"conditions" => array(
 				"Title.public" => 1,
+				"Title.service_id NOT" => 1,
 				"Category.id" => $pageData["Category"]["id"],
 			),
 			"fields" => array(
