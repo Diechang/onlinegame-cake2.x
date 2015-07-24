@@ -1,8 +1,10 @@
 <?php
+App::uses("CakeEmail", "Network/Email");
+
 class FansitesController extends AppController {
 
 	var $name = 'Fansites';
-	var $components = array("Email", "LumpEdit" , "Common");
+	var $components = array("LumpEdit" , "Common");
 
 	function add($id)
 	{
@@ -15,7 +17,7 @@ class FansitesController extends AppController {
 			)
 		));
 // 		pr($title);
-// 		exit;
+		// exit;
 		if(!empty($this->request->data))
 		{
 			//認証番号チェック
@@ -25,11 +27,14 @@ class FansitesController extends AppController {
 				$this->Fansite->create();
 				if($this->Fansite->save($this->request->data))
 				{
+					$email = new CakeEmail("sakura");
 					//Send mail
-					$this->Email->from    = (!empty($this->request->data["Fansite"]["admin_mail"]) ? $this->request->data["Fansite"]["admin_mail"] : "zilow@dz-life.net");
-					$this->Email->to      = 'zilow@dz-life.net';
-					$this->Email->subject = '[DZ]ファンサイト登録依頼';
-					$this->Email->send("
+					$email->from(array(!empty($this->request->data["Fansite"]["admin_mail"]) ? $this->request->data["Fansite"]["admin_mail"] : "zilow@dz-life.net" => "DZ-LIFE"));
+					$email->to('zilow@dz-life.net');
+					$email->subject('[DZ]ファンサイト登録依頼');
+
+					$this->log($email);
+					$email->send("
 ■サイト名
 {$this->request->data['Fansite']['site_name']}
 
@@ -41,6 +46,12 @@ class FansitesController extends AppController {
 
 ■メッセージ
 {$this->request->data['Fansite']['message']}
+
+■編集URL
+http://onlinegame.dz-life.net/sys/fansites/edit/{$this->Fansite->id}
+
+■{$title['Title']['title_official']}ファンサイト一覧
+http://onlinegame.dz-life.net/sys/fansites/index/title_id:{$title['Title']['id']}
 					");
 					//
 					$this->Session->setFlash("サイト登録申込ありがとうございます！<br />\n管理人の承認後に掲載されます。");
@@ -78,11 +89,12 @@ class FansitesController extends AppController {
 			$this->request->data["Fansite"]["public"] = false;
 			if($this->Fansite->save($this->request->data))
 			{
+				$email = new CakeEmail("sakura");
 				//Send mail
-				$this->Email->from    = "zilow@dz-life.net";
-				$this->Email->to      = 'zilow@dz-life.net';
-				$this->Email->subject = '[DZ]ファンサイトリンク切れ報告';
-				$this->Email->send("
+				$email->from(array("zilow@dz-life.net" => "DZ-LIFE"));
+				$email->to('zilow@dz-life.net');
+				$email->subject('[DZ]ファンサイトリンク切れ報告');
+				$email->send("
 ■サイト名
 {$this->request->data['Fansite']['site_name']}
 

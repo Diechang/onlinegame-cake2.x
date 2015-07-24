@@ -9,8 +9,15 @@ class ElementPartsController extends AppController {
 
 	function beforeFilter()
 	{
-		//Auth allow
-		$this->Auth->allow();
+		if(empty($this->request->params['requested']))
+		{
+            throw new ForbiddenException();
+        }
+        else
+        {
+			//Auth allow
+			$this->Auth->allow();
+		}
 	}
 	
 	/**
