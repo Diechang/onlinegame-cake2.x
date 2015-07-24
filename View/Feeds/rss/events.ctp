@@ -8,5 +8,5 @@ function rss_transform($item)
 				"pubDate" => $item["Event"]["modified"],
 				);
 }
-$this->set("items", $this->Rss->items($events, "rss_transform"));
+echo $this->Rss->items($events, "rss_transform");
 ?>

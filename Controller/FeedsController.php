@@ -2,8 +2,9 @@
 class FeedsController extends AppController {
 
 	var $name		= 'Feeds';
+	var $components	= array('RequestHandler');
 	var $uses		= array("Title","Vote"/*,"Event"*/);
-	var $helpers	= array("Rss");
+	// var $helpers	= array("Rss");
 
 	function index()
 	{
@@ -12,7 +13,7 @@ class FeedsController extends AppController {
 	//イベント
 	function _events()
 	{
-		$channelData = array("title" => "イベント・キャンペーン情報 - オンラインゲームライフ",
+		$channel = array("title" => "イベント・キャンペーン情報 - オンラインゲームライフ",
 						"link" => array("controller" => "feeds", "action" => "events", "ext" => "rss"),
 						"url" => array("controller" => "feeds", "action" => "events", "ext" => "rss"),
 						"description" => "イベント・キャンペーン情報です。",
@@ -26,12 +27,12 @@ class FeedsController extends AppController {
 			"order" => array("Event.start DESC"),
 		));
 //		pr($titles);
-		$this->set(compact("channelData", "events"));
+		$this->set(compact("channel", "events"));
 	}
 	//新着レビュー
 	function review()
 	{
-		$channelData = array("title" => "新着レビュー - オンラインゲームライフ",
+		$channel = array("title" => "新着レビュー - オンラインゲームライフ",
 						"link" => array("controller" => "feeds", "action" => "review", "ext" => "rss"),
 						"url" => array("controller" => "feeds", "action" => "review", "ext" => "rss"),
 						"description" => "オンラインゲームライフに投稿された最新レビュー10件です。",
@@ -48,12 +49,12 @@ class FeedsController extends AppController {
 			"order" => "Vote.created DESC",
 		));
 //		pr($votes);
-		$this->set(compact("channelData", "votes"));
+		$this->set(compact("channel", "votes"));
 	}
 	//新着
 	function newgames()
 	{
-		$channelData = array("title" => "新着オンラインゲーム情報 - オンラインゲームライフ",
+		$channel = array("title" => "新着オンラインゲーム情報 - オンラインゲームライフ",
 						"link" => array("controller" => "feeds", "action" => "newgames", "ext" => "rss"),
 						"url" => array("controller" => "feeds", "action" => "newgames", "ext" => "rss"),
 						"description" => "新しくオンラインゲームライフに登録されたゲーム情報です。",
@@ -71,12 +72,12 @@ class FeedsController extends AppController {
 			),
 		));
 //		pr($titles);
-		$this->set(compact("channelData", "titles"));
+		$this->set(compact("channel", "titles"));
 	}
 	//新作
 	function newstart()
 	{
-		$channelData = array("title" => "最新オンラインゲーム情報 - オンラインゲームライフ",
+		$channel = array("title" => "最新オンラインゲーム情報 - オンラインゲームライフ",
 						"link" => array("controller" => "feeds", "action" => "newgames", "ext" => "rss"),
 						"url" => array("controller" => "feeds", "action" => "newgames", "ext" => "rss"),
 						"description" => "新しくサービスが開始された新作オンラインゲーム情報です。",
@@ -92,12 +93,12 @@ class FeedsController extends AppController {
 			"order" => "Title.service_start DESC",
 		));
 //		pr($titles);
-		$this->set(compact("channelData", "titles"));
+		$this->set(compact("channel", "titles"));
 	}
 	//テスト
 	function test()
 	{
-		$channelData = array("title" => "無料テスト情報 - オンラインゲームライフ",
+		$channel = array("title" => "無料テスト情報 - オンラインゲームライフ",
 						"link" => array("controller" => "feeds", "action" => "test", "ext" => "rss"),
 						"url" => array("controller" => "feeds", "action" => "test", "ext" => "rss"),
 						"description" => "オープンβテスト、クローズドβテスト情報です。",
@@ -113,7 +114,7 @@ class FeedsController extends AppController {
 			"order" => array("Title.test_start DESC" , "Title.test_end DESC"),
 		));
 //		pr($titles);
-		$this->set(compact("channelData", "titles"));
+		$this->set(compact("channel", "titles"));
 	}
 }
 ?>
