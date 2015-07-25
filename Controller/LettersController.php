@@ -1,8 +1,10 @@
 <?php
+App::uses("CakeEmail", "Network/Email");
+
 class LettersController extends AppController {
 
 	var $name = 'Letters';
-	var $components = array("Email" , "Common");
+	var $components = array("Common");
 	var $helpers = array("Text");
 
 	function add()
@@ -16,11 +18,12 @@ class LettersController extends AppController {
 				$this->request->data["Letter"]["host"]	= $this->host;
 				$this->Letter->create();
 				if ($this->Letter->save($this->request->data)) {
-					$this->Email->from			= $this->request->data["Letter"]["name"] . " <" . $this->request->data["Letter"]["mail"] . ">";
-					$this->Email->to			= 'zilow@dz-life.net';
-					$this->Email->subject		= '[DZ]お問合せ';
-					$this->Email->lineLength	= 1000;
-					$this->Email->send($this->request->data["Letter"]["body"]);
+					//Send mail
+					$email = new CakeEmail("sakura");
+					$email->from(array($this->request->data["Letter"]["mail"] => $this->request->data["Letter"]["name"]));
+					$email->to('zilow@dz-life.net');
+					$email->subject('[DZ]お問合せ');
+					$email->send($this->request->data["Letter"]["body"]);
 					//
 					$this->Session->setFlash("お問合せありがとうございました");
 					return $this->redirect(array('action' => 'add'));

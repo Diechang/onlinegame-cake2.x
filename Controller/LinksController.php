@@ -1,9 +1,11 @@
 <?php
+App::uses("CakeEmail", "Network/Email");
+
 class LinksController extends AppController {
 
 	var $name = 'Links';
 	var $uses = array("Link" , "Linkcategory");
-	var $components = array("Email" , "Common");
+	var $components = array("Common");
 
 	function index($path = null)
 	{
@@ -114,10 +116,13 @@ class LinksController extends AppController {
 				if ($this->Link->save($this->request->data))
 				{
 					//Send mail
-					$this->Email->from    = (!empty($this->request->data["Link"]["admin_mail"]) ? $this->request->data["Link"]["admin_mail"] : "zilow@dz-life.net");
-					$this->Email->to      = 'zilow@dz-life.net';
-					$this->Email->subject = '[DZ]相互リンク依頼';
-					$this->Email->send("
+					$email = new CakeEmail("sakura");
+					$email->from(!empty($this->request->data["Link"]["admin_mail"])
+						? $this->request->data["Link"]["admin_mail"]
+						: array("zilow@dz-life.net" => "DZ-LIFE"));
+					$email->to('zilow@dz-life.net');
+					$email->subject('[DZ]相互リンク依頼');
+					$email->send("
 ■サイト名
 {$this->request->data['Link']['site_name']}
 

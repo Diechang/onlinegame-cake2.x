@@ -27,15 +27,14 @@ class FansitesController extends AppController {
 				$this->Fansite->create();
 				if($this->Fansite->save($this->request->data))
 				{
-					$email = new CakeEmail("sakura");
 					//Send mail
+					$email = new CakeEmail("sakura");
 					$email->from(!empty($this->request->data["Fansite"]["admin_mail"])
 						? $this->request->data["Fansite"]["admin_mail"]
 						: array("zilow@dz-life.net" => "DZ-LIFE"));
 					$email->to('zilow@dz-life.net');
 					$email->subject('[DZ]ファンサイト登録依頼');
 
-					$this->log($email);
 					$email->send("
 ■サイト名
 {$this->request->data['Fansite']['site_name']}
