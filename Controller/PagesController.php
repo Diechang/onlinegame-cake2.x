@@ -378,9 +378,9 @@ class PagesController extends AppController {
  */
 	function jump()
 	{
-		if(isset($this->request->params["url"]["u"]))
+		if(isset($this->request->query["u"]))
 		{
-			$this->set("u" , $this->request->params["url"]["u"]);
+			$this->set("u" , $this->request->query["u"]);
 			//Layout vars
 			$this->set("title_for_layout" , "JUMP");
 			$this->set("keywords_for_layout" , "");
