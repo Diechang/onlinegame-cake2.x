@@ -34,7 +34,7 @@ class SearchPageHelper extends AppHelper
 //		pr($this->request->params);
 //		exit;
 		$checked = "";
-		if(!empty($this->request->params["url"][strtolower($model)]) && in_array($item[$model]["id"] , $this->request->params["url"][strtolower($model)]))
+		if(!empty($this->request->query[strtolower($model)]) && in_array($item[$model]["id"] , $this->request->query[strtolower($model)]))
 		{
 			$checked = ' checked=="checked"';
 		}
@@ -55,7 +55,7 @@ class SearchPageHelper extends AppHelper
 		$src = "";
 		foreach($this->others as $key => $val)
 		{
-			$checked = (!empty($this->request->params["url"][$key])) ? ' checked="checked"' : '';
+			$checked = (!empty($this->request->query[$key])) ? ' checked="checked"' : '';
 			$src .= '<li><input type="checkbox" name="' . $key . '"' . $checked . ' /> ' . $val . '</li>' . "\n";
 		}
 		return $src;
@@ -75,11 +75,11 @@ class SearchPageHelper extends AppHelper
 		{
 			if($count == 0)
 			{
-				$checked = (!isset($this->request->params["url"]["order"]) || $this->request->params["url"]["order"] == $key) ? ' checked="checked"' : '';
+				$checked = (!isset($this->request->query["order"]) || $this->request->query["order"] == $key) ? ' checked="checked"' : '';
 			}
 			else
 			{
-				$checked = (isset($this->request->params["url"]["order"]) && $this->request->params["url"]["order"] == $key) ? ' checked="checked"' : '';
+				$checked = (isset($this->request->query["order"]) && $this->request->query["order"] == $key) ? ' checked="checked"' : '';
 			}
 			$src .= '<li><input type="radio" name="order" value="' . $key . '"' . $checked . ' /> ' . $val . '</li>' . "\n";
 			$count++;
@@ -95,44 +95,44 @@ class SearchPageHelper extends AppHelper
 	 * @return	html
 	 * @access	public
 	 */
-	function paging(&$urlParams , &$paging)
-	{
-		$resultUrl = "/search/result?" . $this->getUrlParamStrings($urlParams);
+// 	function paging(&$urlParams , &$paging)
+// 	{
+// 		$resultUrl = "/search/result?" . $this->getUrlParamStrings($urlParams);
 
-		$src = '';
-		$src .= '<p class="paging">' . "\n";
-		//prev
-		if($paging["page"] > 1)
-		{
-			$src .= '<span><a href="' . $resultUrl . '&page=' . ($paging["page"] - 1) . '">≪前の' . $paging["limit"] . '件</a></span>';
-		}
-		for($i = 1; $i <= $paging["pages"]; $i++)
-		{
-			if($i == $paging["page"])
-			{
-				$src .= '<span class="current">' . $i . '</span>';
-			}
-			else
-			{
-				$src .= '<span><a href="' . $resultUrl . '&page=' . $i . '">' . $i . '</a></span>';
-			}
-		}
-		//next
-		if($paging["page"] < $paging["pages"])
-		{
-			$src .= '<span><a href="' . $resultUrl . '&page=' . ($paging["page"] + 1) . '">次の' . $paging["limit"] . '件≫</a></span>';
-		}
-		$src .= '</p>' . "\n";
-		return $src;
-//	<p class="paging">
-//		<span><a href="#">≪前の10件</a></span>
-//		<span>1</li>
-//		<span><a href="#">2</a></span>
-//		<span><a href="#">3</a></span>
-//		<span><a href="#">4</a></span>
-//		<span><a href="#">≫次の10件</a></span>
-//	</p>
-	}
+// 		$src = '';
+// 		$src .= '<p class="paging">' . "\n";
+// 		//prev
+// 		if($paging["page"] > 1)
+// 		{
+// 			$src .= '<span><a href="' . $resultUrl . '&page=' . ($paging["page"] - 1) . '">≪前の' . $paging["limit"] . '件</a></span>';
+// 		}
+// 		for($i = 1; $i <= $paging["pages"]; $i++)
+// 		{
+// 			if($i == $paging["page"])
+// 			{
+// 				$src .= '<span class="current">' . $i . '</span>';
+// 			}
+// 			else
+// 			{
+// 				$src .= '<span><a href="' . $resultUrl . '&page=' . $i . '">' . $i . '</a></span>';
+// 			}
+// 		}
+// 		//next
+// 		if($paging["page"] < $paging["pages"])
+// 		{
+// 			$src .= '<span><a href="' . $resultUrl . '&page=' . ($paging["page"] + 1) . '">次の' . $paging["limit"] . '件≫</a></span>';
+// 		}
+// 		$src .= '</p>' . "\n";
+// 		return $src;
+// //	<p class="paging">
+// //		<span><a href="#">≪前の10件</a></span>
+// //		<span>1</li>
+// //		<span><a href="#">2</a></span>
+// //		<span><a href="#">3</a></span>
+// //		<span><a href="#">4</a></span>
+// //		<span><a href="#">≫次の10件</a></span>
+// //	</p>
+// 	}
 
 	/**
 	 * URLパラメタ
@@ -141,32 +141,32 @@ class SearchPageHelper extends AppHelper
 	 * @return	string	$this->urlParamStrings
 	 * @access	private
 	 */
-	private function getUrlParamStrings(&$urlParams)
-	{
-		if(isset($this->urlParamStrings))
-		{
-			return $this->urlParamStrings;
-		}
-		else
-		{
-			$paramsArray = array();
-			foreach($urlParams as $paramKey => $paramVal)
-			{
-				if(is_array($paramVal))
-				{
-					foreach($paramVal as $val)
-					{
-						$paramsArray[] = urlencode($paramKey . '[]') . '=' . urlencode($val);
-					}
-				}
-				else
-				{
-					$paramsArray[] = urlencode($paramKey) . '=' . urlencode($paramVal);
-				}
-			}
-			$this->urlParamStrings = implode('&' , $paramsArray);
-			return $this->urlParamStrings;
-		}
-	}
+	// private function getUrlParamStrings(&$urlParams)
+	// {
+	// 	if(isset($this->urlParamStrings))
+	// 	{
+	// 		return $this->urlParamStrings;
+	// 	}
+	// 	else
+	// 	{
+	// 		$paramsArray = array();
+	// 		foreach($urlParams as $paramKey => $paramVal)
+	// 		{
+	// 			if(is_array($paramVal))
+	// 			{
+	// 				foreach($paramVal as $val)
+	// 				{
+	// 					$paramsArray[] = urlencode($paramKey . '[]') . '=' . urlencode($val);
+	// 				}
+	// 			}
+	// 			else
+	// 			{
+	// 				$paramsArray[] = urlencode($paramKey) . '=' . urlencode($paramVal);
+	// 			}
+	// 		}
+	// 		$this->urlParamStrings = implode('&' , $paramsArray);
+	// 		return $this->urlParamStrings;
+	// 	}
+	// }
 }
 ?>

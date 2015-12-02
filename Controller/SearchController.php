@@ -5,7 +5,7 @@ class SearchController extends AppController {
 	var $uses = array("Title");
 	var $helpers = array("SearchPage");
 
-	var $urlParamNames = array(
+	var $queryParamNames = array(
 		"keyword",
 		"category",
 		"style",
@@ -26,21 +26,21 @@ class SearchController extends AppController {
 
 	function result()
 	{
-		App::import('Sanitize');
+		// App::import('Sanitize');
 		
-		$url = $this->request->params["url"];
-		if(empty($url["page"]))
+		$query = $this->request->query;
+		if(empty($query["page"]))
 		{
-			$url["page"] = 1;
+			$query["page"] = 1;
 		}
-		$url = Sanitize::clean($url , Configure::read("UseDbConfig"));
-//		pr($url);
+		// $query = Sanitize::clean($query , Configure::read("UseDbConfig"));
+		// pr($query);
 //		exit;
 
 		//category
-		$idListByCategory = $this->Title->idListByCategory($url["category"]);
+		$idListByCategory = $this->Title->idListByCategory($query["category"]);
 		//style
-		$idListByStyle = $this->Title->idListByStyle($url["style"]);
+		$idListByStyle = $this->Title->idListByStyle($query["style"]);
 		//ID list
 		$idList = null;
 		if(!empty($idListByCategory) && !empty($idListByStyle))
@@ -65,9 +65,9 @@ class SearchController extends AppController {
 		 */
 		$conditions = array();
 		//keyword
-		if(!empty($url["keyword"]))
+		if(!empty($query["keyword"]))
 		{
-			$conditions += array("OR" => $this->Title->wConditions($url["keyword"]));
+			$conditions += array("OR" => $this->Title->wConditions($query["keyword"]));
 		}
 		//id list
 		if(!empty($idList))
@@ -75,34 +75,34 @@ class SearchController extends AppController {
 			$conditions += array("Title.id" => $idList);
 		}
 		//service
-		if(!empty($url["service"]))
+		if(!empty($query["service"]))
 		{
-			$conditions += array("Title.service_id" => $url["service"]);
+			$conditions += array("Title.service_id" => $query["service"]);
 		}
 		else
 		{
 			$conditions += array("Title.service_id <>" => 1);
 		}
 		//others
-		if(!empty($url["free"]))
+		if(!empty($query["free"]))
 		{
 			$conditions += array("Title.fee_id" => array(1,2));
 		}
-		if(!empty($url["vote"]))
+		if(!empty($query["vote"]))
 		{
 			$conditions += array("Titlesummary.vote_count_vote >" => 0);
 		}
-		if(!empty($url["fansite"]))
+		if(!empty($query["fansite"]))
 		{
 			$conditions += array("Titlesummary.fansite_count >" => 0);
 		}
-//		pr($conditions);
+		// pr($conditions);
 
 		/**
 		 * order
 		 */
-		if(empty($url["order"])) $url["order"] = "rating";
-		switch($url["order"])
+		if(empty($query["order"])) $query["order"] = "rating";
+		switch($query["order"])
 		{
 			case "rating":
 				$order = "Titlesummary.vote_avg_all DESC";
@@ -118,8 +118,8 @@ class SearchController extends AppController {
 		/**
 		 * limit
 		 */
-		$limitStart = (($url["page"] - 1) * $this->limit);
-		$limit = $limitStart . "," . $this->limit;
+		// $limitStart = (($query["page"] - 1) * $this->limit);
+		// $limit = $limitStart . "," . $this->limit;
 //		pr($limit);
 
 
@@ -127,48 +127,60 @@ class SearchController extends AppController {
 		 * find
 		 */
 		$this->Title->unbindAll(array("Titlesummary"));
-		$titles = $this->Title->find("all" , array(
-			"conditions" => $conditions,
-			"order" => $order,
-			"limit" => $limit,
-		));
-//		pr($titles);
+		// $titles = $this->Title->find("all" , array(
+		// 	"conditions" => $conditions,
+		// 	"order" => $order,
+		// 	"limit" => $this->limit,
+		// ));
+		// pr($titles);
+		$this->Paginator->settings = array(
+			"Title" => array(
+				"conditions" => $conditions,
+				"order" => $order,
+				"limit" => $this->limit,
+				"maxLimit" => 100,
+				"paramType" => "querystring",
+			)
+		);
+		$titles = $this->Paginator->paginate("Title");
+		// pr($titles);
+
 
 		/**
 		 * paging
 		 */
-		$titlesCount = $this->Title->find("count" , array(
-			"conditions" => $conditions,
-			"fields" => "DISTINCT Title.id",
-		));
+		// $titlesCount = $this->Title->find("count" , array(
+		// 	"conditions" => $conditions,
+		// 	"fields" => "DISTINCT Title.id",
+		// ));
 //		pr($titlesCount);
-		$paging = array(
-			"count" => $titlesCount,
-			"pages" => ceil($titlesCount / $this->limit),
-			"page" => $url["page"],
-			"start" => $limitStart + 1,
-			"end" => ($limitStart + $this->limit < $titlesCount) ? $limitStart + $this->limit : $titlesCount,
-			"limit" => $this->limit,
-		);
+		// $paging = array(
+		// 	"count" => $titlesCount,
+		// 	"pages" => ceil($titlesCount / $this->limit),
+		// 	"page" => $query["page"],
+		// 	"start" => $limitStart + 1,
+		// 	"end" => ($limitStart + $this->limit < $titlesCount) ? $limitStart + $this->limit : $titlesCount,
+		// 	"limit" => $this->limit,
+		// );
 //		pr($paging);
 
 		/**
-		 * URL params
+		 * Query params
 		 */
-		$urlParams = array();
-		foreach($this->urlParamNames as $paramName)
-		{
-			if(isset($url[$paramName]) && !empty($url[$paramName]))
-			{
-				$urlParams[$paramName] = $url[$paramName];
-			}
-		}
-//		pr($urlParams);
+		// $queryParams = array();
+		// foreach($this->queryParamNames as $paramName)
+		// {
+		// 	if(isset($query[$paramName]) && !empty($query[$paramName]))
+		// 	{
+		// 		$queryParams[$paramName] = $query[$paramName];
+		// 	}
+		// }
+//		pr($queryParams);
 
 		//set
 		$this->set("titles" , $titles);
-		$this->set("paging" , $paging);
-		$this->set("urlParams" , $urlParams);
+		// $this->set("paging" , $paging);
+		// $this->set("queryParams" , $queryParams);
 	}
 }
 ?>
