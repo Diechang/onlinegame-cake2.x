@@ -34,9 +34,9 @@
  */
 class AppController extends Controller {
 
-	var $helpers	= array("Html", "Form", "Session", "Common", "Gads" , "Ogp" , "RichSnippets");
+	var $helpers	= array("Html", "Form", "Session", "Paginator", "Common", "Gads" , "Ogp" , "RichSnippets");
 	var $uses		= array("Title" , "User");
-	var $components	= array("Session" ,/* "Security" , */"Cookie" , "RequestHandler" , "Auth");
+	var $components	= array("Session" ,/* "Security" , */"Cookie" , "RequestHandler" , "Auth", "Paginator");
 
 	var $ip			= null;
 	var $host		= null;

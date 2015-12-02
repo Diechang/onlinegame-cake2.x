@@ -1,12 +1,14 @@
 <?php
+//meta
+$this->Html->meta("canonical", $this->Html->url(array('controller' => 'review' , 'action' => 'index'), true), array("rel" => "canonical", "type" => null, "title" => null, "inline" => false));
 //スタイル
 $this->Html->css(array('review'), 'stylesheet', array('inline' => false));
 //
-$this->set("title_for_layout" , "オンラインゲームレビュー一覧 " . $this->request->params["page"] . "ページ目");
+$this->set("title_for_layout" , "オンラインゲームレビュー一覧 " . $this->Paginator->current() . "ページ目");
 $this->set("keywords_for_layout" , "レビュー,評価,オンラインゲーム");
-$this->set("description_for_layout" , "当サイトに投稿されたオンラインゲームレビュー一覧の" . $this->request->params["page"] . "ページ目です。");
-$this->set("h1_for_layout" , "オンラインゲームレビュー一覧" . $this->request->params["page"] . "ページ目");
-$this->set("pankuz_for_layout" , "レビュー一覧" . $this->request->params["page"] . "ページ目");
+$this->set("description_for_layout" , "当サイトに投稿されたオンラインゲームレビュー一覧の" . $this->Paginator->current() . "ページ目です。");
+$this->set("h1_for_layout" , "オンラインゲームレビュー一覧" . $this->Paginator->current() . "ページ目");
+$this->set("pankuz_for_layout" , "レビュー一覧" . $this->Paginator->current() . "ページ目");
 ?>
 <div class="content review">
 	<h2 class="headimage"><?php echo $this->Html->image("design/headline_title_reviews.gif" , array("alt" => "レビュー投稿一覧：プレイヤーのみなさんの声を参考に"))?></h2>

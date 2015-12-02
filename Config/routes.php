@@ -61,11 +61,11 @@
 					array('action' => 'index'),
 					array('pass' => array('path') , 'controller' => 'categories|styles|services|fees|ranking|links'));
 	//Review
-	Router::connect('/review/:page',
-					array('controller' => 'review' , 'action' => 'index' , 'page' => 1));
+	Router::connect('/reviews',
+					array('controller' => 'review' , 'action' => 'index'));
 	//Review
-	Router::connect('/events/:page',
-					array('controller' => 'events' , 'action' => 'index' , 'page' => 1));
+	Router::connect('/events',
+					array('controller' => 'events' , 'action' => 'index'));
 	//Element parts
 	// Router::connect('/element_parts/:action', array('controller' => 'element_parts'));
 	//

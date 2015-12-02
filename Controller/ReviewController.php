@@ -3,8 +3,6 @@ class ReviewController extends AppController {
 
 	var $name = 'Review';
 	var $uses = array("Vote");
-	var $helpers	= array("Paginator");
-	var $components	= array();
 
 	var $paginate = array(
 		"Vote" => array(
@@ -27,18 +25,20 @@ class ReviewController extends AppController {
 				"Title.thumb_name",
 				"Title.url_str",
 			),
+			"paramType" => "querystring",
 		),
 	);
 	function index()
 	{
-		$page = (!empty($this->request->params["page"])) ? $this->request->params["page"] : 1;
-		$this->request->params["page"] = $page;
+		// $page = (!empty($this->request->params["page"])) ? $this->request->params["page"] : 1;
+
+		$this->Paginator->settings = $this->paginate;
 
 		/**
 		 * Review Data
 		 */
 		//Get
-		$reviews = $this->paginate("Vote");
+		$reviews = $this->Paginator->paginate("Vote");
 //		pr($reviews);
 		//
 		//Set - data

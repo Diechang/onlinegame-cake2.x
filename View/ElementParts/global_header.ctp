@@ -11,7 +11,7 @@
 	<?php endforeach;?>
 			</ul>
 		</li>
-		<li><?php echo $this->Html->link("レビュー" , array("controller" => "review" , "action" => "index" , "page" => 1))?></li>
+		<li><?php echo $this->Html->link("レビュー" , array("controller" => "review" , "action" => "index"))?></li>
 <?php /* events
 		<li><?php echo $this->Html->link("イベント" , array("controller" => "events" , "action" => "index" , "page" => 1))?></li>
 */ ?>
