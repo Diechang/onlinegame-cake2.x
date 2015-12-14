@@ -236,8 +236,8 @@ class VotesController extends AppController {
 			if(!empty($voteData["Vote"]["review"]))
 			{
 				//HTML helper
-				App::import('Helper', 'Html');
-				$html = new HtmlHelper();
+				App::uses('HtmlHelper', 'View/Helper');
+				$html = new HtmlHelper(new View());
 
 				$shareData = array(
 					"link" => Configure::read("Site.root") . $html->url(array("controller" => "titles" , "action" => "single" , "path" => $voteData["Title"]["url_str"] , "voteid" => $voteId , "ext" => "html")),
