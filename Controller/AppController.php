@@ -34,9 +34,28 @@
  */
 class AppController extends Controller {
 
-	var $helpers	= array("Html", "Form", "Session", "Paginator", "Common", "Gads" , "Ogp" , "RichSnippets");
-	var $uses		= array("Title" , "User");
-	var $components	= array("Session" ,/* "Security" , */"Cookie" , "RequestHandler" , "Auth", "Paginator");
+	var $helpers	= array("Html", "Form", "Session", "Paginator", "Common", "Gads", "Ogp", "RichSnippets");
+	var $uses		= array("Title", "User");
+	var $components	= array("Session" ,/* "Security", */"Cookie", "RequestHandler", "Paginator", 
+						"Auth" => array(
+							"loginAction" => array(
+								"controller" => "users",
+								"action" => "login",
+								"sys" => true,
+							),
+							"loginRedirect" => array(
+								"controller" => "pages",
+								"action" => "home",
+								"sys" => true,
+							),
+							"logoutRedirect" => array(
+								"controller" => "users",
+								"action" => "login",
+								"sys" => true,
+							),
+							"authError" => "管理者としてログインする必要があります",
+						)
+					);
 
 	var $ip			= null;
 	var $host		= null;
@@ -70,24 +89,24 @@ class AppController extends Controller {
 //				"username"=>"name",
 //				"password"=>"passwd"
 //			);
-			$this->Auth->loginAction = array(
-				"controller" => "users",
-				"action" => "login",
-				"sys" => true,
-			);
-			$this->Auth->loginRedirect = array(
-				"controller" => "pages",
-				"action" => "home",
-				"sys" => true,
-			);
-			$this->Auth->logoutRedirect = array(
-				"controller" => "users",
-				"action" => "login",
-				"sys" => true,
-			);
+			// $this->Auth->loginAction = array(
+			// 	"controller" => "users",
+			// 	"action" => "login",
+			// 	"sys" => true,
+			// );
+			// $this->Auth->loginRedirect = array(
+			// 	"controller" => "pages",
+			// 	"action" => "home",
+			// 	"sys" => true,
+			// );
+			// $this->Auth->logoutRedirect = array(
+			// 	"controller" => "users",
+			// 	"action" => "login",
+			// 	"sys" => true,
+			// );
 //			$this->Auth->allow("login", "logout");
-			$this->Auth->loginError = "ユーザ名もしくはパスワードが違います。";
-			$this->Auth->authError = "管理者としてログインする必要があります";
+			// $this->Auth->loginError = "ユーザ名もしくはパスワードが違います。";
+			// $this->Auth->authError = "管理者としてログインする必要があります";
 			$this->set("loginUser" , $this->Auth->user());
 //			pr($this->Auth);
 //			exit;
@@ -141,7 +160,7 @@ class AppController extends Controller {
 		else
 		{
 			//Disable Auth component
-			$this->Components->disable("Auth"); 
+			$this->Auth->allow(); 
 
 			/**
 			 * Cookie & Session
