@@ -44,11 +44,11 @@
 			<td><?php echo $this->Html->link($title["Title"]["url_str"] , array("controller" => "titles" , "action" => "index" , "path" => $title["Title"]["url_str"] , "sys" => false , "ext" => "html") , array("target" => "_blank"))?></td>
 			<td class="categories">
 	<?php foreach($title["Category"] as $category):?>
-				<?php echo $this->Html->link($category["path"] , array("controller" => "titles" , "action" => "index" , "category" => $category["id"]))?>
+				<?php echo $this->Html->link($category["path"] , array("controller" => "titles" , "action" => "index" , "?" => array("category" => $category["id"])))?>
 	<?php endforeach;?>
 			</td>
 			<td class="service" nowrap="nowrap">
-				<?php echo $this->Html->link($title["Service"]["str"] , array("controller" => "titles" , "action" => "index" , "service" => $title["Service"]["id"]))?>
+				<?php echo $this->Html->link($title["Service"]["str"] , array("controller" => "titles" , "action" => "index" , "?" => array("service" => $title["Service"]["id"])))?>
 				<span><?php echo $title["Title"]["test_start"]?> - <?php echo $title["Title"]["test_end"]?></span>
 			</td>
 			<td><?php echo $title["Title"]["service_start"]?></td>

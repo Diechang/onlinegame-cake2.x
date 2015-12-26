@@ -482,42 +482,32 @@ class TitlesController extends AppController {
 	 * Sys
 	 */
 	function sys_index() {
-		//リダイレクト
-		if(!empty($this->request->params["url"]["w"]) or !empty($this->request->params["url"]["category"]) or !empty($this->request->params["url"]["service"]))
-		{
-			$url = array();
-			if(!empty($this->request->params["url"]["w"]))			{ $url["w"]			= $this->request->params["url"]["w"]; }
-			if(!empty($this->request->params["url"]["category"]))	{ $url["category"]	= $this->request->params["url"]["category"]; }
-			if(!empty($this->request->params["url"]["service"]))		{ $url["service"]	= $this->request->params["url"]["service"]; }
-			return $this->redirect($url);
-		}
-
-		//SanitizepassedArgs
-		App::import('Sanitize');
-		$url = Sanitize::clean($this->passedArgs , Configure::read("UseDbConfig"));
-//		pr($url);
-//		exit;
-
 		//
 		$conditions = array();
 		$title_ids	= array();
+
+		// if(!empty($this->request->query["w"]) && !empty($this->request->query["category"]) && !empty($this->request->query["service"])){}
+		
 		//カテゴリ
-		if(isset($this->passedArgs["category"]))
+		// pr($this->request->query["category"]);
+		if(!empty($this->request->query["category"]))
 		{
-			$title_ids = $this->Title->idListByCategory($this->passedArgs["category"]);
+			$title_ids = $this->Title->idListByCategory($this->request->query["category"]);
 		}
+		// pr($title_ids);
+		// exit;
 		//スタイル
 
 		//タイトルID
 		if(!empty($title_ids)){ $conditions += array("Title.id" => $title_ids); }
 		//
 		//サービス
-		if(isset($this->passedArgs["service"]))
+		if(!empty($this->request->query["service"]))
 		{
-			$conditions += array("Title.service_id" => $this->passedArgs["service"]);
+			$conditions += array("Title.service_id" => $this->request->query["service"]);
 		}
 		//検索ワード
-		$w			= (isset($this->passedArgs["w"])) ? urldecode($this->passedArgs["w"]) : null;
+		$w			= (isset($this->request->query["w"])) ? urldecode($this->request->query["w"]) : null;
 		if(!empty($w))
 		{
 //			$w			= trim(str_replace("　", " ", $w));
@@ -538,12 +528,34 @@ class TitlesController extends AppController {
 			$conditions += array("OR" => $this->Title->wConditions($w));
 		}
 		//
+		// pr($conditions);
+		// exit;
+
+		$this->Title->unbindAll(array("Titlesummary", "Service", "Fee", "Fansite", "Vote", "Spec", "Pc", "Event", "Package", "Category"));
+		//fields
+		$this->Title->belongsTo["Service"]["fields"] = array("id", "str");
+		$this->Title->belongsTo["Fee"]["fields"] = array("id", "path");
+
+		$this->Title->hasMany["Fansite"]["fields"] = array("id");
+		$this->Title->hasMany["Vote"]["fields"] = array("id");
+		$this->Title->hasMany["Spec"]["fields"] = array("id");
+		$this->Title->hasMany["Pc"]["fields"] = array("id");
+		$this->Title->hasMany["Event"]["fields"] = array("id");
+		$this->Title->hasMany["Package"]["fields"] = array("id");
+
+		$this->Title->hasAndBelongsToMany["Category"]["fields"] = array("id", "path");
+		// $this->Title->hasAndBelongsToMany["Style"]["fields"] = array("id", "path");
+		// $this->Title->hasAndBelongsToMany["Portal"]["fields"] = array("id", "url_str");
+		//
+		// pr($this->Title);
 		$titles = $this->Title->find("all" , array(
 			"conditions" => $conditions,
-			"order" => "Title.id DESC"
+			"order" => "Title.id DESC",
 		));
-//		pr($titles);
-		$this->set('titles', $titles);
+		// pr($conditions);
+		// pr($titles);
+		// exit;
+		$this->set("titles", $titles);
 		//
 		$this->set("pankuz_for_layout" , "タイトル一覧");
 		$this->set("categories" , $this->Title->Category->find("list"));
@@ -559,32 +571,11 @@ class TitlesController extends AppController {
 //	}
 
 	function sys_add() {
+		// pr($this->request);
+		// exit;
 		if (!empty($this->request->data)) {
 			//File upload
-			if(!empty($this->request->data["Title"]["thumb_image"]["name"]))
-			{
-				//アップロードするファイルの場所
-				$uploadprefix	= "thumb_";
-				$uploaddir		= WWW_ROOT . "img" . DS . "thumb";
-				$uploadfile		= $uploaddir . DS . basename($this->request->data["Title"]["thumb_image"]["name"]);
-
-				$pathinfo		= pathinfo($uploadfile);
-				$filename		= $uploadprefix . $this->request->data["Title"]["url_str"] . "." . $pathinfo["extension"];
-				$uploadfile		= $pathinfo['dirname'] . DS . $filename;
-				$this->request->data["Title"]["thumb_image"]["name"] = $filename;
-				//画像をテンポラリーの場所から、上記で設定したアップロードファイルの置き場所へ移動
-				if(move_uploaded_file($this->request->data["Title"]["thumb_image"]["tmp_name"], $uploadfile))
-				{
-					//成功
-				}
-				else
-				{
-					//失敗したら、errorを表示
-					$this->Session->setFlash(Configure::read("Error.upload"));
-				}
-				$this->request->data["Title"]["thumb_name"]	= $filename;
-			}
-			$this->request->data["Title"]["thumb_image"]	= NULL;
+			$this->_sysThumbUpload($this->request->data);
 			//
 			$this->Title->create();
 			if($this->Title->save($this->request->data))
@@ -608,12 +599,8 @@ class TitlesController extends AppController {
 				$this->Session->setFlash(Configure::read("Error.create"));
 			}
 		}
-		$services = $this->Title->Service->find('list');
-		$fees = $this->Title->Fee->find('list');
-		$categories = $this->Title->Category->find('list');
-		$styles = $this->Title->Style->find('list');
-		$portals = $this->Title->Portal->find('list');
-		$this->set(compact('services', 'fees', 'categories', 'styles', 'portals'));
+		//
+		$this->_sysSetTitleAssociations();
 		//
 		//
 		$this->set("pankuz_for_layout" , array(
@@ -629,30 +616,7 @@ class TitlesController extends AppController {
 		}
 		if (!empty($this->request->data)) {
 			//File upload
-			if(!empty($this->request->data["Title"]["thumb_image"]["name"]))
-			{
-				//アップロードするファイルの場所
-				$uploadprefix	= "thumb_";
-				$uploaddir		= WWW_ROOT . "img" . DS . "thumb";
-				$uploadfile		= $uploaddir . DS . basename($this->request->data["Title"]["thumb_image"]["name"]);
-
-				$pathinfo		= pathinfo($uploadfile);
-				$filename		= $uploadprefix . $this->request->data["Title"]["url_str"] . "." . $pathinfo["extension"];
-				$uploadfile		= $pathinfo['dirname'] . DS . $filename;
-				$this->request->data["Title"]["thumb_image"]["name"] = $filename;
-				//画像をテンポラリーの場所から、上記で設定したアップロードファイルの置き場所へ移動
-				if(move_uploaded_file($this->request->data["Title"]["thumb_image"]["tmp_name"], $uploadfile))
-				{
-					//成功
-				}
-				else
-				{
-					//失敗したら、errorを表示
-					$this->Session->setFlash(Configure::read("Error.upload"));
-				}
-				$this->request->data["Title"]["thumb_name"]	= $filename;
-			}
-			$this->request->data["Title"]["thumb_image"]	= NULL;
+			$this->_sysThumbUpload($this->request->data);
 			//
 			if ($this->Title->save($this->request->data)) {
 				$this->Session->setFlash(Configure::read("Success.modify"));
@@ -664,12 +628,8 @@ class TitlesController extends AppController {
 		if (empty($this->request->data)) {
 			$this->request->data = $this->Title->read(null, $id);
 		}
-		$services = $this->Title->Service->find('list');
-		$fees = $this->Title->Fee->find('list');
-		$categories = $this->Title->Category->find('list');
-		$styles = $this->Title->Style->find('list');
-		$portals = $this->Title->Portal->find('list');
-		$this->set(compact('services', 'fees', 'categories', 'styles', 'portals'));
+		//
+		$this->_sysSetTitleAssociations();
 		//
 		$this->set("pankuz_for_layout" , array(
 			array("str" => "タイトル一覧" , "url" => array("action" => "index")),
@@ -703,14 +663,14 @@ class TitlesController extends AppController {
 	function sys_delete($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(Configure::read("Error.id"));
-			return $this->redirect(array('action'=>'index'));
+			return $this->redirect($this->referer('/sys'));
 		}
 		if ($this->Title->delete($id)) {
 			$this->Session->setFlash(Configure::read("Success.delete"));
-			return $this->redirect(array('action'=>'index'));
+			return $this->redirect($this->referer('/sys'));
 		}
 		$this->Session->setFlash(Configure::read("Error.delete"));
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect($this->referer('/sys'));
 	}
 
 	function sys_update($id = null)
@@ -723,21 +683,23 @@ class TitlesController extends AppController {
 		{
 			$this->Session->setFlash(Configure::read("Error.id"));
 		}
-			//
-			$this->set("pankuz_for_layout" , array(
-				array("str" => "タイトル一覧" , "url" => array("action" => "index")),
-				"タイトル集計更新",
-			));
+		//
+		// $this->set("pankuz_for_layout" , array(
+		// 	array("str" => "タイトル一覧" , "url" => array("action" => "index")),
+		// 	"タイトル集計更新",
+		// ));
+		$this->redirect('/sys');
 	}
 
 	function sys_updateall()
 	{
 		$this->Session->setFlash(Configure::read(($this->Title->summaryUpdateAll()) ? "Success.summary_update_all" : "Error.summary_update_all" ));
 		//
-		$this->set("pankuz_for_layout" , array(
-			array("str" => "タイトル一覧" , "url" => array("action" => "index")),
-			"全タイトル集計更新",
-		));
+		// $this->set("pankuz_for_layout" , array(
+		// 	array("str" => "タイトル一覧" , "url" => array("action" => "index")),
+		// 	"全タイトル集計更新",
+		// ));
+		$this->redirect('/sys');
 	}
 
 
@@ -772,6 +734,58 @@ class TitlesController extends AppController {
 		$this->_emptyToHome($title["Title"]["public"]);
 		//Check votable
 		$title["Title"]["votable"] = $this->TitleData->votable($title["Title"]["service_id"] , $title["Title"]["test_start"]);
+	}
+
+/**
+ * サムネイルアップロード
+ * 
+ * @param	array	request data
+ * @return	void
+ * @access	private
+ */
+	function _sysThumbUpload(&$data)
+	{
+		if(!empty($data["Title"]["thumb_image"]["name"]))
+		{
+			//アップロードするファイルの場所
+			$uploadprefix	= "thumb_";
+			$uploaddir		= WWW_ROOT . "img" . DS . "thumb";
+			$uploadfile		= $uploaddir . DS . basename($data["Title"]["thumb_image"]["name"]);
+
+			$pathinfo		= pathinfo($uploadfile);
+			$filename		= $uploadprefix . $data["Title"]["url_str"] . "." . $pathinfo["extension"];
+			$uploadfile		= $pathinfo['dirname'] . DS . $filename;
+			$data["Title"]["thumb_image"]["name"] = $filename;
+			//画像をテンポラリーの場所から、上記で設定したアップロードファイルの置き場所へ移動
+			if(move_uploaded_file($data["Title"]["thumb_image"]["tmp_name"], $uploadfile))
+			{
+				//成功
+			}
+			else
+			{
+				//失敗したら、errorを表示
+				$this->Session->setFlash(Configure::read("Error.upload"));
+			}
+			$data["Title"]["thumb_name"]	= $filename;
+		}
+		$data["Title"]["thumb_image"]	= null;
+	}
+
+/**
+ * タイトル関連モデルセット
+ * 
+ * @return	void
+ * @access	private
+ */
+	function _sysSetTitleAssociations()
+	{
+		$services	= $this->Title->Service->find('list');
+		$fees		= $this->Title->Fee->find('list');
+		$categories	= $this->Title->Category->find('list');
+		$styles		= $this->Title->Style->find('list');
+		$portals	= $this->Title->Portal->find('list');
+		//
+		$this->set(compact('services', 'fees', 'categories', 'styles', 'portals'));
 	}
 }
 ?>
