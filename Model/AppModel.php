@@ -105,7 +105,9 @@ class AppModel extends Model {
  */
 	function clearElementCache($name , $key = null)
 	{
-		@unlink(CACHE . "views" . DS . "element_" . $key . "_" . $name);
+		$cacheConfig	= Cache::config("element");
+		$cacheSettings	= $cacheConfig["settings"];
+		@unlink($cacheSettings["path"] . $cacheSettings["prefix"] . "element_" . $key . "_" . $name . "_cache_callbacks");
 	}
 
 /**
