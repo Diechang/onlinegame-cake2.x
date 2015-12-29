@@ -15,30 +15,34 @@ class SpecsController extends AppController {
 		//Spec data
 		$this->Spec->recursive = 0;
 		$sConditions = (!empty($title_id)) ? array("Spec.title_id" => $title_id) : null;
-		$this->set('specs', $this->Spec->find("all" , array(
+		$specs = $this->Spec->find("all" , array(
 			"conditions" => $sConditions,
 			"fields" => array(
 				"Spec.*",
 				"Title.title_official",
 			),
 			"order" => "Spec.id DESC"
-		)));
+		));
 		//
 		//Title data
 		$this->Spec->Title->unbindAll(array("Spec") , false);
 		$tConditions = (!empty($title_id)) ? array("Title.id" => $title_id) : null;
-		$this->set("titles" , $this->Spec->Title->find("list" , array(
+		$titles = $this->Spec->Title->find("list" , array(
 			"conditions" => $tConditions,
 			"order" => "Title.title_official",
-		)));
-		$this->set("titlesCount" , $this->Spec->Title->find("all" , array(
+		));
+		$titlesCount =$this->Spec->Title->find("all" , array(
 			"conditions" => $tConditions,
 			"fields" => array(
 				"Title.id",
 				"Title.title_official",
 			),
 			"order" => "Title.title_official",
-		)));
+		));
+		//
+		$this->set('specs', $specs);
+		$this->set("titles" , $titles);
+		$this->set("titlesCount" , $titlesCount);
 		//
 		if(!empty($title_id))
 		{
@@ -46,12 +50,12 @@ class SpecsController extends AppController {
 				array("str" => "動作環境一覧" , "url" => array("action" => "index")),
 				$this->Spec->Title->field("title_official" , array("Title.id" => $title_id)),
 			));
-			$this->set("title_id" , $title_id);
+			// $this->set("title_id" , $title_id);
 		}
 		else
 		{
 			$this->set("pankuz_for_layout" , "動作環境一覧");
-			$this->set("title_id" , 0);
+			// $this->set("title_id" , null);
 		}
 	}
 
@@ -75,7 +79,8 @@ class SpecsController extends AppController {
 			}
 		}
 		$titles = $this->Spec->Title->find('list');
-		$this->set(compact('titles'));
+		//
+		$this->set("titles", $titles);
 	}
 
 	function sys_edit($id = null) {
@@ -95,7 +100,8 @@ class SpecsController extends AppController {
 			$this->request->data = $this->Spec->read(null, $id);
 		}
 		//
-		$this->set("titles" , $this->Spec->Title->find('list'));
+		$titles = $this->Spec->Title->find('list');
+		$this->set("titles" , $titles);
 		$this->set("pankuz_for_layout" , array(
 			array("str" => "動作環境一覧" , "url" => array("action" => "index")),
 			"編集",
