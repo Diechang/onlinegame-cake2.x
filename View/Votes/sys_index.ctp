@@ -1,16 +1,6 @@
-<?php
-	if(isset($this->passedArgs["title_id"]))	{ $url["title_id"]	= $this->passedArgs["title_id"]; }
-	if(isset($this->passedArgs["w"]))			{ $url["w"]			= $this->passedArgs["w"]; }
-	if(!empty($url))							{ $this->Paginator->options(array('url' => $url)); }
-?>
 <?php echo $this->Form->create("Vote" , array("action" => "index" , "type" => "get" , "inputDefaults" => array("div" => false , "label" => false)))?>
-	<?php echo $this->Form->text("w" , array("size" => 10))?>
-	<select name="title_id"  class="title">
-		<option value="" selected="selected">すべて</option>
-	<?php foreach($titlesCount as $title):?>
-		<option value="<?php echo $title["Title"]["id"]?>"><?php echo $title["Title"]["title_official"]?>(<?php echo $title["Titlesummary"]["vote_count_vote"]?>)</option>
-	<?php endforeach;?>
-	</select>
+	<?php echo $this->Form->text("w" , array("size" => 10, "value" => $w))?>
+	<?php echo $this->Form->select("title_id", $titlesCount, array("value" => $title_id, "empty" => "すべて"))?>
 	<?php echo $this->Form->submit("検索" , array("div" => false , "class" => "btn"))?>
 <?php echo $this->Form->end()?>
 <?php echo $this->Form->create("Vote" , array("action" => "lump"))?>

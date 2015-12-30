@@ -37,7 +37,7 @@
 			<td class="tRight"><?php echo $v["Vote"]["id"]?></td>
 			<td class="title" nowrap="nowrap">
 				<?php echo $v["Vote"]["title_id"]?>
-				<?php echo $this->Html->link($v["Title"]["title_official"] . " (" . $v["Title"]["Titlesummary"]["vote_count_vote"] . ")" , array("controller" => "votes" , "action" => "index" , "title_id" => $v["Vote"]["title_id"]))?>
+				<?php echo $this->Html->link($v["Title"]["title_official"] . " (" . $v["Title"]["Titlesummary"]["vote_count_vote"] . ")" , array("controller" => "votes" , "action" => "index" , "?" => array("title_id" => $v["Vote"]["title_id"])))?>
 			</td>
 			<td class="tRight"><?php echo $v["Vote"]["item1"]?></td>
 			<td class="tRight"><?php echo $v["Vote"]["item2"]?></td>

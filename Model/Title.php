@@ -755,11 +755,11 @@ UPDATE titlesummaries AS ts SET ts.avg_votes_item10 =(SELECT AVG(v.item10) FROM 
 	 * @return	array
 	 * @access	public
 	 */
-	function titleListWithSummaryCount($summaryField, $modelName)
+	function titleListWithSummaryCount($summaryField, $modelName, $list = true)
 	{
 		$counts = $this->Titlesummary->find("all" , array(
 			"conditions" => array(
-				"Title.id" => array_unique($this->$modelName->find("list" , array("fields" => $modelName . ".title_id")))
+				"Title.id" => array_unique($this->{$modelName}->find("list" , array("fields" => $modelName . ".title_id")))
 			),
 			"fields" => array(
 				"Title.id",
@@ -768,6 +768,11 @@ UPDATE titlesummaries AS ts SET ts.avg_votes_item10 =(SELECT AVG(v.item10) FROM 
 			),
 			"order" => "Title.title_official",
 		));
+		//combine list
+		if($list)
+		{
+			$counts = Hash::combine($counts, "{n}.Title.id", array("%s(%d)", "{n}.Title.title_official", "{n}.Titlesummary." . $summaryField));
+		}
 //		pr($counts);
 //		exit;
 		return $counts;

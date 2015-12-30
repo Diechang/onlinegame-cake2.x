@@ -6,13 +6,15 @@ class VotesController extends AppController {
 
 	var $paginate = array(
 		"Vote" => array(
-			"limit" => 50,
+			"limit" => 100,
 			"order" => "Vote.created DESC",
+			"conditions" => array(),
 			"fields" => array(
 				"Vote.*",
 				"Title.id",
 				"Title.title_official",
 			),
+			"paramType" => "querystring",
 		),
 	);
 
@@ -259,20 +261,22 @@ class VotesController extends AppController {
 	 */
 	function sys_index() {
 		//リダイレクト
-		if(!empty($this->request->params["url"]["title_id"]) or !empty($this->request->params["url"]["w"]))
-		{
-			$url = array();
-			if(!empty($this->request->params["url"]["title_id"]))	{ $url["title_id"]	= $this->request->params["url"]["title_id"]; }
-			if(!empty($this->request->params["url"]["w"]))			{ $url["w"]			= $this->request->params["url"]["w"]; }
-			return $this->redirect($url);
-		}
+		// if(!empty($this->request->params["url"]["title_id"]) or !empty($this->request->params["url"]["w"]))
+		// {
+		// 	$url = array();
+		// 	if(!empty($this->request->params["url"]["title_id"]))	{ $url["title_id"]	= $this->request->params["url"]["title_id"]; }
+		// 	if(!empty($this->request->params["url"]["w"]))			{ $url["w"]			= $this->request->params["url"]["w"]; }
+		// 	return $this->redirect($url);
+		// }
 		//
-		$title_id	= isset($this->passedArgs["title_id"])	? $this->passedArgs["title_id"] : null;
-		$w			= isset($this->passedArgs["w"])			? $this->passedArgs["w"] : null;
+		$title_id	= !empty($this->request->query["title_id"])	? $this->request->query["title_id"] : null;
+		$w			= !empty($this->request->query["w"])		? $this->request->query["w"] : null;
+
+		$this->set(compact("title_id", "w"));
 		//
 		//Vote data
 		$this->Vote->recursive = 2;
-		$this->Vote->Title->unbindAll(array("Titlesummary"), false);
+		$this->Vote->Title->unbindAll(array("Titlesummary"));
 		if(isset($w))
 		{
 			$this->paginate["Vote"]["conditions"]["OR"] = array(
@@ -288,11 +292,14 @@ class VotesController extends AppController {
 		{
 			$this->paginate["Vote"]["conditions"]["title_id"] = $title_id;
 		}
+		$this->Paginator->settings = $this->paginate;
+		//
 		$this->set("votes" , $this->paginate("Vote"));
 		//
 		//Title data
-//		$this->Vote->Title->unbindAll(array("Titlesummary"));
-		$this->set("titlesCount" , $this->Vote->Title->titleListWithSummaryCount("vote_count_vote" , "Vote"));
+		$titlesCount = $this->Vote->Title->titleListWithSummaryCount("vote_count_vote" , "Vote");
+		//
+		$this->set("titlesCount" , $titlesCount);
 		//
 		//
 		if(!empty($title_id))
@@ -301,12 +308,12 @@ class VotesController extends AppController {
 				array("str" => "投稿一覧" , "url" => array("action" => "index")),
 				$this->Vote->Title->field("title_official" , array("Title.id" => $title_id)),
 			));
-			$this->set("title_id" , $title_id);
+			// $this->set("title_id" , $title_id);
 		}
 		else
 		{
 			$this->set("pankuz_for_layout" , "投稿一覧");
-			$this->set("title_id" , 0);
+			// $this->set("title_id" , 0);
 		}
 	}
 
