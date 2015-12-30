@@ -129,19 +129,20 @@ http://onlinegame.dz-life.net/sys/fansites/index/title_id:{$this->request->data[
 	 */
 	function sys_index() {
 		//リダイレクト
-		if(!empty($this->request->params["url"]["title_id"]) or !empty($this->request->params["url"]["w"]))
-		{
-			$url = array();
-			if(!empty($this->request->params["url"]["title_id"]))	{ $url["title_id"]	= $this->request->params["url"]["title_id"]; }
-			if(!empty($this->request->params["url"]["w"]))			{ $url["w"]			= $this->request->params["url"]["w"]; }
-			return $this->redirect($url);
-		}
+		// if(!empty($this->request->params["url"]["title_id"]) or !empty($this->request->params["url"]["w"]))
+		// {
+		// 	$url = array();
+		// 	if(!empty($this->request->params["url"]["title_id"]))	{ $url["title_id"]	= $this->request->params["url"]["title_id"]; }
+		// 	if(!empty($this->request->params["url"]["w"]))			{ $url["w"]			= $this->request->params["url"]["w"]; }
+		// 	return $this->redirect($url);
+		// }
 		//
-		$title_id	= isset($this->passedArgs["title_id"])	? $this->passedArgs["title_id"] : null;
-		$w			= isset($this->passedArgs["w"])			? $this->passedArgs["w"] : null;
+		$title_id	= !empty($this->request->query["title_id"])	? $this->request->query["title_id"] : null;
+		$w			= !empty($this->request->query["w"])		? $this->request->query["w"] : null;
+
+		$this->set(compact("title_id", "w"));
 		//
 		//Fansite data
-		$this->Fansite->recursive = 0;
 		$fConditions = array();
 		if(isset($w))
 		{
@@ -156,7 +157,7 @@ http://onlinegame.dz-life.net/sys/fansites/index/title_id:{$this->request->data[
 			$fConditions["Fansite.title_id"] = $title_id;
 		}
 		$this->Fansite->recursive = 2;
-		$this->Fansite->Title->unbindAll(array("Titlesummary") , false);
+		$this->Fansite->Title->unbindAll(array("Titlesummary"));
 		$this->set('fansites', $this->Fansite->find("all" , array(
 			"conditions" => $fConditions,
 			"fields" => array(
@@ -167,12 +168,14 @@ http://onlinegame.dz-life.net/sys/fansites/index/title_id:{$this->request->data[
 		)));
 		//
 		//Title data
-		$tConditions = (!empty($title_id)) ? array("Title.id" => $title_id) : null;
-		$this->set("titles" , $this->Fansite->Title->find("list" , array(
-			"conditions" => $tConditions,
+		$titles =  $this->Fansite->Title->find("list" , array(
+			"conditions" => (!empty($title_id)) ? array("Title.id" => $title_id) : null,
 			"order" => "Title.title_official",
-		)));
-		$this->set("titlesCount" , $this->Fansite->Title->titleListWithSummaryCount("fansite_count" , "Fansite"));
+		));
+		$titlesCount = $this->Fansite->Title->titleListWithSummaryCount("fansite_count" , "Fansite");
+
+		//
+		$this->set(compact("titles", "titlesCount"));
 		//
 		if(!empty($title_id))
 		{
@@ -180,12 +183,12 @@ http://onlinegame.dz-life.net/sys/fansites/index/title_id:{$this->request->data[
 				array("str" => "ファンサイト一覧" , "url" => array("action" => "index")),
 				$this->Fansite->Title->field("title_official" , array("Title.id" => $title_id)),
 			));
-			$this->set("title_id" , $title_id);
+			// $this->set("title_id" , $title_id);
 		}
 		else
 		{
 			$this->set("pankuz_for_layout" , "ファンサイト一覧");
-			$this->set("title_id" , 0);
+			// $this->set("title_id" , 0);
 		}
 	}
 
@@ -202,7 +205,7 @@ http://onlinegame.dz-life.net/sys/fansites/index/title_id:{$this->request->data[
 			$this->Fansite->create();
 			if ($this->Fansite->save($this->request->data)) {
 				$this->Session->setFlash(Configure::read("Success.create"));
-				return $this->redirect(array('action' => 'index' , "title_id" => $this->request->data["Fansite"]["title_id"]));
+				return $this->redirect(array('action' => 'index' , "?" => array("title_id" => $this->request->data["Fansite"]["title_id"])));
 			} else {
 				$this->Session->setFlash(Configure::read("Error.input"));
 				return $this->redirect(array('action' => 'index'));
@@ -218,7 +221,7 @@ http://onlinegame.dz-life.net/sys/fansites/index/title_id:{$this->request->data[
 		if (!empty($this->request->data)) {
 			if ($this->Fansite->save($this->request->data)) {
 				$this->Session->setFlash(Configure::read("Success.modify"));
-				return $this->redirect(array('action' => 'index' , "title_id" => $this->request->data["Fansite"]["title_id"]));
+				return $this->redirect(array('action' => 'index' , "?" => array("title_id" => $this->request->data["Fansite"]["title_id"])));
 			} else {
 				$this->Session->setFlash(Configure::read("Error.create"));
 			}
@@ -227,7 +230,7 @@ http://onlinegame.dz-life.net/sys/fansites/index/title_id:{$this->request->data[
 			$this->request->data = $this->Fansite->read(null, $id);
 		}
 		//
-		$this->set("titles" , $this->Fansite->Title->find('list'));
+		$this->set("titles" , $this->Fansite->Title->find('list', array("order" => "Title.title_official")));
 		$this->set("pankuz_for_layout" , array(
 			array("str" => "ファンサイト一覧" , "url" => array("action" => "index")),
 			"編集",

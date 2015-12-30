@@ -60,7 +60,7 @@
 				<?php echo $this->Html->link("＋" , array("controller" => "events" , "action" => "add" , "title_id" => $title["Title"]["id"]) , array("class" => $this->Common->addClassZero(count($title["Event"]))))?>
 			</td>
 			<td class="<?php echo $this->Common->addClassZero(count($title["Fansite"]) , "tCenter")?>">
-				<?php echo $this->Html->link(count($title["Fansite"]) , array("controller" => "fansites" , "action" => "index" , "title_id" => $title["Title"]["id"]) , array("class" => $this->Common->addClassZero(count($title["Fansite"]))))?>
+				<?php echo $this->Html->link(count($title["Fansite"]) , array("controller" => "fansites" , "action" => "index" , "?" => array("title_id" => $title["Title"]["id"])) , array("class" => $this->Common->addClassZero(count($title["Fansite"]))))?>
 			</td>
 			<td class="<?php echo $this->Common->addClassZero(count($title["Spec"]) , "tCenter")?>">
 				<?php echo $this->Html->link(count($title["Spec"]) , array("controller" => "specs" , "action" => "index" , $title["Title"]["id"]) , array("class" => $this->Common->addClassZero(count($title["Spec"]))))?>

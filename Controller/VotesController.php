@@ -260,15 +260,6 @@ class VotesController extends AppController {
 	 * Sys
 	 */
 	function sys_index() {
-		//リダイレクト
-		// if(!empty($this->request->params["url"]["title_id"]) or !empty($this->request->params["url"]["w"]))
-		// {
-		// 	$url = array();
-		// 	if(!empty($this->request->params["url"]["title_id"]))	{ $url["title_id"]	= $this->request->params["url"]["title_id"]; }
-		// 	if(!empty($this->request->params["url"]["w"]))			{ $url["w"]			= $this->request->params["url"]["w"]; }
-		// 	return $this->redirect($url);
-		// }
-		//
 		$title_id	= !empty($this->request->query["title_id"])	? $this->request->query["title_id"] : null;
 		$w			= !empty($this->request->query["w"])		? $this->request->query["w"] : null;
 
@@ -356,7 +347,6 @@ class VotesController extends AppController {
 			$this->request->data = $this->Vote->read(null, $id);
 		}
 		//
-		$this->set("titles" , $this->Vote->Title->find('list'));
 		$this->set("voteItems" , $this->Vote->voteItems);
 		$this->set("pankuz_for_layout" , array(
 			array("str" => "投稿一覧" , "url" => array("action" => "index")),

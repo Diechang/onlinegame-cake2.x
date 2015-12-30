@@ -35,7 +35,7 @@ switch($fansite["Fansite"]["type"])
 			<td class="tRight"><?php echo $fansite["Fansite"]["id"]?></td>
 			<td class="title" nowrap="nowrap">
 				<?php echo $fansite["Fansite"]["title_id"]?>
-				<?php echo $this->Html->link($fansite["Title"]["title_official"] . " (" . $fansite["Title"]["Titlesummary"]["fansite_count"] . ")" , array("controller" => "fansites" , "action" => "index" , "title_id" => $fansite["Fansite"]["title_id"]))?>
+				<?php echo $this->Html->link($fansite["Title"]["title_official"] . " (" . $fansite["Title"]["Titlesummary"]["fansite_count"] . ")" , array("controller" => "fansites" , "action" => "index" , "?" => array("title_id" => $fansite["Fansite"]["title_id"])))?>
 			</td>
 			<td class="title">
 				<?php echo $fansite["Fansite"]["site_name"]?>
