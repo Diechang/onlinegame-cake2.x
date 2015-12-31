@@ -27,6 +27,8 @@ class FansitesController extends AppController {
 				$this->Fansite->create();
 				if($this->Fansite->save($this->request->data))
 				{
+					$editUrl	= Router::url(array('action' => 'edit', $this->Fansite->id, 'sys' => true), true);
+					$listUrl	= Router::url(array('action' => 'index', "?" => array("title_id" => $title["Title"]["id"]), 'sys' => true), true);
 					//Send mail
 					$email = new CakeEmail("sakura");
 					$email->from(!empty($this->request->data["Fansite"]["admin_mail"])
@@ -49,10 +51,10 @@ class FansitesController extends AppController {
 {$this->request->data['Fansite']['message']}
 
 ■編集URL
-http://onlinegame.dz-life.net/sys/fansites/edit/{$this->Fansite->id}
+{$editUrl}
 
 ■{$title['Title']['title_official']}ファンサイト一覧
-http://onlinegame.dz-life.net/sys/fansites/index/title_id:{$title['Title']['id']}
+{$listUrl}
 					");
 					//
 					$this->Session->setFlash("サイト登録申込ありがとうございます！<br />\n管理人の承認後に掲載されます。");
@@ -90,6 +92,8 @@ http://onlinegame.dz-life.net/sys/fansites/index/title_id:{$title['Title']['id']
 			$this->request->data["Fansite"]["public"] = false;
 			if($this->Fansite->save($this->request->data))
 			{
+				$editUrl	= Router::url(array('action' => 'edit', $this->request->data['Fansite']['id'], 'sys' => true), true);
+				$listUrl	= Router::url(array('action' => 'index', "?" => array("title_id" => $this->request->data['Fansite']['title_id']), 'sys' => true), true);
 				$email = new CakeEmail("sakura");
 				//Send mail
 				$email->from(array("zilow@dz-life.net" => "DZ-LIFE"));
@@ -103,10 +107,10 @@ http://onlinegame.dz-life.net/sys/fansites/index/title_id:{$title['Title']['id']
 {$this->request->data['Fansite']['site_url']}
 
 ■編集URL
-http://onlinegame.dz-life.net/sys/fansites/edit/{$this->request->data['Fansite']['id']}
+{$editUrl}
 
 ■{$this->request->data['Title']['title_official']}ファンサイト一覧
-http://onlinegame.dz-life.net/sys/fansites/index/title_id:{$this->request->data['Fansite']['title_id']}
+{$listUrl}
 
 				");
 				//

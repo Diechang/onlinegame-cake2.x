@@ -115,6 +115,8 @@ class LinksController extends AppController {
 				$this->Link->create();
 				if ($this->Link->save($this->request->data))
 				{
+					$editUrl	= Router::url(array('action' => 'edit', $this->Link->id, 'sys' => true), true);
+					$linksUrl	= Router::url(array('action' => 'index', 'sys'=>true), true);
 					//Send mail
 					$email = new CakeEmail("sakura");
 					$email->from(!empty($this->request->data["Link"]["admin_mail"])
@@ -136,10 +138,10 @@ class LinksController extends AppController {
 {$this->request->data['Link']['message']}
 
 ■編集URL
-http://onlinegame.dz-life.net/sys/links/edit/{$this->Link->id}
+{$editUrl}
 
 ■相互リンク一覧
-http://onlinegame.dz-life.net/sys/links
+{$linksUrl}
 					");
 					//
 					$this->Session->setFlash("相互リンク申込ありがとうございます！<br />\n管理人の承認後に掲載されます。");
@@ -212,6 +214,7 @@ http://onlinegame.dz-life.net/sys/links
 	}
 
 	function sys_edit($id = null) {
+		exit;
 		if (!$id && empty($this->request->data)) {
 			$this->Session->setFlash(Configure::read("Error.id"));
 			return $this->redirect(array('action' => 'index'));
