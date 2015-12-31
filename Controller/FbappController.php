@@ -31,8 +31,7 @@ class FbappController extends AppController {
 		));
 
 		//認証URL
-		$this->authUrl = "http://www.facebook.com/dialog/oauth?client_id="
-. $this->appId . "&redirect_uri=" . urlencode($this->canvasPage);
+		$this->authUrl = "http://www.facebook.com/dialog/oauth?client_id=" . $this->appId . "&redirect_uri=" . urlencode($this->canvasPage);
 		//Facebookページに追加URL
 		$this->addPageUrl	= "https://www.facebook.com/dialog/pagetab?app_id=" . $this->appId . "&display=popup&next=" . $this->canvasPage . "tab";
 

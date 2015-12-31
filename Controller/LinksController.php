@@ -134,6 +134,12 @@ class LinksController extends AppController {
 
 ■メッセージ
 {$this->request->data['Link']['message']}
+
+■編集URL
+http://onlinegame.dz-life.net/sys/links/edit/{$this->Link->id}
+
+■相互リンク一覧
+http://onlinegame.dz-life.net/sys/links
 					");
 					//
 					$this->Session->setFlash("相互リンク申込ありがとうございます！<br />\n管理人の承認後に掲載されます。");
