@@ -51,14 +51,10 @@ class Portal extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'offiical_url' => array(
-			'url' => array(
-				'rule' => array('url'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+		'official_url' => array(
+			"url" => array(
+				"rule" => "url",
+				"message" => "URL形式"
 			),
 		),
 	);
@@ -71,7 +67,7 @@ class Portal extends AppModel {
 			'foreignKey' => 'portal_id',
 			'associationForeignKey' => 'title_id',
 			'unique' => true,
-			'conditions' => array("Title.public" => 1),
+			'conditions' => array('Title.public' => 1),
 			'fields' => '',
 			'order' => 'Title.title_official',
 			'limit' => '',

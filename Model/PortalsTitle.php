@@ -8,14 +8,14 @@ class PortalsTitle extends AppModel {
 		'Portal' => array(
 			'className' => 'Portal',
 			'foreignKey' => 'portal_id',
-			'conditions' => null,
+			'conditions' => '',
 			'fields' => '',
 			'order' => ''
 		),
 		'Title' => array(
 			'className' => 'Title',
 			'foreignKey' => 'title_id',
-			'conditions' => null,
+			'conditions' => '',
 			'fields' => '',
 			'order' => ''
 		)

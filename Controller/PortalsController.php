@@ -106,6 +106,8 @@ class PortalsController extends AppController {
 
 	function sys_add() {
 		if (!empty($this->request->data)) {
+			//コンディションなし - Title.publicが見つからない…
+			$this->Portal->hasAndBelongsToMany["Title"]["conditions"] = "";
 			$this->Portal->create();
 			if ($this->Portal->save($this->request->data)) {
 				$this->Session->setFlash(Configure::read("Success.create"));
@@ -155,8 +157,6 @@ class PortalsController extends AppController {
 			//変更チェック
 			if($this->LumpEdit->changeCheck($this->request->data["Portal"] , $this->Portal))
 			{
-//				pr($this->request->data["Portal"]);
-//				exit;
 				if ($this->Portal->saveAll($this->request->data["Portal"])) {
 					$this->Session->setFlash(Configure::read("Success.lump"));
 				} else {

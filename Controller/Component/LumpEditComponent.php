@@ -37,15 +37,17 @@ class LumpEditComponent extends Component
 		$index = 0;
 		foreach($data as $key => $val)
 		{
-			if($val !== $befores[$key][$modelName])
+			// pr($val);
+			// pr($befores[$key][$modelName]);
+			if($val != $befores[$key][$modelName])
 			{
 				$changed[$index] = $val;
 				$index++;
 			}
 		}
-//		pr($data);
-//		pr($changed);
-//		exit;
+		// pr($data);
+		// pr($changed);
+		// exit;
 		$data = $changed;
 		return (!empty($data)) ? true : false;
 	}

@@ -214,7 +214,6 @@ class LinksController extends AppController {
 	}
 
 	function sys_edit($id = null) {
-		exit;
 		if (!$id && empty($this->request->data)) {
 			$this->Session->setFlash(Configure::read("Error.id"));
 			return $this->redirect(array('action' => 'index'));
