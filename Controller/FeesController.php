@@ -5,7 +5,8 @@ class FeesController extends AppController {
 
 	function sys_index() {
 		$this->Fee->recursive = 0;
-		$this->set('fees', $this->Fee->find("all"));
+		$fees = $this->Fee->find("all");
+		$this->set('fees', $fees);
 		//
 		$this->set("pankuz_for_layout" , "料金マスタ");
 	}

@@ -65,7 +65,8 @@ class ServicesController extends AppController {
 	 */
 	function sys_index() {
 		$this->Service->recursive = 0;
-		$this->set('services', $this->Service->find("all"));
+		$services = $this->Service->find("all");
+		$this->set('services', $services);
 
 		$this->set("pankuz_for_layout" , "サービス状態マスタ");
 	}
