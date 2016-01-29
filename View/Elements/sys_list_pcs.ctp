@@ -36,17 +36,17 @@
 			<td class="tRight"><?php echo $pc["Pc"]["id"]?></td>
 			<td class="title" nowrap="nowrap">
 				<?php echo $pc["Pc"]["ad_part_text"]?>
-				<?php echo $this->Html->link($pc["Title"]["title_official"] , array("controller" => "pcs" , "action" => "index" , "title_id" => $pc["Pc"]["title_id"]))?>
+				<?php echo $this->Html->link($pc["Title"]["title_official"] , array("controller" => "pcs" , "action" => "index" , "?" => array("title_id" => $pc["Pc"]["title_id"])))?>
 			</td>
 			<td class="adImage">
 				<?php echo (!empty($pc["Pc"]["ad_part_img_src"])) ? $this->Common->adLinkImage($pc["Pc"] , "pc") : "none"?>
 			</td>
 			<td>
-				<?php echo $this->Html->link($pc["Pcshop"]["shop_name"] , array("controller" => "pcs" , "action" => "index" , "pcshop_id" => $pc["Pc"]["pcshop_id"]))?>
+				<?php echo $this->Html->link($pc["Pcshop"]["shop_name"] , array("controller" => "pcs" , "action" => "index" , "?" => array("pcshop_id" => $pc["Pc"]["pcshop_id"])))?>
 			</td>
 			<td nowrap="nowrap">
-				<?php echo $this->Html->link($pc["Pctype"]["str"] , array("controller" => "pcs" , "action" => "index" , "pctype_id" => $pc["Pc"]["pctype_id"]))?><br />
-				<?php echo $this->Html->link($pc["Pcgrade"]["str"] , array("controller" => "pcs" , "action" => "index" , "pcgrade_id" => $pc["Pc"]["pcgrade_id"]))?>
+				<?php echo $this->Html->link($pc["Pctype"]["str"] , array("controller" => "pcs" , "action" => "index" , "?" => array("pctype_id" => $pc["Pc"]["pctype_id"])))?><br />
+				<?php echo $this->Html->link($pc["Pcgrade"]["str"] , array("controller" => "pcs" , "action" => "index" , "?" => array("pcgrade_id" => $pc["Pc"]["pcgrade_id"])))?>
 			</td>
 			<td class="tRight" nowrap="nowrap">
 				¥ <?php echo number_format($pc["Pc"]["price"])?>

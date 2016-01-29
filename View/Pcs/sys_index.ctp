@@ -3,16 +3,16 @@
 	<?php
 		if(isset($titleAddData))
 		{
-			echo $this->Html->link($titleAddData["Title"]["title_official"] . "のPCを登録" , array("action" => "add" , "title_id" => $titleAddData["Title"]["id"]) , array("class" => "btn btn-success"));
+			echo $this->Html->link($titleAddData["Title"]["title_official"] . "のPCを登録" , array("action" => "add" , "?" => array("title_id" => $titleAddData["Title"]["id"])) , array("class" => "btn btn-success"));
 		}
 	?>
 </h3>
 <?php echo $this->Form->create("Pc" , array("action" => "index" , "type" => "get" , "inputDefaults" => array("div" => false , "label" => false)))?>
-	<?php echo $this->Form->text("w" , array("size" => 10 , "onfocus" => "this.select()"))?>
-	<?php echo $this->Form->select("title_id" , $titles)?>
-	<?php echo $this->Form->select("pcshop_id" , $pcshops)?><br />
-	<?php echo $this->Form->select("pctype_id" , $pctypes)?>
-	<?php echo $this->Form->select("pcgrade_id" , $pcgrades)?>
+	<?php echo $this->Form->text("w" , array("value" => $w, "size" => 10 , "onfocus" => "this.select()"))?>
+	<?php echo $this->Form->select("title_id" , $titlesCount, array("value" => $title_id, "empty" => "すべて"))?>
+	<?php echo $this->Form->select("pcshop_id" , $pcshops, array("value" => $pcshop_id, "empty" => "すべて"))?><br />
+	<?php echo $this->Form->select("pctype_id" , $pctypes, array("value" => $pctype_id, "empty" => "すべて"))?>
+	<?php echo $this->Form->select("pcgrade_id" , $pcgrades, array("value" => $pcgrade_id, "empty" => "すべて"))?>
 	<?php echo $this->Form->submit("PC検索" , array("div" => false , "class" => "btn"))?>
 <?php echo $this->Form->end()?>
 

@@ -5,17 +5,10 @@ class PackagesController extends AppController {
 	var $components = array("LumpEdit");
 
 	function sys_index() {
-		//リダイレクト
-		if(!empty($this->request->params["url"]["title_id"]) or !empty($this->request->params["url"]["w"]))
-		{
-			$url = array();
-			if(!empty($this->request->params["url"]["title_id"]))	{ $url["title_id"]	= $this->request->params["url"]["title_id"]; }
-			if(!empty($this->request->params["url"]["w"]))			{ $url["w"]			= $this->request->params["url"]["w"]; }
-			return $this->redirect($url);
-		}
-		//
-		$title_id	= isset($this->passedArgs["title_id"])	? $this->passedArgs["title_id"] : null;
-		$w			= isset($this->passedArgs["w"])			? $this->passedArgs["w"] : null;
+		$title_id	= !empty($this->request->query["title_id"])	? $this->request->query["title_id"] : null;
+		$w			= !empty($this->request->query["w"])		? $this->request->query["w"] : null;
+
+		$this->set(compact("title_id", "w"));
 		//
 		//Package data
 		$this->Package->recursive = 0;
@@ -41,7 +34,7 @@ class PackagesController extends AppController {
 		)));
 		//
 		//Title data
-		$this->Package->Title->unbindAll(array("Titlesummary") , false);
+		$this->Package->Title->unbindAll(array("Titlesummary"));
 		$tConditions = (!empty($title_id)) ? array("Title.id" => $title_id) : null;
 		$this->set("titles" , $this->Package->Title->find("list" , array(
 			"conditions" => $tConditions,
@@ -77,7 +70,7 @@ class PackagesController extends AppController {
 			$this->Package->create();
 			if ($this->Package->save($this->request->data)) {
 				$this->Session->setFlash(Configure::read("Success.create"));
-				return $this->redirect(array('action' => 'index' , "title_id" => $this->request->data["Package"]["title_id"]));
+				return $this->redirect(array('action' => 'index' , "?" => array("title_id" => $this->request->data["Package"]["title_id"])));
 			} else {
 				$this->Session->setFlash(Configure::read("Error.input"));
 				return $this->redirect(array('action' => 'index'));
@@ -93,7 +86,7 @@ class PackagesController extends AppController {
 		if (!empty($this->request->data)) {
 			if ($this->Package->save($this->request->data)) {
 				$this->Session->setFlash(Configure::read("Success.modify"));
-				return $this->redirect(array('action' => 'index' , "title_id" => $this->request->data["Package"]["title_id"]));
+				return $this->redirect(array('action' => 'index' , "?" => array("title_id" => $this->request->data["Package"]["title_id"])));
 			} else {
 				$this->Session->setFlash(Configure::read("Error.create"));
 			}
@@ -118,7 +111,7 @@ class PackagesController extends AppController {
 					$this->Session->setFlash(Configure::read("Success.lump"));
 				} else {
 					$this->Session->setFlash(Configure::read("Error.lump"));
-					return $this->redirect(array('action' => 'index'));
+					return $this->redirect($this->referer(array('action' => 'index')));
 				}
 			}
 			else
@@ -126,19 +119,19 @@ class PackagesController extends AppController {
 				$this->Session->setFlash(Configure::read("Error.lump_empty"));
 			}
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect($this->referer(array('action' => 'index')));
 	}
 
 	function sys_delete($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(Configure::read("Error.id"));
-			return $this->redirect(array('action'=>'index'));
+			return $this->redirect($this->referer(array('action' => 'index')));
 		}
 		if ($this->Package->delete($id)) {
 			$this->Session->setFlash(Configure::read("Success.delete"));
-			return $this->redirect(array('action'=>'index'));
+			return $this->redirect($this->referer(array('action' => 'index')));
 		}
 		$this->Session->setFlash(Configure::read("Error.delete"));
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect($this->referer(array('action' => 'index')));
 	}
 }

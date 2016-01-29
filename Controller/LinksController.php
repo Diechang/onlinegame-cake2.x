@@ -243,23 +243,23 @@ class LinksController extends AppController {
 				$this->Session->setFlash(Configure::read("Success.lump"));
 			} else {
 				$this->Session->setFlash(Configure::read("Error.lump"));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect($this->referer(array('action' => 'index')));
 			}
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect($this->referer(array('action' => 'index')));
 	}
 
 	function sys_delete($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(Configure::read("Error.id"));
-			return $this->redirect(array('action'=>'index'));
+			return $this->redirect($this->referer(array('action' => 'index')));
 		}
 		if ($this->Link->delete($id)) {
 			$this->Session->setFlash(Configure::read("Success.delete"));
-			return $this->redirect(array('action'=>'index'));
+			return $this->redirect($this->referer(array('action' => 'index')));
 		}
 		$this->Session->setFlash(Configure::read("Error.delete"));
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect($this->referer(array('action' => 'index')));
 	}
 }
 ?>

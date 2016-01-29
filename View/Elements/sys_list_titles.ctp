@@ -63,14 +63,14 @@
 				<?php echo $this->Html->link(count($title["Fansite"]) , array("controller" => "fansites" , "action" => "index" , "?" => array("title_id" => $title["Title"]["id"])) , array("class" => $this->Common->addClassZero(count($title["Fansite"]))))?>
 			</td>
 			<td class="<?php echo $this->Common->addClassZero(count($title["Spec"]) , "tCenter")?>">
-				<?php echo $this->Html->link(count($title["Spec"]) , array("controller" => "specs" , "action" => "index" , $title["Title"]["id"]) , array("class" => $this->Common->addClassZero(count($title["Spec"]))))?>
+				<?php echo $this->Html->link(count($title["Spec"]) , array("controller" => "specs" , "action" => "index" , "?" => array("title_id" => $title["Title"]["id"])) , array("class" => $this->Common->addClassZero(count($title["Spec"]))))?>
 			</td>
 			<td class="<?php echo $this->Common->addClassZero(count($title["Pc"]) , "tCenter")?>" nowrap="nowrap">
-				<?php echo $this->Html->link(count($title["Pc"]) , array("controller" => "pcs" , "action" => "index" , "title_id" => $title["Title"]["id"]) , array("class" => $this->Common->addClassZero(count($title["Pc"]))))?>
-				<?php echo $this->Html->link("＋" , array("controller" => "pcs" , "action" => "add" , "title_id" => $title["Title"]["id"]) , array("class" => $this->Common->addClassZero(count($title["Pc"]))))?>
+				<?php echo $this->Html->link(count($title["Pc"]) , array("controller" => "pcs" , "action" => "index" , "?" => array("title_id" => $title["Title"]["id"])) , array("class" => $this->Common->addClassZero(count($title["Pc"]))))?>
+				<?php echo $this->Html->link("＋" , array("controller" => "pcs" , "action" => "add" , "?" => array("title_id" => $title["Title"]["id"])) , array("class" => $this->Common->addClassZero(count($title["Pc"]))))?>
 			</td>
 			<td class="<?php echo $this->Common->addClassZero(count($title["Package"]) , "tCenter")?>" nowrap="nowrap">
-				<?php echo $this->Html->link(count($title["Package"]) , array("controller" => "packages" , "action" => "index" , "title_id" => $title["Title"]["id"]) , array("class" => $this->Common->addClassZero(count($title["Package"]))))?>
+				<?php echo $this->Html->link(count($title["Package"]) , array("controller" => "packages" , "action" => "index" , "?" => array("title_id" => $title["Title"]["id"])) , array("class" => $this->Common->addClassZero(count($title["Package"]))))?>
 			</td>
 			<td class="tCenter" nowrap="nowrap"><?php echo $this->Html->link("<i class='icon-remove icon-white'></i>削除" , array("controller" => "titles" , "action" => "delete" , $title["Title"]["id"]) , array("class" => "btn btn-danger btn-small" , "escape" => false) , $title["Title"]["title_official"] . " を削除しますか?")?></td>
 		</tr>

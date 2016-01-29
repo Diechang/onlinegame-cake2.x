@@ -27,7 +27,7 @@
 			<td class="tRight"><?php echo $package["Package"]["id"]?></td>
 			<td class="title" nowrap="nowrap" title="<?php echo $package["Package"]["ad_part_text"]?>">
 				<?php echo mb_strimwidth($package["Package"]["ad_part_text"], 0, 60, "...", "UTF-8")?>
-				<?php echo $this->Html->link($package["Title"]["title_official"] , array("controller" => "packages" , "action" => "index" , "title_id" => $package["Package"]["title_id"]))?>
+				<?php echo $this->Html->link($package["Title"]["title_official"] , array("controller" => "packages" , "action" => "index" , "?" => array("title_id" => $package["Package"]["title_id"])))?>
 			</td>
 			<td class="adImage">
 				<?php echo (!empty($package["Package"]["ad_part_img_src"])) ? $this->Html->image($package["Package"]["ad_part_img_src"]) : " "?>

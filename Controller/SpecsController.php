@@ -11,7 +11,8 @@ class SpecsController extends AppController {
 	/**
 	 * Sys
 	 */
-	function sys_index($title_id = null) {
+	function sys_index() {
+		$title_id	= !empty($this->request->query["title_id"])	? $this->request->query["title_id"] : null;
 		//Spec data
 		$this->Spec->recursive = 0;
 		$sConditions = (!empty($title_id)) ? array("Spec.title_id" => $title_id) : null;
@@ -40,9 +41,7 @@ class SpecsController extends AppController {
 			"order" => "Title.title_official",
 		));
 		//
-		$this->set('specs', $specs);
-		$this->set("titles" , $titles);
-		$this->set("titlesCount" , $titlesCount);
+		$this->set(compact("specs", "titles", "titlesCount"));
 		//
 		if(!empty($title_id))
 		{
@@ -72,7 +71,7 @@ class SpecsController extends AppController {
 			$this->Spec->create();
 			if ($this->Spec->save($this->request->data)) {
 				$this->Session->setFlash(Configure::read("Success.create"));
-				return $this->redirect(array('action' => 'index' , $this->request->data["Spec"]["title_id"]));
+				return $this->redirect(array('action' => 'index' , "?" => array("title_id" => $this->request->data["Spec"]["title_id"])));
 			} else {
 				$this->Session->setFlash(Configure::read("Error.input"));
 				return $this->redirect(array('action' => 'index'));
@@ -91,7 +90,7 @@ class SpecsController extends AppController {
 		if (!empty($this->request->data)) {
 			if ($this->Spec->save($this->request->data)) {
 				$this->Session->setFlash(Configure::read("Success.modify"));
-				return $this->redirect(array('action' => 'index' , $this->request->data["Spec"]["title_id"]));
+				return $this->redirect(array('action' => 'index' , "?" => array("title_id" => $this->request->data["Spec"]["title_id"])));
 			} else {
 				$this->Session->setFlash(Configure::read("Error.create"));
 			}
@@ -152,14 +151,14 @@ class SpecsController extends AppController {
 	function sys_delete($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(Configure::read("Error.id"));
-			return $this->redirect(array('action'=>'index'));
+			return $this->redirect($this->referer(array('action' => 'index')));
 		}
 		if ($this->Spec->delete($id)) {
 			$this->Session->setFlash(Configure::read("Success.delete"));
-			return $this->redirect(array('action'=>'index'));
+			return $this->redirect($this->referer(array('action' => 'index')));
 		}
 		$this->Session->setFlash(Configure::read("Error.delete"));
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect($this->referer(array('action' => 'index')));
 	}
 }
 ?>

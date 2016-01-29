@@ -132,15 +132,6 @@ class FansitesController extends AppController {
 	 * Sys
 	 */
 	function sys_index() {
-		//リダイレクト
-		// if(!empty($this->request->params["url"]["title_id"]) or !empty($this->request->params["url"]["w"]))
-		// {
-		// 	$url = array();
-		// 	if(!empty($this->request->params["url"]["title_id"]))	{ $url["title_id"]	= $this->request->params["url"]["title_id"]; }
-		// 	if(!empty($this->request->params["url"]["w"]))			{ $url["w"]			= $this->request->params["url"]["w"]; }
-		// 	return $this->redirect($url);
-		// }
-		//
 		$title_id	= !empty($this->request->query["title_id"])	? $this->request->query["title_id"] : null;
 		$w			= !empty($this->request->query["w"])		? $this->request->query["w"] : null;
 
@@ -250,7 +241,7 @@ class FansitesController extends AppController {
 					$this->Session->setFlash(Configure::read("Success.lump"));
 				} else {
 					$this->Session->setFlash(Configure::read("Error.lump"));
-					return $this->redirect(array('action' => 'index'));
+					return $this->redirect($this->referer(array('action' => 'index')));
 				}
 			}
 			else
@@ -258,20 +249,20 @@ class FansitesController extends AppController {
 				$this->Session->setFlash(Configure::read("Error.lump_empty"));
 			}
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect($this->referer(array('action' => 'index')));
 	}
 
 	function sys_delete($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(Configure::read("Error.id"));
-			return $this->redirect(array('action'=>'index'));
+			return $this->redirect($this->referer(array('action' => 'index')));
 		}
 		if ($this->Fansite->delete($id)) {
 			$this->Session->setFlash(Configure::read("Success.delete"));
-			return $this->redirect(array('action'=>'index'));
+			return $this->redirect($this->referer(array('action' => 'index')));
 		}
 		$this->Session->setFlash(Configure::read("Error.delete"));
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect($this->referer(array('action' => 'index')));
 	}
 }
 ?>
