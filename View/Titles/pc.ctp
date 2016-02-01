@@ -57,7 +57,7 @@ $this->element("title_ogp" , array("titleWithStr" => $titleWithStr));
 			</tr>
 			<tr>
 				<th nowrap="nowrap">ショップ</th>
-				<td><?php echo $pickup["Pcshop"]["ad_text"]?></td>
+				<td><?php echo $pickup["Pcshop"]["ad_use"] ? $pickup["Pcshop"]["ad_text"] : $this->Html->link($pickup["Pcshop"]["shop_name"], $pickup["Pcshop"]["shop_url"], array("target" => "_blank"))?></td>
 			</tr>
 			<tr>
 				<th nowrap="nowrap">価格</th>
@@ -123,7 +123,7 @@ $this->element("title_ogp" , array("titleWithStr" => $titleWithStr));
 				<th nowrap="nowrap">価格</th>
 				<td class="price"><?php echo number_format($pc["Pc"]["price"])?> 円</td>
 				<th nowrap="nowrap">ショップ</th>
-				<td><?php echo $pc["Pcshop"]["ad_text"]?></td>
+				<td><?php echo $pc["Pcshop"]["ad_use"] ? $pc["Pcshop"]["ad_text"] : $this->Html->link($pc["Pcshop"]["shop_name"], $pc["Pcshop"]["shop_url"], array("target" => "_blank"))?></td>
 			</tr>
 				<?php endforeach;?>
 			<?php endif;?>

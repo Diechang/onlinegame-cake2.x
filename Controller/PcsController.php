@@ -222,7 +222,7 @@ class PcsController extends AppController {
 				$this->Session->setFlash(Configure::read("Error.lump_empty"));
 			}
 		}
-		return $this->redirect($this->referer());
+		return $this->redirect($this->referer(array('action' => 'index')));
 	}
 
 	function sys_copy($id = null) {

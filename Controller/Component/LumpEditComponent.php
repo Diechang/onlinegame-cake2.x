@@ -9,15 +9,15 @@ class LumpEditComponent extends Component
  *
  * @param	array	$data
  * @param	Model	$model
- * @param	string	$keyField
+ * @param	string	$sort
  * @return	array
  * @access	public
  */
-	function changeCheck(&$data , &$model , $keyField = "id")
+	function changeCheck(&$data , &$model , $sort = "DESC")
 	{
 		$modelName = $model->name;
 
-		$ids	= Set::extract("/" . $keyField, $data);
+		$ids	= Set::extract("/id", $data);
 		$fields	= array();
 		foreach($data[0] as $key => $val)
 		{
@@ -27,9 +27,9 @@ class LumpEditComponent extends Component
 //		pr($ids);
 		$befores = $model->find("all" , array(
 			"recursive" => -1,
-			"conditions" => array($keyField => $ids),
+			"conditions" => array("id" => $ids),
 			"fields" => $fields,
-			"order" => $keyField . " DESC",
+			"order" => "id " . $sort,
 		));
 //		pr($befores);
 //		pr($data);

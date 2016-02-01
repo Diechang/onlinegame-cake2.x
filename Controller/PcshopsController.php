@@ -64,7 +64,7 @@ class PcshopsController extends AppController {
 	function sys_lump() {
 		if (!empty($this->request->data)) {
 			//変更チェック
-			if($this->LumpEdit->changeCheck($this->request->data["Pcshop"] , $this->Pcshop))
+			if($this->LumpEdit->changeCheck($this->request->data["Pcshop"] , $this->Pcshop, "asc"))
 			{
 //				pr($this->request->data["Pcshop"]);
 //				exit;
