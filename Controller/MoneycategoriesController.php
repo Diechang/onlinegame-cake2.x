@@ -26,12 +26,12 @@ class MoneycategoriesController extends AppController {
 				return $this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(Configure::read("Error.create"));
-				return $this->redirect(array("actioin" => "index"));
+				return $this->redirect(array("action" => "index"));
 			}
 		}
 		else
 		{
-			return $this->redirect(array("actioin" => "index"));
+			return $this->redirect(array("action" => "index"));
 		}
 	}
 

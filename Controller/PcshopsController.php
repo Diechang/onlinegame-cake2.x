@@ -12,7 +12,7 @@ class PcshopsController extends AppController {
 	 * Sys
 	 */
 	function sys_index() {
-		$this->set('pcshops', $this->Pcshop->find("all"));
+		$this->set('pcshops', $this->Pcshop->find("all", array("order" => "Money.id")));
 		//
 		$this->set("pankuz_for_layout" , "ショップ一覧");
 	}

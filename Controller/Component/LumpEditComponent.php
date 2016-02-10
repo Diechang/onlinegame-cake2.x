@@ -9,11 +9,11 @@ class LumpEditComponent extends Component
  *
  * @param	array	$data
  * @param	Model	$model
- * @param	string	$sort
+ * @param	string	$order
  * @return	array
  * @access	public
  */
-	function changeCheck(&$data , &$model , $sort = "DESC")
+	function changeCheck(&$data , &$model , $order = "DESC")
 	{
 		$modelName = $model->name;
 
@@ -29,10 +29,10 @@ class LumpEditComponent extends Component
 			"recursive" => -1,
 			"conditions" => array("id" => $ids),
 			"fields" => $fields,
-			"order" => "id " . $sort,
+			"order" => "id " . $order,
 		));
-//		pr($befores);
-//		pr($data);
+		// pr($befores);
+		// pr($data);
 		$changed = array();
 		$index = 0;
 		foreach($data as $key => $val)
@@ -43,6 +43,7 @@ class LumpEditComponent extends Component
 			{
 				$changed[$index] = $val;
 				$index++;
+				// echo "changed: " . $index;
 			}
 		}
 		// pr($data);

@@ -2,6 +2,7 @@
 class MoniesController extends AppController {
 
 	var $name = 'Monies';
+	var $components	= array("LumpEdit");
 
 	function index()
 	{
@@ -87,18 +88,10 @@ class MoniesController extends AppController {
 	 * Sys
 	 */
 	function sys_index() {
-		$this->set('monies', $this->Money->find("all"));
+		$this->set('monies', $this->Money->find("all", array("order" => "Money.id")));
 		//
 		$this->set("pankuz_for_layout" , "小遣いサイト");
 	}
-
-//	function sys_view($id = null) {
-//		if (!$id) {
-//			$this->Session->setFlash(sprintf(__('Invalid %s'), 'money'));
-//			return $this->redirect(array('action' => 'index'));
-//		}
-//		$this->set('money', $this->Money->read(null, $id));
-//	}
 
 	function sys_add() {
 		if (!empty($this->request->data)) {
@@ -146,11 +139,19 @@ class MoniesController extends AppController {
 
 	function sys_lump() {
 		if (!empty($this->request->data)) {
-			if ($this->Money->saveAll($this->request->data["Money"])) {
-				$this->Session->setFlash(Configure::read("Success.lump"));
-			} else {
-				$this->Session->setFlash(Configure::read("Error.lump"));
-				return $this->redirect($this->referer(array('action' => 'index')));
+			//変更チェック
+			if($this->LumpEdit->changeCheck($this->request->data["Money"] , $this->Money, "asc"))
+			{
+				if ($this->Money->saveAll($this->request->data["Money"])) {
+					$this->Session->setFlash(Configure::read("Success.lump"));
+				} else {
+					$this->Session->setFlash(Configure::read("Error.lump"));
+					return $this->redirect($this->referer(array('action' => 'index')));
+				}
+			}
+			else
+			{
+				$this->Session->setFlash(Configure::read("Error.lump_empty"));
 			}
 		}
 		return $this->redirect($this->referer(array('action' => 'index')));
