@@ -67,36 +67,6 @@ class LettersController extends AppController {
 		));
 	}
 
-//	function sys_add() {
-//		if (!empty($this->request->data)) {
-//			$this->Letter->create();
-//			if ($this->Letter->save($this->request->data)) {
-//				$this->Session->setFlash(sprintf(__('The %s has been saved'), 'letter'));
-//				return $this->redirect(array('action' => 'index'));
-//			} else {
-//				$this->Session->setFlash(sprintf(__('The %s could not be saved. Please, try again.'), 'letter'));
-//			}
-//		}
-//	}
-//
-//	function sys_edit($id = null) {
-//		if (!$id && empty($this->request->data)) {
-//			$this->Session->setFlash(sprintf(__('Invalid %s'), 'letter'));
-//			return $this->redirect(array('action' => 'index'));
-//		}
-//		if (!empty($this->request->data)) {
-//			if ($this->Letter->save($this->request->data)) {
-//				$this->Session->setFlash(sprintf(__('The %s has been saved'), 'letter'));
-//				return $this->redirect(array('action' => 'index'));
-//			} else {
-//				$this->Session->setFlash(sprintf(__('The %s could not be saved. Please, try again.'), 'letter'));
-//			}
-//		}
-//		if (empty($this->request->data)) {
-//			$this->request->data = $this->Letter->read(null, $id);
-//		}
-//	}
-
 	function sys_delete($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(Configure::read("Error.id"));

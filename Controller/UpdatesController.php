@@ -19,26 +19,6 @@ class UpdatesController extends AppController {
 		$this->set("pankuz_for_layout" , "更新履歴");
 	}
 
-//	function sys_view($id = null) {
-//		if (!$id) {
-//			$this->Session->setFlash(sprintf(__('Invalid %s'), 'update'));
-//			return $this->redirect(array('action' => 'index'));
-//		}
-//		$this->set('update', $this->Update->read(null, $id));
-//	}
-
-//	function sys_add() {
-//		if (!empty($this->request->data)) {
-//			$this->Update->create();
-//			if ($this->Update->save($this->request->data)) {
-//				$this->Session->setFlash(sprintf(__('The %s has been saved'), 'update'));
-//				return $this->redirect(array('action' => 'index'));
-//			} else {
-//				$this->Session->setFlash(sprintf(__('The %s could not be saved. Please, try again.'), 'update'));
-//			}
-//		}
-//	}
-
 	function sys_edit($id = null) {
 		if (!$id && empty($this->request->data)) {
 			$this->Session->setFlash(Configure::read("Error.id"));
@@ -46,7 +26,7 @@ class UpdatesController extends AppController {
 		}
 		if (!empty($this->request->data)) {
 			if ($this->Update->save($this->request->data)) {
-				$this->Session->setFlash(Configure::read("Error.modify"));
+				$this->Session->setFlash(Configure::read("Success.modify"));
 				return $this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(Configure::read("Error.create"));
