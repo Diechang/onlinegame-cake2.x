@@ -2,11 +2,11 @@
 //スタイル
 $this->Html->css(array('event'), 'stylesheet', array('inline' => false));
 //
-$this->set("title_for_layout" , "イベント・キャンペーン情報一覧 " . $this->request->params["page"] . "ページ目");
+$this->set("title_for_layout" , "イベント・キャンペーン情報一覧 " . $this->Paginator->current() . "ページ目");
 $this->set("keywords_for_layout" , "イベント,キャンペーン,オンラインゲーム");
-$this->set("description_for_layout" , "イベント・キャンペーン情報一覧の" . $this->request->params["page"] . "ページ目です。");
-$this->set("h1_for_layout" , "イベント・キャンペーン情報一覧" . $this->request->params["page"] . "ページ目");
-$this->set("pankuz_for_layout" , "イベント・キャンペーン情報一覧" . $this->request->params["page"] . "ページ目");
+$this->set("description_for_layout" , "イベント・キャンペーン情報一覧の" . $this->Paginator->current() . "ページ目です。");
+$this->set("h1_for_layout" , "イベント・キャンペーン情報一覧" . $this->Paginator->current() . "ページ目");
+$this->set("pankuz_for_layout" , "イベント・キャンペーン情報一覧" . $this->Paginator->current() . "ページ目");
 ?>
 <div class="content events">
 	<h2 class="headimage"><?php echo $this->Html->image("design/headline_title_events.gif" , array("alt" => "イベント・キャンペーン情報一覧：期間限定イベントやお得なキャンペーン情報"))?></h2>

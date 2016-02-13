@@ -19,18 +19,21 @@ class EventsController extends AppController {
 				"Title.thumb_name",
 				"Title.url_str",
 			),
+			"paramType" => "querystring",
 		),
 	);
 
-	function _index() {
-		$page = (!empty($this->request->params["page"])) ? $this->request->params["page"] : 1;
-		$this->request->params["page"] = $page;
+	function index() {
+		// $page = (!empty($this->request->params["page"])) ? $this->request->params["page"] : 1;
+		// $this->request->params["page"] = $page;
+
+		$this->Paginator->settings = $this->paginate;
 
 		/**
 		 * Review Data
 		 */
 		//Get
-		$events = $this->paginate("Event");
+		$events = $this->Paginator->paginate("Event");
 //		pr($events);
 		//
 		//Set - data
@@ -43,19 +46,23 @@ class EventsController extends AppController {
 	 */
 	function sys_index() {
 		//リダイレクト
-		if(!empty($this->request->params["url"]["w"])
-			or !empty($this->request->params["url"]["title_id"]))
-		{
-			$url = array();
-			if(!empty($this->request->params["url"]["w"]))			{ $url["w"]			= $this->request->params["url"]["w"]; }
-			if(!empty($this->request->params["url"]["title_id"]))	{ $url["title_id"]	= $this->request->params["url"]["title_id"]; }
-			return $this->redirect($url);
-		}
+		// if(!empty($this->request->params["url"]["w"])
+		// 	or !empty($this->request->params["url"]["title_id"]))
+		// {
+		// 	$url = array();
+		// 	if(!empty($this->request->params["url"]["w"]))			{ $url["w"]			= $this->request->params["url"]["w"]; }
+		// 	if(!empty($this->request->params["url"]["title_id"]))	{ $url["title_id"]	= $this->request->params["url"]["title_id"]; }
+		// 	return $this->redirect($url);
+		// }
+		//
+		$title_id	= !empty($this->request->query["title_id"])	? $this->request->query["title_id"] : null;
+		$w			= !empty($this->request->query["w"])		? $this->request->query["w"] : null;
+
+		$this->set(compact("title_id", "w"));
 		//
 		$conditions = array();
 
 		//タイトルID
-		$title_id = &$this->passedArgs["title_id"];
 		if(isset($title_id))
 		{
 			$conditions += array("Event.title_id" => $title_id);
@@ -70,14 +77,13 @@ class EventsController extends AppController {
 			$this->set("titleAddData" , $titleAddData);
 		}
 		//検索ワード
-		$w = &$this->passedArgs["w"];
 		if(isset($w) && !empty($w))
 		{
 			$conditions += array("OR" => $this->Event->wConditions(urldecode($w)));
 		}
 
 		//find
-		$this->set("events" , $this->Event->find("all" , array(
+		$events = $this->Event->find("all" , array(
 			"conditions" => $conditions,
 			"fields" => array(
 				"Event.*",
@@ -85,16 +91,18 @@ class EventsController extends AppController {
 				"Title.url_str",
 			),
 			"order" => "Event.id DESC",
-		)));
-		//
-		$this->set("pankuz_for_layout" , "イベント一覧");
-		$this->set("titles" , $this->Event->Title->find("list" , array(
+		));
+		$titles = $this->Event->Title->find("list" , array(
 			"conditions" => array(
 				"Title.id" => $this->Event->find("list" , array(
 					"fields" => "Event.title_id",
 				))
 			),
-		)));
+		));
+		$titlesCount = $this->Event->Title->titleListWithSummaryCount("event_count" , "Event");
+		$this->set(compact("events", "titles", "titlesCount"));
+		//
+		$this->set("pankuz_for_layout" , "イベント一覧");
 	}
 
 //	function sys_view($id = null) {
@@ -123,9 +131,9 @@ class EventsController extends AppController {
 			}
 		}
 		//タイトルID
-		if(isset($this->passedArgs["title_id"]))
+		if(isset($this->request->query["title_id"]))
 		{
-			$conditions = array("Title.id" => $this->passedArgs["title_id"]);
+			$conditions = array("Title.id" => $this->request->query["title_id"]);
 			$this->set("withTitle" , true);
 		}
 		else

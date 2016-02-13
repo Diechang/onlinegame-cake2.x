@@ -110,10 +110,10 @@ class PcsController extends AppController {
 				))
 			),
 		));
-		$this->set("titlesCount" , $this->Pc->Title->titleListWithSummaryCount("pc_count" , "Pc"));
-		$pcshops	= $this->Pc->Pcshop->find("list");
-		$pctypes	= $this->Pc->Pctype->find("list");
-		$pcgrades	= $this->Pc->Pcgrade->find("list");
+		$titlesCount	= $this->Pc->Title->titleListWithSummaryCount("pc_count" , "Pc"));
+		$pcshops		= $this->Pc->Pcshop->find("list");
+		$pctypes		= $this->Pc->Pctype->find("list");
+		$pcgrades		= $this->Pc->Pcgrade->find("list");
 		$this->set(compact("pcs", "titles", "titlesCount", "pcshops", "pctypes", "pcgrades"));
 		//
 		$this->set("pankuz_for_layout" , "PC一覧");

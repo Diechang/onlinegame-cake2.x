@@ -3,13 +3,13 @@
 	<?php
 		if(isset($titleAddData))
 		{
-			echo $this->Html->link($titleAddData["Title"]["title_official"] . "のイベントを登録" , array("action" => "add" , "title_id" => $titleAddData["Title"]["id"]) , array("class" => "btn btn-success"));
+			echo $this->Html->link($titleAddData["Title"]["title_official"] . "のイベントを登録" , array("action" => "add" , "?" => array("title_id" => $titleAddData["Title"]["id"])) , array("class" => "btn btn-success"));
 		}
 	?>
 </h3>
 <?php echo $this->Form->create("Event" , array("action" => "index" , "type" => "get" , "inputDefaults" => array("div" => false , "label" => false)))?>
 	<?php echo $this->Form->text("w" , array("size" => 10 , "onfocus" => "this.select()"))?>
-	<?php echo $this->Form->select("title_id" , $titles)?>
+	<?php echo $this->Form->select("title_id" , $titlesCount, array("value" => $title_id, "empty" => "すべて"))?>
 	<?php echo $this->Form->submit("イベント検索" , array("div" => false , "class" => "btn"))?>
 <?php echo $this->Form->end()?>
 

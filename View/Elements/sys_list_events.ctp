@@ -24,7 +24,7 @@
 			<td class="tRight"><?php echo $event["Event"]["id"]?></td>
 			<td class="title" title="<?php echo $event["Event"]["name"]?>" nowrap="nowrap">
 				<?php echo mb_strimwidth($event["Event"]["name"], 0, 60, "...", "UTF-8")?>
-				<?php echo $this->Html->link($event["Title"]["title_official"] , array("controller" => "events" , "action" => "index" , "title_id" => $event["Event"]["title_id"]))?>
+				<?php echo $this->Html->link($event["Title"]["title_official"] , array("controller" => "events" , "action" => "index" , "?" => array("title_id" => $event["Event"]["title_id"])))?>
 			</td>
 			<td nowrap="nowrap">
 				<?php echo $this->Common->dateFormat($event["Event"]["start"] , "term")?> -<br />
