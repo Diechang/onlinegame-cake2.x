@@ -31,7 +31,8 @@
  * In production mode, flash messages redirect after a time interval.
  * In development mode, you need to click the flash message to continue.
  */
-	Configure::write('debug', ($_SERVER['SERVER_ADDR'] == '219.94.163.200') ? 0 : 2);
+	Configure::write('debug', ($_SERVER['SERVER_ADDR'] == '127.0.0.1') ? 2 : 0);
+	pr($_SERVER);
 
 /**
  * Configure the Error handler used to handle errors for your application. By default

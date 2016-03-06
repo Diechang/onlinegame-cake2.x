@@ -45,16 +45,6 @@ class EventsController extends AppController {
 	 * Sys
 	 */
 	function sys_index() {
-		//リダイレクト
-		// if(!empty($this->request->params["url"]["w"])
-		// 	or !empty($this->request->params["url"]["title_id"]))
-		// {
-		// 	$url = array();
-		// 	if(!empty($this->request->params["url"]["w"]))			{ $url["w"]			= $this->request->params["url"]["w"]; }
-		// 	if(!empty($this->request->params["url"]["title_id"]))	{ $url["title_id"]	= $this->request->params["url"]["title_id"]; }
-		// 	return $this->redirect($url);
-		// }
-		//
 		$title_id	= !empty($this->request->query["title_id"])	? $this->request->query["title_id"] : null;
 		$w			= !empty($this->request->query["w"])		? $this->request->query["w"] : null;
 
@@ -104,14 +94,6 @@ class EventsController extends AppController {
 		//
 		$this->set("pankuz_for_layout" , "イベント一覧");
 	}
-
-//	function sys_view($id = null) {
-//		if (!$id) {
-//			$this->Session->setFlash(sprintf(__('Invalid %s'), 'event'));
-//			return $this->redirect(array('action' => 'index'));
-//		}
-//		$this->set('event', $this->Event->read(null, $id));
-//	}
 
 	function sys_add() {
 		if (!empty($this->request->data)) {

@@ -38,7 +38,8 @@
 		)
 	);
 	//DB
-	Configure::write('UseDbConfig' , ($_SERVER['SERVER_ADDR'] == '219.94.163.200') ? 'default' : 'test');
+	Configure::write('UseDbConfig', ($_SERVER['SERVER_ADDR'] == '127.0.0.1') ? 'local' : 
+									($_SERVER['SERVER_NAME'] == 'onlinegame.dz-life.net') ? 'default' : 'test');
 	//https
 //	if($_SERVER["SERVER_NAME"] == 'secure1560.sakura.ne.jp')
 //	{
