@@ -25,11 +25,15 @@ class AdBannerComponent extends Component
  */
 	function sys_add(&$model)
 	{
-		if (!empty($this->controller->request->data)) {
+		if(!empty($this->controller->request->data))
+		{
 			$model->create();
-			if ($model->save($this->controller->request->data)) {
+			if($model->save($this->controller->request->data))
+			{
 				$this->controller->Session->setFlash(Configure::read("Success.create"));
-			} else {
+			}
+			else
+			{
 				$this->controller->Session->setFlash(Configure::read("Error.input"));
 			}
 		}
@@ -46,23 +50,29 @@ class AdBannerComponent extends Component
  */
 	function sys_edit(&$model, &$id, $title)
 	{
-		if (!$id && empty($this->controller->request->data)) {
+		if(!$id && empty($this->controller->request->data))
+		{
 			$this->controller->Session->setFlash(Configure::read("Error.id"));
 			return $this->controller->redirect(array('action' => 'index'));
 		}
-		if (!empty($this->controller->request->data)) {
-			if ($model->save($this->controller->request->data)) {
+		if(!empty($this->controller->request->data))
+		{
+			if($model->save($this->controller->request->data))
+			{
 				$this->controller->Session->setFlash(Configure::read("Success.modify"));
 				return $this->controller->redirect(array('action' => 'index'));
-			} else {
+			}
+			else
+			{
 				$this->controller->Session->setFlash(Configure::read("Error.input"));
 			}
 		}
-		if (empty($this->controller->request->data)) {
+		if(empty($this->controller->request->data))
+		{
 			$this->controller->request->data = $model->read(null, $id);
 		}
-		$this->controller->set("pankuz_for_layout" , array(
-			array("str" => $title , "url" => array("action" => "index")),
+		$this->controller->set("pankuz_for_layout", array(
+			array("str" => $title, "url" => array("action" => "index")),
 			"編集",
 		));
 	}
@@ -75,10 +85,14 @@ class AdBannerComponent extends Component
  */
 	function sys_lump(&$model)
 	{
-		if (!empty($this->controller->request->data)) {
-			if ($model->saveAll($this->controller->request->data["AdLeftTop"])) {
+		if(!empty($this->controller->request->data))
+		{
+			if($model->saveAll($this->controller->request->data["AdLeftTop"]))
+			{
 				$this->controller->Session->setFlash(Configure::read("Success.lump"));
-			} else {
+			}
+			else
+			{
 				$this->controller->Session->setFlash(Configure::read("Error.lump"));
 				return $this->controller->redirect($this->controller->referer(array('action' => 'index')));
 			}
@@ -93,12 +107,15 @@ class AdBannerComponent extends Component
  * @param	number	$id
  * @access	public
  */
-	function sys_delete(&$model, &$id) {
-		if (!$id) {
+	function sys_delete(&$model, &$id)
+	{
+		if(!$id)
+		{
 			$this->controller->Session->setFlash(Configure::read("Error.id"));
 			return $this->controller->redirect(array('action'=>'index'));
 		}
-		if ($model->delete($id)) {
+		if($model->delete($id))
+		{
 			$this->controller->Session->setFlash(Configure::read("Success.delete"));
 			return $this->controller->redirect(array('action'=>'index'));
 		}

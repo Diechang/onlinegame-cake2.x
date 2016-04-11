@@ -100,18 +100,18 @@ class FacebookComponent extends Component
 	 * 
 	 * @params	bool	errorMail
 	 */
-	function post($options = array() , $errorMail = false)
+	function post($options = array(), $errorMail = false)
 	{
 		$this->facebook->setAccessToken($this->pageToken);
 		$default = array(
 			"link" => null,
 			"message" => null
 		);
-		$post = array_merge($default , $options);
+		$post = array_merge($default, $options);
 
 		try
 		{
-			$this->facebook->api("/" . $this->pageId . "/feed" , "post" , array(
+			$this->facebook->api("/" . $this->pageId . "/feed", "post", array(
 				"link" => $post["link"],
 				"message" => $post["message"],
 			));

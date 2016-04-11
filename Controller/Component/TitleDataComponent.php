@@ -12,7 +12,7 @@ class TitleDataComponent extends Component
  * @return	bool
  * @access	public
  */
-	function votable($service_id , $test_start)
+	function votable($service_id, $test_start)
 	{
 		switch($service_id)
 		{
@@ -48,7 +48,7 @@ class TitleDataComponent extends Component
  * @return	html
  * @access	public
  */
-	function titleWithSpan($title , $read)
+	function titleWithSpan($title, $read)
 	{
 		$ret = $title;
 		if(!empty($read))
@@ -57,7 +57,7 @@ class TitleDataComponent extends Component
 		}
 		return $ret;
 	}
-	function titleWithCase($title , $read)
+	function titleWithCase($title, $read)
 	{
 		$ret = $title;
 		if(!empty($read))
@@ -89,14 +89,14 @@ class TitleDataComponent extends Component
  * @return	String
  * @access	public
  */
-	function titleTag($official , $read = null , $abbr = null , $sub = null)
+	function titleTag($official, $read = null, $abbr = null, $sub = null)
 	{
 		$ret = "";
 		if(!empty($abbr))
 		{
 			$ret .= $abbr . "：";
 		}
-		$ret .= $this->titleWithCase($official , $read);
+		$ret .= $this->titleWithCase($official, $read);
 		if(!empty($sub))
 		{
 			$ret .= "〜" . $sub . "〜";
@@ -104,4 +104,3 @@ class TitleDataComponent extends Component
 		return $ret;
 	}
 }
-?>

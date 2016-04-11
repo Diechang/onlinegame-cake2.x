@@ -13,7 +13,7 @@ class LumpEditComponent extends Component
  * @return	array
  * @access	public
  */
-	function changeCheck(&$data , &$model , $order = "DESC")
+	function changeCheck(&$data, &$model, $order = "DESC")
 	{
 		$modelName = $model->name;
 
@@ -25,7 +25,7 @@ class LumpEditComponent extends Component
 		}
 //		pr($fields);
 //		pr($ids);
-		$befores = $model->find("all" , array(
+		$befores = $model->find("all", array(
 			"recursive" => -1,
 			"conditions" => array("id" => $ids),
 			"fields" => $fields,
