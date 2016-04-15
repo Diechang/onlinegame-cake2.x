@@ -8,14 +8,14 @@ class SearchPageHelper extends AppHelper
 	var $helpers = array('Html');
 
 	var $others = array(
-					"free" => "基本プレイは無料がいい",
-					"vote" => "みんなの評価やレビューが見たい",
-					"fansite" => "攻略サイトやファンサイトも見てみたい",
+					"free"		=> "基本プレイは無料がいい",
+					"vote"		=> "みんなの評価やレビューが見たい",
+					"fansite"	=> "攻略サイトやファンサイトも見てみたい",
 				);
 	var $orders = array(
-					"rating" => "評価の高い順",
-					"start" => "サービス開始順<span>（正式サービス前のタイトルは後ろに表示されます）</span>",
-					"name" => "タイトル名順<span>（A～Z、あ～お）</span>",
+					"rating"	=> "評価の高い順",
+					"start"		=> "サービス開始順<span>（正式サービス前のタイトルは後ろに表示されます）</span>",
+					"name"		=> "タイトル名順<span>（A～Z、あ～お）</span>",
 				);
 
 	var $urlParamStrings = null;
@@ -29,18 +29,18 @@ class SearchPageHelper extends AppHelper
 	 * @return	html
 	 * @access	public
 	 */
-	function checkList($item , $model , $controller)
+	function checkList($item, $model, $controller)
 	{
 //		pr($this->request->params);
 //		exit;
 		$checked = "";
-		if(!empty($this->request->query[strtolower($model)]) && in_array($item[$model]["id"] , $this->request->query[strtolower($model)]))
+		if(!empty($this->request->query[strtolower($model)]) && in_array($item[$model]["id"], $this->request->query[strtolower($model)]))
 		{
 			$checked = ' checked=="checked"';
 		}
 		$src = "";
 		$src .= '<li><input type="checkbox" name="' . strtolower($model) . '[]" value="' . $item[$model]["id"] . '"' . $checked . ' />' . "\n";
-		$src .= $this->Html->link($item[$model]["str"] , array("controller" => $controller , "action" => "index" , "path" => $item[$model]["path"] , "ext" => "html")) . "</li>\n";
+		$src .= $this->Html->link($item[$model]["str"], array("controller" => $controller, "action" => "index", "path" => $item[$model]["path"], "ext" => "html")) . "</li>\n";
 		return $src;
 	}
 
@@ -95,7 +95,7 @@ class SearchPageHelper extends AppHelper
 	 * @return	html
 	 * @access	public
 	 */
-// 	function paging(&$urlParams , &$paging)
+// 	function paging(&$urlParams, &$paging)
 // 	{
 // 		$resultUrl = "/search/result?" . $this->getUrlParamStrings($urlParams);
 
@@ -164,7 +164,7 @@ class SearchPageHelper extends AppHelper
 	// 				$paramsArray[] = urlencode($paramKey) . '=' . urlencode($paramVal);
 	// 			}
 	// 		}
-	// 		$this->urlParamStrings = implode('&' , $paramsArray);
+	// 		$this->urlParamStrings = implode('&', $paramsArray);
 	// 		return $this->urlParamStrings;
 	// 	}
 	// }

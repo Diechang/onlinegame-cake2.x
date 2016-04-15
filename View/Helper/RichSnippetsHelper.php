@@ -8,27 +8,26 @@ class RichSnippetsHelper extends AppHelper
 	public $use = true;
 	//types
 	public $types = array(
-		"Breadcrumb" => "v:Breadcrumb",		//パンクズ
-		"Review" => "v:Review",				//個別レビュー
-		"Reviews" => "v:Review-aggregate",	//集計レビュー
+		"Breadcrumb"	=> "v:Breadcrumb",			//パンクズ
+		"Review"		=> "v:Review",				//個別レビュー
+		"Reviews"		=> "v:Review-aggregate",	//集計レビュー
 	);
 	//rels
 	public $rels = array(
-		"url" => "v:url",
-		"photo" => "v:photo",
+		"url"	=> "v:url",
+		"photo"	=> "v:photo",
 	);
 	//properties
 	public $properties = array(
-		"title" => "v:title",
-		"itemreviewed" => "v:itemreviewed",
-		"rating" => "v:rating",
-		"count" => "v:count",
-		"votes" => "v:votes",
-		"reviewer" => "v:reviewer",
-		"dtreviewed" => "v:dtreviewed",
-		"summary" => "v:summary",
-		"description" => "v:description",
-
+		"title"			=> "v:title",
+		"itemreviewed"	=> "v:itemreviewed",
+		"rating"		=> "v:rating",
+		"count"			=> "v:count",
+		"votes"			=> "v:votes",
+		"reviewer"		=> "v:reviewer",
+		"dtreviewed"	=> "v:dtreviewed",
+		"summary"		=> "v:summary",
+		"description"	=> "v:description",
 	);
 
 /**
