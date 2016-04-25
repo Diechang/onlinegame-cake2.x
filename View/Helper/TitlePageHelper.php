@@ -18,9 +18,9 @@ class TitlePageHelper extends AppHelper
  * @return	string
  * @access	public
  */
-	function metaKeywords($action , $official , $read = null , $abbr = null , $sub = null)
+	function metaKeywords($action, $official, $read = null, $abbr = null, $sub = null)
 	{
-		$words	= array($official , $read , $abbr , $sub);
+		$words	= array($official, $read, $abbr, $sub);
 		$mores	= array(
 			"index"		=> array("動作環境","スペック","ツイート","ニュース"),
 			"rating"	=> array("評価"),
@@ -33,8 +33,8 @@ class TitlePageHelper extends AppHelper
 			"link"		=> array("攻略","WIKI","ファンサイト"),
 			"search"	=> array("動画","ムービー","ブログ"),
 		);
-		$ret = array_merge(array_filter($words) , $mores[$action]);
-		return $this->output(implode("," , $ret));
+		$ret = array_merge(array_filter($words), $mores[$action]);
+		return $this->output(implode(",", $ret));
 	}
 
 /**
@@ -72,7 +72,7 @@ class TitlePageHelper extends AppHelper
  * @return	html
  * @access	public
  */
-	function specRows($header , $low , $high)
+	function specRows($header, $low, $high)
 	{
 		if(!empty($low) or !empty($high))
 		{
@@ -113,7 +113,7 @@ class TitlePageHelper extends AppHelper
  * @return	html
  * @access	public
  */
-	function officialLinkBanner($ad_use , $ad_banner_l , $title , $official_url , $service_id = null , $onlybanner = false)
+	function officialLinkBanner($ad_use, $ad_banner_l, $title, $official_url, $service_id = null, $onlybanner = false)
 	{
 		if($service_id != 1 or $service_id == null)
 		{
@@ -125,7 +125,7 @@ class TitlePageHelper extends AppHelper
 			}
 			else
 			{
-				$ret	.= $this->Html->link($title . "公式サイト" , $official_url , array("target" => "_blank"));
+				$ret	.= $this->Html->link($title . "公式サイト", $official_url, array("target" => "_blank"));
 			}
 			$ret	.= "</div>";
 			//
@@ -142,7 +142,7 @@ class TitlePageHelper extends AppHelper
  */
 	function voteLinkButton($path)
 	{
-		return '<div class="voteButton">' . $this->Html->image("design/titles_common_button_vote.gif" , array("alt" => "評価点数・レビューを投稿する" , "url" => array("controller" => "titles" , "action" => "review" , "path" => $path , "ext" => "html" , "#" => "voteform"))) . '</div>';
+		return '<div class="voteButton">' . $this->Html->image("design/titles_common_button_vote.gif", array("alt" => "評価点数・レビューを投稿する", "url" => array("controller" => "titles", "action" => "review", "path" => $path, "ext" => "html", "#" => "voteform"))) . '</div>';
 	}
 
 /**
@@ -154,7 +154,7 @@ class TitlePageHelper extends AppHelper
  */
 	function voteButton($path)
 	{
-		return '<div class="votebutton">' . $this->Html->image("design/titles_button_vote_normal.gif" , array("alt" => "レビュー・評価" , "url" => array("controller" => "titles" , "action" => "review" , "path" => $path , "ext" => "html" , "#" => "voteform"))) . '</div>';
+		return '<div class="votebutton">' . $this->Html->image("design/titles_button_vote_normal.gif", array("alt" => "レビュー・評価", "url" => array("controller" => "titles", "action" => "review", "path" => $path, "ext" => "html", "#" => "voteform"))) . '</div>';
 	}
 }
 ?>

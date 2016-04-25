@@ -20,12 +20,12 @@ class OgpHelper extends AppHelper
 		$site_url = Configure::read("Site.url");
 		//Default params
 		$params = Set::merge(array(
-			"type" => "website",
-			"title" => "オンラインゲームライフ",
-			"url" => $site_url,
-			"image" => $site_url . "img/design/logo_ogp.jpg",
-			"description" => "無料オンラインゲーム情報サイト。ユーザーによるレビュー・評価の投稿による人気オンラインゲームランキングや攻略サイトリンク集、ムービー検索も可能。",
-			"site_name" => "オンラインゲームライフ",
+			"type"			=> "website",
+			"title"			=> "オンラインゲームライフ",
+			"url"			=> $site_url,
+			"image"			=> $site_url . "img/design/logo_ogp.jpg",
+			"description"	=> "無料オンラインゲーム情報サイト。ユーザーによるレビュー・評価の投稿による人気オンラインゲームランキングや攻略サイトリンク集、ムービー検索も可能。",
+			"site_name"		=> "オンラインゲームライフ",
 		),$this->options);
 
 		$ret = array(
@@ -38,7 +38,7 @@ class OgpHelper extends AppHelper
 			$ret[] = '<meta property="og:' . $key . '" content="' . $v . '" />';
 		}
 
-		$ret = implode("\n",$ret);
+		$ret = implode("\n", $ret);
 
 		return $ret;
 	}

@@ -5,7 +5,7 @@
 class CommonHelper extends AppHelper
 {
 	//Use Helper
-	var $helpers = array('Html' , 'RichSnippets');
+	var $helpers = array('Html', 'RichSnippets');
 
 /**
  * 投稿者名初期値
@@ -22,7 +22,7 @@ class CommonHelper extends AppHelper
  * @access	public
  */
 	var $metaTagMaps = array(
-		"noindex" => array("name" => "robots" , "contents" => "noindex"),
+		"noindex" => array("name" => "robots", "contents" => "noindex"),
 	);
 
 /** Util
@@ -75,7 +75,7 @@ class CommonHelper extends AppHelper
 					$ret .= "<span" . $this->RichSnippets->typeof("Breadcrumb") . ">";
 					if(is_array($val))
 					{//文字列["str"]とURL配列["url"]の配列
-						$ret .= " ＞ " . $this->Html->link($val["str"] , $val["url"] , array("rel" => $this->RichSnippets->rels["url"] , "property" => $this->RichSnippets->properties["title"]));
+						$ret .= " ＞ " . $this->Html->link($val["str"], $val["url"], array("rel" => $this->RichSnippets->rels["url"], "property" => $this->RichSnippets->properties["title"]));
 					}
 					else
 					{//文字列
@@ -114,9 +114,9 @@ class CommonHelper extends AppHelper
  * @param	string	$date
  * @param	string	$type "datetime" or "date" or "time" or "term
  * @return	date
- * @access	publicx
+ * @access	public
  */
-	function dateFormat($date , $type = "datetime")
+	function dateFormat($date, $type = "datetime")
 	{
 		if(!empty($date))
 		{
@@ -140,7 +140,7 @@ class CommonHelper extends AppHelper
 					$type = "datetime";
 				}
 			}
-			return date($types[$type] , strtotime($date));
+			return date($types[$type], strtotime($date));
 		}
 		else
 		{
@@ -168,11 +168,11 @@ class CommonHelper extends AppHelper
  * @return	string
  * @access	public
  */
-	function addClassZero($count , $def = null)
+	function addClassZero($count, $def = null)
 	{
 		if(empty($def))
 		{
-			return ($count == 0) ?  "zero" : null;
+			return ($count == 0) ? "zero" : null;
 		}
 		else
 		{
@@ -218,7 +218,7 @@ class CommonHelper extends AppHelper
  * @return	html
  * @access	public
  */
-	function titleWithSpan($title_official , $title_read = null)
+	function titleWithSpan($title_official, $title_read = null)
 	{
 		$title = $title_official;
 		if(!empty($title_read))
@@ -236,7 +236,7 @@ class CommonHelper extends AppHelper
  * @return	html
  * @access	public
  */
-	function titleWithCase($title_official , $title_read = null)
+	function titleWithCase($title_official, $title_read = null)
 	{
 		$title = $title_official;
 		if(!empty($title_read))
@@ -255,14 +255,14 @@ class CommonHelper extends AppHelper
  * @return	String
  * @access	public
  */
-	function titleWithAbbr($official , $read = null , $abbr = null)
+	function titleWithAbbr($official, $read = null, $abbr = null)
 	{
 		$title = "";
 		if(!empty($abbr))
 		{
 			$title .= $abbr . "：";
 		}
-		$title .= $this->titleWithCase($official , $read);
+		$title .= $this->titleWithCase($official, $read);
 		return $this->output($title);
 	}
 
@@ -275,10 +275,10 @@ class CommonHelper extends AppHelper
  * @return	String
  * @access	public
  */
-	function titleWithSub($official , $read = null , $sub = null)
+	function titleWithSub($official, $read = null, $sub = null)
 	{
 		$title = "";
-		$title .= $this->titleWithCase($official , $read);
+		$title .= $this->titleWithCase($official, $read);
 		if(!empty($sub))
 		{
 			$title .= "～" . $sub . "～";
@@ -296,14 +296,14 @@ class CommonHelper extends AppHelper
  * @return	String
  * @access	public
  */
-	function titleAll($official , $read = null , $abbr = null , $sub = null)
+	function titleAll($official, $read = null, $abbr = null, $sub = null)
 	{
 		$title = "";
 		if(!empty($abbr))
 		{
 			$title .= $abbr . "：";
 		}
-		$title .= $this->titleWithCase($official , $read);
+		$title .= $this->titleWithCase($official, $read);
 		if(!empty($sub))
 		{
 			$title .= "～" . $sub . "～";
@@ -334,7 +334,7 @@ class CommonHelper extends AppHelper
  * @return	html
  * @access	public
  */
-	function feeData($fee_text , $fee_id , $fee_str , $service_id , $service_str)
+	function feeData($fee_text, $fee_id, $fee_str, $service_id, $service_str)
 	{
 		$ret	= "";
 		switch($service_id)
@@ -368,9 +368,9 @@ class CommonHelper extends AppHelper
  * @return	html
  * @access	public
  */
-	function termFormat($start = null , $end = null)
+	function termFormat($start = null, $end = null)
 	{
-		return $this->dateFormat($start , "term") . "～" . $this->dateFormat($end , "term");
+		return $this->dateFormat($start, "term") . "～" . $this->dateFormat($end, "term");
 	}
 
 
@@ -417,9 +417,9 @@ class CommonHelper extends AppHelper
  * @return	number
  * @access	public
  */
-	function pointFormat($num , $empty = 0)
+	function pointFormat($num, $empty = 0)
 	{
-		return (!empty($num)) ? sprintf("%.2f" , $num) : $empty;
+		return (!empty($num)) ? sprintf("%.2f", $num) : $empty;
 	}
 
 /**
@@ -430,7 +430,7 @@ class CommonHelper extends AppHelper
  * @return	ntring
  * @access	public
  */
-	function starWidthPx($type , $point)	//$type - 50, 100, 200
+	function starWidthPx($type, $point)	//$type - 50, 100, 200
 	{
 		if(!empty($point))
 		{
@@ -454,7 +454,7 @@ class CommonHelper extends AppHelper
  * @return	html
  * @access	public
  */
-	function starBlock($type , $point , $alt = "総合評価" , $color = "white")
+	function starBlock($type, $point, $alt = "総合評価", $color = "white")
 	{
 		$point = $this->pointFormat($point);
 		switch($color)
@@ -469,8 +469,8 @@ class CommonHelper extends AppHelper
 
 		$ret  = "";
 		$ret .= "<div class=\"star" . $type . $col . "Back\">\n";
-		$ret .=	"<div class=\"star" . $type . "\" style=\"" . $this->starWidthPx($type , $point) . "\">\n";
-		$ret .= $this->Html->image("design/rating_star" . $type . $col . ".gif" , array("alt" => $alt . "：" . $point . "点"));
+		$ret .=	"<div class=\"star" . $type . "\" style=\"" . $this->starWidthPx($type, $point) . "\">\n";
+		$ret .= $this->Html->image("design/rating_star" . $type . $col . ".gif", array("alt" => $alt . "：" . $point . "点"));
 		$ret .= "\n</div>\n";
 		$ret .= "</div>\n";
 
@@ -492,9 +492,9 @@ class CommonHelper extends AppHelper
  * @return	html
  * @access	public
  */
-	function titleLinkText($str = null , $path = null , $action = "index" , $hash = null , $escape = false)
+	function titleLinkText($str = null, $path = null, $action = "index", $hash = null, $escape = false)
 	{
-		return $this->Html->link($str , array("controller" => "titles" , "action" => $action , "path" => $path , "ext" => "html" , "#" => $hash) , array("escape" => $escape));
+		return $this->Html->link($str, array("controller" => "titles", "action" => $action, "path" => $path, "ext" => "html", "#" => $hash), array("escape" => $escape));
 	}
 
 /**
@@ -508,12 +508,12 @@ class CommonHelper extends AppHelper
  * @return	html
  * @access	public
  */
-	function titleLinkThumb($thumb_name , $alt = null , $path = null , $width = 160 , $action = "index")
+	function titleLinkThumb($thumb_name, $alt = null, $path = null, $width = 160, $action = "index")
 	{
-		return $this->Html->image($thumb_name , array(
+		return $this->Html->image($thumb_name, array(
 			"alt"	=> $alt,
 			"width"	=> $width,
-			"url"	=> array("controller" => "titles" , "action" => $action , "path" => $path , "ext" => "html")
+			"url"	=> array("controller" => "titles", "action" => $action, "path" => $path, "ext" => "html")
 		));
 	}
 
@@ -529,11 +529,11 @@ class CommonHelper extends AppHelper
  * @return	html
  * @access	public
  */
-	function officialLinkText($str , $ad_use , $ad_text , $official_url , $service_id = null , $titleName = false)
+	function officialLinkText($str, $ad_use, $ad_text, $official_url, $service_id = null, $titleName = false)
 	{
 		if($service_id != 1 or $service_id == null)
 		{
-			return (!empty($ad_use) && !empty($ad_text)) ? $ad_text : $this->Html->link($str , $official_url , array("target" => "_blank" , "escape" => false));
+			return (!empty($ad_use) && !empty($ad_text)) ? $ad_text : $this->Html->link($str, $official_url, array("target" => "_blank", "escape" => false));
 		}
 		else
 		{//Titles only
@@ -557,7 +557,7 @@ class CommonHelper extends AppHelper
  * @return	html
  * @access	public
  */
-	function categoriesLink($categories , $tag = null)
+	function categoriesLink($categories, $tag = null)
 	{
 		$tagStart	= (!empty($tag)) ? "<" . $tag . ">" : "";
 		$tagEnd		= (!empty($tag)) ? "</" . $tag . ">" : "";
@@ -592,7 +592,7 @@ class CommonHelper extends AppHelper
  * @return	html
  * @access	public
  */
-	function stylesLink($styles , $tag = null)
+	function stylesLink($styles, $tag = null)
 	{
 		$tagStart	= (!empty($tag)) ? "<" . $tag . ">" : "";
 		$tagEnd		= (!empty($tag)) ? "</" . $tag . ">" : "";
@@ -619,7 +619,7 @@ class CommonHelper extends AppHelper
  * @return	html
  * @access	public
  */
-	function adLinkText($modelData , $action)
+	function adLinkText($modelData, $action)
 	{
 		if($modelData["ad_noredirect"])
 		{
@@ -628,8 +628,8 @@ class CommonHelper extends AppHelper
 		else
 		{
 			return $this->Html->link($modelData["ad_part_text"],
-					array("controller" => "jump" , "action" => $action , $modelData["id"]),
-					array("target" => "_blank" , "rel" => "nofollow"));
+					array("controller" => "jump", "action" => $action, $modelData["id"]),
+					array("target" => "_blank", "rel" => "nofollow"));
 		}
 	}
 
@@ -640,7 +640,7 @@ class CommonHelper extends AppHelper
  * @return	html
  * @access	public
  */
-	function adLinkImage($modelData , $action)
+	function adLinkImage($modelData, $action)
 	{
 		if($modelData["ad_noredirect"])
 		{
@@ -648,9 +648,9 @@ class CommonHelper extends AppHelper
 		}
 		else
 		{
-			return $this->Html->link($this->Html->image($modelData["ad_part_img_src"] , array("alt" => (!empty($modelData["ad_part_text"])) ? $modelData["ad_part_text"] : "")),
-					array("controller" => "jump" , "action" => $action , $modelData["id"] , "sys" => false),
-					array("target" => "_blank" , "rel" => "nofollow" , "escape" => false));
+			return $this->Html->link($this->Html->image($modelData["ad_part_img_src"], array("alt" => (!empty($modelData["ad_part_text"])) ? $modelData["ad_part_text"] : "")),
+					array("controller" => "jump", "action" => $action, $modelData["id"], "sys" => false),
+					array("target" => "_blank", "rel" => "nofollow", "escape" => false));
 		}
 	}
 
@@ -669,7 +669,7 @@ class CommonHelper extends AppHelper
 		}
 		else
 		{
-			return (!empty($modelData["ad_part_track_src"])) ? $this->Html->image($modelData["ad_part_track_src"] , array("class" => "countSrc")) : "";
+			return (!empty($modelData["ad_part_track_src"])) ? $this->Html->image($modelData["ad_part_track_src"], array("class" => "countSrc")) : "";
 		}
 	}
 
@@ -683,7 +683,7 @@ class CommonHelper extends AppHelper
 	function adLinkRakutenSearch($word)
 	{
 		return $this->output($this->Html->link("楽天で最安、関連商品を探す",
-					array("controller" => "jump" , "action" => "rakutensearch" , urlencode($word) , "sys" => false),
+					array("controller" => "jump", "action" => "rakutensearch", urlencode($word), "sys" => false),
 					array("target" => "_blank")));
 	}
 
@@ -694,12 +694,12 @@ class CommonHelper extends AppHelper
  * @return	html
  * @access	public
  */
-	function linkConf($u = null , $str = null)
+	function linkConf($u = null, $str = null)
 	{
 		if(isset($u))
 		{
 			$linkStr = (isset($str)) ? $str : mb_strimwidth($u, 0, 50, "...", "UTF-8");
-			return $this->Html->link($linkStr , array("controller" => "pages" , "action" => "jump" , "?" => array("u" => $u) , "sys" => false) , array("target" => "_blank"));
+			return $this->Html->link($linkStr, array("controller" => "pages", "action" => "jump", "?" => array("u" => $u), "sys" => false), array("target" => "_blank"));
 		}
 	}
 
