@@ -1,17 +1,18 @@
 <?php
 App::uses("CakeEmail", "Network/Email");
 
-class FansitesController extends AppController {
+class FansitesController extends AppController
+{
 
 	var $name = 'Fansites';
-	var $components = array("LumpEdit" , "Common");
+	var $components = array("LumpEdit", "Common");
 
 	function add($id)
 	{
 		/**
 		 * Title data
 		 */
-		$title = $this->Title->find("first" , array(
+		$title = $this->Title->find("first", array(
 			"conditions" => array(
 				"Title.id" => $id,
 			)
@@ -58,7 +59,7 @@ class FansitesController extends AppController {
 					");
 					//
 					$this->Session->setFlash("サイト登録申込ありがとうございます！<br />\n管理人の承認後に掲載されます。");
-					return $this->redirect(array("controller" => "titles" , "action" => "link" , "path" => $title["Title"]["url_str"] , "ext" => "html"));
+					return $this->redirect(array("controller" => "titles", "action" => "link", "path" => $title["Title"]["url_str"], "ext" => "html"));
 				}
 				else
 				{
@@ -71,9 +72,9 @@ class FansitesController extends AppController {
 			}
 		}
 		//Set
-		$this->set("title" , $title);
+		$this->set("title", $title);
 
-		$this->set("metaTags" , array("noindex"));
+		$this->set("metaTags", array("noindex"));
 	}
 
 	//リンク切れ報告
@@ -81,7 +82,7 @@ class FansitesController extends AppController {
 	{
 		$this->_emptyToHome($this->referer());
 		$this->_emptyToHome($id);
-		$this->request->data = $this->Fansite->find("first" , array(
+		$this->request->data = $this->Fansite->find("first", array(
 			"conditions" => array(
 				"Fansite.id" => $id,
 			),
@@ -131,7 +132,8 @@ class FansitesController extends AppController {
 	/**
 	 * Sys
 	 */
-	function sys_index() {
+	function sys_index()
+	{
 		$title_id	= !empty($this->request->query["title_id"])	? $this->request->query["title_id"] : null;
 		$w			= !empty($this->request->query["w"])		? $this->request->query["w"] : null;
 
@@ -153,7 +155,7 @@ class FansitesController extends AppController {
 		}
 		$this->Fansite->recursive = 2;
 		$this->Fansite->Title->unbindAll(array("Titlesummary"));
-		$this->set('fansites', $this->Fansite->find("all" , array(
+		$this->set('fansites', $this->Fansite->find("all", array(
 			"conditions" => $fConditions,
 			"fields" => array(
 				"Fansite.*",
@@ -163,83 +165,99 @@ class FansitesController extends AppController {
 		)));
 		//
 		//Title data
-		$titles =  $this->Fansite->Title->find("list" , array(
+		$titles =  $this->Fansite->Title->find("list", array(
 			"conditions" => (!empty($title_id)) ? array("Title.id" => $title_id) : null,
 			"order" => "Title.title_official",
 		));
-		$titlesCount = $this->Fansite->Title->titleListWithSummaryCount("fansite_count" , "Fansite");
+		$titlesCount = $this->Fansite->Title->titleListWithSummaryCount("fansite_count", "Fansite");
 
 		//
 		$this->set(compact("titles", "titlesCount"));
 		//
 		if(!empty($title_id))
 		{
-			$this->set("pankuz_for_layout" , array(
-				array("str" => "ファンサイト一覧" , "url" => array("action" => "index")),
-				$this->Fansite->Title->field("title_official" , array("Title.id" => $title_id)),
+			$this->set("pankuz_for_layout", array(
+				array("str" => "ファンサイト一覧", "url" => array("action" => "index")),
+				$this->Fansite->Title->field("title_official", array("Title.id" => $title_id)),
 			));
-			// $this->set("title_id" , $title_id);
+			// $this->set("title_id", $title_id);
 		}
 		else
 		{
-			$this->set("pankuz_for_layout" , "ファンサイト一覧");
-			// $this->set("title_id" , 0);
+			$this->set("pankuz_for_layout", "ファンサイト一覧");
+			// $this->set("title_id", 0);
 		}
 	}
 
-//	function sys_view($id = null) {
-//		if (!$id) {
+//	function sys_view($id = null)
+//	{
+//		if (!$id)
+//	{
 //			$this->Session->setFlash(sprintf(__('Invalid %s'), 'fansite'));
 //			return $this->redirect(array('action' => 'index'));
 //		}
 //		$this->set('fansite', $this->Fansite->read(null, $id));
 //	}
 
-	function sys_add() {
-		if (!empty($this->request->data)) {
+	function sys_add()
+	{
+		if (!empty($this->request->data))
+		{
 			$this->Fansite->create();
-			if ($this->Fansite->save($this->request->data)) {
+			if ($this->Fansite->save($this->request->data))
+			{
 				$this->Session->setFlash(Configure::read("Success.create"));
-				return $this->redirect(array('action' => 'index' , "?" => array("title_id" => $this->request->data["Fansite"]["title_id"])));
-			} else {
+				return $this->redirect(array('action' => 'index', "?" => array("title_id" => $this->request->data["Fansite"]["title_id"])));
+			} else
+			{
 				$this->Session->setFlash(Configure::read("Error.input"));
 				return $this->redirect(array('action' => 'index'));
 			}
 		}
 	}
 
-	function sys_edit($id = null) {
-		if (!$id && empty($this->request->data)) {
+	function sys_edit($id = null)
+	{
+		if (!$id && empty($this->request->data))
+		{
 			$this->Session->setFlash(Configure::read("Error.id"));
 			return $this->redirect(array('action' => 'index'));
 		}
-		if (!empty($this->request->data)) {
-			if ($this->Fansite->save($this->request->data)) {
+		if (!empty($this->request->data))
+		{
+			if ($this->Fansite->save($this->request->data))
+			{
 				$this->Session->setFlash(Configure::read("Success.modify"));
-				return $this->redirect(array('action' => 'index' , "?" => array("title_id" => $this->request->data["Fansite"]["title_id"])));
-			} else {
+				return $this->redirect(array('action' => 'index', "?" => array("title_id" => $this->request->data["Fansite"]["title_id"])));
+			} else
+			{
 				$this->Session->setFlash(Configure::read("Error.create"));
 			}
 		}
-		if (empty($this->request->data)) {
+		if (empty($this->request->data))
+		{
 			$this->request->data = $this->Fansite->read(null, $id);
 		}
 		//
-		$this->set("titles" , $this->Fansite->Title->find('list', array("order" => "Title.title_official")));
-		$this->set("pankuz_for_layout" , array(
-			array("str" => "ファンサイト一覧" , "url" => array("action" => "index")),
+		$this->set("titles", $this->Fansite->Title->find('list', array("order" => "Title.title_official")));
+		$this->set("pankuz_for_layout", array(
+			array("str" => "ファンサイト一覧", "url" => array("action" => "index")),
 			"編集",
 		));
 	}
 
-	function sys_lump() {
-		if (!empty($this->request->data)) {
+	function sys_lump()
+	{
+		if (!empty($this->request->data))
+		{
 			//変更チェック
-			if($this->LumpEdit->changeCheck($this->request->data["Fansite"] , $this->Fansite))
+			if($this->LumpEdit->changeCheck($this->request->data["Fansite"], $this->Fansite))
 			{
-				if ($this->Fansite->saveAll($this->request->data["Fansite"])) {
+				if ($this->Fansite->saveAll($this->request->data["Fansite"]))
+				{
 					$this->Session->setFlash(Configure::read("Success.lump"));
-				} else {
+				} else
+				{
 					$this->Session->setFlash(Configure::read("Error.lump"));
 					return $this->redirect($this->referer(array('action' => 'index')));
 				}
@@ -252,12 +270,15 @@ class FansitesController extends AppController {
 		return $this->redirect($this->referer(array('action' => 'index')));
 	}
 
-	function sys_delete($id = null) {
-		if (!$id) {
+	function sys_delete($id = null)
+	{
+		if (!$id)
+		{
 			$this->Session->setFlash(Configure::read("Error.id"));
 			return $this->redirect($this->referer(array('action' => 'index')));
 		}
-		if ($this->Fansite->delete($id)) {
+		if ($this->Fansite->delete($id))
+		{
 			$this->Session->setFlash(Configure::read("Success.delete"));
 			return $this->redirect($this->referer(array('action' => 'index')));
 		}

@@ -1,5 +1,6 @@
 <?php
-class SearchController extends AppController {
+class SearchController extends AppController
+{
 
 	var $name = 'Search';
 	var $uses = array("Title");
@@ -33,7 +34,7 @@ class SearchController extends AppController {
 		{
 			$query["page"] = 1;
 		}
-		// $query = Sanitize::clean($query , Configure::read("UseDbConfig"));
+		// $query = Sanitize::clean($query, Configure::read("UseDbConfig"));
 		// pr($query);
 //		exit;
 
@@ -45,8 +46,8 @@ class SearchController extends AppController {
 		$idList = null;
 		if(!empty($idListByCategory) && !empty($idListByStyle))
 		{
-//			$idList = array_merge($idListByCategory , $idListByStyle);
-			$idList = array_intersect($idListByCategory , $idListByStyle);
+//			$idList = array_merge($idListByCategory, $idListByStyle);
+			$idList = array_intersect($idListByCategory, $idListByStyle);
 		}
 		else if(!empty($idListByCategory))
 		{
@@ -127,7 +128,7 @@ class SearchController extends AppController {
 		 * find
 		 */
 		$this->Title->unbindAll(array("Titlesummary"));
-		// $titles = $this->Title->find("all" , array(
+		// $titles = $this->Title->find("all", array(
 		// 	"conditions" => $conditions,
 		// 	"order" => $order,
 		// 	"limit" => $this->limit,
@@ -149,7 +150,7 @@ class SearchController extends AppController {
 		/**
 		 * paging
 		 */
-		// $titlesCount = $this->Title->find("count" , array(
+		// $titlesCount = $this->Title->find("count", array(
 		// 	"conditions" => $conditions,
 		// 	"fields" => "DISTINCT Title.id",
 		// ));
@@ -169,6 +170,7 @@ class SearchController extends AppController {
 		 */
 		// $queryParams = array();
 		// foreach($this->queryParamNames as $paramName)
+		//
 		// {
 		// 	if(isset($query[$paramName]) && !empty($query[$paramName]))
 		// 	{
@@ -178,9 +180,9 @@ class SearchController extends AppController {
 //		pr($queryParams);
 
 		//set
-		$this->set("titles" , $titles);
-		// $this->set("paging" , $paging);
-		// $this->set("queryParams" , $queryParams);
+		$this->set("titles", $titles);
+		// $this->set("paging", $paging);
+		// $this->set("queryParams", $queryParams);
 	}
 }
 ?>

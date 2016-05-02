@@ -1,9 +1,10 @@
 <?php
-class JumpController extends AppController {
+class JumpController extends AppController
+{
 
 	var $name		= 'Jump';
-	var $uses		= array("Title" , "Portal" , "Pc" , "Package",
-							"AdCenterBottom" , "AdLeftBottom" , "AdLeftTop" , "AdRightBottom" , "AdRightTop");
+	var $uses		= array("Title", "Portal", "Pc", "Package",
+							"AdCenterBottom", "AdLeftBottom", "AdLeftTop", "AdRightBottom", "AdRightTop");
 
 /** Modelds
 ------------------------------ **/
@@ -19,12 +20,12 @@ class JumpController extends AppController {
 
 	function pc($id = null)
 	{
-		$this->_simpleRedirect("Pc" , $id);
+		$this->_simpleRedirect("Pc", $id);
 	}
 
 	function package($id = null)
 	{
-		$this->_simpleRedirect("Package" , $id);
+		$this->_simpleRedirect("Package", $id);
 	}
 
 /** Ad modelds
@@ -32,27 +33,27 @@ class JumpController extends AppController {
 	//AdCenterBottom
 	function adcb($id = null)
 	{
-		$this->_simpleRedirect("AdCenterBottom" , $id);
+		$this->_simpleRedirect("AdCenterBottom", $id);
 	}
 	//AdLeftBottom
 	function adlb($id = null)
 	{
-		$this->_simpleRedirect("AdLeftBottom" , $id);
+		$this->_simpleRedirect("AdLeftBottom", $id);
 	}
 	//AdLeftTop
 	function adlt($id = null)
 	{
-		$this->_simpleRedirect("AdLeftTop" , $id);
+		$this->_simpleRedirect("AdLeftTop", $id);
 	}
 	//AdRightBottom
 	function adrb($id = null)
 	{
-		$this->_simpleRedirect("AdRightBottom" , $id);
+		$this->_simpleRedirect("AdRightBottom", $id);
 	}
 	//AdRightTop
 	function adrt($id = null)
 	{
-		$this->_simpleRedirect("AdRightTop" , $id);
+		$this->_simpleRedirect("AdRightTop", $id);
 	}
 
 /** Other
@@ -69,7 +70,7 @@ class JumpController extends AppController {
 /**
  * 単一モデル仕様のシンプルリダイレクト
  */
-	private function _simpleRedirect($model , $id)
+	private function _simpleRedirect($model, $id)
 	{
 		$this->_emptyToHome($id);
 		$this->$model->recursive = -1;

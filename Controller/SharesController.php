@@ -1,15 +1,17 @@
 <?php
-class SharesController extends AppController {
+class SharesController extends AppController
+{
 
 	var $name = 'Shares';
 	var $uses = null;
-	var $components = array("Facebook" , "Twitter");
+	var $components = array("Facebook", "Twitter");
 
 
 	/**
 	 * Sys
 	 */
-	function sys_index() {
+	function sys_index()
+	{
 		//Facebook
 		$this->Facebook->init(true);
 		//
@@ -17,9 +19,9 @@ class SharesController extends AppController {
 		{
 			$this->Session->setFlash("Facebook token 有効期限切れ");
 		}
-		$this->set("fbPageToken" , $this->Facebook->pageToken);
+		$this->set("fbPageToken", $this->Facebook->pageToken);
 		
-		$this->set("pankuz_for_layout" , "SNS投稿");
+		$this->set("pankuz_for_layout", "SNS投稿");
 	}
 
 	function sys_post()	{

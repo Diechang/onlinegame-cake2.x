@@ -32,7 +32,8 @@
  * @subpackage    cake.cake.libs.controller
  * @link http://book.cakephp.org/view/957/The-App-Controller
  */
-class AppController extends Controller {
+class AppController extends Controller
+{
 
 	var $helpers	= array("Html", "Form", "Session", "Paginator", "Common", "Gads", "Ogp", "RichSnippets");
 	var $uses		= array("Title", "User");
@@ -107,27 +108,27 @@ class AppController extends Controller {
 //			$this->Auth->allow("login", "logout");
 			// $this->Auth->loginError = "ユーザ名もしくはパスワードが違います。";
 			// $this->Auth->authError = "管理者としてログインする必要があります";
-			$this->set("loginUser" , $this->Auth->user());
+			$this->set("loginUser", $this->Auth->user());
 //			pr($this->Auth);
 //			exit;
 
 			//Use layout
 			$this->layout = "sys";
-			$this->set("params" , $this->request->params);
+			$this->set("params", $this->request->params);
 
 			/**
 			 * Cookie
 			 */
 			$this->Cookie->name = "sys";
 			$this->Cookie->path = "/";
-			$this->Cookie->write("sys_login" , "true" , false);
+			$this->Cookie->write("sys_login", "true", false);
 
 			/**
 			 * Flashメッセージ定数
 			 */
 			//成功
 			Configure::write(
-				"Success" , array(
+				"Success", array(
 					"create" => "登録完了",
 					"modify" => "編集完了",
 					"lump" => "一括編集完了",
@@ -140,7 +141,7 @@ class AppController extends Controller {
 			);
 			//失敗
 			Configure::write(
-				"Error" , array(
+				"Error", array(
 					"error" => "エラー",
 					"id" => "IDが不正です",
 					"input" => "入力エラー",
@@ -181,7 +182,7 @@ class AppController extends Controller {
 			if($this->cookey)
 			{
 				//Get
-				$rightVoted = $this->Title->Vote->find("all" , array(
+				$rightVoted = $this->Title->Vote->find("all", array(
 					"conditions" => array(
 						"Vote.public" => 1,
 						"Title.public" => 1,
@@ -204,7 +205,7 @@ class AppController extends Controller {
 //				pr($rightVoted);
 				//
 				//Set
-				$this->set("rightVoted" , $rightVoted);
+				$this->set("rightVoted", $rightVoted);
 			}
 
 		}
@@ -237,7 +238,7 @@ class AppController extends Controller {
  * @return	void
  * @access private
  */
-	function _emptyToURL(&$data , $url = "/")
+	function _emptyToURL(&$data, $url = "/")
 	{
 		if(empty($data))
 		{

@@ -1,5 +1,6 @@
 <?php
-class ServicesController extends AppController {
+class ServicesController extends AppController
+{
 
 	var $name = 'Services';
 
@@ -10,7 +11,7 @@ class ServicesController extends AppController {
 		 * Page Data
 		 */
 		//Get
-		$pageData = $this->Service->find("first" , array(
+		$pageData = $this->Service->find("first", array(
 			"recursive" => -1,
 			"conditions" => array("Service.path" => $path)
 		));
@@ -19,14 +20,14 @@ class ServicesController extends AppController {
 //		pr($pageData);
 		//
 		//Set
-		$this->set("pageData" , $pageData);
+		$this->set("pageData", $pageData);
 
 		/**
 		 * Title Data
 		 */
 		//Get
 		$this->Title->Behaviors->attach('Containable');
-		$titles = $this->Title->find("all" , array(
+		$titles = $this->Title->find("all", array(
 			"conditions" => array(
 				"Title.public" => 1,
 				"Service.id" => $pageData["Service"]["id"],
@@ -50,73 +51,93 @@ class ServicesController extends AppController {
 				"Service.*",
 				"Fee.*",
 			),
-			"order" => array("Title.service_start DESC" , "Title.test_start DESC" , "Title.test_end DESC"),
+			"order" => array("Title.service_start DESC", "Title.test_start DESC", "Title.test_end DESC"),
 			"contain" => array("Category", "Service", "Fee"),
 		));
 //		pr($titles);
 		//
 		//Set
-		$this->set("titles" , $titles);
+		$this->set("titles", $titles);
 	}
 
 
 	/**
 	 * Sys
 	 */
-	function sys_index() {
+	function sys_index()
+	{
 		$this->Service->recursive = 0;
 		$services = $this->Service->find("all");
 		$this->set('services', $services);
 
-		$this->set("pankuz_for_layout" , "サービス状態マスタ");
+		$this->set("pankuz_for_layout", "サービス状態マスタ");
 	}
 
-//	function sys_view($id = null) {
-//		if (!$id) {
+//	function sys_view($id = null)
+//	{
+//		if(!$id)
+//	{
 //			$this->Session->setFlash(sprintf(__('Invalid %s'), 'service'));
 //			return $this->redirect(array('action' => 'index'));
 //		}
 //		$this->set('service', $this->Service->read(null, $id));
 //	}
 
-	function sys_add() {
-		if (!empty($this->request->data)) {
+	function sys_add()
+	{
+		if(!empty($this->request->data))
+		{
 			$this->Service->create();
-			if ($this->Service->save($this->request->data)) {
+			if($this->Service->save($this->request->data))
+			{
 				$this->Session->setFlash(Configure::read("Success.create"));
 				return $this->redirect(array('action' => 'index'));
-			} else {
+			}
+			else
+			{
 				$this->Session->setFlash(Configure::read("Error.input"));
 				return $this->redirect(array('action' => 'index'));
 			}
 		}
 	}
 
-	function sys_edit($id = null) {
-		if (!$id && empty($this->request->data)) {
+	function sys_edit($id = null)
+	{
+		if(!$id && empty($this->request->data))
+		{
 			$this->Session->setFlash(Configure::read("Error.id"));
 			return $this->redirect(array('action' => 'index'));
 		}
-		if (!empty($this->request->data)) {
-			if ($this->Service->save($this->request->data)) {
+		if(!empty($this->request->data))
+		{
+			if($this->Service->save($this->request->data))
+			{
 				$this->Session->setFlash(Configure::read("Success.modify"));
 				return $this->redirect(array('action' => 'index'));
-			} else {
+			}
+			else
+			{
 				$this->Session->setFlash(Configure::read("Error.create"));
 			}
 		}
-		if (empty($this->request->data)) {
+		if(empty($this->request->data))
+		{
 			$this->Service->recursive = -1;
 			$this->request->data = $this->Service->read(null, $id);
 		}
-		$this->set("pankuz_for_layout" , array("サービス状態マスタ" , "編集"));
+		$this->set("pankuz_for_layout", array("サービス状態マスタ", "編集"));
 	}
 
-	function sys_lump() {
-		if (!empty($this->request->data)) {
-			if ($this->Service->saveAll($this->request->data["Service"])) {
+	function sys_lump()
+	{
+		if(!empty($this->request->data))
+		{
+			if($this->Service->saveAll($this->request->data["Service"]))
+			{
 				$this->Session->setFlash(Configure::read("Success.lump"));
-			} else {
+			}
+			else
+			{
 				$this->Session->setFlash(Configure::read("Error.lump"));
 				return $this->redirect($this->referer(array('action' => 'index')));
 			}
@@ -124,12 +145,15 @@ class ServicesController extends AppController {
 		return $this->redirect($this->referer(array('action' => 'index')));
 	}
 
-	function sys_delete($id = null) {
-		if (!$id) {
+	function sys_delete($id = null)
+	{
+		if(!$id)
+		{
 			$this->Session->setFlash(Configure::read("Error.id"));
 			return $this->redirect($this->referer(array('action' => 'index')));
 		}
-		if ($this->Service->delete($id)) {
+		if($this->Service->delete($id))
+		{
 			$this->Session->setFlash(Configure::read("Success.delete"));
 			return $this->redirect($this->referer(array('action' => 'index')));
 		}

@@ -1,15 +1,16 @@
 <?php
-class RankingController extends AppController {
+class RankingController extends AppController
+{
 
 	var $name = 'Ranking';
-	var $uses = array("Title" , "Category");
+	var $uses = array("Title", "Category");
 
 	function index($path = null)
 	{
 		if(empty($path))
 		{
 			//Redirect
-			return $this->redirect(array("controller" => "ranking" , "path" => "index" , "ext" => "html"));
+			return $this->redirect(array("controller" => "ranking", "path" => "index", "ext" => "html"));
 		}
 		else
 		{
@@ -17,38 +18,38 @@ class RankingController extends AppController {
 			 * Category Data
 			 */
 			//Get
-			$categories = $this->Category->find("all" , array(
+			$categories = $this->Category->find("all", array(
 				"recursive" => -1,
 				"order" => "Category.sort",
 			));
 //			pr($categories);
 			//
 			//Set
-			$this->set("categories" , $categories);
+			$this->set("categories", $categories);
 
 			//Category Pathes
 			$pathes = array();
 			foreach($categories as $category)
 			{
-				array_push($pathes , $category["Category"]["path"]);
+				array_push($pathes, $category["Category"]["path"]);
 			}
 
 			/**
 			 * Page Data
 			 */
-			if(in_array($path , $pathes))
+			if(in_array($path, $pathes))
 			{//$pathがCategory一致
 				//Get
-				$pageData = $this->Category->find("first" , array(
+				$pageData = $this->Category->find("first", array(
 					"conditions" => array("Category.path" => $path)
 				));
 //				pr($pageData);
 				$str = $pageData["Category"]["str"];
 				//Pankuz set
-				$this->set("pankuz_for_layout" , array(
+				$this->set("pankuz_for_layout", array(
 					array(
 						"str" => "総合ランキング",
-						"url" => array("controller" => "ranking" , "path" => "index" , "ext" => "html")
+						"url" => array("controller" => "ranking", "path" => "index", "ext" => "html")
 					),
 					$str,
 				));
@@ -57,35 +58,35 @@ class RankingController extends AppController {
 			{//Index - 総合
 				$str = "総合";
 				//Pankuz set
-				$this->set("pankuz_for_layout" , $str . "ランキング");
+				$this->set("pankuz_for_layout", $str . "ランキング");
 			}
 			else
 			{
-				return $this->redirect(array("controller" => "ranking" , "path" => "index" , "ext" => "html"));
+				return $this->redirect(array("controller" => "ranking", "path" => "index", "ext" => "html"));
 			}
 			//Create
 			//
 			//Set
-			$this->set("title_for_layout" , "【" . $str . "】人気オンラインゲームランキング");
-			$this->set("keywords_for_layout" , $str . ",人気,ランキング,オンラインゲーム");
-			$this->set("description_for_layout" , "【" . $str . "】人気オンラインゲームランキングです。ジャンル別の人気オンラインゲームがすぐわかる！");
-			$this->set("h1_for_layout" , "【" . $str . "】人気オンラインゲームランキング");
+			$this->set("title_for_layout", "【" . $str . "】人気オンラインゲームランキング");
+			$this->set("keywords_for_layout", $str . ",人気,ランキング,オンラインゲーム");
+			$this->set("description_for_layout", "【" . $str . "】人気オンラインゲームランキングです。ジャンル別の人気オンラインゲームがすぐわかる！");
+			$this->set("h1_for_layout", "【" . $str . "】人気オンラインゲームランキング");
 			//
-			$this->set("mainStr" , $str);
-			$this->set("path" , $path);
+			$this->set("mainStr", $str);
+			$this->set("path", $path);
 
 			/**
 			 * Ranking Data
 			 */
 			//Get - Ranking
-			if(in_array($path , $pathes))
+			if(in_array($path, $pathes))
 			{//Category
 				$rankings = $this->Title->getRanking(array(
 					"category_id" => $pageData["Category"]["id"],
 					"idList" => true,
 				));
 				$this->Title->unbindAll(array("Titlesummary"));
-				$norankings = $this->Title->find("all" , array(
+				$norankings = $this->Title->find("all", array(
 					"conditions" => array(
 						"Title.public" => 1,
 						"Title.id" => $rankings["idList"],
@@ -104,7 +105,7 @@ class RankingController extends AppController {
 			{//All
 				$rankings = $this->Title->getRanking(array("idList" => true));
 				$this->Title->unbindAll(array("Titlesummary"));
-				$norankings = $this->Title->find("all" , array(
+				$norankings = $this->Title->find("all", array(
 					"conditions" => array(
 						"Title.public" => 1,
 						"Title.service_id" => array(2,3),
@@ -123,8 +124,8 @@ class RankingController extends AppController {
 //			exit;
 			//
 			//Set
-			$this->set("rankings" , $rankings);
-			$this->set("norankings" , $norankings);
+			$this->set("rankings", $rankings);
+			$this->set("norankings", $norankings);
 		}
 	}
 }

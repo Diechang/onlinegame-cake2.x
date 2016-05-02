@@ -1,5 +1,6 @@
 <?php
-class UsersController extends AppController {
+class UsersController extends AppController
+{
 
 	var $name = 'Users';
 
@@ -24,7 +25,7 @@ class UsersController extends AppController {
 				);
 			}
 		}
-		$this->set("pankuz_for_layout" , "ログイン");
+		$this->set("pankuz_for_layout", "ログイン");
 	}
 	function sys_logout()
 	{

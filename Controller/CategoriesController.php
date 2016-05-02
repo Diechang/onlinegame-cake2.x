@@ -1,5 +1,6 @@
 <?php
-class CategoriesController extends AppController {
+class CategoriesController extends AppController
+{
 
 	var $name = 'Categories';
 
@@ -103,28 +104,36 @@ class CategoriesController extends AppController {
 	/**
 	 * Sys
 	 */
-	function sys_index() {
+	function sys_index()
+	{
 		$this->Category->recursive = 0;
 		$this->set('categories', $this->Category->find("all"));
 		//
 		$this->set("pankuz_for_layout" , "カテゴリマスタ");
 	}
 
-//	function sys_view($id = null) {
-//		if (!$id) {
+//	function sys_view($id = null)
+//	{
+//		if(!$id)
+//	{
 //			$this->Session->setFlash(sprintf(__('Invalid %s'), 'category'));
 //			return $this->redirect(array('action' => 'index'));
 //		}
 //		$this->set('category', $this->Category->read(null, $id));
 //	}
 
-	function sys_add() {
-		if (!empty($this->request->data)) {
+	function sys_add()
+	{
+		if(!empty($this->request->data))
+		{
 			$this->Category->create();
-			if ($this->Category->save($this->request->data)) {
+			if($this->Category->save($this->request->data))
+			{
 				$this->Session->setFlash(Configure::read("Success.create"));
 				return $this->redirect(array('action' => 'index'));
-			} else {
+			}
+			else
+			{
 				$this->Session->setFlash(Configure::read("Error.input"));
 				return $this->redirect(array('action' => 'index'));
 			}
@@ -133,22 +142,29 @@ class CategoriesController extends AppController {
 		$this->set(compact('titles'));
 	}
 
-	function sys_edit($id = null) {
-		if (!$id && empty($this->request->data)) {
+	function sys_edit($id = null)
+	{
+		if(!$id && empty($this->request->data))
+		{
 			$this->Session->setFlash(Configure::read("Error.id"));
 			return $this->redirect(array('action' => 'index'));
 		}
-		if (!empty($this->request->data)) {
+		if(!empty($this->request->data))
+		{
 			//コンディションなし - Title.publicが見つからない…
 			$this->Category->hasAndBelongsToMany["Title"]["conditions"] = "";
-			if ($this->Category->save($this->request->data)) {
+			if($this->Category->save($this->request->data))
+			{
 				$this->Session->setFlash(Configure::read("Success.modify"));
 				return $this->redirect(array('action' => 'index'));
-			} else {
+			}
+			else
+			{
 				$this->Session->setFlash(Configure::read("Error.create"));
 			}
 		}
-		if (empty($this->request->data)) {
+		if(empty($this->request->data))
+		{
 //			$this->Category->recursive = -1;
 			$this->request->data = $this->Category->read(null, $id);
 		}
@@ -157,11 +173,16 @@ class CategoriesController extends AppController {
 		$this->set("pankuz_for_layout" , array("カテゴリマスタ" , "編集"));
 	}
 
-	function sys_lump() {
-		if (!empty($this->request->data)) {
-			if ($this->Category->saveAll($this->request->data["Category"])) {
+	function sys_lump()
+	{
+		if(!empty($this->request->data))
+		{
+			if($this->Category->saveAll($this->request->data["Category"]))
+			{
 				$this->Session->setFlash(Configure::read("Success.lump"));
-			} else {
+			}
+			else
+			{
 				$this->Session->setFlash(Configure::read("Error.lump"));
 				return $this->redirect($this->referer(array('action' => 'index')));
 			}
@@ -169,12 +190,15 @@ class CategoriesController extends AppController {
 		return $this->redirect($this->referer(array('action' => 'index')));
 	}
 
-	function sys_delete($id = null) {
-		if (!$id) {
+	function sys_delete($id = null)
+	{
+		if(!$id)
+		{
 			$this->Session->setFlash(Configure::read("Error.id"));
 			return $this->redirect($this->referer(array('action' => 'index')));
 		}
-		if ($this->Category->delete($id)) {
+		if($this->Category->delete($id))
+		{
 			$this->Session->setFlash(Configure::read("Success.delete"));
 			return $this->redirect($this->referer(array('action' => 'index')));
 		}

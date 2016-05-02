@@ -1,5 +1,6 @@
 <?php
-class ReviewController extends AppController {
+class ReviewController extends AppController
+{
 
 	var $name = 'Review';
 	var $uses = array("Vote");
@@ -42,7 +43,7 @@ class ReviewController extends AppController {
 //		pr($reviews);
 		//
 		//Set - data
-		$this->set("reviews" , $reviews);
+		$this->set("reviews", $reviews);
 	}
 }
 ?>

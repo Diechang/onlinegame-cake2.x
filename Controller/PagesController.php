@@ -29,7 +29,8 @@
  * @subpackage    cake.cake.libs.controller
  * @link http://book.cakephp.org/view/958/The-Pages-Controller
  */
-class PagesController extends AppController {
+class PagesController extends AppController
+{
 
 /**
  * Controller name
@@ -53,7 +54,7 @@ class PagesController extends AppController {
  * @var array
  * @access public
  */
-	var $uses = array("Vote" , "Fansite" , "Link" , "Update" , "Portal" , "Money" , "Pc" , "Package" /*, "Event"*/);
+	var $uses = array("Vote", "Fansite", "Link", "Update", "Portal", "Money", "Pc", "Package" /*, "Event"*/);
 
 /**
  * Components
@@ -71,10 +72,10 @@ class PagesController extends AppController {
 		$this->layout = "home";
 
 		//Layout vars
-		$this->set("title_for_layout" , "【オンラインゲームライフ】-無料オンラインゲームの人気ランキング・レビュー");
-		$this->set("keywords_for_layout" , "オンラインゲーム,無料,オンライン,ゲーム,人気,ランキング,レビュー");
-		$this->set("description_for_layout" , "無料オンラインゲーム情報サイト。ユーザーによるレビュー・評価の投稿による人気オンラインゲームランキングや攻略サイトリンク集、ムービー検索も可能。");
-		$this->set("h1_for_layout" , "【オンラインゲームライフ】レビュー・評価投稿で人気のオンラインゲーム、注目の最新無料オンラインゲームがすぐわかる！");
+		$this->set("title_for_layout", "【オンラインゲームライフ】-無料オンラインゲームの人気ランキング・レビュー");
+		$this->set("keywords_for_layout", "オンラインゲーム,無料,オンライン,ゲーム,人気,ランキング,レビュー");
+		$this->set("description_for_layout", "無料オンラインゲーム情報サイト。ユーザーによるレビュー・評価の投稿による人気オンラインゲームランキングや攻略サイトリンク集、ムービー検索も可能。");
+		$this->set("h1_for_layout", "【オンラインゲームライフ】レビュー・評価投稿で人気のオンラインゲーム、注目の最新無料オンラインゲームがすぐわかる！");
 
 
 		/**
@@ -82,7 +83,7 @@ class PagesController extends AppController {
 		 */
 		//Get
 		$this->Title->unbindAll(array("Titlesummary"));
-		$newGames = $this->Title->find("all" , array(
+		$newGames = $this->Title->find("all", array(
 //			"recursive" => -1,
 			"conditions" => array(
 				"Title.public" => 1,
@@ -97,14 +98,14 @@ class PagesController extends AppController {
 				"Title.description",
 				"Titlesummary.vote_avg_all"
 			),
-			"order" => array("Title.service_start DESC" , "Title.id DESC"),
+			"order" => array("Title.service_start DESC", "Title.id DESC"),
 			"limit" => 10
 		));
 //		pr($newGames);
 //		exit;
 		//
 		//Set
-		$this->set("newGames" , $newGames);
+		$this->set("newGames", $newGames);
 
 
 		/**
@@ -121,7 +122,7 @@ class PagesController extends AppController {
 		));
 //		pr($rankings);
 //		exit;
-		$categoryRankings = $this->Title->Category->find("all" , array(
+		$categoryRankings = $this->Title->Category->find("all", array(
 			"recursive" => -1,
 			"order" => "Category.sort",
 		));
@@ -136,23 +137,23 @@ class PagesController extends AppController {
 //		exit;
 		//
 		//Set
-		$this->set("rankings" , $rankings);
-		$this->set("categoryRankings" , $categoryRankings);
+		$this->set("rankings", $rankings);
+		$this->set("categoryRankings", $categoryRankings);
 
 
 		/**
 		 * Recent Review
 		 */
 		//Get
-		$recents	= $this->Title->Vote->getNewer(NULL , true , 10);
+		$recents	= $this->Title->Vote->getNewer(NULL, true, 10);
 		$this->Title->unbindAll(array("Titlesummary"));
-		$waits		= $this->Title->find("all" , array(
+		$waits		= $this->Title->find("all", array(
 			"conditions" => array(
 				"Title.public" => 1,
 				"Title.service_id" => array(2,3),
 				"Titlesummary.vote_count_vote" => 0,
 			),
-			"order" => "Title.ad_use DESC , Title.service_start DESC",
+			"order" => "Title.ad_use DESC, Title.service_start DESC",
 			"limit" => 10
 		));
 //		pr($recents);
@@ -160,20 +161,20 @@ class PagesController extends AppController {
 //		exit;
 		//
 		//Set
-		$this->set("recents" , $recents);
-		$this->set("waits" , $waits);
+		$this->set("recents", $recents);
+		$this->set("waits", $waits);
 
 		/**
 		 * Tests
 		 */
 		$this->Title->unbindAll(array("Service"));
-		$testCurrents =$this->Title->find("all" , array(
+		$testCurrents =$this->Title->find("all", array(
 			"conditions" => array(
 				"OR" => array(
 					array(//open
 						"Title.service_id" => 3,
 						"Title.test_start <=" => $date,
-						"Title.test_start >" => date("Y-m-d" , strtotime("-60days")),
+						"Title.test_start >" => date("Y-m-d", strtotime("-60days")),
 						"OR" => array(
 							"Title.test_end" => null,
 							"Title.test_end >=" => $date,
@@ -210,7 +211,7 @@ class PagesController extends AppController {
 		 * Future tests
 		 */
 		$this->Title->unbindAll(array("Service"));
-		$testFutures =$this->Title->find("all" , array(
+		$testFutures =$this->Title->find("all", array(
 			"conditions" => array(
 				"Title.public" => 1,
 				"Title.service_id" => array(3,4),
@@ -236,15 +237,15 @@ class PagesController extends AppController {
 // 		exit;
 		//
 		//set
-		$this->set("testCurrents" , $testCurrents);
-		$this->set("testFutures" , $testFutures);
+		$this->set("testCurrents", $testCurrents);
+		$this->set("testFutures", $testFutures);
 
 
 		/**
 		 * Newer
 		 */
 		//Get
-		$newers = $this->Title->find("all" , array(
+		$newers = $this->Title->find("all", array(
 			"recursive" => -1,
 			"conditions"	=> array("Title.public"	=> 1),
 			"fields"		=> array(
@@ -262,14 +263,14 @@ class PagesController extends AppController {
 //		pr($newers);
 		//
 		//Set
-		$this->set("newers" , $newers);
+		$this->set("newers", $newers);
 
 
 		/**
 		 * New Fansite
 		 */
 		//Get
-		$fansites = $this->Title->Fansite->find("all" , array(
+		$fansites = $this->Title->Fansite->find("all", array(
 			"conditions" => array(
 				"Fansite.public" => 1,
 				"NOT" => array("Fansite.link_url" => NULL),
@@ -286,20 +287,20 @@ class PagesController extends AppController {
 //		pr($fansites);
 		//
 		//Set
-		$this->set("fansites" , $fansites);
+		$this->set("fansites", $fansites);
 
 		/**
 		 * Update
 		 */
 		//Get
-		$updates = $this->Update->find("all" , array(
+		$updates = $this->Update->find("all", array(
 			"order" => "id DESC",
 			"limit" => 10,
 		));
 		//Create
 		//
 		//Set
-		$this->set("updates" , $updates);
+		$this->set("updates", $updates);
 	}
 
 /**
@@ -308,34 +309,34 @@ class PagesController extends AppController {
 	function sitemap()
 	{
 		//Layout vars
-		$this->set("title_for_layout" , "サイトマップ");
-		$this->set("keywords_for_layout" , "サイトマップ,オンラインゲームライフ");
-		$this->set("description_for_layout" , "オンラインゲームライフのサイトマップページ。");
-		$this->set("h1_for_layout" , "サイトマップ");
-		$this->set("pankuz_for_layout" , "サイトマップ");
+		$this->set("title_for_layout", "サイトマップ");
+		$this->set("keywords_for_layout", "サイトマップ,オンラインゲームライフ");
+		$this->set("description_for_layout", "オンラインゲームライフのサイトマップページ。");
+		$this->set("h1_for_layout", "サイトマップ");
+		$this->set("pankuz_for_layout", "サイトマップ");
 
 		//Get
 		//Category
-		$categories = $this->Title->Category->find("all" , array(
+		$categories = $this->Title->Category->find("all", array(
 			"recursive" => -1,
 			"order" => "Category.sort"
 		));
 //		pr($categories);
 		//Style
-		$styles = $this->Title->Style->find("all" , array(
+		$styles = $this->Title->Style->find("all", array(
 			"recursive" => -1,
 			"order" => "Style.sort"
 		));
 //		pr($styles);
 		//Service
-		$services = $this->Title->Service->find("all" , array(
+		$services = $this->Title->Service->find("all", array(
 			"recursive" => -1,
 			"order" => "Service.sort"
 		));
 //		pr($services);
 		//Title
 		$this->Title->unbindAll(array("Service"));
-		$titles = $this->Title->find("all" , array(
+		$titles = $this->Title->find("all", array(
 			"conditions" => array("Title.public" => 1),
 			"fields" => array(
 				"Title.title_official",
@@ -346,7 +347,7 @@ class PagesController extends AppController {
 			"order" => "Title.title_official",
 		));
 //		pr($titles);
-		$portals = $this->Portal->find("all" , array(
+		$portals = $this->Portal->find("all", array(
 			"recursive" => -1,
 			"conditions" => array("public" => 1),
 			"fields" => array(
@@ -357,19 +358,19 @@ class PagesController extends AppController {
 			"order" => "title_official",
 		));
 //		pr($portals);
-		$moneycategories = $this->Money->Moneycategory->find("all" , array(
+		$moneycategories = $this->Money->Moneycategory->find("all", array(
 			"recursive" => -1,
 			"conditions" => array("public" => 1),
 		));
 //		pr($moneycategories);
 		//
 		//Set
-		$this->set("categories" , $categories);
-		$this->set("styles" , $styles);
-		$this->set("services" , $services);
-		$this->set("titles" , $titles);
-		$this->set("portals" , $portals);
-		$this->set("moneycategories" , $moneycategories);
+		$this->set("categories", $categories);
+		$this->set("styles", $styles);
+		$this->set("services", $services);
+		$this->set("titles", $titles);
+		$this->set("portals", $portals);
+		$this->set("moneycategories", $moneycategories);
 	}
 
 
@@ -380,13 +381,13 @@ class PagesController extends AppController {
 	{
 		if(isset($this->request->query["u"]))
 		{
-			$this->set("u" , $this->request->query["u"]);
+			$this->set("u", $this->request->query["u"]);
 			//Layout vars
-			$this->set("title_for_layout" , "JUMP");
-			$this->set("keywords_for_layout" , "");
-			$this->set("description_for_layout" , "");
-			$this->set("h1_for_layout" , "JUMP");
-			$this->set("pankuz_for_layout" , "JUMP");
+			$this->set("title_for_layout", "JUMP");
+			$this->set("keywords_for_layout", "");
+			$this->set("description_for_layout", "");
+			$this->set("h1_for_layout", "JUMP");
+			$this->set("pankuz_for_layout", "JUMP");
 		}
 		else
 		{
@@ -400,14 +401,14 @@ class PagesController extends AppController {
 	function sys_home()
 	{
 		//Titles
-		$this->set('titles', $this->Title->find("all" , array(
+		$this->set('titles', $this->Title->find("all", array(
 			"order" => "Title.id DESC",
 			"limit" => 10,
 		)));
 		//
 		//Events
 //		$this->Event->recursive = 0;
-//		$this->set('events', $this->Event->find("all" , array(
+//		$this->set('events', $this->Event->find("all", array(
 //			"fields" => array(
 //				"Event.*",
 //				"Title.title_official",
@@ -419,7 +420,7 @@ class PagesController extends AppController {
 		//Votes
 		$this->Vote->recursive = 2;
 		$this->Vote->Title->unbindAll(array("Titlesummary"));
-		$this->set('votes', $this->Vote->find("all" , array(
+		$this->set('votes', $this->Vote->find("all", array(
 			"fields" => array(
 				"Vote.*",
 				"Title.*",
@@ -431,7 +432,7 @@ class PagesController extends AppController {
 		//Fansites
 		$this->Fansite->recursive = 2;
 		$this->Fansite->Title->unbindAll(array("Titlesummary"));
-		$this->set('fansites', $this->Fansite->find("all" , array(
+		$this->set('fansites', $this->Fansite->find("all", array(
 			"fields" => array(
 				"Fansite.*",
 				"Title.*",
@@ -442,7 +443,7 @@ class PagesController extends AppController {
 		//
 		//Packages
 		$this->Package->recursive = 0;
-		$this->set('packages', $this->Package->find("all" , array(
+		$this->set('packages', $this->Package->find("all", array(
 			"fields" => array(
 				"Package.*",
 				"Title.title_official",
@@ -453,7 +454,7 @@ class PagesController extends AppController {
 		//
 		//Pcs
 		$this->Pc->recursive = 0;
-		$this->set('pcs', $this->Pc->find("all" , array(
+		$this->set('pcs', $this->Pc->find("all", array(
 			"fields" => array(
 				"Pc.*",
 				"Pcgrade.*",
@@ -467,14 +468,14 @@ class PagesController extends AppController {
 		//
 		//Links
 		$this->Link->recursive = 0;
-		$this->set('links', $this->Link->find("all" , array(
+		$this->set('links', $this->Link->find("all", array(
 			"order" => "Link.id DESC",
 			"limit" => 10,
 		)));
 		//
-		$this->set("pankuz_for_layout" , "");
-		$this->set("categories" , $this->Title->Category->find("list"));
-		$this->set("services" , $this->Title->Service->find("list"));
+		$this->set("pankuz_for_layout", "");
+		$this->set("categories", $this->Title->Category->find("list"));
+		$this->set("services", $this->Title->Service->find("list"));
 	}
 
 /**
@@ -482,7 +483,7 @@ class PagesController extends AppController {
  */
 	function sys_acr_pr()
 	{
-		$titles = $this->Title->find("all" , array(
+		$titles = $this->Title->find("all", array(
 			"recursive" => -1,
 			"conditions" => array(
 				"Title.public" => 1,
@@ -493,9 +494,9 @@ class PagesController extends AppController {
 //		pr($titles);
 		//
 		//Set
-		$this->set("titles" , $titles);
+		$this->set("titles", $titles);
 		//Set - Layout vars
-		$this->set("pankuz_for_layout" , "ACR - ページランクテキスト");
+		$this->set("pankuz_for_layout", "ACR - ページランクテキスト");
 	}
 
 
@@ -505,7 +506,8 @@ class PagesController extends AppController {
  * @param mixed What page to display
  * @access public
  */
-	function display() {
+	function display()
+	{
 		$path = func_get_args();
 //pr($path);
 //exit;
@@ -515,25 +517,29 @@ class PagesController extends AppController {
 			return $this->redirect("/");
 		}
 		//メソッドがあればそっちいってレンダリング
-		if(array_search($path[0] , get_class_methods(get_class())))
+		if(array_search($path[0], get_class_methods(get_class())))
 		{
 			$this->$path[0]();
 		}
 		else
 		{
 			$count = count($path);
-			if (!$count) {
+			if(!$count)
+			{
 				return $this->redirect('/');
 			}
 			$page = $subpage = $title_for_layout = null;
 
-			if (!empty($path[0])) {
+			if(!empty($path[0]))
+			{
 				$page = $path[0];
 			}
-			if (!empty($path[1])) {
+			if(!empty($path[1]))
+			{
 				$subpage = $path[1];
 			}
-			if (!empty($path[$count - 1])) {
+			if(!empty($path[$count - 1]))
+			{
 				$title_for_layout = Inflector::humanize($path[$count - 1]);
 			}
 			$this->set(compact('page', 'subpage', 'title_for_layout'));

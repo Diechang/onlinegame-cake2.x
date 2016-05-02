@@ -1,5 +1,6 @@
 <?php
-class FbappController extends AppController {
+class FbappController extends AppController
+{
 
 	var $name = 'Fbapp';
 	var $uses = array("Title");
@@ -54,7 +55,7 @@ class FbappController extends AppController {
 		{
 			try
 			{
-				$this->userInfo = $this->facebook->api('/me','GET');
+				$this->userInfo = $this->facebook->api('/me', 'GET');
 			}
 			catch(FacebookApiException $e)
 			{
@@ -71,14 +72,14 @@ class FbappController extends AppController {
 		//Use layout
 		$this->layout = "fbapp";
 		//Set laytou vars
-		$this->set("title_for_layout" , "Facebookアプリ");
+		$this->set("title_for_layout", "Facebookアプリ");
 	}
 
 	function index()
 	{
 //		$this->autoRender = false;
 
-		$this->set("titles" , $this->Title->find("all" , array(
+		$this->set("titles", $this->Title->find("all", array(
 			"recursive" => -1,
 			"conditions" => array(
 				"Title.ad_use" => 1,
@@ -86,14 +87,14 @@ class FbappController extends AppController {
 			"limit" => 10,
 			"order" => "service_start DESC",
 		)));
-		$this->set("userInfo" , $this->userInfo);
-		$this->set("addPageUrl" , $this->addPageUrl);
+		$this->set("userInfo", $this->userInfo);
+		$this->set("addPageUrl", $this->addPageUrl);
 //		pr($this->signed_request);
 	}
 
 	function tab()
 	{
-		$this->set("titles" , $this->Title->find("all" , array(
+		$this->set("titles", $this->Title->find("all", array(
 			"recursive" => -1,
 			"conditions" => array(
 				"Title.ad_use" => 1,
@@ -101,8 +102,8 @@ class FbappController extends AppController {
 			"limit" => 10,
 			"order" => "service_start DESC",
 		)));
-		$this->set("userInfo" , $this->userInfo);
-		$this->set("pageInfo" , $this->signed_request["page"]);
+		$this->set("userInfo", $this->userInfo);
+		$this->set("pageInfo", $this->signed_request["page"]);
 		pr($_POST["signed_request"]);
 		pr($this->signed_request);
 	}
