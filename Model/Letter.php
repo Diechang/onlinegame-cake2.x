@@ -1,5 +1,6 @@
 <?php
-class Letter extends AppModel {
+class Letter extends AppModel
+{
 	var $name = 'Letter';
 	var $displayField = 'name';
 	var $validate = array(

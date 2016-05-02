@@ -1,5 +1,6 @@
 <?php
-class Money extends AppModel {
+class Money extends AppModel
+{
 	var $name = 'Money';
 	var $displayField = 'title';
 	var $validate = array(

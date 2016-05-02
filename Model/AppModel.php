@@ -31,7 +31,8 @@
  * @package       cake
  * @subpackage    cake.cake.libs.model
  */
-class AppModel extends Model {
+class AppModel extends Model
+{
 
 /**
  * コンストラクタ
@@ -76,17 +77,17 @@ class AppModel extends Model {
  * @return	void
  * @access	public
  */
-	function unbindAll($models = array() , $reset = true)
+	function unbindAll($models = array(), $reset = true)
 	{
 		$unbind = array();
-		$assocs	= array("belongsTo" , "hasOne" , "hasMany" , "hasAndBelongsToMany");
+		$assocs	= array("belongsTo", "hasOne", "hasMany", "hasAndBelongsToMany");
 		foreach($assocs as $assoc)
 		{
 			if(isset($this->$assoc))
 			{
 				foreach($this->$assoc as $model => $info)
 				{
-					if(!in_array($model , $models))
+					if(!in_array($model, $models))
 					{
 						$unbind[$assoc][] = $model;
 					}
@@ -94,7 +95,7 @@ class AppModel extends Model {
 			}
 		}
 //		pr($unbind);
-		$this->unbindModel($unbind , $reset);
+		$this->unbindModel($unbind, $reset);
 	}
 
 /**
@@ -103,7 +104,7 @@ class AppModel extends Model {
  * @param	string	$name
  * @param	string	$key
  */
-	function clearElementCache($name , $key = null)
+	function clearElementCache($name, $key = null)
 	{
 		$cacheConfig	= Cache::config("element");
 		$cacheSettings	= $cacheConfig["settings"];
@@ -117,7 +118,7 @@ class AppModel extends Model {
  * @return	string
  * @access	public
  */
-	function mbSpaceReplace($val , $search = "/(　| )+/" , $replace = " ")
+	function mbSpaceReplace($val, $search = "/(　| )+/", $replace = " ")
 	{
 		if(!empty($val))
 		{

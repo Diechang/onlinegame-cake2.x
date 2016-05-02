@@ -1,5 +1,6 @@
 <?php
-class Update extends AppModel {
+class Update extends AppModel
+{
 	var $name = 'Update';
 	var $displayField = 'text';
 	var $validate = array(

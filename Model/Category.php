@@ -1,5 +1,6 @@
 <?php
-class Category extends AppModel {
+class Category extends AppModel
+{
 	var $name = 'Category';
 	var $displayField = 'str';
 	var $validate = array(

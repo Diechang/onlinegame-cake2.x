@@ -1,5 +1,6 @@
 <?php
-class Title extends AppModel {
+class Title extends AppModel
+{
 	var $name = 'Title';
 
 	//Virtual Fields
@@ -94,7 +95,7 @@ class Title extends AppModel {
 			'dependent' => false,
 			'conditions' => array('Fansite.public' => 1),
 			'fields' => '',
-			'order' => array('link_url is NULL ASC' , 'id'),
+			'order' => array('link_url is NULL ASC', 'id'),
 			'limit' => '',
 			'offset' => '',
 			'exclusive' => '',
@@ -120,7 +121,7 @@ class Title extends AppModel {
 			'dependent' => false,
 			'conditions' => array(),
 			'fields' => '',
-			'order' => array('sort' , 'created DESC'),
+			'order' => array('sort', 'created DESC'),
 			'limit' => '',
 			'offset' => '',
 			'exclusive' => '',
@@ -292,7 +293,7 @@ class Title extends AppModel {
 	{
 		if(isset($category_id))
 		{
-			$ids = $this->CategoriesTitle->find("list" , array(
+			$ids = $this->CategoriesTitle->find("list", array(
 				"conditions" => array("CategoriesTitle.category_id" => $category_id),
 				"fields" => "CategoriesTitle.title_id",
 			));
@@ -316,7 +317,7 @@ class Title extends AppModel {
 	{
 		if(isset($style_id))
 		{
-			$ids = $this->StylesTitle->find("list" , array(
+			$ids = $this->StylesTitle->find("list", array(
 				"conditions" => array("style_id" => $style_id),
 				"fields" => "title_id",
 			));
@@ -342,7 +343,7 @@ class Title extends AppModel {
  * @return	array
  * @access	public
  */
-	function search($option = array() , $page = 1)
+	function search($option = array(), $page = 1)
 	{
 
 	}
@@ -366,19 +367,25 @@ class Title extends AppModel {
 	{
 		//引数からオプション変数
 		extract($option);
-		if(!isset($type)) { $type = "point"; }	//デフォルト点数ランキング
+		if(!isset($type))
+		{
+			$type = "point";
+		}	//デフォルト点数ランキング
 
-		$titleIdList = $this->getRankTitleIdList($category_id , $style_id);
+		$titleIdList = $this->getRankTitleIdList($category_id, $style_id);
 
 		/**
 		 * Find
 		 */
 		//conditions
-		$conditions = $this->setRankConditions($service_id , $start_year);
+		$conditions = $this->setRankConditions($service_id, $start_year);
 		//find
-		$rankings = (isset($term))	? $this->findTermRank($conditions , $titleIdList , $term , $limit , $type)
-									: $this->findSummaryRank($conditions , $titleIdList , $limit , $type);
-		if(isset($idList)) { $rankings["idList"] = ($idList) ? $titleIdList : null; }
+		$rankings = (isset($term))	? $this->findTermRank($conditions, $titleIdList, $term, $limit, $type)
+									: $this->findSummaryRank($conditions, $titleIdList, $limit, $type);
+		if(isset($idList))
+		{
+			$rankings["idList"] = ($idList) ? $titleIdList : null;
+		}
 //		pr($rankings);
 //		exit;
 		return $rankings;
@@ -392,7 +399,7 @@ class Title extends AppModel {
  * @return	array
  * @access	private
  */
-	private function getRankTitleIdList(&$category_id , &$style_id)
+	private function getRankTitleIdList(&$category_id, &$style_id)
 	{
 		$titleIdList = array();
 		//カテゴリからタイトルID
@@ -402,7 +409,7 @@ class Title extends AppModel {
 		//タイトルID
 		if(!empty($idListByCategory) and !empty($idListByStyle))
 		{//カテゴリとスタイル指定時
-			$titleIdList	= array_intersect($idListByCategory , $idListByStyle);
+			$titleIdList	= array_intersect($idListByCategory, $idListByStyle);
 		}
 		elseif(!empty($idListByCategory))
 		{//カテゴリのみ指定時
@@ -425,7 +432,7 @@ class Title extends AppModel {
  *
  *
  */
-	private function setRankConditions(&$service_id , &$start_year)
+	private function setRankConditions(&$service_id, &$start_year)
 	{
 		$conditions = array(
 			"Title.public" => 1,
@@ -456,8 +463,8 @@ class Title extends AppModel {
  */
 	private function setRankOrder(&$type)
 	{
-		return ($type == "point")	? array("vote_avg_all DESC" , "vote_count_vote DESC" , "Title.title_official")
-									: array("vote_count_vote DESC" , "vote_count_review DESC" , "Title.title_official");
+		return ($type == "point")	? array("vote_avg_all DESC", "vote_count_vote DESC", "Title.title_official")
+									: array("vote_count_vote DESC", "vote_count_review DESC", "Title.title_official");
 	}
 
 /**
@@ -469,12 +476,12 @@ class Title extends AppModel {
  * @return	array
  * @access	private
  */
-	private function findSummaryRank(&$conditions , &$titleIdList , &$limit , &$type)
+	private function findSummaryRank(&$conditions, &$titleIdList, &$limit, &$type)
 	{
 		$this->unbindAll(array("Titlesummary"));
 		$conditions["vote_count_vote >"] = 0;
 		if(isset($titleIdList)){ $conditions["Title.id"] = $titleIdList; }
-		$ranking = $this->find("all" , array(
+		$ranking = $this->find("all", array(
 			"conditions" => $conditions,
 			"order" => $this->setRankOrder($type),
 			"limit" => (isset($limit)) ? $limit : null,
@@ -493,13 +500,13 @@ class Title extends AppModel {
  * @return	array
  * @access	private
  */
-	private function findTermRank(&$conditions , &$titleIdList , &$term , &$limit , &$type)
+	private function findTermRank(&$conditions, &$titleIdList, &$term, &$limit, &$type)
 	{
 		$conditions["Vote.public"]			= 1;
 		$conditions["vote_count_vote >"]	= 0;
 		if(isset($titleIdList)){	$conditions["Vote.title_id"]			= $titleIdList; }
 		if(isset($term)){			$conditions["Vote.modified >"]			= date("Y-m-d", strtotime($term)); }
-		$ranking = $this->Vote->find("all" , array(
+		$ranking = $this->Vote->find("all", array(
 			"conditions" => $conditions,
 			"fields" => array(
 				"Title.*",
@@ -529,12 +536,12 @@ class Title extends AppModel {
  * @return	array
  * @access	public
  */
-	function relations($categories , $title_id = null)
+	function relations($categories, $title_id = null)
 	{
 		$titles = $this->idListByCategory($categories);
 //		pr($titles);
 		$this->unbindAll(array("Titlesummary"));
-		$data = $this->find("all" , array(
+		$data = $this->find("all", array(
 			"conditions" => array(
 				"Title.public" => 1,
 				"Title.id" => $titles,
@@ -554,7 +561,7 @@ class Title extends AppModel {
 				"Titlesummary.*"
 			),
 			"limit" => 5,
-			"order" => array("Titlesummary.vote_avg_all DESC , Titlesummary.vote_count_vote DESC"),
+			"order" => array("Titlesummary.vote_avg_all DESC, Titlesummary.vote_count_vote DESC"),
 		));
 		//
 		return $data;
@@ -571,7 +578,7 @@ class Title extends AppModel {
 		$summary = $this->Vote->summary($id);
 		foreach($summary as $key => $val)
 		{
-			$data["Titlesummary"][$key]				= array_merge($val["Vote"] , $val[0]);
+			$data["Titlesummary"][$key]				= array_merge($val["Vote"], $val[0]);
 			$data["Titlesummary"][$key]["id"]		= $val["Title"]["id"];
 			$data["Titlesummary"][$key]["title_id"]	= $val["Title"]["id"];
 		}
@@ -591,7 +598,7 @@ class Title extends AppModel {
 		$summary = $this->Fansite->summary($id);
 		foreach($summary as $key => $val)
 		{
-			$data["Titlesummary"][$key]				= array_merge($val["Fansite"] , $val[0]);
+			$data["Titlesummary"][$key]				= array_merge($val["Fansite"], $val[0]);
 			$data["Titlesummary"][$key]["id"]		= $val["Title"]["id"];
 			$data["Titlesummary"][$key]["title_id"]	= $val["Title"]["id"];
 		}
@@ -611,7 +618,7 @@ class Title extends AppModel {
 		$summary = $this->Package->summary($id);
 		foreach($summary as $key => $val)
 		{
-			$data["Titlesummary"][$key]				= array_merge($val["Package"] , $val[0]);
+			$data["Titlesummary"][$key]				= array_merge($val["Package"], $val[0]);
 			$data["Titlesummary"][$key]["id"]		= $val["Title"]["id"];
 			$data["Titlesummary"][$key]["title_id"]	= $val["Title"]["id"];
 		}
@@ -631,7 +638,7 @@ class Title extends AppModel {
 		$summary = $this->Pc->summary($id);
 		foreach($summary as $key => $val)
 		{
-			$data["Titlesummary"][$key]				= array_merge($val["Pc"] , $val[0]);
+			$data["Titlesummary"][$key]				= array_merge($val["Pc"], $val[0]);
 			$data["Titlesummary"][$key]["id"]		= $val["Title"]["id"];
 			$data["Titlesummary"][$key]["title_id"]	= $val["Title"]["id"];
 		}
@@ -651,7 +658,7 @@ class Title extends AppModel {
 		$summary = $this->Event->summary($id);
 		foreach($summary as $key => $val)
 		{
-			$data["Titlesummary"][$key]				= array_merge($val["Event"] , $val[0]);
+			$data["Titlesummary"][$key]				= array_merge($val["Event"], $val[0]);
 			$data["Titlesummary"][$key]["id"]		= $val["Title"]["id"];
 			$data["Titlesummary"][$key]["title_id"]	= $val["Title"]["id"];
 		}
@@ -757,9 +764,9 @@ UPDATE titlesummaries AS ts SET ts.avg_votes_item10 =(SELECT AVG(v.item10) FROM 
 	 */
 	function titleListWithSummaryCount($summaryField, $modelName, $list = true)
 	{
-		$counts = $this->Titlesummary->find("all" , array(
+		$counts = $this->Titlesummary->find("all", array(
 			"conditions" => array(
-				"Title.id" => array_unique($this->{$modelName}->find("list" , array("fields" => $modelName . ".title_id")))
+				"Title.id" => array_unique($this->{$modelName}->find("list", array("fields" => $modelName . ".title_id")))
 			),
 			"fields" => array(
 				"Title.id",
@@ -793,7 +800,7 @@ UPDATE titlesummaries AS ts SET ts.avg_votes_item10 =(SELECT AVG(v.item10) FROM 
 		$wConditions	= array();
 		foreach($w as $val)
 		{
-			$wConditions = array_merge($wConditions , array(
+			$wConditions = array_merge($wConditions, array(
 					"Title.title_official LIKE '%" . $val . "%'",
 					"Title.title_read LIKE '%" . $val . "%'",
 					"Title.title_sub LIKE '%" . $val . "%'",

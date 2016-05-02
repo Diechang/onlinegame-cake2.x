@@ -1,5 +1,6 @@
 <?php
-class Fansite extends AppModel {
+class Fansite extends AppModel
+{
 	var $name = 'Fansite';
 	var $displayField = 'site_name';
 	var $validate = array(
@@ -121,7 +122,7 @@ class Fansite extends AppModel {
 		}
 		else
 		{
-			$overlapCount = $this->find("count" , array(
+			$overlapCount = $this->find("count", array(
 				"conditions" => array(
 					"title_id" => $this->data["Fansite"]["title_id"],
 					"site_url" => $data["site_url"],
@@ -145,13 +146,13 @@ class Fansite extends AppModel {
 			$conditions["Title.id"] = $title_id;
 			$conditions["Fansite.title_id"] = $title_id;
 		}
-		$ret = $this->find("all" , array(
+		$ret = $this->find("all", array(
 			"recursive" => -1,
 			"conditions" => $conditions,
 			"fields" => array(
 				"Title.id",
 				"Fansite.title_id",
-				"IFNULL( COUNT(Fansite.site_url) , 0) AS fansite_count",
+				"IFNULL( COUNT(Fansite.site_url), 0) AS fansite_count",
 			),
 			"group" => "Title.id",
 			"joins" => array(

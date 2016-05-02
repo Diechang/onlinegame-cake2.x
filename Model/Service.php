@@ -1,5 +1,6 @@
 <?php
-class Service extends AppModel {
+class Service extends AppModel
+{
 	var $name = 'Service';
 	var $displayField = 'str';
 	var $validate = array(

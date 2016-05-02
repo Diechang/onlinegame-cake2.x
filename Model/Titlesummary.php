@@ -1,5 +1,6 @@
 <?php
-class Titlesummary extends AppModel {
+class Titlesummary extends AppModel
+{
 	var $name = 'Titlesummary';
 
 	//Virtual Fields

@@ -1,5 +1,6 @@
 <?php
-class Link extends AppModel {
+class Link extends AppModel
+{
 	var $name = 'Link';
 	var $displayField = 'site_name';
 	var $validate = array(

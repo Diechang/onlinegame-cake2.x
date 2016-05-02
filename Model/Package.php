@@ -1,5 +1,6 @@
 <?php
-class Package extends AppModel {
+class Package extends AppModel
+{
 	var $name = 'Package';
 	var $displayField = 'ad_part_text';
 	var $validate = array(
@@ -131,13 +132,13 @@ class Package extends AppModel {
 			$conditions["Title.id"] = $title_id;
 			$conditions["Package.title_id"] = $title_id;
 		}
-		$ret = $this->find("all" , array(
+		$ret = $this->find("all", array(
 			"recursive" => -1,
 			"conditions" => $conditions,
 			"fields" => array(
 				"Title.id",
 				"Package.title_id",
-				"IFNULL( COUNT(Package.id) , 0) AS package_count",
+				"IFNULL( COUNT(Package.id), 0) AS package_count",
 			),
 			"group" => "Title.id",
 			"joins" => array(

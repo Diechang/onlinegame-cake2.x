@@ -1,5 +1,6 @@
 <?php
-class AdCenterBottom extends AppModel {
+class AdCenterBottom extends AppModel
+{
 	var $name = 'AdCenterBottom';
 	var $validate = array(
 		'public' => array(

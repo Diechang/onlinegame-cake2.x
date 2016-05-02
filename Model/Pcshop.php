@@ -1,5 +1,6 @@
 <?php
-class Pcshop extends AppModel {
+class Pcshop extends AppModel
+{
 	var $name = 'Pcshop';
 	var $displayField = 'shop_name';
 	var $validate = array(
@@ -46,7 +47,7 @@ class Pcshop extends AppModel {
 		'Pc' => array(
 			'className' => 'Pc',
 			'foreignKey' => 'pcshop_id',
-			'dependent' => true,	//同時削除 = delete($id , $cascade = true)
+			'dependent' => true,	//同時削除 = delete($id, $cascade = true)
 			'conditions' => array('Pc.public' => 1),
 			'fields' => '',
 			'order' => 'Pc.modified DESC',

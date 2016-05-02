@@ -1,5 +1,6 @@
 <?php
-class Pctype extends AppModel {
+class Pctype extends AppModel
+{
 	var $name = 'Pctype';
 	var $displayField = 'str';
 	//The Associations below have been created with all possible keys, those that are not needed can be removed

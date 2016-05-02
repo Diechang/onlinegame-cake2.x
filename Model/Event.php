@@ -1,5 +1,6 @@
 <?php
-class Event extends AppModel {
+class Event extends AppModel
+{
 	var $name = 'Event';
 	var $displayField = 'name';
 	var $validate = array(
@@ -116,13 +117,13 @@ class Event extends AppModel {
 			$conditions["Title.id"] = $title_id;
 			$conditions["Event.title_id"] = $title_id;
 		}
-		$ret = $this->find("all" , array(
+		$ret = $this->find("all", array(
 			"recursive" => -1,
 			"conditions" => $conditions,
 			"fields" => array(
 				"Title.id",
 				"Event.title_id",
-				"IFNULL( COUNT(Event.name) , 0) AS event_count",
+				"IFNULL( COUNT(Event.name), 0) AS event_count",
 			),
 			"group" => "Title.id",
 			"joins" => array(
@@ -159,7 +160,7 @@ class Event extends AppModel {
 		$wConditions	= array();
 		foreach($w as $val)
 		{
-			$wConditions = array_merge($wConditions , array(
+			$wConditions = array_merge($wConditions, array(
 					"Event.name LIKE '%" . $val . "%'",
 					"Event.summary LIKE '%" . $val . "%'",
 					"Event.details LIKE '%" . $val . "%'",

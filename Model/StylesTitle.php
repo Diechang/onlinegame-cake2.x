@@ -1,5 +1,6 @@
 <?php
-class StylesTitle extends AppModel {
+class StylesTitle extends AppModel
+{
 	var $name = 'StylesTitle';
 //	var $primaryKey = 'title_id';
 	//The Associations below have been created with all possible keys, those that are not needed can be removed

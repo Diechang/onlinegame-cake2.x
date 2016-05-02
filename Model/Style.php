@@ -1,5 +1,6 @@
 <?php
-class Style extends AppModel {
+class Style extends AppModel
+{
 	var $name = 'Style';
 	var $displayField = 'str';
 	var $validate = array(

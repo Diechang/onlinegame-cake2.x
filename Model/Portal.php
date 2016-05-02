@@ -1,5 +1,6 @@
 <?php
-class Portal extends AppModel {
+class Portal extends AppModel
+{
 	var $name = 'Portal';
 	var $displayField = 'title_official';
 	var $validate = array(

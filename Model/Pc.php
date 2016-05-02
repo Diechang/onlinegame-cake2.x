@@ -1,5 +1,6 @@
 <?php
-class Pc extends AppModel {
+class Pc extends AppModel
+{
 	var $name = 'Pc';
 	var $displayField = 'ad_part_text';
 	var $validate = array(
@@ -153,13 +154,13 @@ class Pc extends AppModel {
 			$conditions["Title.id"] = $title_id;
 			$conditions["Pc.title_id"] = $title_id;
 		}
-		$ret = $this->find("all" , array(
+		$ret = $this->find("all", array(
 			"recursive" => -1,
 			"conditions" => $conditions,
 			"fields" => array(
 				"Title.id",
 				"Pc.title_id",
-				"IFNULL( COUNT(Pc.name) , 0) AS pc_count",
+				"IFNULL( COUNT(Pc.name), 0) AS pc_count",
 			),
 			"group" => "Title.id",
 			"joins" => array(
@@ -196,7 +197,7 @@ class Pc extends AppModel {
 		$wConditions	= array();
 		foreach($w as $val)
 		{
-			$wConditions = array_merge($wConditions , array(
+			$wConditions = array_merge($wConditions, array(
 					"Pc.name LIKE '%" . $val . "%'",
 					"Pc.cpu LIKE '%" . $val . "%'",
 					"Pc.graphic LIKE '%" . $val . "%'",

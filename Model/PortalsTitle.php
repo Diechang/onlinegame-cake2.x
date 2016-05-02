@@ -1,5 +1,6 @@
 <?php
-class PortalsTitle extends AppModel {
+class PortalsTitle extends AppModel
+{
 	var $name = 'PortalsTitle';
 //	var $primaryKey = 'title_id';
 	//The Associations below have been created with all possible keys, those that are not needed can be removed

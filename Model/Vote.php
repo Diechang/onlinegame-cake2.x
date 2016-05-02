@@ -1,5 +1,6 @@
 <?php
-class Vote extends AppModel {
+class Vote extends AppModel
+{
 	var $name = 'Vote';
 	var $displayField = 'id';
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
@@ -36,12 +37,12 @@ class Vote extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 			"minLength" => array(
-				'rule' => array('minLength' , '2'),
+				'rule' => array('minLength', '2'),
 				'message' => 'パスワードは2～8文字の半角英数字で入力してください',
 				'allowEmpty' => true,
 			),
 			"maxLength" => array(
-				'rule' => array('maxLength' , '8'),
+				'rule' => array('maxLength', '8'),
 				'message' => 'パスワードは2～8文字の半角英数字で入力してください',
 				'allowEmpty' => true,
 			),
@@ -180,7 +181,7 @@ class Vote extends AppModel {
  * @return	array
  * @access	public
  */
-	function getNewer($title_id = null , $review = false , $limit = null)
+	function getNewer($title_id = null, $review = false, $limit = null)
 	{
 		$conditions = array("Vote.public" => 1);
 		if($title_id != null)
@@ -191,7 +192,7 @@ class Vote extends AppModel {
 		{
 			$conditions += array("NOT" => array("Vote.review" => NULL));
 		}
-		return $this->find('all' , array(
+		return $this->find('all', array(
 			"conditions" => $conditions,
 			"fields" => array(
 				"Vote.id",
@@ -223,7 +224,7 @@ class Vote extends AppModel {
  * @return	array
  * @access	public
  */
-	function titleRatings($title_id , $term = null , $details = false)
+	function titleRatings($title_id, $term = null, $details = false)
 	{
 		$ret = array();
 		/** 評価集計
@@ -236,7 +237,7 @@ class Vote extends AppModel {
 		{
 			$conditions["Vote.modified >"] = date("Y-m-d", strtotime($term));
 		}
-		$ratings = $this->find("all" , array(
+		$ratings = $this->find("all", array(
 			"recursive" => -1,
 			"conditions" => $conditions,
 			"fields" => array(
@@ -283,7 +284,7 @@ class Vote extends AppModel {
 		------------------------------ **/
 		if($details == true)
 		{
-			$votes = $this->find("all" , array(
+			$votes = $this->find("all", array(
 				"recursive" => -1,
 				"conditions" => $conditions,
 				"fields" => array(
@@ -341,25 +342,25 @@ class Vote extends AppModel {
 			$conditions["Title.id"] = $title_id;
 			$conditions["Vote.title_id"] = $title_id;
 		}
-		$ret = $this->find("all" , array(
+		$ret = $this->find("all", array(
 			"recursive" => -1,
 			"conditions" => $conditions,
 			"fields" => array(
 				"Title.id",
 				"Vote.title_id",
-				"IFNULL( COUNT(Vote.item1) , 0 ) AS vote_count_vote",
-				"IFNULL( COUNT(Vote.review) , 0 ) AS vote_count_review",
-				'IFNULL( AVG(Vote.item1) , 0 ) AS vote_avg_item1',
-				'IFNULL( AVG(Vote.item2) , 0 ) AS vote_avg_item2',
-				'IFNULL( AVG(Vote.item3) , 0 ) AS vote_avg_item3',
-				'IFNULL( AVG(Vote.item4) , 0 ) AS vote_avg_item4',
-				'IFNULL( AVG(Vote.item5) , 0 ) AS vote_avg_item5',
-				'IFNULL( AVG(Vote.item6) , 0 ) AS vote_avg_item6',
-				'IFNULL( AVG(Vote.item7) , 0 ) AS vote_avg_item7',
-				'IFNULL( AVG(Vote.item8) , 0 ) AS vote_avg_item8',
-				'IFNULL( AVG(Vote.item9) , 0 ) AS vote_avg_item9',
-				'IFNULL( AVG(Vote.item10) , 0 ) AS vote_avg_item10',
-				'IFNULL( AVG( (Vote.item1 + Vote.item2 + Vote.item3 + Vote.item4 + Vote.item5 + Vote.item6 + Vote.item7 + Vote.item8 + Vote.item9 + Vote.item10) /10 ) , 0 ) AS vote_avg_all',
+				"IFNULL( COUNT(Vote.item1), 0 ) AS vote_count_vote",
+				"IFNULL( COUNT(Vote.review), 0 ) AS vote_count_review",
+				'IFNULL( AVG(Vote.item1), 0 ) AS vote_avg_item1',
+				'IFNULL( AVG(Vote.item2), 0 ) AS vote_avg_item2',
+				'IFNULL( AVG(Vote.item3), 0 ) AS vote_avg_item3',
+				'IFNULL( AVG(Vote.item4), 0 ) AS vote_avg_item4',
+				'IFNULL( AVG(Vote.item5), 0 ) AS vote_avg_item5',
+				'IFNULL( AVG(Vote.item6), 0 ) AS vote_avg_item6',
+				'IFNULL( AVG(Vote.item7), 0 ) AS vote_avg_item7',
+				'IFNULL( AVG(Vote.item8), 0 ) AS vote_avg_item8',
+				'IFNULL( AVG(Vote.item9), 0 ) AS vote_avg_item9',
+				'IFNULL( AVG(Vote.item10), 0 ) AS vote_avg_item10',
+				'IFNULL( AVG( (Vote.item1 + Vote.item2 + Vote.item3 + Vote.item4 + Vote.item5 + Vote.item6 + Vote.item7 + Vote.item8 + Vote.item9 + Vote.item10) /10 ), 0 ) AS vote_avg_all',
 			),
 			"group" => "Title.id",
 			"joins" => array(

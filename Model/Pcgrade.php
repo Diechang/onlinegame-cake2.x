@@ -1,5 +1,6 @@
 <?php
-class Pcgrade extends AppModel {
+class Pcgrade extends AppModel
+{
 	var $name = 'Pcgrade';
 	var $displayField = 'str';
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
