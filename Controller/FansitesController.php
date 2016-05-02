@@ -208,7 +208,8 @@ class FansitesController extends AppController
 			{
 				$this->Session->setFlash(Configure::read("Success.create"));
 				return $this->redirect(array('action' => 'index', "?" => array("title_id" => $this->request->data["Fansite"]["title_id"])));
-			} else
+			}
+			else
 			{
 				$this->Session->setFlash(Configure::read("Error.input"));
 				return $this->redirect(array('action' => 'index'));
@@ -229,7 +230,8 @@ class FansitesController extends AppController
 			{
 				$this->Session->setFlash(Configure::read("Success.modify"));
 				return $this->redirect(array('action' => 'index', "?" => array("title_id" => $this->request->data["Fansite"]["title_id"])));
-			} else
+			}
+			else
 			{
 				$this->Session->setFlash(Configure::read("Error.create"));
 			}
@@ -256,7 +258,8 @@ class FansitesController extends AppController
 				if ($this->Fansite->saveAll($this->request->data["Fansite"]))
 				{
 					$this->Session->setFlash(Configure::read("Success.lump"));
-				} else
+				}
+				else
 				{
 					$this->Session->setFlash(Configure::read("Error.lump"));
 					return $this->redirect($this->referer(array('action' => 'index')));

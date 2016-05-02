@@ -49,11 +49,11 @@ class SearchController extends AppController
 //			$idList = array_merge($idListByCategory, $idListByStyle);
 			$idList = array_intersect($idListByCategory, $idListByStyle);
 		}
-		else if(!empty($idListByCategory))
+		elseif(!empty($idListByCategory))
 		{
 			$idList = $idListByCategory;
 		}
-		else if(!empty($idListByStyle))
+		elseif(!empty($idListByStyle))
 		{
 			$idList = $idListByStyle;
 		}
