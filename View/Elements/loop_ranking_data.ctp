@@ -8,14 +8,14 @@
 			<table class="head">
 				<tr>
 		<?php if($rankNum <= 5):?>
-					<td class="icon"><?php echo $this->Html->image("design/icon_rank_no" . $rankNum . ".gif" , array("alt"=>"総合人気ランキング第" . $rankNum . "位"))?></td>
+					<td class="icon"><?php echo $this->Html->image("design/icon_rank_no" . $rankNum . ".gif", array("alt"=>"総合人気ランキング第" . $rankNum . "位"))?></td>
 		<?php else:?>
 					<td class="iconS">No.<?php echo $rankNum?></td>
 		<?php endif;?>
 
 					<td class="title">
 						<?php echo $this->Common->titleLinkText(
-							$this->Common->titleWithSpan($rank["Title"]["title_official"] , $rank["Title"]["title_read"]),
+							$this->Common->titleWithSpan($rank["Title"]["title_official"], $rank["Title"]["title_read"]),
 							$rank["Title"]["url_str"])?>
 					</td>
 				</tr>
@@ -25,10 +25,10 @@
 				<div class="thumb">
 					<?php echo $this->Common->titleLinkThumb(
 						$this->Common->thumbName($rank["Title"]["thumb_name"]),
-						$this->Common->titleWithCase($rank["Title"]["title_official"] , $rank["Title"]["title_read"]),
-						$rank["Title"]["url_str"] , ($rankNum == 1) ? 160 : (($rankNum <= 5) ? 100 : 80))?>
+						$this->Common->titleWithCase($rank["Title"]["title_official"], $rank["Title"]["title_read"]),
+						$rank["Title"]["url_str"], ($rankNum == 1) ? 160 : (($rankNum <= 5) ? 100 : 80))?>
 				</div>
-				<?php if($rankNum == 1){ echo $this->Common->starBlock(100 , $rank["Titlesummary"]["vote_avg_all"] , "総合評価：");}?>
+				<?php if($rankNum == 1){ echo $this->Common->starBlock(100, $rank["Titlesummary"]["vote_avg_all"], "総合評価：");}?>
 			</div>
 
 			<div class="data">
@@ -45,14 +45,14 @@
 					</tr>
 					<tr>
 						<th>レビュー数</th>
-						<td><?php echo $this->Common->titleLinkText($rank["Titlesummary"]["vote_count_review"] . "件" , $rank["Title"]["url_str"] , "review")?></td>
+						<td><?php echo $this->Common->titleLinkText($rank["Titlesummary"]["vote_count_review"] . "件", $rank["Title"]["url_str"], "review")?></td>
 						<th>評価投稿数</th>
-						<td><?php echo $this->Common->titleLinkText($rank["Titlesummary"]["vote_count_vote"] . "件" , $rank["Title"]["url_str"] , "rating")?></td>
+						<td><?php echo $this->Common->titleLinkText($rank["Titlesummary"]["vote_count_vote"] . "件", $rank["Title"]["url_str"], "rating")?></td>
 					</tr>
 				</table>
 		<?php if($rankNum <= 5):?>
 				<p class="icon_official">
-					<?php echo $this->Common->officialLinkText($rank["Title"]["title_official"] , $rank["Title"]["ad_use"] , $rank["Title"]["ad_text"] , $rank["Title"]["official_url"] , $rank["Title"]["service_id"])?>
+					<?php echo $this->Common->officialLinkText($rank["Title"]["title_official"], $rank["Title"]["ad_use"], $rank["Title"]["ad_text"], $rank["Title"]["official_url"], $rank["Title"]["service_id"])?>
 				</p>
 		<?php endif;?>
 			</div>

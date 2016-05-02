@@ -1,4 +1,4 @@
-<?php echo $this->Form->create("Pc" , array("action" => "add" , "inputDefaults" => array("div" => false , "label" => false , "cols" => null , "rows" => null)))?>
+<?php echo $this->Form->create("Pc", array("action" => "add", "inputDefaults" => array("div" => false, "label" => false, "cols" => null, "rows" => null)))?>
 	<h2>PC新規登録</h2>
 	<table class="edit pc table table-bordered">
 		<tr>
@@ -8,7 +8,7 @@
 		<tr>
 			<th nowrap="nowrap">公開</th>
 			<td>
-				<?php echo $this->Form->checkbox("public" , array("checked" => true))?> 公開する
+				<?php echo $this->Form->checkbox("public", array("checked" => true))?> 公開する
 			</td>
 		</tr>
 		<tr>
@@ -20,7 +20,7 @@
 <?php if(isset($withTitle)):?>
 			<td><?php echo $this->Form->input("title_id")?></td>
 <?php else:?>
-			<td><?php echo $this->Form->input("title_id" , array("empty" => true))?></td>
+			<td><?php echo $this->Form->input("title_id", array("empty" => true))?></td>
 <?php endif;?>
 		</tr>
 		<tr>
@@ -39,7 +39,7 @@
 			<th nowrap="nowrap">広告テキスト</th>
 			<td>
 				<div class="adText"></div>
-				<?php echo $this->Form->textarea("ad_src_text" , array("class" => "adText focusSelect"))?>
+				<?php echo $this->Form->textarea("ad_src_text", array("class" => "adText focusSelect"))?>
 				<div><input type="button" onclick="ET.getAdText()" value="GetAdText" class="btn btn-info" /></div>
 			</td>
 		</tr>
@@ -47,7 +47,7 @@
 			<th nowrap="nowrap">広告イメージ</th>
 			<td>
 				<div class="adImage"></div>
-				<?php echo $this->Form->textarea("ad_src_image" , array("class" => "adImage focusSelect"))?>
+				<?php echo $this->Form->textarea("ad_src_image", array("class" => "adImage focusSelect"))?>
 				<div><input type="button" onclick="ET.getAdImage()" value="GetAdText" class="btn btn-info" /></div>
 			</td>
 		</tr>
@@ -60,23 +60,23 @@
 		<tr>
 			<th nowrap="nowrap">URL</th>
 			<td>
-				<?php echo $this->Form->input("ad_part_url" , array("class" => "adPartUrl"))?>
+				<?php echo $this->Form->input("ad_part_url", array("class" => "adPartUrl"))?>
 			</td>
 		</tr>
 		<tr>
 			<th nowrap="nowrap">商品名</th>
-			<td><?php echo $this->Form->input("ad_part_text" , array("class" => "adPartText"))?></td>
+			<td><?php echo $this->Form->input("ad_part_text", array("class" => "adPartText"))?></td>
 		</tr>
 		<tr>
 			<th nowrap="nowrap">画像src</th>
 			<td>
-				<?php echo $this->Form->input("ad_part_img_src" , array("class" => "adPartImg"))?>
+				<?php echo $this->Form->input("ad_part_img_src", array("class" => "adPartImg"))?>
 			</td>
 		</tr>
 		<tr>
 			<th nowrap="nowrap">カウントsrc</th>
 			<td>
-				<?php echo $this->Form->input("ad_part_track_src" , array("class" => "adPartTrack"))?>
+				<?php echo $this->Form->input("ad_part_track_src", array("class" => "adPartTrack"))?>
 			</td>
 		</tr>
 
@@ -135,7 +135,7 @@
 		</tr>
 		<tr>
 			<th nowrap="nowrap">特典</th>
-			<td><?php echo $this->Form->input("present" , array("class" => "editor"))?></td>
+			<td><?php echo $this->Form->input("present", array("class" => "editor"))?></td>
 		</tr>
 
 		<!--<tr>
@@ -144,17 +144,17 @@
 		</tr>
 		<tr>
 			<th nowrap="nowrap">テキスト広告</th>
-			<td><?php echo $this->Form->input("ad_text" , array("class" => "focusSelect"))?></td>
+			<td><?php echo $this->Form->input("ad_text", array("class" => "focusSelect"))?></td>
 		</tr>
 		<tr>
 			<th nowrap="nowrap">画像広告</th>
-			<td><?php echo $this->Form->input("ad_image" , array("class" => "focusSelect"))?></td>
+			<td><?php echo $this->Form->input("ad_image", array("class" => "focusSelect"))?></td>
 		</tr>-->
 
 		<tr>
 			<th nowrap="nowrap">登録</th>
 			<td>
-				<?php echo $this->Form->submit("登録" , array("class" => "btn btn-primary"))?>
+				<?php echo $this->Form->submit("登録", array("class" => "btn btn-primary"))?>
 			</td>
 		</tr>
 	</table>

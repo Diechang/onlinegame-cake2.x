@@ -1,22 +1,22 @@
 <?php
 $this->Html->css(array('titles'), 'stylesheet', array('inline' => false));
 //Title vars
-$titleWithStr["Case"]	= $this->Common->titleWithCase($title["Title"]["title_official"] , $title["Title"]["title_read"]);
-$titleWithStr["Span"]	= $this->Common->titleWithSpan($title["Title"]["title_official"] , $title["Title"]["title_read"]);
-$titleWithStr["Abbr"]	= $this->Common->titleWithAbbr($title["Title"]["title_official"] , $title["Title"]["title_read"] , $title["Title"]["title_abbr"]);
-$titleWithStr["Sub"]	= $this->Common->titleWithSub($title["Title"]["title_official"] , $title["Title"]["title_read"] , $title["Title"]["title_sub"]);
+$titleWithStr["Case"]	= $this->Common->titleWithCase($title["Title"]["title_official"], $title["Title"]["title_read"]);
+$titleWithStr["Span"]	= $this->Common->titleWithSpan($title["Title"]["title_official"], $title["Title"]["title_read"]);
+$titleWithStr["Abbr"]	= $this->Common->titleWithAbbr($title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"]);
+$titleWithStr["Sub"]	= $this->Common->titleWithSub($title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_sub"]);
 //Set
-$this->set("title_for_layout" , $event["Event"]["name"] . " | " . $titleWithStr["Abbr"]);
-$this->set("keywords_for_layout" , $event["Event"]["name"] . "," . $this->TitlePage->metaKeywords($this->request->params["action"] , $title["Title"]["title_official"] , $title["Title"]["title_read"] , $title["Title"]["title_abbr"] , $title["Title"]["title_sub"]));
-$this->set("description_for_layout" , $event["Event"]["summary"]);
-$this->set("h1_for_layout" , $event["Event"]["name"] . " " . $titleWithStr["Case"]);
-$this->set("pankuz_for_layout" , array(
-	array("str" => $titleWithStr["Case"] , "url" => array("action" => "index" , "path" => $title["Title"]["url_str"] , "ext" => "html")),
-	array("str" => "イベント・キャンペーン" , "url" => array("action" => "events" , "path" => $title["Title"]["url_str"] , "ext" => "html")),
+$this->set("title_for_layout", $event["Event"]["name"] . " | " . $titleWithStr["Abbr"]);
+$this->set("keywords_for_layout", $event["Event"]["name"] . "," . $this->TitlePage->metaKeywords($this->request->params["action"], $title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"], $title["Title"]["title_sub"]));
+$this->set("description_for_layout", $event["Event"]["summary"]);
+$this->set("h1_for_layout", $event["Event"]["name"] . " " . $titleWithStr["Case"]);
+$this->set("pankuz_for_layout", array(
+	array("str" => $titleWithStr["Case"], "url" => array("action" => "index", "path" => $title["Title"]["url_str"], "ext" => "html")),
+	array("str" => "イベント・キャンペーン", "url" => array("action" => "events", "path" => $title["Title"]["url_str"], "ext" => "html")),
 	$event["Event"]["name"],
 ));
 //OGP
-$this->element("title_ogp" , array(
+$this->element("title_ogp", array(
 	"ogpTitle" => $this->viewVars["title_for_layout"],
 	"ogpUrl" => $this->request->here,
 	"ogpDescription" => mb_strimwidth($event["Event"]["summary"], 0, 120, " …", "UTF-8"),
@@ -34,7 +34,7 @@ $this->element("title_ogp" , array(
 	<table class="data">
 		<tr>
 			<th>開催期間</th>
-			<td><?php echo $this->Common->termFormat($event["Event"]["start"] , $event["Event"]["end"])?></td>
+			<td><?php echo $this->Common->termFormat($event["Event"]["start"], $event["Event"]["end"])?></td>
 		</tr>
 	</table>
 <?php if(empty($event["Event"]["details"])):?>
@@ -66,23 +66,23 @@ $this->element("title_ogp" , array(
 		<p class="officialLink">
 			<?php echo $this->Common->officialLinkText(
 			$title["Title"]["title_official"],
-			$title["Title"]["ad_use"] , $title["Title"]["ad_text"] , $title["Title"]["official_url"] , $title["Title"]["service_id"])?>
+			$title["Title"]["ad_use"], $title["Title"]["ad_text"], $title["Title"]["official_url"], $title["Title"]["service_id"])?>
 		</p>
 	</div>
 </div>
 <!--Events others-->
 <div class="content events">
-	<h2><?php echo $this->Html->image("design/titles_events_title_list.gif" , array("alt" => "イベント一覧"))?></h2>
+	<h2><?php echo $this->Html->image("design/titles_events_title_list.gif", array("alt" => "イベント一覧"))?></h2>
 	<p class="description"><?php echo $title["Title"]["title_official"]?>のイベント・キャンペーン情報一覧です。</p>
 	<ul class="eventsList">
 	<?php foreach($events as $event):?>
 		<li>
-			<h3><?php echo $this->Html->link($event["Event"]["name"] , array("controller" => "titles" , "action" => "event" , "path" => $title["Title"]["url_str"] , "eventid" => $event["Event"]["id"] , "ext" => "html"))?></h3>
+			<h3><?php echo $this->Html->link($event["Event"]["name"], array("controller" => "titles", "action" => "event", "path" => $title["Title"]["url_str"], "eventid" => $event["Event"]["id"], "ext" => "html"))?></h3>
 			<p class="description"><?php echo $event["Event"]["summary"]?></p>
 			<table class="data">
 				<tr>
 					<th>開催期間</th>
-					<td><?php echo $this->Common->termFormat($event["Event"]["start"] , $event["Event"]["end"])?></td>
+					<td><?php echo $this->Common->termFormat($event["Event"]["start"], $event["Event"]["end"])?></td>
 				</tr>
 			</table>
 		</li>
@@ -91,15 +91,15 @@ $this->element("title_ogp" , array(
 	<p class="officialLink">
 		<?php echo $this->Common->officialLinkText(
 		$title["Title"]["title_official"],
-		$title["Title"]["ad_use"] , $title["Title"]["ad_text"] , $title["Title"]["official_url"] , $title["Title"]["service_id"])?>
+		$title["Title"]["ad_use"], $title["Title"]["ad_text"], $title["Title"]["official_url"], $title["Title"]["service_id"])?>
 	</p>
 </div>
 
 
-<?php echo $this->element("title_details" , array("titleWithStr" => $titleWithStr))?>
+<?php echo $this->element("title_details", array("titleWithStr" => $titleWithStr))?>
 
 <?php //echo $this->element("title_share")?>
 
-<?php echo $this->element("title_relations" , array($relations))?>
+<?php echo $this->element("title_relations", array($relations))?>
 
 <?php echo $this->Common->copyright($title["Title"]["copyright"])?>

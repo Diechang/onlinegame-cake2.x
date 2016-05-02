@@ -2,10 +2,10 @@
 <div id="footer">
 	<!-- Footer Nav -->
 	<ul id="footerNav">
-		<li><?php echo $this->Html->link("当サイトについて" , array("controller" => "pages" , "action" => "about" , "ext" => "html"))?></li>
-		<li><?php echo $this->Html->link("リンク集" , array("controller" => "links" , "path" => "index" , "ext" => "html"))?></li>
-		<li><?php echo $this->Html->link("サイトマップ" , array("controller" => "pages" , "action" => "sitemap" , "ext" => "html"))?></li>
-		<li><?php echo $this->Html->link("お問合せ" , array("controller" => "pages" , "action" => "contact" , "ext" => "html"))?></li>
+		<li><?php echo $this->Html->link("当サイトについて", array("controller" => "pages", "action" => "about", "ext" => "html"))?></li>
+		<li><?php echo $this->Html->link("リンク集", array("controller" => "links", "path" => "index", "ext" => "html"))?></li>
+		<li><?php echo $this->Html->link("サイトマップ", array("controller" => "pages", "action" => "sitemap", "ext" => "html"))?></li>
+		<li><?php echo $this->Html->link("お問合せ", array("controller" => "pages", "action" => "contact", "ext" => "html"))?></li>
 <!--		<li><a href="http://mmorpg.naviewn.jp/" title="ＭＭＯＲＰＧサーチエンジン" target="_blank"><img src="http://mmorpg.naviewn.jp/banner/10446" border="0" alt="ＭＭＯＲＰＧサーチエンジン" /></a></li>-->
 	</ul>
 	<!-- Footer Rank -->

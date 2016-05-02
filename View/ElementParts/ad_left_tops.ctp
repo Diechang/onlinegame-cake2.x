@@ -3,11 +3,11 @@
 ?>
 <!-- PR -->
 <div class="leftBox leftAds">
-	<h2><?php echo $this->Html->image("design/leftbox_ads_title.gif" , array("alt" => "PR - sponsored link"))?></h2>
+	<h2><?php echo $this->Html->image("design/leftbox_ads_title.gif", array("alt" => "PR - sponsored link"))?></h2>
 	<div class="body">
-		<h3><?php echo $this->Common->titleLinkText($titleLinkStr , $adLeftTops["Title"]["url_str"])?></h3>
+		<h3><?php echo $this->Common->titleLinkText($titleLinkStr, $adLeftTops["Title"]["url_str"])?></h3>
 		<div class="banner">
-			<?php echo $this->Common->adLinkImage($adLeftTops["AdLeftTop"] , "adlt")?>
+			<?php echo $this->Common->adLinkImage($adLeftTops["AdLeftTop"], "adlt")?>
 		</div>
 		<p><?php echo nl2br($adLeftTops["AdLeftTop"]["comment"])?></p>
 	</div>

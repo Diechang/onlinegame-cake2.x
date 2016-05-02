@@ -1,23 +1,23 @@
 <?php
 //レビュー
-//$this->Html->css(array('titles' , 'review'), 'stylesheet', array('inline' => false));
+//$this->Html->css(array('titles', 'review'), 'stylesheet', array('inline' => false));
 //Set - Layout vars
-$this->set("title_for_layout" , $vote["Title"]["title_official"] . "レビュー・評価投稿完了");
-$this->set("keywords_for_layout" , "");
-$this->set("description_for_layout" , "");
-$this->set("h1_for_layout" , $vote["Title"]["title_official"] . "レビュー・評価投稿完了");
-$this->set("pankuz_for_layout" , array(array("str" => $vote["Title"]["title_official"] , "url" => array("controller" => "titles" , "action" => "index" , "path" => $vote["Title"]["url_str"] , "ext" => "html")) , "投稿完了"));
+$this->set("title_for_layout", $vote["Title"]["title_official"] . "レビュー・評価投稿完了");
+$this->set("keywords_for_layout", "");
+$this->set("description_for_layout", "");
+$this->set("h1_for_layout", $vote["Title"]["title_official"] . "レビュー・評価投稿完了");
+$this->set("pankuz_for_layout", array(array("str" => $vote["Title"]["title_official"], "url" => array("controller" => "titles", "action" => "index", "path" => $vote["Title"]["url_str"], "ext" => "html")), "投稿完了"));
 ?>
 <?php echo $this->Session->flash()?>
 <div class="content">
 	<p><?php echo $vote["Title"]["title_official"]?>への投稿ありがとうございました！</p>
 	<p class="wBold">
 		<?php echo $this->Html->link("≪" . $vote["Title"]["title_official"] . "のトップページに戻る",
-			array("controller" => "titles" , "action" => "index" , "path" => $vote["Title"]["url_str"] , "ext" => "html"))?>
+			array("controller" => "titles", "action" => "index", "path" => $vote["Title"]["url_str"], "ext" => "html"))?>
 	</p>
-	<p><?php echo $this->Html->link("投稿したページを見る" , array("controller" => "titles" , "action" => "single" , "path" => $vote["Title"]["url_str"] , "voteid" => $vote["Vote"]["id"] , "ext" => "html"))?></p>
+	<p><?php echo $this->Html->link("投稿したページを見る", array("controller" => "titles", "action" => "single", "path" => $vote["Title"]["url_str"], "voteid" => $vote["Vote"]["id"], "ext" => "html"))?></p>
 	<h2>投稿を共有しませんか？</h2>
-	<?php $url = "http://onlinegame.dz-life.net" . $this->Html->url(array("controller" => "titles" , "action" => "single" , "path" => $vote["Title"]["url_str"] , "voteid" => $vote["Vote"]["id"] , "ext" => "html"))?>
+	<?php $url = "http://onlinegame.dz-life.net" . $this->Html->url(array("controller" => "titles", "action" => "single", "path" => $vote["Title"]["url_str"], "voteid" => $vote["Vote"]["id"], "ext" => "html"))?>
 	<div class="singleShare">
 		<fb:comments href="<?php echo $url?>" num_posts="2" width="510"></fb:comments>
 		<table>
@@ -41,7 +41,7 @@ $this->set("pankuz_for_layout" , array(array("str" => $vote["Title"]["title_offi
 	<?php foreach($noneTitles as $none):?>
 		<li>
 			<?php echo $this->Common->titleLinkText(
-				$this->Common->titleWithSpan($none["Title"]["title_official"] , $none["Title"]["title_read"]),
+				$this->Common->titleWithSpan($none["Title"]["title_official"], $none["Title"]["title_read"]),
 				$none["Title"]["url_str"])?>
 		</li>
 	<?php endforeach;?>

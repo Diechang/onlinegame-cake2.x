@@ -1,1 +1,1 @@
-<?php echo $this->element("sys_ads_form_edit" , array("model" => "AdRightTop" , "str" => "右サイドバー上バナー"))?>
+<?php echo $this->element("sys_ads_form_edit", array("model" => "AdRightTop", "str" => "右サイドバー上バナー"))?>

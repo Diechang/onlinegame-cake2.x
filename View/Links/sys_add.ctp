@@ -1,4 +1,4 @@
-<?php echo $this->Form->create("Link" , array("action" => "add" , "inputDefaults" => array("div" => false , "label" => false , "legend" => false)))?>
+<?php echo $this->Form->create("Link", array("action" => "add", "inputDefaults" => array("div" => false, "label" => false, "legend" => false)))?>
 	<h2>相互リンク新規登録</h2>
 	<table class="edit table table-bordered">
 		<tr>
@@ -8,7 +8,7 @@
 		<tr>
 			<th nowrap="nowrap">公開</th>
 			<td>
-				<?php echo $this->Form->input("public" , array("checked" => true))?> 公開する
+				<?php echo $this->Form->input("public", array("checked" => true))?> 公開する
 			</td>
 		</tr>
 		<tr>
@@ -62,7 +62,7 @@
 		<tr>
 			<th nowrap="nowrap">登録</th>
 			<td>
-				<?php echo $this->Form->submit("登録" , array("class" => "btn btn-primary"))?>
+				<?php echo $this->Form->submit("登録", array("class" => "btn btn-primary"))?>
 			</td>
 		</tr>
 	</table>

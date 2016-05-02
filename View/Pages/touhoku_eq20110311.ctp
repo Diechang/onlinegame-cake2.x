@@ -1,11 +1,11 @@
 <?php
 $this->Html->css(array('pages'), 'stylesheet', array('inline' => false));
 //
-$this->set("title_for_layout" , "【特設】東北地方太平洋沖地震について");
-$this->set("keywords_for_layout" , "");
-$this->set("description_for_layout" , "【特設】東北地方太平洋沖地震について");
-$this->set("h1_for_layout" , "【特設】東北地方太平洋沖地震について");
-$this->set("pankuz_for_layout" , "【特設】東北地方太平洋沖地震について");
+$this->set("title_for_layout", "【特設】東北地方太平洋沖地震について");
+$this->set("keywords_for_layout", "");
+$this->set("description_for_layout", "【特設】東北地方太平洋沖地震について");
+$this->set("h1_for_layout", "【特設】東北地方太平洋沖地震について");
+$this->set("pankuz_for_layout", "【特設】東北地方太平洋沖地震について");
 ?>
 <div class="content pages">
 	<h2>東北地方太平洋沖地震について募金活動の呼びかけ</h2>

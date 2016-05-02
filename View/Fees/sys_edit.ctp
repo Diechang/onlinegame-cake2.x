@@ -1,1 +1,1 @@
-<?php echo $this->element("sys_master_form_edit" , array("model" => "Fee" , "str" => "料金設定"))?>
+<?php echo $this->element("sys_master_form_edit", array("model" => "Fee", "str" => "料金設定"))?>

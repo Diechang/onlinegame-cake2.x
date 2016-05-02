@@ -1,4 +1,4 @@
-<?php echo $this->Form->create("Pcshop" , array("action" => "add" , "inputDefaults" => array("div" => false , "label" => false , "cols" => null , "rows" => null)))?>
+<?php echo $this->Form->create("Pcshop", array("action" => "add", "inputDefaults" => array("div" => false, "label" => false, "cols" => null, "rows" => null)))?>
 	<h2>ショップ新規登録</h2>
 	<table class="edit spec table table-bordered">
 		<tr>
@@ -8,7 +8,7 @@
 		<tr>
 			<th nowrap="nowrap">公開</th>
 			<td>
-				<?php echo $this->Form->checkbox("public" , array("checked" => true))?> 公開する
+				<?php echo $this->Form->checkbox("public", array("checked" => true))?> 公開する
 			</td>
 		</tr>
 		<tr>
@@ -29,23 +29,23 @@
 		</tr>
 		<tr>
 			<th nowrap="nowrap">テキスト広告</th>
-			<td><?php echo $this->Form->input("ad_text" , array("class" => "adField focusSelect" , "rows" => 4))?></td>
+			<td><?php echo $this->Form->input("ad_text", array("class" => "adField focusSelect", "rows" => 4))?></td>
 		</tr>
 		<tr>
 			<th nowrap="nowrap">登録</th>
 			<td>
-				<?php echo $this->Form->submit("登録" , array("class" => "btn btn-primary"))?>
+				<?php echo $this->Form->submit("登録", array("class" => "btn btn-primary"))?>
 			</td>
 		</tr>
 	</table>
 <?php echo $this->Form->end()?>
 
-<?php echo $this->Form->create("Pcshop" , array("action" => "lump"))?>
+<?php echo $this->Form->create("Pcshop", array("action" => "lump"))?>
 	<h2>ショップ一覧</h2>
 	<p id="results"></p>
 	<div class="controll">
 		<input type="submit" value="一括修正" class="btn" />
 	</div>
-<?php echo $this->element("sys_list_pcshops" , array("pcshops" => $pcshops))?>
+<?php echo $this->element("sys_list_pcshops", array("pcshops" => $pcshops))?>
 	<div class="controll"><input type="submit" value="一括修正" class="btn" /></div>
 <?php echo $this->Form->end()?>

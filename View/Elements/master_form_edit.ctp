@@ -20,7 +20,7 @@
 		<tr>
 			<th nowrap="nowrap">ソート番号</th>
 			<td>
-				<?php echo $this->Form->text("sort" , array("value" => count($items)+1 , "maxLength" => 4 , "size" => 4))?>
+				<?php echo $this->Form->text("sort", array("value" => count($items)+1, "maxLength" => 4, "size" => 4))?>
 			</td>
 		</tr>
 		<tr>

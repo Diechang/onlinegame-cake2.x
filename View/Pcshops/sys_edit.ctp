@@ -1,4 +1,4 @@
-<?php echo $this->Form->create("Pcshop" , array("action" => "edit" , "inputDefaults" => array("div" => false , "label" => false , "cols" => null , "rows" => null)))?>
+<?php echo $this->Form->create("Pcshop", array("action" => "edit", "inputDefaults" => array("div" => false, "label" => false, "cols" => null, "rows" => null)))?>
 	<h2>ショップ編集</h2>
 	<table class="edit spec table table-bordered">
 		<tr>
@@ -31,13 +31,13 @@
 			<th nowrap="nowrap">テキスト広告</th>
 			<td>
 				<div><?php echo $this->request->data["Pcshop"]["ad_text"]?></div>
-				<?php echo $this->Form->input("ad_text" , array("class" => "adField focusSelect" , "rows" => 4))?>
+				<?php echo $this->Form->input("ad_text", array("class" => "adField focusSelect", "rows" => 4))?>
 			</td>
 		</tr>
 		<tr>
 			<th nowrap="nowrap">登録</th>
 			<td>
-				<?php echo $this->Form->submit("登録" , array("class" => "btn btn-primary"))?>
+				<?php echo $this->Form->submit("登録", array("class" => "btn btn-primary"))?>
 			</td>
 		</tr>
 	</table>

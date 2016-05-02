@@ -2,11 +2,11 @@
 //スタイル
 $this->Html->css(array('search'), 'stylesheet', array('inline' => false));
 //
-$this->set("title_for_layout" , "オンラインゲーム検索結果：" . $this->Paginator->current() . "ページ目");
-$this->set("keywords_for_layout" , "");
-$this->set("description_for_layout" , "");
-$this->set("h1_for_layout" , "オンラインゲーム検索結果：" . $this->Paginator->current() . "ページ目");
-$this->set("pankuz_for_layout" , array(array("str" => "オンラインゲーム検索" , "url" => array("controller" => "search" , "action" => "index")) , "検索結果"));
+$this->set("title_for_layout", "オンラインゲーム検索結果：" . $this->Paginator->current() . "ページ目");
+$this->set("keywords_for_layout", "");
+$this->set("description_for_layout", "");
+$this->set("h1_for_layout", "オンラインゲーム検索結果：" . $this->Paginator->current() . "ページ目");
+$this->set("pankuz_for_layout", array(array("str" => "オンラインゲーム検索", "url" => array("controller" => "search", "action" => "index")), "検索結果"));
 ?>
 
 <!-- Search result -->
@@ -28,7 +28,7 @@ $this->set("pankuz_for_layout" , array(array("str" => "オンラインゲーム�
 		<tr>
 			<th colspan="7">
 				<?php echo $this->Common->titleLinkText(
-					$this->Common->titleWithSpan($title["Title"]["title_official"] , $title["Title"]["title_read"]),
+					$this->Common->titleWithSpan($title["Title"]["title_official"], $title["Title"]["title_read"]),
 					$title["Title"]["url_str"])?>
 				</th>
 		</tr>
@@ -36,20 +36,20 @@ $this->set("pankuz_for_layout" , array(array("str" => "オンラインゲーム�
 			<td rowspan="2" class="thumb">
 				<?php echo $this->Common->titleLinkThumb(
 					$this->Common->thumbName($title["Title"]["thumb_name"]),
-					$this->Common->titleWithCase($title["Title"]["title_official"] , $title["Title"]["title_read"]),
-					$title["Title"]["url_str"] , 120)?>
+					$this->Common->titleWithCase($title["Title"]["title_official"], $title["Title"]["title_read"]),
+					$title["Title"]["url_str"], 120)?>
 			</td>
 			<th class="rating">評価</th>
-			<td class="<?php echo $this->Common->addClassZero($title["Titlesummary"]["vote_avg_all"] , "rating")?>">
-				<?php echo $this->Common->titleLinkText($this->Common->pointFormat($title["Titlesummary"]["vote_avg_all"] , "--") . "点" , $title["Title"]["url_str"] , "rating")?>
+			<td class="<?php echo $this->Common->addClassZero($title["Titlesummary"]["vote_avg_all"], "rating")?>">
+				<?php echo $this->Common->titleLinkText($this->Common->pointFormat($title["Titlesummary"]["vote_avg_all"], "--") . "点", $title["Title"]["url_str"], "rating")?>
 			</td>
 			<th class="review">レビュー</th>
-			<td class="<?php echo $this->Common->addClassZero($title["Titlesummary"]["vote_count_review"] , "review")?>">
-				<?php echo $this->Common->titleLinkText($title["Titlesummary"]["vote_count_review"] . "件" , $title["Title"]["url_str"] , "review")?>
+			<td class="<?php echo $this->Common->addClassZero($title["Titlesummary"]["vote_count_review"], "review")?>">
+				<?php echo $this->Common->titleLinkText($title["Titlesummary"]["vote_count_review"] . "件", $title["Title"]["url_str"], "review")?>
 			</td>
 			<th class="link">リンク</th>
-			<td class="<?php echo $this->Common->addClassZero($title["Titlesummary"]["fansite_count"] , "link")?>">
-				<?php echo $this->Common->titleLinkText($title["Titlesummary"]["fansite_count"] . "件" , $title["Title"]["url_str"] , "link")?>
+			<td class="<?php echo $this->Common->addClassZero($title["Titlesummary"]["fansite_count"], "link")?>">
+				<?php echo $this->Common->titleLinkText($title["Titlesummary"]["fansite_count"] . "件", $title["Title"]["url_str"], "link")?>
 			</td>
 		</tr>
 		<tr>

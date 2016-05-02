@@ -1,4 +1,4 @@
-<?php echo $this->Form->create("Link" , array("action" => "lump"))?>
+<?php echo $this->Form->create("Link", array("action" => "lump"))?>
 	<h2>相互リンク一覧</h2>
 	<p id="results"></p>
 	<div class="controll">
@@ -11,6 +11,6 @@
 	<?php endforeach;?>
 		</select>
 	</div>
-	<?php echo $this->element("sys_list_links" , array("links" => $links))?>
+	<?php echo $this->element("sys_list_links", array("links" => $links))?>
 	<div class="controll"><input type="submit" value="一括修正" class="btn" /></div>
 <?php echo $this->Form->end()?>

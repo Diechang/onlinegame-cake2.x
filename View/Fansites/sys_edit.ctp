@@ -1,4 +1,4 @@
-<?php echo $this->Form->create("Fansite" , array("action" => "edit" , "inputDefaults" => array("div" => false , "label" => false , "legend" => false)))?>
+<?php echo $this->Form->create("Fansite", array("action" => "edit", "inputDefaults" => array("div" => false, "label" => false, "legend" => false)))?>
 	<h2>ファンサイト編集</h2>
 	<table class="edit table table-bordered">
 		<tr>
@@ -8,7 +8,7 @@
 		<tr>
 			<th nowrap="nowrap">公開</th>
 			<td>
-				<?php echo $this->Form->checkbox("public" , array("checked" => (!empty($this->request->data["Fansite"]["public"]))))?> 公開する
+				<?php echo $this->Form->checkbox("public", array("checked" => (!empty($this->request->data["Fansite"]["public"]))))?> 公開する
 			</td>
 		</tr>
 		<tr>
@@ -18,7 +18,7 @@
 		<tr>
 			<th nowrap="nowrap">タイプ</th>
 			<td>
-				<?php echo $this->Form->input("type" , array(
+				<?php echo $this->Form->input("type", array(
 					"options" => array(
 						"1" => "攻略",
 						"2" => "ファン",
@@ -52,7 +52,7 @@
 		<tr>
 			<th nowrap="nowrap">登録</th>
 			<td>
-				<?php echo $this->Form->submit("登録" , array("class" => "btn btn-primary"))?>
+				<?php echo $this->Form->submit("登録", array("class" => "btn btn-primary"))?>
 			</td>
 		</tr>
 	</table>

@@ -20,7 +20,7 @@
 		<tr>
 			<th nowrap="nowrap">戻る</th>
 			<td>
-				<?php echo $this->Html->link("戻る" , array("action" => "index") , array("class" => "btn btn-info"))?>
+				<?php echo $this->Html->link("戻る", array("action" => "index"), array("class" => "btn btn-info"))?>
 			</td>
 		</tr>
 	</table>

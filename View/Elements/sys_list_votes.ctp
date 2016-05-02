@@ -28,16 +28,16 @@
 	<tbody>
 <?php foreach($votes as $key => $v):?>
 		<tr class="title_id_<?php echo $v["Vote"]["title_id"]?>">
-			<td class="tCenter" nowrap="nowrap"><?php echo $this->Html->link("編集" , array("controller" => "votes" , "action" => "edit" , $v["Vote"]["id"]) , array("class" => "btn"))?></td>
+			<td class="tCenter" nowrap="nowrap"><?php echo $this->Html->link("編集", array("controller" => "votes", "action" => "edit", $v["Vote"]["id"]), array("class" => "btn"))?></td>
 			<td class="tCenter">
-				<?php echo $this->Form->checkbox("Vote." . $key . ".public" , array("checked" => (!empty($v["Vote"]["public"]))))?>
-				<?php echo $this->Form->hidden("Vote." . $key . ".id" , array("value" => $v["Vote"]["id"]))?>
-				<?php echo $this->Form->hidden("Vote." . $key . ".title_id" , array("value" => $v["Vote"]["title_id"]))?>
+				<?php echo $this->Form->checkbox("Vote." . $key . ".public", array("checked" => (!empty($v["Vote"]["public"]))))?>
+				<?php echo $this->Form->hidden("Vote." . $key . ".id", array("value" => $v["Vote"]["id"]))?>
+				<?php echo $this->Form->hidden("Vote." . $key . ".title_id", array("value" => $v["Vote"]["title_id"]))?>
 			</td>
 			<td class="tRight"><?php echo $v["Vote"]["id"]?></td>
 			<td class="title" nowrap="nowrap">
 				<?php echo $v["Vote"]["title_id"]?>
-				<?php echo $this->Html->link($v["Title"]["title_official"] . " (" . $v["Title"]["Titlesummary"]["vote_count_vote"] . ")" , array("controller" => "votes" , "action" => "index" , "?" => array("title_id" => $v["Vote"]["title_id"])))?>
+				<?php echo $this->Html->link($v["Title"]["title_official"] . " (" . $v["Title"]["Titlesummary"]["vote_count_vote"] . ")", array("controller" => "votes", "action" => "index", "?" => array("title_id" => $v["Vote"]["title_id"])))?>
 			</td>
 			<td class="tRight"><?php echo $v["Vote"]["item1"]?></td>
 			<td class="tRight"><?php echo $v["Vote"]["item2"]?></td>
@@ -56,7 +56,7 @@
 			<td><?php echo $v["Vote"]["cookey"]?></td>
 			<td><?php echo $v["Vote"]["modified"]?></td>
 			<td><?php echo $v["Vote"]["created"]?></td>
-			<td class="tCenter" nowrap="nowrap"><?php echo $this->Html->link("<i class='icon-remove icon-white'></i> 削除" , array("controller" => "votes" , "action" => "delete" , $v["Vote"]["id"]) , array("class" => "btn btn-danger btn-small" , "escape" => false) , $v["Vote"]["id"] . " を削除しますか?")?></td>
+			<td class="tCenter" nowrap="nowrap"><?php echo $this->Html->link("<i class='icon-remove icon-white'></i> 削除", array("controller" => "votes", "action" => "delete", $v["Vote"]["id"]), array("class" => "btn btn-danger btn-small", "escape" => false), $v["Vote"]["id"] . " を削除しますか?")?></td>
 		</tr>
 <?php endforeach;?>
 	</tbody>

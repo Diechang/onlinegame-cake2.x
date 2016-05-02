@@ -1,4 +1,4 @@
-<?php echo $this->Form->create("Vote" , array("action" => "edit"))?>
+<?php echo $this->Form->create("Vote", array("action" => "edit"))?>
 	<h2>投稿編集</h2>
 	<table class="edit table table-bordered">
 		<tr>
@@ -10,14 +10,14 @@
 		<tr>
 			<th nowrap="nowrap">公開</th>
 			<td>
-				<?php echo $this->Form->checkbox("public" , array("checked" => (!empty($this->request->data["Vote"]["public"]))))?> 公開する
+				<?php echo $this->Form->checkbox("public", array("checked" => (!empty($this->request->data["Vote"]["public"]))))?> 公開する
 			</td>
 		</tr>
 <?php foreach($voteItems as $key => $voteItem):?>
 		<tr>
 			<th><?php echo $voteItem["label"]?></th>
 			<td>
-				<?php echo $this->Form->text($key , array("class" => "input-mini"))?>
+				<?php echo $this->Form->text($key, array("class" => "input-mini"))?>
 			</td>
 		</tr>
 <?php endforeach;?>
@@ -36,7 +36,7 @@
 		<tr>
 			<th>レビュー</th>
 			<td>
-				<?php echo $this->Form->textarea("review" , array("rows" => 10))?>
+				<?php echo $this->Form->textarea("review", array("rows" => 10))?>
 			</td>
 		</tr>
 		<tr>
@@ -60,7 +60,7 @@
 		<tr>
 			<th nowrap="nowrap">登録</th>
 			<td>
-				<?php echo $this->Form->submit("登録" , array("class" => "btn btn-primary"))?>
+				<?php echo $this->Form->submit("登録", array("class" => "btn btn-primary"))?>
 			</td>
 		</tr>
 	</table>

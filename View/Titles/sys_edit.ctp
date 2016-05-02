@@ -1,4 +1,4 @@
-<?php echo $this->Form->create("Title" , array("action" => "edit" , "type" => "file" , "inputDefaults" => array("div" => false , "label" => false , "monthNames" => false , "dateFormat" => "YMD" , "minYear" => 1990 , "maxYear" => date("Y") + 2)))?>
+<?php echo $this->Form->create("Title", array("action" => "edit", "type" => "file", "inputDefaults" => array("div" => false, "label" => false, "monthNames" => false, "dateFormat" => "YMD", "minYear" => 1990, "maxYear" => date("Y") + 2)))?>
 	<table class="edit table table-bordered">
 		<tr>
 			<th nowrap="nowrap">ID</th>
@@ -7,7 +7,7 @@
 		<tr>
 			<th nowrap="nowrap">公開</th>
 			<td>
-				<?php echo $this->Form->checkbox("public" , array("checked" => (!empty($this->request->data["Title"]["public"]))))?> 公開する
+				<?php echo $this->Form->checkbox("public", array("checked" => (!empty($this->request->data["Title"]["public"]))))?> 公開する
 			</td>
 		</tr>
 		<tr>
@@ -57,7 +57,7 @@
 		<tr>
 			<th nowrap="nowrap">概要</th>
 			<td>
-				<?php echo $this->Form->textarea("description" , array("class" => "editor"))?>
+				<?php echo $this->Form->textarea("description", array("class" => "editor"))?>
 			</td>
 		</tr>
 		<tr>
@@ -69,19 +69,19 @@
 		<tr>
 			<th nowrap="nowrap">正式サービス開始日</th>
 			<td>
-				<?php echo $this->Form->input("service_start" , array("empty" => true , "class" => "input-mini"))?>
+				<?php echo $this->Form->input("service_start", array("empty" => true, "class" => "input-mini"))?>
 			</td>
 		</tr>
 		<tr>
 			<th nowrap="nowrap">テスト開始日</th>
 			<td>
-				<?php echo $this->Form->input("test_start" , array("empty" => true , "class" => "input-mini"))?>
+				<?php echo $this->Form->input("test_start", array("empty" => true, "class" => "input-mini"))?>
 			</td>
 		</tr>
 		<tr>
 			<th nowrap="nowrap">テスト終了日</th>
 			<td>
-				<?php echo $this->Form->input("test_end" , array("empty" => true , "class" => "input-mini"))?>
+				<?php echo $this->Form->input("test_end", array("empty" => true, "class" => "input-mini"))?>
 			</td>
 		</tr>
 		<tr>
@@ -93,7 +93,7 @@
 		<tr>
 			<th nowrap="nowrap">カテゴリ</th>
 			<td>
-				<?php echo $this->Form->input("Category" , array(
+				<?php echo $this->Form->input("Category", array(
 					"multiple" => "checkbox",
 				))?>
 			</td>
@@ -101,7 +101,7 @@
 		<tr>
 			<th nowrap="nowrap">スタイル</th>
 			<td>
-				<?php echo $this->Form->input("Style" , array(
+				<?php echo $this->Form->input("Style", array(
 					"multiple" => "checkbox",
 				))?>
 			</td>
@@ -109,7 +109,7 @@
 		<tr>
 			<th nowrap="nowrap">ポータル</th>
 			<td>
-				<?php echo $this->Form->input("Portal" , array(
+				<?php echo $this->Form->input("Portal", array(
 					"multiple" => "checkbox",
 				))?>
 			</td>
@@ -136,28 +136,28 @@
 			<th nowrap="nowrap">広告テキスト</th>
 			<td>
 				<div><?php echo $this->request->data["Title"]["ad_text"]?></div>
-				<?php echo $this->Form->textarea("ad_text" , array("class" => "focusSelect"))?>
+				<?php echo $this->Form->textarea("ad_text", array("class" => "focusSelect"))?>
 			</td>
 		</tr>
 		<tr>
 			<th nowrap="nowrap">広告バナーS120</th>
 			<td>
 				<div><?php echo $this->request->data["Title"]["ad_banner_s"]?></div>
-				<?php echo $this->Form->textarea("ad_banner_s" , array("class" => "focusSelect"))?>
+				<?php echo $this->Form->textarea("ad_banner_s", array("class" => "focusSelect"))?>
 			</td>
 		</tr>
 		<tr>
 			<th nowrap="nowrap">広告バナーM234</th>
 			<td>
 				<div><?php echo $this->request->data["Title"]["ad_banner_m"]?></div>
-				<?php echo $this->Form->textarea("ad_banner_m" , array("class" => "focusSelect"))?>
+				<?php echo $this->Form->textarea("ad_banner_m", array("class" => "focusSelect"))?>
 			</td>
 		</tr>
 		<tr>
 			<th nowrap="nowrap">広告バナーL468</th>
 			<td>
 				<div><?php echo $this->request->data["Title"]["ad_banner_l"]?></div>
-				<?php echo $this->Form->textarea("ad_banner_l" , array("class" => "focusSelect"))?>
+				<?php echo $this->Form->textarea("ad_banner_l", array("class" => "focusSelect"))?>
 			</td>
 		</tr>
 		<tr>
@@ -190,7 +190,7 @@
 			<th nowrap="nowrap">登録</th>
 			<td>
 				<?php echo $this->Form->hidden("id")?>
-				<?php echo $this->Form->submit("登録" , array("class" => "btn btn-primary"))?>
+				<?php echo $this->Form->submit("登録", array("class" => "btn btn-primary"))?>
 			</td>
 		</tr>
 	</table>

@@ -1,11 +1,11 @@
 <?php
 $this->Html->css(array('pages'), 'stylesheet', array('inline' => false));
 //
-$this->set("title_for_layout" , "当サイトについて");
-$this->set("keywords_for_layout" , "オンラインゲームライフ");
-$this->set("description_for_layout" , "オンラインゲームライフについてのページです。");
-$this->set("h1_for_layout" , "当サイトについて");
-$this->set("pankuz_for_layout" , "当サイトについて");
+$this->set("title_for_layout", "当サイトについて");
+$this->set("keywords_for_layout", "オンラインゲームライフ");
+$this->set("description_for_layout", "オンラインゲームライフについてのページです。");
+$this->set("h1_for_layout", "当サイトについて");
+$this->set("pankuz_for_layout", "当サイトについて");
 ?>
 <div class="content pages">
 	<h2>当サイトについて</h2>
@@ -65,7 +65,7 @@ $this->set("pankuz_for_layout" , "当サイトについて");
 	<h3>プレスリリース配信受け付けます。</h3>
 	<p>当サイトでは、ゲームメーカー様、運営会社様からのプレスリリースを受け付けています。<br />
 	当サイトへ御社のプレスリリースを掲載させていただける場合は、<br />
-	お手数ですが<?php echo $this->Html->link("こちらのお問い合わせフォーム" , array("controller" => "pages" , "action" => "contact" , "ext" => "html"))?>よりご連絡をお願い致します。<br />
+	お手数ですが<?php echo $this->Html->link("こちらのお問い合わせフォーム", array("controller" => "pages", "action" => "contact", "ext" => "html"))?>よりご連絡をお願い致します。<br />
 	追ってプレスリリース用のメールアドレスをお知らせいたしますので、そちらのメールアドレスへリリース文を送付ください。</p>
 	<p>お送りいただいた内容を元に記事を作成しますが、個人運営のため、必ずしも掲載されるわけではありませんのでご了承ください。</p>
 	<p>なお、当サイトではイベント情報を「開催中」「開催予定」「開催後」で分類して表示します。<br />
@@ -77,11 +77,11 @@ $this->set("pankuz_for_layout" , "当サイトについて");
 <div class="content pages">
 	<h2>リンクについて</h2>
 	<p>当サイトはリンクフリーです。リンクを貼る際の報告なども必要ありません。</p>
-	<p><?php echo $this->Html->image("banner8831.gif" , array("alt" => "【オンラインゲームライフ】バナー"))?><br />
+	<p><?php echo $this->Html->image("banner8831.gif", array("alt" => "【オンラインゲームライフ】バナー"))?><br />
 	手抜きですけどバナーです。（88×31px）<br />
 	※ダウンロードしてご利用ください。</p>
 	<h3>相互リンクについて</h3>
-	<p>相互リンクをご希望の方は、<?php echo $this->Html->link("相互リンク依頼フォーム" , array("controller" => "links" , "path" => "index" , "ext" => "html" , "#" => "linkForm"))?>からご登録をお願いします。<br />
+	<p>相互リンクをご希望の方は、<?php echo $this->Html->link("相互リンク依頼フォーム", array("controller" => "links", "path" => "index", "ext" => "html", "#" => "linkForm"))?>からご登録をお願いします。<br />
 	当サイトにリンクを貼った後に、ご自身のサイトにあったカテゴリにご登録ください。<br />
 	管理人によるサイト内容の確認、承認後に掲載されます。</p>
 <?php /*

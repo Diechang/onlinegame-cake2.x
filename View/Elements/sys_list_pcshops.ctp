@@ -17,16 +17,16 @@
 <?php foreach($pcshops as $key => $pcshop):?>
 		<tr>
 			<td class="tCenter" nowrap="nowrap">
-				<?php echo $this->Html->link("編集" , array("controller" => "pcshops" , "action" => "edit" , $pcshop["Pcshop"]["id"]) , array("class" => "btn"))?>
-				<?php echo $this->Form->hidden("Pcshop." . $key . ".id" , array("value" => $pcshop["Pcshop"]["id"]))?>
+				<?php echo $this->Html->link("編集", array("controller" => "pcshops", "action" => "edit", $pcshop["Pcshop"]["id"]), array("class" => "btn"))?>
+				<?php echo $this->Form->hidden("Pcshop." . $key . ".id", array("value" => $pcshop["Pcshop"]["id"]))?>
 			</td>
 			<td class="tRight"><?php echo $pcshop["Pcshop"]["id"]?></td>
 			<td class="tCenter">
-				<?php echo $this->Form->checkbox("Pcshop." . $key . ".public" , array("checked" => (!empty($pcshop["Pcshop"]["public"]))))?>
-				<?php echo $this->Form->hidden("Pcshop." . $key . ".id" , array("value" => $pcshop["Pcshop"]["id"]))?>
+				<?php echo $this->Form->checkbox("Pcshop." . $key . ".public", array("checked" => (!empty($pcshop["Pcshop"]["public"]))))?>
+				<?php echo $this->Form->hidden("Pcshop." . $key . ".id", array("value" => $pcshop["Pcshop"]["id"]))?>
 			</td>
 			<td class="tCenter">
-				<?php echo $this->Form->checkbox("Pcshop." . $key . ".ad_use" , array("checked" => (!empty($pcshop["Pcshop"]["ad_use"]))))?>
+				<?php echo $this->Form->checkbox("Pcshop." . $key . ".ad_use", array("checked" => (!empty($pcshop["Pcshop"]["ad_use"]))))?>
 			</td>
 			<td class="title">
 				<?php echo $pcshop["Pcshop"]["shop_name"]?>
@@ -35,12 +35,12 @@
 			<td>
 				<?php echo $pcshop["Pcshop"]["url_str"]?>
 			</td>
-			<td class="<?php echo $this->Common->addClassZero(count($pcshop["Pc"]) , "tCenter")?>">
-				<?php echo $this->Html->link(count($pcshop["Pc"]) , array("controller" => "pcs" , "action" => "index" , "pcshop_id" => $pcshop["Pcshop"]["id"]) , array("class" => $this->Common->addClassZero(count($pcshop["Pc"]))))?>
+			<td class="<?php echo $this->Common->addClassZero(count($pcshop["Pc"]), "tCenter")?>">
+				<?php echo $this->Html->link(count($pcshop["Pc"]), array("controller" => "pcs", "action" => "index", "pcshop_id" => $pcshop["Pcshop"]["id"]), array("class" => $this->Common->addClassZero(count($pcshop["Pc"]))))?>
 			</td>
-			<td><?php echo $this->Form->text("Pcshop" . "." . $key . ".sort" , array("value" => $pcshop["Pcshop"]["sort"] , "size" => 2 , "maxLength" => 1 , "class" => "input-mini"))?></td>
+			<td><?php echo $this->Form->text("Pcshop" . "." . $key . ".sort", array("value" => $pcshop["Pcshop"]["sort"], "size" => 2, "maxLength" => 1, "class" => "input-mini"))?></td>
 			<td><?php echo $pcshop["Pcshop"]["created"]?></td>
-			<td class="tCenter" nowrap="nowrap"><?php echo $this->Html->link("<i class='icon-remove icon-white'></i>削除" , array("controller" => "pcshops" , "action" => "delete" , $pcshop["Pcshop"]["id"]) , array("class" => "btn btn-danger btn-small" , "escape" => false) , $pcshop["Pcshop"]["id"] . " を削除しますか?")?></td>
+			<td class="tCenter" nowrap="nowrap"><?php echo $this->Html->link("<i class='icon-remove icon-white'></i>削除", array("controller" => "pcshops", "action" => "delete", $pcshop["Pcshop"]["id"]), array("class" => "btn btn-danger btn-small", "escape" => false), $pcshop["Pcshop"]["id"] . " を削除しますか?")?></td>
 		</tr>
 <?php endforeach;?>
 	</tbody>

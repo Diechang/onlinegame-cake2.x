@@ -3,7 +3,7 @@
 $this->Html->css(array('monies'), 'stylesheet', array('inline' => false));
 ?>
 <div class="content">
-	<h2 class="headimage"><?php echo $this->Html->image("design/headline_title_monies.gif" , array("alt" => "ゲーム代を無料で稼ぐ：ネットを使ってお小遣い稼ぎ"))?></h2>
+	<h2 class="headimage"><?php echo $this->Html->image("design/headline_title_monies.gif", array("alt" => "ゲーム代を無料で稼ぐ：ネットを使ってお小遣い稼ぎ"))?></h2>
 	<p>オンラインゲームに夢中になってしまうと、月額課金制のオンラインゲームはもちろん、基本プレイ無料のオンラインゲームでもアイテム課金でお金かかりますよね。</p>
 	<p>お小遣いも少ないし…でもオンラインゲームは楽しくてやめられないし…<br />
 	そんな人はネットで、しかも無料で、せめてゲーム代くらいは稼いじゃおう！</p>
@@ -29,7 +29,7 @@ $this->Html->css(array('monies'), 'stylesheet', array('inline' => false));
 	でも管理人は悪い人じゃないので普通にコツコツ稼いでます。<br />
 	その方法をいくつか紹介しますね。</p>
 <?php foreach($moneycategories as $category):?>
-	<h3><?php echo $this->Html->link($category["Moneycategory"]["str"] . "で稼ぐ" , array("action" => "view" , "path" => $category["Moneycategory"]["path"] , "ext" => "html"))?></h3>
+	<h3><?php echo $this->Html->link($category["Moneycategory"]["str"] . "で稼ぐ", array("action" => "view", "path" => $category["Moneycategory"]["path"], "ext" => "html"))?></h3>
 	<p><?php echo nl2br($category["Moneycategory"]["summary"])?></p>
 <?php endforeach;?>
 </div>

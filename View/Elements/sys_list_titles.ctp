@@ -23,13 +23,13 @@
 	<tbody>
 <?php foreach($titles as $key => $title):?>
 		<tr class="title_id_<?php echo $title["Title"]["id"]?>">
-			<td class="tCenter" nowrap="nowrap"><?php echo $this->Html->link("編集" , array("controller" => "titles" , "action" => "edit" , $title["Title"]["id"]) , array("class" => "btn"))?></td>
+			<td class="tCenter" nowrap="nowrap"><?php echo $this->Html->link("編集", array("controller" => "titles", "action" => "edit", $title["Title"]["id"]), array("class" => "btn"))?></td>
 			<td class="tCenter">
-				<?php echo $this->Form->checkbox("Title." . $key . ".public" , array("checked" => (!empty($title["Title"]["public"]))))?>
-				<?php echo $this->Form->hidden("Title." . $key . ".id" , array("value" => $title["Title"]["id"]))?>
+				<?php echo $this->Form->checkbox("Title." . $key . ".public", array("checked" => (!empty($title["Title"]["public"]))))?>
+				<?php echo $this->Form->hidden("Title." . $key . ".id", array("value" => $title["Title"]["id"]))?>
 			</td>
 			<td class="tCenter">
-				<?php echo $this->Form->checkbox("Title." . $key . ".ad_use" , array("checked" => (!empty($title["Title"]["ad_use"]))))?>
+				<?php echo $this->Form->checkbox("Title." . $key . ".ad_use", array("checked" => (!empty($title["Title"]["ad_use"]))))?>
 			</td>
 			<td class="tRight"><?php echo $title["Title"]["id"]?></td>
 			<td class="title" nowrap="nowrap">
@@ -39,40 +39,40 @@
 				<?php echo (!empty($title["Title"]["video"])) ? $this->Html->image("sys/sys_icon_video.gif") : ""?>
 			</td>
 			<td>
-				<?php echo $this->Html->image($this->Common->thumbName($title["Title"]["thumb_name"]) , array("width" => 40))?>
+				<?php echo $this->Html->image($this->Common->thumbName($title["Title"]["thumb_name"]), array("width" => 40))?>
 			</td>
-			<td><?php echo $this->Html->link($title["Title"]["url_str"] , array("controller" => "titles" , "action" => "index" , "path" => $title["Title"]["url_str"] , "sys" => false , "ext" => "html") , array("target" => "_blank"))?></td>
+			<td><?php echo $this->Html->link($title["Title"]["url_str"], array("controller" => "titles", "action" => "index", "path" => $title["Title"]["url_str"], "sys" => false, "ext" => "html"), array("target" => "_blank"))?></td>
 			<td class="categories">
 	<?php foreach($title["Category"] as $category):?>
-				<?php echo $this->Html->link($category["path"] , array("controller" => "titles" , "action" => "index" , "?" => array("category" => $category["id"])))?>
+				<?php echo $this->Html->link($category["path"], array("controller" => "titles", "action" => "index", "?" => array("category" => $category["id"])))?>
 	<?php endforeach;?>
 			</td>
 			<td class="service" nowrap="nowrap">
-				<?php echo $this->Html->link($title["Service"]["str"] , array("controller" => "titles" , "action" => "index" , "?" => array("service" => $title["Service"]["id"])))?>
+				<?php echo $this->Html->link($title["Service"]["str"], array("controller" => "titles", "action" => "index", "?" => array("service" => $title["Service"]["id"])))?>
 				<span><?php echo $title["Title"]["test_start"]?> - <?php echo $title["Title"]["test_end"]?></span>
 			</td>
 			<td><?php echo $title["Title"]["service_start"]?></td>
-			<td class="<?php echo $this->Common->addClassZero(count($title["Vote"]) , "tCenter")?>">
-				<?php echo $this->Html->link(sprintf("%.2f" , $title["Titlesummary"]["vote_avg_all"]) . "(" . count($title["Vote"]) . ")" , array("controller" => "votes" , "action" => "index" , "?" => array("title_id" => $title["Title"]["id"])) , array("class" => $this->Common->addClassZero(count($title["Vote"]))))?>
+			<td class="<?php echo $this->Common->addClassZero(count($title["Vote"]), "tCenter")?>">
+				<?php echo $this->Html->link(sprintf("%.2f", $title["Titlesummary"]["vote_avg_all"]) . "(" . count($title["Vote"]) . ")", array("controller" => "votes", "action" => "index", "?" => array("title_id" => $title["Title"]["id"])), array("class" => $this->Common->addClassZero(count($title["Vote"]))))?>
 			</td>
-			<td class="<?php echo $this->Common->addClassZero(count($title["Event"]) , "tCenter")?>">
-				<?php echo $this->Html->link(count($title["Event"]) , array("controller" => "events" , "action" => "index" , "title_id" => $title["Title"]["id"]) , array("class" => $this->Common->addClassZero(count($title["Event"]))))?>
-				<?php echo $this->Html->link("＋" , array("controller" => "events" , "action" => "add" , "title_id" => $title["Title"]["id"]) , array("class" => $this->Common->addClassZero(count($title["Event"]))))?>
+			<td class="<?php echo $this->Common->addClassZero(count($title["Event"]), "tCenter")?>">
+				<?php echo $this->Html->link(count($title["Event"]), array("controller" => "events", "action" => "index", "title_id" => $title["Title"]["id"]), array("class" => $this->Common->addClassZero(count($title["Event"]))))?>
+				<?php echo $this->Html->link("＋", array("controller" => "events", "action" => "add", "title_id" => $title["Title"]["id"]), array("class" => $this->Common->addClassZero(count($title["Event"]))))?>
 			</td>
-			<td class="<?php echo $this->Common->addClassZero(count($title["Fansite"]) , "tCenter")?>">
-				<?php echo $this->Html->link(count($title["Fansite"]) , array("controller" => "fansites" , "action" => "index" , "?" => array("title_id" => $title["Title"]["id"])) , array("class" => $this->Common->addClassZero(count($title["Fansite"]))))?>
+			<td class="<?php echo $this->Common->addClassZero(count($title["Fansite"]), "tCenter")?>">
+				<?php echo $this->Html->link(count($title["Fansite"]), array("controller" => "fansites", "action" => "index", "?" => array("title_id" => $title["Title"]["id"])), array("class" => $this->Common->addClassZero(count($title["Fansite"]))))?>
 			</td>
-			<td class="<?php echo $this->Common->addClassZero(count($title["Spec"]) , "tCenter")?>">
-				<?php echo $this->Html->link(count($title["Spec"]) , array("controller" => "specs" , "action" => "index" , "?" => array("title_id" => $title["Title"]["id"])) , array("class" => $this->Common->addClassZero(count($title["Spec"]))))?>
+			<td class="<?php echo $this->Common->addClassZero(count($title["Spec"]), "tCenter")?>">
+				<?php echo $this->Html->link(count($title["Spec"]), array("controller" => "specs", "action" => "index", "?" => array("title_id" => $title["Title"]["id"])), array("class" => $this->Common->addClassZero(count($title["Spec"]))))?>
 			</td>
-			<td class="<?php echo $this->Common->addClassZero(count($title["Pc"]) , "tCenter")?>" nowrap="nowrap">
-				<?php echo $this->Html->link(count($title["Pc"]) , array("controller" => "pcs" , "action" => "index" , "?" => array("title_id" => $title["Title"]["id"])) , array("class" => $this->Common->addClassZero(count($title["Pc"]))))?>
-				<?php echo $this->Html->link("＋" , array("controller" => "pcs" , "action" => "add" , "?" => array("title_id" => $title["Title"]["id"])) , array("class" => $this->Common->addClassZero(count($title["Pc"]))))?>
+			<td class="<?php echo $this->Common->addClassZero(count($title["Pc"]), "tCenter")?>" nowrap="nowrap">
+				<?php echo $this->Html->link(count($title["Pc"]), array("controller" => "pcs", "action" => "index", "?" => array("title_id" => $title["Title"]["id"])), array("class" => $this->Common->addClassZero(count($title["Pc"]))))?>
+				<?php echo $this->Html->link("＋", array("controller" => "pcs", "action" => "add", "?" => array("title_id" => $title["Title"]["id"])), array("class" => $this->Common->addClassZero(count($title["Pc"]))))?>
 			</td>
-			<td class="<?php echo $this->Common->addClassZero(count($title["Package"]) , "tCenter")?>" nowrap="nowrap">
-				<?php echo $this->Html->link(count($title["Package"]) , array("controller" => "packages" , "action" => "index" , "?" => array("title_id" => $title["Title"]["id"])) , array("class" => $this->Common->addClassZero(count($title["Package"]))))?>
+			<td class="<?php echo $this->Common->addClassZero(count($title["Package"]), "tCenter")?>" nowrap="nowrap">
+				<?php echo $this->Html->link(count($title["Package"]), array("controller" => "packages", "action" => "index", "?" => array("title_id" => $title["Title"]["id"])), array("class" => $this->Common->addClassZero(count($title["Package"]))))?>
 			</td>
-			<td class="tCenter" nowrap="nowrap"><?php echo $this->Html->link("<i class='icon-remove icon-white'></i>削除" , array("controller" => "titles" , "action" => "delete" , $title["Title"]["id"]) , array("class" => "btn btn-danger btn-small" , "escape" => false) , $title["Title"]["title_official"] . " を削除しますか?")?></td>
+			<td class="tCenter" nowrap="nowrap"><?php echo $this->Html->link("<i class='icon-remove icon-white'></i>削除", array("controller" => "titles", "action" => "delete", $title["Title"]["id"]), array("class" => "btn btn-danger btn-small", "escape" => false), $title["Title"]["title_official"] . " を削除しますか?")?></td>
 		</tr>
 <?php endforeach;?>
 	</tbody>

@@ -10,18 +10,18 @@ $this->Html->css(array('ranking'), 'stylesheet', array('inline' => false));
 				<div class="body">
 <!--
 					<ul class="rankChangeTabs clearfix">
-						<li<?php if($path == "index"){ echo " class=\"active\"";}?>><?php echo $this->Html->link("総合" , array("controller" => "ranking" , "path" => "index" , "ext" => "html"))?></li>
+						<li<?php if($path == "index"){ echo " class=\"active\"";}?>><?php echo $this->Html->link("総合", array("controller" => "ranking", "path" => "index", "ext" => "html"))?></li>
 						<?php foreach($categories as $category):?>
-						<li<?php if($path == $category["Category"]["path"]){ echo " class=\"active\"";}?>><?php echo $this->Html->link($category["Category"]["str"] , array("controller" => "ranking" , "path" => $category["Category"]["path"] , "ext" => "html"))?></li>
+						<li<?php if($path == $category["Category"]["path"]){ echo " class=\"active\"";}?>><?php echo $this->Html->link($category["Category"]["str"], array("controller" => "ranking", "path" => $category["Category"]["path"], "ext" => "html"))?></li>
 						<?php endforeach;?>
 					</ul>
 -->
-<?php echo $this->element("loop_ranking_data" , $rankings)?>
+<?php echo $this->element("loop_ranking_data", $rankings)?>
 
 					<ul class="rankChangeTabs clearfix">
-						<li<?php if($path == "index"){ echo " class=\"active\"";}?>><?php echo $this->Html->link("総合" , array("controller" => "ranking" , "path" => "index" , "ext" => "html"))?></li>
+						<li<?php if($path == "index"){ echo " class=\"active\"";}?>><?php echo $this->Html->link("総合", array("controller" => "ranking", "path" => "index", "ext" => "html"))?></li>
 						<?php foreach($categories as $category):?>
-						<li<?php if($path == $category["Category"]["path"]){ echo " class=\"active\"";}?>><?php echo $this->Html->link($category["Category"]["str"] , array("controller" => "ranking" , "path" => $category["Category"]["path"] , "ext" => "html"))?></li>
+						<li<?php if($path == $category["Category"]["path"]){ echo " class=\"active\"";}?>><?php echo $this->Html->link($category["Category"]["str"], array("controller" => "ranking", "path" => $category["Category"]["path"], "ext" => "html"))?></li>
 						<?php endforeach;?>
 					</ul>
 
@@ -39,7 +39,7 @@ $this->Html->css(array('ranking'), 'stylesheet', array('inline' => false));
 	<ul>
 	<?php foreach($norankings as $norank):?>
 		<li><?php echo $this->Common->titleLinkText(
-				$this->Common->titleWithSpan($norank["Title"]["title_official"] , $norank["Title"]["title_read"]),
+				$this->Common->titleWithSpan($norank["Title"]["title_official"], $norank["Title"]["title_read"]),
 				$norank["Title"]["url_str"])?></li>
 	<?php endforeach;?>
 	</ul>

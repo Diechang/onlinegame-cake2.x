@@ -1,6 +1,6 @@
 <!-- Ads160 -->
 <div class="leftAds160">
-	<?php echo $this->Common->adLinkImage($adLeftBottoms["AdLeftBottom"] , "adlb")?>
+	<?php echo $this->Common->adLinkImage($adLeftBottoms["AdLeftBottom"], "adlb")?>
 </div>
 <!-- リンクユニット -->
 <div class="leftAds160">

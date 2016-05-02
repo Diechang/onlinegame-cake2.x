@@ -1,4 +1,4 @@
-<?php echo $this->Form->create("Money" , array("action" => "add" , "inputDefaults" => array("div" => false , "label" => false , "legend" => false)))?>
+<?php echo $this->Form->create("Money", array("action" => "add", "inputDefaults" => array("div" => false, "label" => false, "legend" => false)))?>
 	<table class="edit table table-bordered">
 		<tr>
 			<th nowrap="nowrap">ID</th>
@@ -25,7 +25,7 @@
 		<tr>
 			<th nowrap="nowrap">概要</th>
 			<td>
-				<?php echo $this->Form->textarea("description" , array("class" => "editor"))?>
+				<?php echo $this->Form->textarea("description", array("class" => "editor"))?>
 			</td>
 		</tr>
 		<tr>
@@ -63,7 +63,7 @@
 		<tr>
 			<th nowrap="nowrap">登録</th>
 			<td>
-				<?php echo $this->Form->submit("登録" , array("class" => "btn btn-primary"))?>
+				<?php echo $this->Form->submit("登録", array("class" => "btn btn-primary"))?>
 			</td>
 		</tr>
 	</table>

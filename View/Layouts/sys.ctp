@@ -32,7 +32,7 @@
 			{
 				if(is_array($val))
 				{//文字列["str"]とURL配列["url"]の配列
-					$ret .= "<li>" . $this->Html->link($val["str"] , $val["url"]) . "</li>";
+					$ret .= "<li>" . $this->Html->link($val["str"], $val["url"]) . "</li>";
 				}
 				else
 				{//文字列
@@ -58,19 +58,19 @@
 			<ul>
 <?php if($params["controller"] == "titles" && $params["action"] == "sys_add"):?>
 				<li class="active"><?php else:?>
-				<li><?php endif;?><?php echo $this->Html->link("新規登録" , array("controller" => "titles" , "action" => "add" , "sys" => true))?></li>
+				<li><?php endif;?><?php echo $this->Html->link("新規登録", array("controller" => "titles", "action" => "add", "sys" => true))?></li>
 
 <?php if($params["controller"] == "titles" && ($params["action"] == "sys_index" || $params["action"] == "sys_edit")):?>
 				<li class="active"><?php else:?>
-				<li><?php endif;?><?php echo $this->Html->link("タイトル一覧" , array("controller" => "titles" , "action" => "index" , "sys" => true))?></li>
+				<li><?php endif;?><?php echo $this->Html->link("タイトル一覧", array("controller" => "titles", "action" => "index", "sys" => true))?></li>
 
 <?php if($params["controller"] == "specs" && ($params["action"] == "sys_index" || $params["action"] == "sys_edit")):?>
 				<li class="active"><?php else:?>
-				<li><?php endif;?><?php echo $this->Html->link("動作環境一覧/登録" , array("controller" => "specs" , "action" => "index" , "sys" => true))?></li>
+				<li><?php endif;?><?php echo $this->Html->link("動作環境一覧/登録", array("controller" => "specs", "action" => "index", "sys" => true))?></li>
 
 <?php if($params["controller"] == "titles" && ($params["action"] == "sys_updateall")):?>
 				<li class="active"><?php else:?>
-				<li><?php endif;?><?php echo $this->Html->link("全タイトル集計更新" , array("controller" => "titles" , "action" => "updateall" , "sys" => true))?></li>
+				<li><?php endif;?><?php echo $this->Html->link("全タイトル集計更新", array("controller" => "titles", "action" => "updateall", "sys" => true))?></li>
 			</ul>
 		</dd>
 
@@ -79,7 +79,7 @@
 			<ul>
 <?php if($params["controller"] == "votes"):?>
 				<li class="active"><?php else:?>
-				<li><?php endif;?><?php echo $this->Html->link("投稿一覧" , array("controller" => "votes" , "action" => "index" , "sys" => true))?></li>
+				<li><?php endif;?><?php echo $this->Html->link("投稿一覧", array("controller" => "votes", "action" => "index", "sys" => true))?></li>
 			</ul>
 		</dd>
 
@@ -88,15 +88,15 @@
 			<ul>
 <?php if($params["controller"] == "fansites"):?>
 				<li class="active"><?php else:?>
-				<li><?php endif;?><?php echo $this->Html->link("ファンサイト一覧/登録" , array("controller" => "fansites" , "action" => "index" , "sys" => true))?></li>
+				<li><?php endif;?><?php echo $this->Html->link("ファンサイト一覧/登録", array("controller" => "fansites", "action" => "index", "sys" => true))?></li>
 
 <?php if($params["controller"] == "links" && ($params["action"] == "sys_index" || $params["action"] == "sys_edit")):?>
 				<li class="active"><?php else:?>
-				<li><?php endif;?><?php echo $this->Html->link("相互リンク一覧" , array("controller" => "links" , "action" => "index" , "sys" => true))?></li>
+				<li><?php endif;?><?php echo $this->Html->link("相互リンク一覧", array("controller" => "links", "action" => "index", "sys" => true))?></li>
 
 <?php if($params["controller"] == "links" && $params["action"] == "sys_add"):?>
 				<li class="active"><?php else:?>
-				<li><?php endif;?><?php echo $this->Html->link("相互リンク登録" , array("controller" => "links" , "action" => "add" , "sys" => true))?></li>
+				<li><?php endif;?><?php echo $this->Html->link("相互リンク登録", array("controller" => "links", "action" => "add", "sys" => true))?></li>
 			</ul>
 		</dd>
 
@@ -105,23 +105,23 @@
 			<ul>
 <?php if($params["controller"] == "portals"):?>
 				<li class="active"><?php else:?>
-				<li><?php endif;?><?php echo $this->Html->link("ポータル" , array("controller" => "portals" , "action" => "index" , "sys" => true))?></li>
+				<li><?php endif;?><?php echo $this->Html->link("ポータル", array("controller" => "portals", "action" => "index", "sys" => true))?></li>
 
 <?php if($params["controller"] == "categories"):?>
 				<li class="active"><?php else:?>
-				<li><?php endif;?><?php echo $this->Html->link("カテゴリ" , array("controller" => "categories" , "action" => "index" , "sys" => true))?></li>
+				<li><?php endif;?><?php echo $this->Html->link("カテゴリ", array("controller" => "categories", "action" => "index", "sys" => true))?></li>
 
 <?php if($params["controller"] == "styles"):?>
 				<li class="active"><?php else:?>
-				<li><?php endif;?><?php echo $this->Html->link("スタイル" , array("controller" => "styles" , "action" => "index" , "sys" => true))?></li>
+				<li><?php endif;?><?php echo $this->Html->link("スタイル", array("controller" => "styles", "action" => "index", "sys" => true))?></li>
 
 <?php if($params["controller"] == "fees"):?>
 				<li class="active"><?php else:?>
-				<li><?php endif;?><?php echo $this->Html->link("料金設定" , array("controller" => "fees" , "action" => "index" , "sys" => true))?></li>
+				<li><?php endif;?><?php echo $this->Html->link("料金設定", array("controller" => "fees", "action" => "index", "sys" => true))?></li>
 
 <?php if($params["controller"] == "services"):?>
 				<li class="active"><?php else:?>
-				<li><?php endif;?><?php echo $this->Html->link("サービス状態" , array("controller" => "services" , "action" => "index" , "sys" => true))?></li>
+				<li><?php endif;?><?php echo $this->Html->link("サービス状態", array("controller" => "services", "action" => "index", "sys" => true))?></li>
 			</ul>
 		</dd>
 
@@ -130,16 +130,16 @@
 			<ul>
 <?php if($params["controller"] == "packages" && $params["action"] == "sys_index"):?>
 				<li class="active"><?php else:?>
-				<li><?php endif;?><?php echo $this->Html->link("パッケージ一覧/登録" , array("controller" => "packages" , "action" => "index" , "sys" => true))?></li>
+				<li><?php endif;?><?php echo $this->Html->link("パッケージ一覧/登録", array("controller" => "packages", "action" => "index", "sys" => true))?></li>
 <?php if($params["controller"] == "pcs" && $params["action"] == "sys_add"):?>
 				<li class="active"><?php else:?>
-				<li><?php endif;?><?php echo $this->Html->link("新規PC登録" , array("controller" => "pcs" , "action" => "add" , "sys" => true))?></li>
+				<li><?php endif;?><?php echo $this->Html->link("新規PC登録", array("controller" => "pcs", "action" => "add", "sys" => true))?></li>
 <?php if($params["controller"] == "pcs" && $params["action"] == "sys_index"):?>
 				<li class="active"><?php else:?>
-				<li><?php endif;?><?php echo $this->Html->link("PC一覧" , array("controller" => "pcs" , "action" => "index" , "sys" => true))?></li>
+				<li><?php endif;?><?php echo $this->Html->link("PC一覧", array("controller" => "pcs", "action" => "index", "sys" => true))?></li>
 <?php if($params["controller"] == "pcshops"):?>
 				<li class="active"><?php else:?>
-				<li><?php endif;?><?php echo $this->Html->link("ショップ一覧 / 登録" , array("controller" => "pcshops" , "action" => "index" , "sys" => true))?></li>
+				<li><?php endif;?><?php echo $this->Html->link("ショップ一覧 / 登録", array("controller" => "pcshops", "action" => "index", "sys" => true))?></li>
 			</ul>
 		</dd>
 
@@ -148,19 +148,19 @@
 			<ul>
 <?php if($params["controller"] == "ad_left_tops"):?>
 				<li class="active"><?php else:?>
-				<li><?php endif;?><?php echo $this->Html->link("左サイドバー上" , array("controller" => "ad_left_tops" , "action" => "index" , "sys" => true))?></li>
+				<li><?php endif;?><?php echo $this->Html->link("左サイドバー上", array("controller" => "ad_left_tops", "action" => "index", "sys" => true))?></li>
 <?php if($params["controller"] == "ad_left_bottoms"):?>
 				<li class="active"><?php else:?>
-				<li><?php endif;?><?php echo $this->Html->link("左サイドバー下" , array("controller" => "ad_left_bottoms" , "action" => "index" , "sys" => true))?></li>
+				<li><?php endif;?><?php echo $this->Html->link("左サイドバー下", array("controller" => "ad_left_bottoms", "action" => "index", "sys" => true))?></li>
 <?php if($params["controller"] == "ad_right_tops"):?>
 				<li class="active"><?php else:?>
-				<li><?php endif;?><?php echo $this->Html->link("右サイドバー上" , array("controller" => "ad_right_tops" , "action" => "index" , "sys" => true))?></li>
+				<li><?php endif;?><?php echo $this->Html->link("右サイドバー上", array("controller" => "ad_right_tops", "action" => "index", "sys" => true))?></li>
 <?php if($params["controller"] == "ad_right_bottoms"):?>
 				<li class="active"><?php else:?>
-				<li><?php endif;?><?php echo $this->Html->link("右サイドバー下" , array("controller" => "ad_right_bottoms" , "action" => "index" , "sys" => true))?></li>
+				<li><?php endif;?><?php echo $this->Html->link("右サイドバー下", array("controller" => "ad_right_bottoms", "action" => "index", "sys" => true))?></li>
 <?php if($params["controller"] == "ad_center_bottoms"):?>
 				<li class="active"><?php else:?>
-				<li><?php endif;?><?php echo $this->Html->link("中央コンテンツ下" , array("controller" => "ad_center_bottoms" , "action" => "index" , "sys" => true))?></li>
+				<li><?php endif;?><?php echo $this->Html->link("中央コンテンツ下", array("controller" => "ad_center_bottoms", "action" => "index", "sys" => true))?></li>
 			</ul>
 		</dd>
 
@@ -169,11 +169,11 @@
 			<ul>
 <?php if($params["controller"] == "monies"):?>
 				<li class="active"><?php else:?>
-				<li><?php endif;?><?php echo $this->Html->link("小遣いサイト" , array("controller" => "monies" , "action" => "index" , "sys" => true))?></li>
+				<li><?php endif;?><?php echo $this->Html->link("小遣いサイト", array("controller" => "monies", "action" => "index", "sys" => true))?></li>
 
 <?php if($params["controller"] == "moneycategories"):?>
 				<li class="active"><?php else:?>
-				<li><?php endif;?><?php echo $this->Html->link("小遣いカテゴリ" , array("controller" => "moneycategories" , "action" => "index" , "sys" => true))?></li>
+				<li><?php endif;?><?php echo $this->Html->link("小遣いカテゴリ", array("controller" => "moneycategories", "action" => "index", "sys" => true))?></li>
 			</ul>
 		</dd>
 
@@ -182,21 +182,21 @@
 			<ul>
 <?php if($params["controller"] == "updates"):?>
 				<li class="active"><?php else:?>
-				<li><?php endif;?><?php echo $this->Html->link("更新履歴" , array("controller" => "updates" , "action" => "index" , "sys" => true))?></li>
+				<li><?php endif;?><?php echo $this->Html->link("更新履歴", array("controller" => "updates", "action" => "index", "sys" => true))?></li>
 <?php if($params["controller"] == "letters"):?>
 				<li class="active"><?php else:?>
-				<li><?php endif;?><?php echo $this->Html->link("問い合わせ確認" , array("controller" => "letters" , "action" => "index" , "sys" => true))?></li>
+				<li><?php endif;?><?php echo $this->Html->link("問い合わせ確認", array("controller" => "letters", "action" => "index", "sys" => true))?></li>
 <?php if($params["controller"] == "shares"):?>
 				<li class="active"><?php else:?>
-				<li><?php endif;?><?php echo $this->Html->link("SNS投稿" , array("controller" => "shares" , "action" => "index" , "sys" => true))?></li>
+				<li><?php endif;?><?php echo $this->Html->link("SNS投稿", array("controller" => "shares", "action" => "index", "sys" => true))?></li>
 				<li><a href="/mfm.php" target="_blank">Mad file manager</a></li>
 				<li><a href="/ra/analyze/" target="_blank">アクセス解析</a></li>
 <?php if($params["controller"] == "pages" && $params["action"] == "acr_pr"):?>
 				<li class="active"><?php else:?>
-				<li><?php endif;?><?php echo $this->Html->link("ACR - PRテキスト" , array("controller" => "pages" , "action" => "acr_pr" , "sys" => true))?></li>
+				<li><?php endif;?><?php echo $this->Html->link("ACR - PRテキスト", array("controller" => "pages", "action" => "acr_pr", "sys" => true))?></li>
 				<li><a href="http://pranking8.ziyu.net/edit.php?id=diechang" target="_blank">⇒ ACRページランク</a></li>
 				<li><a href="http://rranking12.ziyu.net/edit.php?id=diechang" target="_blank">⇒ ACRアクセスランク</a></li>
-				<li><?php echo $this->Html->link("ログアウト" , array("controller" => "users" , "action" => "logout" , "sys" => true))?></li>
+				<li><?php echo $this->Html->link("ログアウト", array("controller" => "users", "action" => "logout", "sys" => true))?></li>
 			</ul>
 		</dd>
 
@@ -205,10 +205,10 @@
 			<ul>
 <?php if($params["controller"] == "events" && $params["action"] == "sys_add"):?>
 				<li class="active"><?php else:?>
-				<li><?php endif;?><?php echo $this->Html->link("イベント登録" , array("controller" => "events" , "action" => "add" , "sys" => true))?></li>
+				<li><?php endif;?><?php echo $this->Html->link("イベント登録", array("controller" => "events", "action" => "add", "sys" => true))?></li>
 <?php if($params["controller"] == "events" && $params["action"] == "sys_index"):?>
 				<li class="active"><?php else:?>
-				<li><?php endif;?><?php echo $this->Html->link("イベント一覧" , array("controller" => "events" , "action" => "index" , "sys" => true))?></li>
+				<li><?php endif;?><?php echo $this->Html->link("イベント一覧", array("controller" => "events", "action" => "index", "sys" => true))?></li>
 			</ul>
 		</dd>
 	</dl>
@@ -233,7 +233,7 @@ if (Configure::read('debug') > 0)
 <!-- -->
 <!--Footer-->
 <div id="footer">
-	<?php echo $this->Html->link("ONLINE GAME LIFE" , "/" , array("target" => "_blank"))?> - SYSTEM MAINTENANCE　<?php echo date("Y/m/d G:i:s")?>
+	<?php echo $this->Html->link("ONLINE GAME LIFE", "/", array("target" => "_blank"))?> - SYSTEM MAINTENANCE　<?php echo date("Y/m/d G:i:s")?>
 </div>
 </div>
 </body>

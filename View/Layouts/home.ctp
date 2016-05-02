@@ -56,8 +56,8 @@
 						<li>
 							<?php echo $this->Common->titleLinkThumb(
 								$this->Common->thumbName($newGame["Title"]["thumb_name"]),
-								$this->Common->titleWithCase($newGame["Title"]["title_official"] , $newGame["Title"]["title_read"]),
-								$newGame["Title"]["url_str"] , 80);?>
+								$this->Common->titleWithCase($newGame["Title"]["title_official"], $newGame["Title"]["title_read"]),
+								$newGame["Title"]["url_str"], 80);?>
 						</li>
 <?php endforeach;?>
 					</ul>
@@ -66,7 +66,7 @@
 				<div class="info">
 					<div id="slideContainer">
 						<div class="slide">
-							<div class="startImage"><?php echo $this->Html->image("design/index_newgames.gif" , array("alt" => "新作オンラインゲーム"))?></div>
+							<div class="startImage"><?php echo $this->Html->image("design/index_newgames.gif", array("alt" => "新作オンラインゲーム"))?></div>
 						</div>
 <?php foreach($newGames as $newGame):?>
 						<div class="slide">
@@ -74,16 +74,16 @@
 								<div class="thumb">
 									<?php echo $this->Common->titleLinkThumb(
 										$this->Common->thumbName($newGame["Title"]["thumb_name"]),
-										$this->Common->titleWithCase($newGame["Title"]["title_official"] , $newGame["Title"]["title_read"]),
+										$this->Common->titleWithCase($newGame["Title"]["title_official"], $newGame["Title"]["title_read"]),
 										$newGame["Title"]["url_str"]);?>
 								</div>
 
-								<?php echo $this->Common->starBlock(100 , $newGame["Titlesummary"]["vote_avg_all"] , "総合評価" , "black")?>
+								<?php echo $this->Common->starBlock(100, $newGame["Titlesummary"]["vote_avg_all"], "総合評価", "black")?>
 
 							</div>
 							<div class="data">
 								<h3><?php echo $this->Common->titleLinkText(
-										$this->Common->titleWithSpan($newGame["Title"]["title_official"] , $newGame["Title"]["title_read"]),
+										$this->Common->titleWithSpan($newGame["Title"]["title_official"], $newGame["Title"]["title_read"]),
 										$newGame["Title"]["url_str"])?></h3>
 								<p class="description"><?php echo strip_tags($newGame["Title"]["description"])?></p>
 							</div>

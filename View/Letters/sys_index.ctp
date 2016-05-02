@@ -15,13 +15,13 @@
 		<tbody>
 <?php foreach($letters as $key => $letter):?>
 			<tr>
-				<td class="tCenter" nowrap="nowrap"><?php echo $this->Html->link("確認" , array("action" => "view" , $letter["Letter"]["id"]) , array("class" => "btn btn-info"))?></td>
+				<td class="tCenter" nowrap="nowrap"><?php echo $this->Html->link("確認", array("action" => "view", $letter["Letter"]["id"]), array("class" => "btn btn-info"))?></td>
 				<td><?php echo $letter["Letter"]["id"]?></td>
 				<td><?php echo h($letter["Letter"]["name"])?></td>
 				<td><?php echo h($letter["Letter"]["mail"])?></td>
-				<td><?php echo mb_strimwidth(h($letter["Letter"]["body"]) , 0 , 50)?></td>
+				<td><?php echo mb_strimwidth(h($letter["Letter"]["body"]), 0, 50)?></td>
 				<td><?php echo $letter["Letter"]["created"]?></td>
-				<td class="tCenter" nowrap="nowrap"><?php echo $this->Html->link("<i class='icon-remove icon-white'></i> 削除" , array("action" => "delete" , $letter["Letter"]["id"]) , array("class" => "btn btn-danger btn-small" , "escape" => false) , $letter["Letter"]["id"] . " を削除しますか?")?></td>
+				<td class="tCenter" nowrap="nowrap"><?php echo $this->Html->link("<i class='icon-remove icon-white'></i> 削除", array("action" => "delete", $letter["Letter"]["id"]), array("class" => "btn btn-danger btn-small", "escape" => false), $letter["Letter"]["id"] . " を削除しますか?")?></td>
 			</tr>
 <?php endforeach;?>
 		</tbody>

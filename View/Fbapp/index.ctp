@@ -10,7 +10,7 @@
 <?php foreach($titles as $title):?>
 <dt><h3><?php echo $title["Title"]["title_official"]?></h3></dt>
 <dd>
-<p style="float:left; margin-right:10px;"><?php echo $this->Html->image("thumb/" . $title["Title"]["thumb_name"] , array("width" => 120))?></p>
+<p style="float:left; margin-right:10px;"><?php echo $this->Html->image("thumb/" . $title["Title"]["thumb_name"], array("width" => 120))?></p>
 <p><?php echo strip_tags($title["Title"]["description"])?></p>
 <p style="clear:both"><strong>公式サイト</strong>⇒<?php echo $title["Title"]["ad_text"]?></p>
 </dd>
