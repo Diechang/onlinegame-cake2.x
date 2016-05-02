@@ -16,7 +16,7 @@ class FeesController extends AppController
 //	function sys_view($id = null)
 //	{
 //		if(!$id)
-//	{
+//		{
 //			$this->Session->setFlash(sprintf(__('Invalid %s'), 'fee'));
 //			return $this->redirect(array('action' => 'index'));
 //		}

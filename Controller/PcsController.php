@@ -123,9 +123,9 @@ class PcsController extends AppController
 	}
 
 //	function sys_view($id = null)
-	{
+//	{
 //		if(!$id)
-	{
+//		{
 //			$this->Session->setFlash(sprintf(__('Invalid %s'), 'pc'));
 //			return $this->redirect(array('action' => 'index'));
 //		}

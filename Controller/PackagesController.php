@@ -62,7 +62,7 @@ class PackagesController extends AppController
 //	function sys_view($id = null)
 //	{
 //		if(!$id)
-//	{
+//		{
 //			$this->Session->setFlash(__('Invalid package'));
 //			return $this->redirect(array('action' => 'index'));
 //		}
