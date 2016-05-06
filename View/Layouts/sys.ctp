@@ -8,7 +8,7 @@
 <link href="/css/bubblepopup/jquery.bubblepopup.css" rel="stylesheet" type="text/css" />
 <link href="/css/sys_new.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
+<!-- <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script> -->
 <script type="text/javascript" src="/js/jquery.tablesorter.min.js"></script>
 <script type="text/javascript" src="/js/jquery.bubblepopup.min.js"></script>
 <script type="text/javascript" src="/js/tiny_mce/jquery.tinymce.js"></script>
