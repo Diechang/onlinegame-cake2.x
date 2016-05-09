@@ -113,7 +113,7 @@ class PcsController extends AppController
 				))
 			),
 		));
-		$titlesCount	= $this->Pc->Title->titleListWithSummaryCount("pc_count", "Pc"));
+		$titlesCount	= $this->Pc->Title->titleListWithSummaryCount("pc_count", "Pc");
 		$pcshops		= $this->Pc->Pcshop->find("list");
 		$pctypes		= $this->Pc->Pctype->find("list");
 		$pcgrades		= $this->Pc->Pcgrade->find("list");
