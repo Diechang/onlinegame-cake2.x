@@ -3,6 +3,7 @@ class AdLeftBottomsController extends AppController
 {
 
 	var $name = 'AdLeftBottoms';
+	var $components	= array("AdBanner");
 
 	function sys_index($public = null)
 	{

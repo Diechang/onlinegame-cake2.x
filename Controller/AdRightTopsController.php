@@ -3,6 +3,7 @@ class AdRightTopsController extends AppController
 {
 
 	var $name = 'AdRightTops';
+	var $components	= array("AdBanner");
 
 	function sys_index($public = null)
 	{
