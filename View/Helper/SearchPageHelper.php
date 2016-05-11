@@ -31,7 +31,7 @@ class SearchPageHelper extends AppHelper
 	 */
 	function checkList($item, $model, $controller)
 	{
-		ini_set( 'error_reporting', E_ALL );
+		// ini_set( 'error_reporting', E_ALL );
 
 //		pr($this->request->params);
 //		exit;
