@@ -32,7 +32,6 @@ class ReviewController extends AppController
 	function index()
 	{
 		// $page = (!empty($this->request->params["page"])) ? $this->request->params["page"] : 1;
-
 		$this->Paginator->settings = $this->paginate;
 
 		/**

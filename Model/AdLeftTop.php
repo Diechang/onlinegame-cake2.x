@@ -37,7 +37,7 @@ class AdLeftTop extends AppModel
 	);
 
 	//Callbacks
-	function afterSave()
+	function afterSave($created, $options = array())
 	{
 		$this->clearElementCache("ad_left_tops");
 	}

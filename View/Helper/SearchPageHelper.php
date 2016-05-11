@@ -36,16 +36,16 @@ class SearchPageHelper extends AppHelper
 //		pr($this->request->params);
 //		exit;
 		$checked = "";
+		// echo "<!--";
 		// var_dump($item);
 		// echo "\n\n";
 		// var_dump($this->request);
 		// echo "\n\n";
-		echo "<!--";
-		var_dump($item[$model]["id"]);
-		echo "\n\n";
-		if(!empty($this->request->query[strtolower($model)])) var_dump($this->request->query[strtolower($model)]);
-		echo "\n\n";
-		echo "-->";
+		// var_dump($item[$model]["id"]);
+		// echo "\n\n";
+		// if(!empty($this->request->query[strtolower($model)])) var_dump($this->request->query[strtolower($model)]);
+		// echo "\n\n";
+		// echo "-->";
 		
 		if(!empty($this->request->query[strtolower($model)]) && in_array($item[$model]["id"], $this->request->query[strtolower($model)]))
 		{

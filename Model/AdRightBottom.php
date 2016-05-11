@@ -36,7 +36,7 @@ class AdRightBottom extends AppModel
 	);
 
 	//Callbacks
-	function beforeValidate()
+	function beforeValidate($options = array())
 	{
 		if(!empty($this->data["AdRightBottom"]))
 		{
@@ -48,7 +48,7 @@ class AdRightBottom extends AppModel
 		return true;
 	}
 
-	function afterSave()
+	function afterSave($created, $options = array())
 	{
 		$this->clearElementCache("ad_right_bottoms");
 	}

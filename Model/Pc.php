@@ -68,7 +68,7 @@ class Pc extends AppModel
 	);
 
 	//Callbacks
-	function beforeValidate()
+	function beforeValidate($options = array())
 	{
 		if(!empty($this->data["Pc"]))
 		{
@@ -104,7 +104,7 @@ class Pc extends AppModel
 		return true;
 	}
 
-	function afterSave($create)
+	function afterSave($created, $options = array())
 	{
 		if(!empty($this->data["Pc"]["title_id"]))
 		{
@@ -119,7 +119,7 @@ class Pc extends AppModel
 	 * @var id
 	 */
 	var $deleteSummaryTitleId = null;
-	function beforeDelete()
+	function beforeDelete($cascade = true)
 	{
 		$this->deleteSummaryTitleId = $this->field("title_id");
 		return true;

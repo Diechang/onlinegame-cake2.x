@@ -7,7 +7,7 @@
 <meta name="Description" content="<?php echo $description_for_layout ?>" />
 <?php echo $this->Common->metaTags($metaTags)?>
 
-<?php echo $this->Ogp->output()?>
+<?php echo $this->Ogp->ogptags()?>
 
 <meta http-equiv="Content-Script-Type" content="text/javascript" />
 <meta http-equiv="Content-Style-Type" content="text/css" />

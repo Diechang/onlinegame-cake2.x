@@ -48,7 +48,7 @@ class Fansite extends AppModel
 	);
 
 	//Callbacks
-	function beforeValidate()
+	function beforeValidate($options = array())
 	{
 		if(!empty($this->data["Fansite"]))
 		{
@@ -80,7 +80,7 @@ class Fansite extends AppModel
 		return true;
 	}
 
-	function afterSave($create)
+	function afterSave($created, $options = array())
 	{
 		if(!empty($this->data["Fansite"]["title_id"]))
 		{
@@ -91,7 +91,7 @@ class Fansite extends AppModel
 
 	//削除後集計用タイトルID
 	var $deleteSummaryTitleId = null;
-	function beforeDelete()
+	function beforeDelete($cascade = true)
 	{
 		$this->deleteSummaryTitleId = $this->field("title_id");
 		return true;
