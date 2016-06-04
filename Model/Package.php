@@ -63,7 +63,7 @@ class Package extends AppModel
 	);
 
 	//Callbacks
-	function beforeValidate()
+	function beforeValidate($options = array())
 	{
 		if(!empty($this->data["Package"]))
 		{
@@ -89,7 +89,7 @@ class Package extends AppModel
 		return true;
 	}
 
-	function afterSave($create)
+	function afterSave($created, $options = array())
 	{
 		if(!empty($this->data["Package"]["title_id"]))
 		{
@@ -100,7 +100,7 @@ class Package extends AppModel
 
 	//削除後集計用タイトルID
 	var $deleteSummaryTitleId = null;
-	function beforeDelete()
+	function beforeDelete($cascade = true)
 	{
 		$this->deleteSummaryTitleId = $this->field("title_id");
 		return true;

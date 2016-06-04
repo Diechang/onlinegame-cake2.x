@@ -60,7 +60,7 @@ class Link extends AppModel
 	);
 
 	//Callbacks
-	function beforeValidate()
+	function beforeValidate($options = array())
 	{
 		if(!empty($this->data["Link"]))
 		{

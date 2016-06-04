@@ -219,7 +219,7 @@ class Title extends AppModel
 	);
 
 	//Callbacks
-	function afterSave()
+	function afterSave($created, $options = array())
 	{
 		$this->clearElementCache("global_header");
 		$this->clearElementCache("right_pickup");
@@ -234,7 +234,7 @@ class Title extends AppModel
 		$this->clearElementCache("right_test");
 		$this->clearElementCache("left_ranking");
 	}
-	function beforeValidate()
+	function beforeValidate($options = array())
 	{
 		if(!empty($this->data["Title"]))
 		{

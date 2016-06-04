@@ -38,7 +38,7 @@ class Event extends AppModel
 	);
 
 	//Callbacks
-	function beforeValidate()
+	function beforeValidate($options = array())
 	{
 //		pr($this->data);
 //		exit;
@@ -67,7 +67,7 @@ class Event extends AppModel
 		return true;
 	}
 
-	function afterSave($create)
+	function afterSave($created, $options = array())
 	{
 		if(!empty($this->data["Event"]["title_id"]))
 		{
@@ -82,7 +82,7 @@ class Event extends AppModel
 	 * @var id
 	 */
 	var $deleteSummaryTitleId = null;
-	function beforeDelete()
+	function beforeDelete($cascade = true)
 	{
 		$this->deleteSummaryTitleId = $this->field("title_id");
 		return true;

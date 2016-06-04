@@ -15,7 +15,7 @@ class OgpHelper extends AppHelper
 	 * @access public
 	 * @return html
 	 */
-	function output()
+	function ogptags()
 	{
 		$site_url = Configure::read("Site.url");
 		//Default params

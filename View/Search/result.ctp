@@ -7,6 +7,8 @@ $this->set("keywords_for_layout", "");
 $this->set("description_for_layout", "");
 $this->set("h1_for_layout", "オンラインゲーム検索結果：" . $this->Paginator->current() . "ページ目");
 $this->set("pankuz_for_layout", array(array("str" => "オンラインゲーム検索", "url" => array("controller" => "search", "action" => "index")), "検索結果"));
+//paginator routing
+// $this->Paginator->options(array("url" => array("controller" => "search", "action" => "result")));
 ?>
 
 <!-- Search result -->

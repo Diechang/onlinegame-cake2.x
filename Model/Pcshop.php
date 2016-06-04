@@ -60,7 +60,7 @@ class Pcshop extends AppModel
 	);
 
 	//Callbacks
-	function beforeValidate()
+	function beforeValidate($options = array())
 	{
 		if(!empty($this->data["Pcshop"]))
 		{
@@ -84,7 +84,7 @@ class Pcshop extends AppModel
 	}
 
 	//Callbacks
-	function afterSave()
+	function afterSave($created, $options = array())
 	{
 		$this->clearElementCache("left_" . strtolower($this->name));
 	}

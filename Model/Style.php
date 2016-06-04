@@ -37,7 +37,7 @@ class Style extends AppModel
 	);
 
 	//Callbacks
-	function afterSave()
+	function afterSave($created, $options = array())
 	{
 		$this->clearElementCache("left_" . strtolower($this->name));
 		$this->clearElementCache("search_title_form");

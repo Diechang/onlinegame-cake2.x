@@ -54,7 +54,7 @@ class Vote extends AppModel
 	}
 
 	//Callbacks
-	function beforeValidate()
+	function beforeValidate($options = array())
 	{
 		if(!empty($this->data["Vote"]))
 		{
@@ -77,7 +77,7 @@ class Vote extends AppModel
 		return true;
 	}
 
-	function afterSave($create)
+	function afterSave($created, $options = array())
 	{
 		$this->clearElementCache("global_header");
 		$this->clearElementCache("left_ranking");
