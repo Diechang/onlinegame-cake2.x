@@ -77,7 +77,7 @@
 					"maxLength" => 4))?>
 			</td>
 		</tr>
-		<tr>
+		<!-- <tr>
 			<th>&nbsp;</th>
 			<td>
 				<?php echo $this->Form->button("評価点数を投稿！", array(
@@ -86,7 +86,7 @@
 					"class" => "button"))?><br />
 				<span class="attention">※レビューも書きたい場合は下のフォームに入力してください</span>
 			</td>
-		</tr>
+		</tr> -->
 		<tr class="head">
 			<th colspan="2">レビューも書く（必須ではありません）</th>
 		</tr>

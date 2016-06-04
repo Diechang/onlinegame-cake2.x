@@ -373,6 +373,38 @@ class PagesController extends AppController
 		$this->set("moneycategories", $moneycategories);
 	}
 
+/**
+ * Review please for Outsource
+ */
+	function review_please()
+	{
+		$this->layout = "";
+
+
+		// $this->Title->unbindAll(array("Titlesummary"));
+		$this->Title->Behaviors->load("Containable");
+		$titles = $this->Title->find("all", array(
+			"conditions" => array(
+				"AND" => array(
+					"Title.public" => 1,
+					"Titlesummary.vote_count_review <" => 30,
+					"OR" => array(
+						array("Title.ad_use" => 1, "Title.service_id NOT IN" => array(1, 2, 5)),
+						array("Title.service_start >" => date("Y-m-d", strtotime("-2 year")), "Title.service_id" => 2, "Title.ad_use" => 1),
+						array("Title.service_start >" => date("Y-m-d", strtotime("-1 year")), "Title.service_id" => 2),
+					),
+				),
+			),
+			"order" => array("Title.ad_use DESC", "Title.service_id DESC" , "Title.service_start DESC"),
+			"contain" => "Titlesummary",
+		));
+		// pr($titles);
+		// exit;
+		//
+		//Set
+		$this->set("titles", $titles);
+	}
+
 
 /**
  * Jump to other site
