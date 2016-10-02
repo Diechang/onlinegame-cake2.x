@@ -14,6 +14,7 @@ class CommonHelper extends AppHelper
  * @access	public
  */
 	var $emptyPosterName = "名無し";
+	var $empty_poster_name = "名無し";
 
 /**
  * メタタグマップ
@@ -95,6 +96,38 @@ class CommonHelper extends AppHelper
 			return "";
 		}
 	}
+	function pankuz_links($data)
+	{
+		if(!empty($data))
+		{
+			if(is_array($data))
+			{//配列
+				$ret = "";
+				foreach($data as $val)
+				{
+					$ret .= "<li>";
+					if(is_array($val))
+					{//文字列["str"]とURL配列["url"]の配列
+						$ret .= '<i class="zmdi zmdi-chevron-right"></i> ' . $this->Html->link($val["str"], $val["url"]);
+					}
+					else
+					{//文字列
+						$ret .= '<i class="zmdi zmdi-chevron-right"></i> ' . $val;
+					}
+					$ret .= "</li>";
+				}
+				return $ret;
+			}
+			elseif(is_string($data))
+			{//文字列
+				return " ＞ " . $data;
+			}
+		}
+		else
+		{
+			return "";
+		}
+	}
 
 /**
  * コピーライト
@@ -117,6 +150,37 @@ class CommonHelper extends AppHelper
  * @access	public
  */
 	function dateFormat($date, $type = "datetime")
+	{
+		if(!empty($date))
+		{
+			$types	= array(
+				"datetime"	=> "Y年n月j日 H時i分",
+				"date"		=> "Y年n月j日",
+				"time"		=> "H時i分",
+			);
+
+			$dateData	= getdate(strtotime($date));
+//			pr($dateData);
+			//00:00の場合
+			if($type == "term")
+			{
+				if(empty($dateData["hours"]) && empty($dateData["minutes"]))
+				{
+					$type = "date";
+				}
+				else
+				{
+					$type = "datetime";
+				}
+			}
+			return date($types[$type], strtotime($date));
+		}
+		else
+		{
+			return "";
+		}
+	}
+	function date_format($date, $type = "datetime")
 	{
 		if(!empty($date))
 		{
@@ -227,6 +291,15 @@ class CommonHelper extends AppHelper
 		}
 		return $this->output($title);
 	}
+	function title_separated_span($title_official, $title_read = null)
+	{
+		$title = '<span class="official">' . $title_official . '</span>';
+		if(!empty($title_read))
+		{
+			$title .= '<span class="read">' . $title_read . '</span>';
+		}
+		return $this->output($title);
+	}
 
 /**
  * カッコ付きタイトル：ゲームタイトルでもポータルでも
@@ -237,6 +310,15 @@ class CommonHelper extends AppHelper
  * @access	public
  */
 	function titleWithCase($title_official, $title_read = null)
+	{
+		$title = $title_official;
+		if(!empty($title_read))
+		{
+			$title .= "(" . $title_read . ")";
+		}
+		return $this->output($title);
+	}
+	function title_separated_case($title_official, $title_read = null)
 	{
 		$title = $title_official;
 		if(!empty($title_read))
@@ -322,6 +404,10 @@ class CommonHelper extends AppHelper
 	{
 		return $this->output("thumb/" . ((!empty($thumb_name)) ? $thumb_name : "thumb_00.jpg"));
 	}
+	function thumb_name($thumb_name = null)
+	{
+		return $this->output("thumb/" . ((!empty($thumb_name)) ? $thumb_name : "thumb_00.jpg"));
+	}
 
 /**
  * 料金データ
@@ -372,6 +458,33 @@ class CommonHelper extends AppHelper
 	{
 		return $this->dateFormat($start, "term") . "～" . $this->dateFormat($end, "term");
 	}
+	function term_format($start = null, $end = null)
+	{
+		return $this->date_format($start, "term") . "～" . $this->date_format($end, "term");
+	}
+
+/**
+ * テストラベル
+ * 
+ * @param	date	$start
+ * @param	date	$end
+ * @return	html
+ * @access	public
+ */
+	function test_label($service_id)
+	{
+		switch($service_id)
+		{
+			case 3:
+				$ret = '<span class="label label-open">オープンβ</span>';
+				break;
+			case 4:
+				$ret = '<span class="label label-closed">クローズドβ</span>';
+				break;
+		}
+
+		return $this->output($ret);
+	}
 
 
 /** Votes
@@ -387,6 +500,11 @@ class CommonHelper extends AppHelper
 	function posterName($name)
 	{
 		$ret = (!empty($name)) ? $name : $this->emptyPosterName;
+		return h($ret . "さん");
+	}
+	function poster_name($name)
+	{
+		$ret = (!empty($name)) ? $name : $this->empty_poster_name;
 		return h($ret . "さん");
 	}
 
@@ -408,6 +526,17 @@ class CommonHelper extends AppHelper
 			return $this->posterName($vote["poster_name"]) . "の" . (!empty($vote["review"]) ? "レビュー" : "評価");
 		}
 	}
+	function vote_title(&$vote)
+	{
+		if(!empty($vote["title"]))
+		{
+			return h($vote["title"]);
+		}
+		else
+		{
+			return $this->poster_name($vote["poster_name"]) . "の" . (!empty($vote["review"]) ? "レビュー" : "評価");
+		}
+	}
 
 /**
  * 点数フォーマット
@@ -418,6 +547,10 @@ class CommonHelper extends AppHelper
  * @access	public
  */
 	function pointFormat($num, $empty = 0)
+	{
+		return (!empty($num)) ? sprintf("%.2f", $num) : $empty;
+	}
+	function point_format($num, $empty = 0)
 	{
 		return (!empty($num)) ? sprintf("%.2f", $num) : $empty;
 	}
@@ -476,6 +609,11 @@ class CommonHelper extends AppHelper
 
 		return $this->output($ret);
 	}
+	function star_block($rate = 0, $color = "w", $width = 150)
+	{
+		$ret = '<div class="stars stars-' . $color . $width . ' stars-rate' . round($rate * 2) * 10 . '"></div>';
+		return $this->output($ret);
+	}
 
 
 /** Links
@@ -496,6 +634,10 @@ class CommonHelper extends AppHelper
 	{
 		return $this->Html->link($str, array("controller" => "titles", "action" => $action, "path" => $path, "ext" => "html", "#" => $hash), array("escape" => $escape));
 	}
+	function title_link_text($str = null, $path = null, $action = "index", $hash = null, $escape = false)
+	{
+		return $this->Html->link($str, array("controller" => "titles", "action" => $action, "path" => $path, "ext" => "html", "#" => $hash), array("escape" => $escape));
+	}
 
 /**
  * サムネイルリンク
@@ -509,6 +651,14 @@ class CommonHelper extends AppHelper
  * @access	public
  */
 	function titleLinkThumb($thumb_name, $alt = null, $path = null, $width = 160, $action = "index")
+	{
+		return $this->Html->image($thumb_name, array(
+			"alt"	=> $alt,
+			"width"	=> $width,
+			"url"	=> array("controller" => "titles", "action" => $action, "path" => $path, "ext" => "html")
+		));
+	}
+	function title_link_thumb($thumb_name, $alt = null, $path = null, $width = 160, $action = "index")
 	{
 		return $this->Html->image($thumb_name, array(
 			"alt"	=> $alt,
@@ -548,6 +698,25 @@ class CommonHelper extends AppHelper
 			return "<span>" . $ret . "</span>";
 		}
 	}
+	function official_link_text($str, $ad_use, $ad_text, $official_url, $service_id = null, $titleName = false)
+	{
+		if($service_id != 1 or $service_id == null)
+		{
+			return (!empty($ad_use) && !empty($ad_text)) ? $ad_text : $this->Html->link($str, $official_url, array("target" => "_blank", "escape" => false));
+		}
+		else
+		{//Titles only
+			if($titleName)
+			{
+				$ret = $str;
+			}
+			else
+			{
+				$ret = "サービス終了・休止中";
+			}
+			return "<span>" . $ret . "</span>";
+		}
+	}
 
 /**
  * カテゴリリンク/テキスト
@@ -558,6 +727,32 @@ class CommonHelper extends AppHelper
  * @access	public
  */
 	function categoriesLink($categories, $tag = null)
+	{
+		$tagStart	= (!empty($tag)) ? "<" . $tag . ">" : "";
+		$tagEnd		= (!empty($tag)) ? "</" . $tag . ">" : "";
+
+		if(!empty($categories))
+		{
+			if(is_array($categories))
+			{
+				$text = "";
+				foreach($categories as $category)
+				{
+					$text .= $tagStart . $this->Html->link($category['str'], array('controller' => 'categories', 'path' => $category['path'], 'ext' => 'html')) . $tagEnd . "\n";
+				}
+			}
+			else
+			{
+				$text = $tagStart . $categories . $tagEnd;
+			}
+		}
+		else
+		{
+			$text = "データ未登録";
+		}
+		return $text;
+	}
+	function categories_link($categories, $tag = null)
 	{
 		$tagStart	= (!empty($tag)) ? "<" . $tag . ">" : "";
 		$tagEnd		= (!empty($tag)) ? "</" . $tag . ">" : "";
@@ -648,7 +843,22 @@ class CommonHelper extends AppHelper
 		}
 		else
 		{
-			return $this->Html->link($this->Html->image($modelData["ad_part_img_src"], array("alt" => (!empty($modelData["ad_part_text"])) ? $modelData["ad_part_text"] : "")),
+			return $this->Html->link($this->Html->image($modelData["ad_part_img_src"],
+					array("alt" => (!empty($modelData["ad_part_text"])) ? $modelData["ad_part_text"] : "")),
+					array("controller" => "jump", "action" => $action, $modelData["id"], "sys" => false),
+					array("target" => "_blank", "rel" => "nofollow", "escape" => false));
+		}
+	}
+	function ad_link_image($modelData, $action)
+	{
+		if($modelData["ad_noredirect"])
+		{
+			return $modelData["ad_src_image"];
+		}
+		else
+		{
+			return $this->Html->link($this->Html->image($modelData["ad_part_img_src"],
+					array("alt" => (!empty($modelData["ad_part_text"])) ? $modelData["ad_part_text"] : "")),
 					array("controller" => "jump", "action" => $action, $modelData["id"], "sys" => false),
 					array("target" => "_blank", "rel" => "nofollow", "escape" => false));
 		}

@@ -1,235 +1,175 @@
-<!-- Information -->
-<div class="content information">
-	<h2 class="image"><?php echo $this->Html->image("design/index_information_title.gif", array("alt" => "Information：オンラインゲームライフへようこそ！"))?></h2>
-	<div class="body">
-		<p><strong>【オンラインゲームライフ】-無料オンラインゲーム情報-</strong>では、無料で遊べるオンラインゲーム情報やレビューなど、オンラインゲーム好きのあなたのために、MMORPGをはじめ、アクションやスポーツなど、無料のオンラインゲームだけではなく、月額課金制の本格オンラインゲームまで幅広く紹介していきます。</p>
-		<p><span class="wBold">レビューや評価点数の投稿</span>もドンドンお待ちしています。<br />
-		あなたの投稿で面白い人気オンラインゲームランキングが出来ていきます。<br />
-		さらには気になるあのオンラインゲームの<span class="wBold">プレイムービー(動画)や、ブログ記事</span>も検索できますので、まずは左のジャンル・スタイルリスト等から探してみてください。</p>
+<!-- information -->
+<section class="information">
+	<h1>Information</h1>
+	<div class="text">
+		<p>【オンラインゲームライフ】-無料オンラインゲーム情報-では、無料で遊べるオンラインゲーム情報やレビューなど、オンラインゲーム好きのあなたのために、MMORPGをはじめ、アクションやスポーツなど、無料のオンラインゲームだけではなく、月額課金制の本格オンラインゲームまで幅広く紹介していきます。</p>
+		<p>レビューや評価点数の投稿もドンドンお待ちしています。<br>
+		あなたの投稿で面白い人気オンラインゲームランキングが出来ていきます。<br>
+		さらには気になるあのオンラインゲームのプレイムービー(動画)や、ブログ記事も検索できますので、まずは左のタイトル一覧から探してみてください。</p>
 		<p>是非、あなた好みの面白いオンラインゲームを見つけてくださいね。</p>
-
-		<p class="tCenter"><?php echo $this->Gads->both468()?></p>
+		<div class="gAds"><?php echo $this->Gads->both468()?></div>
 	</div>
-</div>
+</section>
 
+<!-- ranking -->
+<section class="ranking">
+	<h1>
+		<span class="main">人気オンラインゲームランキング</span>
+		<span class="sub">ユーザーの評価投稿による人気オンラインゲームランキングです</span>
+	</h1>
+	<section class="all">
+		<?php echo $this->element("loop_ranking_data", array("rankings" => $rankings))?>
+	</section>
 
-<!-- Ranking -->
-<div class="content ranking">
-	<h2 class="image"><?php echo $this->Html->image("design/content_ranking_title_new.gif", array("alt" => "今が旬のおすすめ人気オンラインゲームランキング：正式サービス・各種テスト開始から2年以内のオンラインゲームランキングです"))?></h2>
-	<div class="body">
-		<!--AllCategory-->
-		<div class="rankingWide">
-			<div class="top">
-				<div class="body">
+	<section class="genres">
+		<h2 class="headline">ジャンル別ランキング</h2>
+		<?php echo $this->element("loop_ranking_categories", array("categoryRankings" => $categoryRankings))?>
 
-<?php echo $this->element("loop_ranking_data", array("rankings" => $rankings))?>
-
-				</div>
-			</div>
+		<div class="more">
+			<?php echo $this->Html->link('人気オンラインゲームランキング一覧 <i class="zmdi zmdi-chevron-right"></i>', array("controller" => "ranking", "action" => "index", "path" => "index", "ext" => "html"), array("escape" => false));?>
 		</div>
-		<!--Categories-->
-		<ul class="rankingSmalls clearfix">
-<?php foreach($categoryRankings as $categoryRanking):?>
+	</section>
+</section>
+
+<!-- review -->
+<section class="review">
+	<h1>
+		<span class="main">新着ユーザーレビュー</span>
+		<span class="sub">オンラインゲーム選びの参考にどうぞ</span>
+	</h1>
+	<section class="recents">
+		<?php echo $this->element("loop_review_data", array("reviews" => $recents))?>
+	</section>
+	<section class="waits">
+		<h2 class="headline">
+			<span class="main">レビュー・評価投稿募集中！</span>
+			<span class="sub">まだ投稿がされていないオンラインゲームの一部です</span>
+		</h2>
+
+		<?php echo $this->element("loop_review_waits", array("waits" => $waits))?>
+		<div class="more"><a href="http://feeds.feedburner.com/dz-game/review" class="feed"><i class="icon icon-feed"></i> 新着レビューをRSSで！</a></div>
+	</section>
+</section>
+
+<!-- test -->
+<section class="test">
+	<h1>
+		<span class="main">無料テスト実施中タイトル</span>
+		<span class="sub">無料で新作ゲームが体験できるテストサービス実施中のタイトルです</span>
+	</h1>
+	<section class="current">
+<?php if(empty($testCurrents)):?>
+		<p class="none">現在実施中のテスト情報がありません</p>
+<?php else:?>
+		<ul>
+	<?php foreach($testCurrents as $test):?>
 			<li>
-				<h3><?php echo $this->Html->link($categoryRanking["Category"]["str"] . "ランキング", array("controller" => "ranking", "action" => "index", "path" => $categoryRanking["Category"]["path"], "ext" => "html"))?></h3>
-				<p>
-	<?php if(!empty($categoryRanking["Ranking"])):?><?php echo $this->Common->titleLinkText(
-						$this->Common->titleWithSpan($categoryRanking["Ranking"][0]["Title"]["title_official"], $categoryRanking["Ranking"][0]["Title"]["title_read"]),
-						$categoryRanking["Ranking"][0]["Title"]["url_str"])?>
-	<?php endif;?>
-				</p>
+				<h2 class="title">
+					<?php echo $this->Common->test_label($test["Service"]["id"]);?>
+					<?php echo $this->Common->title_link_text(
+						$this->Common->title_separated_span($test["Title"]["title_official"], $test["Title"]["title_read"]),
+						$test["Title"]["url_str"])?>
+				</h2>
+				<div class="thumb">
+					<?php echo $this->Common->title_link_thumb(
+						$this->Common->thumb_name($test["Title"]["thumb_name"]),
+						$this->Common->title_separated_case($test["Title"]["title_official"], $test["Title"]["title_read"]),
+						$test["Title"]["url_str"], 120)?>
+				</div>
+				<div class="data">
+					<p class="description"><?php echo nl2br(strip_tags($test["Title"]["description"]))?></p>
+					<div class="date"><span class="fwBold">実施期間</span>：<?php echo $this->Common->date_format($test["Title"]["test_start"], "date")?> 〜 <?php echo $this->Common->date_format($test["Title"]["test_end"], "date")?></div>
+				</div>
+			</li>
+	<?php endforeach;?>
+		</ul>
+<?php endif;?>
+	</section>
+	<section class="future">
+		<h2 class="headline">
+			<span class="main">もうすぐ実施予定！</span>
+			<span class="sub">これから実施される予定のテスト情報です</span>
+		</h2>
+<?php if(empty($testFutures)):?>
+		<p class="none">実施予定のテスト情報がありません</dt>
+<?php else:?>
+		<ul>
+	<?php foreach($testFutures as $test):?>
+			<li>
+				<div class="thumb">
+					<?php echo $this->Common->title_link_thumb(
+						$this->Common->thumb_name($test["Title"]["thumb_name"]),
+						$this->Common->title_separated_case($test["Title"]["title_official"], $test["Title"]["title_read"]),
+						$test["Title"]["url_str"], 80)?>
+				</div>
+				<div class="title">
+					<?php echo $this->Common->title_link_text(
+						$this->Common->title_separated_span($test["Title"]["title_official"], $test["Title"]["title_read"]),
+						$test["Title"]["url_str"])?>
+				</div>
+				<div class="date">
+					<?php echo $this->Common->test_label($test["Service"]["id"]);?>
+					<?php echo $this->Common->date_format($test["Title"]["test_start"], "date")?> 〜 <?php echo $this->Common->date_format($test["Title"]["test_end"], "date")?>
+				</div>
+			</li>
+	<?php endforeach;?>
+		</ul>
+<?php endif;?>
+	</section>
+</section>
+
+<!-- search -->
+<section class="search">
+	<h1>
+		<span class="main">オンラインゲーム検索</span>
+		<span class="sub">自分好みのオンラインゲームを探そう</span>
+	</h1>
+	<div class="form-search">
+<?php // echo $this->element("search_title_form", array(), array("cache" => true))?>
+	</div>
+</section>
+
+<!-- news -->
+<section class="news">
+	<!-- new titles -->
+	<section class="title">
+		<h1>新着オンラインゲーム</h1>
+		<ul>
+<?php foreach($newers as $newer):?>
+			<li>
+				<a href="<?php echo $this->Html->url(array("controller" => "titles", "action" => "index", "path" => $newer["Title"]["url_str"], "ext" => "html"));?>">
+					<div class="thumb">
+						<?php echo $this->Html->image($this->Common->thumb_name($newer["Title"]["thumb_name"]),
+						array("alt" => $this->Common->title_separated_case($newer["Title"]["title_official"], $newer["Title"]["title_read"]), "width" => 80));?>
+					</div>
+					<p>
+						<?php echo $this->Common->title_separated_span($newer["Title"]["title_official"], $newer["Title"]["title_read"]);?>
+					</p>
+				</a>
 			</li>
 <?php endforeach;?>
 		</ul>
-		<!--MoreLink-->
-		<p class="rankMore"><?php echo $this->Html->link("人気オンラインゲームランキング詳細はこちら", array("controller" => "ranking", "action" => "index", "path" => "index", "ext" => "html"))?></p>
-	</div>
-</div>
-
-
-<!-- Votes -->
-<div class="content votes">
-	<div class="body">
-		<h2 class="image"><?php echo $this->Html->image("design/index_votes_recent_title.gif", array("alt" => "最近投稿されたレビュー"))?></h2>
-		<div class="recent">
-			<dl>
-<?php foreach($recents as $recent): ?>
-				<dt><?php echo $this->Html->link($this->Common->voteTitle($recent["Vote"]), array("controller" => "titles", "action" => "single", "path" => $recent["Title"]["url_str"], "voteid" => $recent["Vote"]["id"], "ext" => "html"))?></dt>
-				<dd>
-					<div class="thumb">
-						<?php echo $this->Common->titleLinkThumb(
-							$this->Common->thumbName($recent["Title"]["thumb_name"]),
-							$this->Common->titleWithCase($recent["Title"]["title_official"], $recent["Title"]["title_read"]),
-							$recent["Title"]["url_str"], 60, "review") ?>
-					</div>
-					<div class="review">
-						<p><?php echo (!empty($recent["Vote"]["review"])) ?
-							mb_strimwidth(h($recent["Vote"]["review"]), 0, 240, " … " . $this->Html->link("続き", array("controller" => "titles", "action" => "single", "path" => $recent["Title"]["url_str"], "voteid" => $recent["Vote"]["id"], "ext" => "html"))) :
-							"(評価投稿のみ)" ?></p>
-					</div>
-					<p class="title"><?php echo $this->Common->titleLinkText(
-						$recent["Title"]["title_official"],
-						$recent["Title"]["url_str"], "review")?></p>
-					<table class="data">
-						<tr>
-							<th class="total">総合評価</th>
-							<td class="star">
-								<?php echo $this->Common->starBlock(50, $recent["Vote"]["single_avg"], "総合評価：")?>
-							</td>
-							<th>面白さ</th>
-							<td class="star">
-								<?php echo $this->Common->starBlock(50, $recent["Vote"]["item1"], "面白さ：")?>
-							</td>
-							<th>投稿日</th>
-							<td><?php echo $this->Common->dateFormat($recent["Vote"]["created"])?></td>
-						</tr>
-					</table>
-				</dd>
-<?php endforeach; ?>
-			</dl>
-			<p class="icon_feed16"><?php echo $this->Html->link("新着レビューをRSSで！", "http://feeds.feedburner.com/dz-game/review")?></p>
-		</div>
-		<h2 class="image"><?php echo $this->Html->image("design/index_votes_wait_title.gif", array("alt" => "レビュー・評価投稿募集中！：まだ投稿がされていないオンラインゲームの一部です"))?></h2>
-		<div class="wait">
-			<table>
-<?php for($i = 0; $i < 2; $i++):?>
-				<tr>
-	<?php for($th = $i * 5; $th < ($i + 1) * 5; $th++):?>
-					<th>
-						<?php echo (!empty($waits[$th])) ? $this->Common->titleLinkThumb(
-							$this->Common->thumbName($waits[$th]["Title"]["thumb_name"]),
-							$this->Common->titleWithCase($waits[$th]["Title"]["title_official"], $waits[$th]["Title"]["title_read"]),
-							$waits[$th]["Title"]["url_str"], 80) : "&nbsp;"?>
-					</th>
-	<?php endfor;?>
-				</tr>
-				<tr>
-	<?php for($te = $i * 5; $te < ($i + 1) * 5; $te++):?>
-					<td>
-						<?php echo (!empty($waits[$te])) ? $this->Common->titleLinkText(
-							$waits[$te]["Title"]["title_official"], $waits[$te]["Title"]["url_str"]) : "&nbsp;"?>
-					</td>
-	<?php endfor;?>
-				</tr>
-<?php endfor;?>
-			</table>
-		</div>
-	</div>
-</div>
-
-<!-- Tests -->
-<div class="content tests">
-	<div class="body">
-		<h2 class="image"><?php echo $this->Html->image("design/index_tests_current_title.gif", array("alt" => "無料テスト実施中タイトル：無料でゲームが体験できるテスト実施中タイトルです"))?></h2>
-		<div class="current">
-			<dl>
-<?php if(empty($testCurrents)):?>
-				<dt class="none">現在実施中のテスト情報がありません</dt>
-<?php else:?>
-	<?php foreach($testCurrents as $test):?>
-				<dt class="<?php echo $test["Service"]["path"]?>">
-					<?php echo $this->Common->titleLinkText(
-						$this->Common->titleWithSpan($test["Title"]["title_official"], $test["Title"]["title_read"]),
-						$test["Title"]["url_str"])?>
-				</dt>
-				<dd>
-					<div class="thumb">
-						<?php echo $this->Common->titleLinkThumb(
-							$this->Common->thumbName($test["Title"]["thumb_name"]),
-							$this->Common->titleWithCase($test["Title"]["title_official"], $test["Title"]["title_read"]),
-							$test["Title"]["url_str"], 120)?>
-					</div>
-					<div class="summary">
-						<p><?php echo nl2br(strip_tags($test["Title"]["description"]))?></p>
-					</div>
-					<table class="data">
-						<tr>
-							<th>実施期間</th>
-							<td><?php echo $this->Common->dateFormat($test["Title"]["test_start"], "date")?> 〜 <?php echo $this->Common->dateFormat($test["Title"]["test_end"], "date")?></td>
-						</tr>
-					</table>
-				</dd>
-	<?php endforeach;?>
-<?php endif;?>
-			</dl>
-			<p class="icon_feed16"><?php echo $this->Html->link("無料テスト情報をRSSで！", "http://feeds.feedburner.com/dz-game/test")?></p>
-		</div>
-		<h2 class="image"><?php echo $this->Html->image("design/index_tests_future_title.gif", array("alt" => "もうすぐ実施予定！：これから実施される予定のテスト情報です"))?></h2>
-		<div class="future">
-<?php if(empty($testFutures)):?>
-			<p class="none">実施予定のテスト情報がありません</p>
-<?php else:?>
-			<table>
-	<?php foreach($testFutures as $test):?>
-				<tr>
-					<th class="<?php echo $test["Service"]["path"]?>">
-						<?php echo $this->Common->titleLinkThumb(
-							$this->Common->thumbName($test["Title"]["thumb_name"]),
-							$this->Common->titleWithCase($test["Title"]["title_official"], $test["Title"]["title_read"]),
-							$test["Title"]["url_str"], 60)?>
-					</th>
-					<td>
-						<h3>
-							<?php echo $this->Common->titleLinkText(
-								$this->Common->titleWithSpan($test["Title"]["title_official"], $test["Title"]["title_read"]),
-								$test["Title"]["url_str"])?>
-						</h3>
-						<p class="term"><span class="wBold">実施期間</span> <?php echo $this->Common->dateFormat($test["Title"]["test_start"], "date")?> 〜 <?php echo $this->Common->dateFormat($test["Title"]["test_end"], "date")?></p>
-					</td>
-				</tr>
-	<?php endforeach;?>
-			</table>
-<?php endif;?>
-		</div>
-	</div>
-</div>
-
-<?php // echo $this->element("search_title_form", array(), array("cache" => true))?>
-
-<!-- Newer -->
-<div class="content newer">
-	<h2 class="image"><?php echo $this->Html->image("design/index_newer_title.gif", array("alt" => "新着オンラインゲーム"))?></h2>
-	<ul class="clearfix">
-<?php $newerCount = 0?>
-<?php foreach($newers as $newer): ?>
-		<?php $newerCount++?>
-		<li class="<?php echo ($newerCount % 2 == 1) ? "odd" : "even"?>">
-			<div class="thumb">
-				<?php echo $this->Common->titleLinkThumb(
-					$this->Common->thumbName($newer["Title"]["thumb_name"]),
-					$this->Common->titleWithCase($newer["Title"]["title_official"], $newer["Title"]["title_read"]),
-					$newer["Title"]["url_str"], 40) ?></div>
-			<p class="title">
-				<?php echo $this->Common->titleLinkText(
-					$this->Common->titleWithSpan($newer["Title"]["title_official"], $newer["Title"]["title_read"]), $newer["Title"]["url_str"])?>
-			</p>
-		</li>
-<?php endforeach; ?>
-	</ul>
-	<p class="icon_feed16"><?php echo $this->Html->link("新着オンラインゲームをRSSで！", "http://feeds.feedburner.com/dz-game/newgames")?></p>
-</div>
-
-
-<!-- News -->
-<div class="content clearfix">
-	<!-- Fansite -->
-	<div class="fansite">
-	<h2 class="image"><?php echo $this->Html->image("design/index_fansite_title.gif", array("alt" => "新着ファンサイト"))?></h2>
-		<dl>
+	</section>
+	<!-- new fansites -->
+	<section class="fansite">
+		<h1>新着ファンサイト</h1>
+		<ul>
 <?php foreach($fansites as $fansite):?>
-			<dt><?php echo $this->Html->link($fansite["Fansite"]["site_name"], $fansite["Fansite"]["site_url"], array("target" => "_blank"))?></dt>
-			<dd><?php echo $this->Html->link($fansite["Title"]["title_official"], array("controller" => "titles", "action" => "link", "path" => $fansite["Title"]["url_str"], "ext" => "html"))?></dd>
+			<li>
+				<?php echo $this->Html->link($fansite["Fansite"]["site_name"], $fansite["Fansite"]["site_url"], array("class" => "site", "target" => "_blank"))?>
+				<?php echo $this->Html->link($fansite["Title"]["title_official"], array("controller" => "titles", "action" => "link", "path" => $fansite["Title"]["url_str"], "ext" => "html"), array("class" => "title"))?>
+			</li>
 <?php endforeach;?>
-		</dl>
-	</div>
-	<!-- Whats New -->
-	<div class="whats">
-	<h2 class="image"><?php echo $this->Html->image("design/index_whats_title.gif", array("alt" => "更新履歴"))?></h2>
+		</ul>
+	</section>
+	<!-- new info -->
+	<section class="info">
+		<h1>更新履歴</h1>
 		<dl>
 <?php foreach($updates as $update):?>
-			<dt><?php echo $this->Common->dateFormat($update["Update"]["created"], "date")?></dt>
+			<dt><?php echo $this->Common->date_format($update["Update"]["created"], "date")?></dt>
 			<dd><?php echo $update["Update"]["text"]?></dd>
 <?php endforeach;?>
 		</dl>
-	</div>
-</div>
+	</section>
+</section>

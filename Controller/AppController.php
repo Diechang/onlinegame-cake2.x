@@ -45,9 +45,9 @@ class AppController extends Controller
 								"sys" => true,
 							),
 							"loginRedirect" => array(
+								"sys" => true,
 								"controller" => "pages",
 								"action" => "home",
-								"sys" => true,
 							),
 							"logoutRedirect" => array(
 								"controller" => "users",

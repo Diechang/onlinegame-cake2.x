@@ -1,12 +1,12 @@
-<!-- ジャンル -->
-<div class="leftBox leftGray">
-	<h2><?php echo $this->Html->image("design/leftbox_gray_title_genre.gif", array("alt" => "ジャンル"))?></h2>
-	<div class="comment"><?php echo $this->Html->image("design/leftbox_gray_comment_genre.gif", array("alt" => "まずはゲームジャンルから"))?></div>
-	<div class="body">
-		<ul>
+<!-- genres -->
+<section class="genres">
+	<h1>
+		<span class="main">ジャンル</span>
+		<span class="sub">好きなジャンルで探す</span>
+	</h1>
+	<ul>
 <?php foreach($leftCategories as $category):?>
-			<li><?php echo $this->Html->link($category["Category"]["str"], array("controller" => "categories", "action" => "index", "path" => $category["Category"]["path"], "ext" => "html"))?></li>
+		<li><?php echo $this->Html->link($category["Category"]["str"], array("controller" => "categories", "action" => "index", "path" => $category["Category"]["path"], "ext" => "html"))?></li>
 <?php endforeach;?>
-		</ul>
-	</div>
-</div>
+	</ul>
+</section>

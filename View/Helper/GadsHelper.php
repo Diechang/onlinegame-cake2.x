@@ -73,6 +73,30 @@ HIRE;
 	}
 
 /**
+ * Image 300x250
+ *
+ * @return	html
+ * @access	public
+ */
+	function image300()
+	{
+		$src = <<< HIRE
+<!-- Google Adsense 300 -->
+<script type="text/javascript">
+google_ad_client = "ca-pub-5378944923532596";
+google_ad_slot = "6748251167";
+google_ad_width = 300;
+google_ad_height = 250;
+</script>
+<!-- [DZ]onlinegame image300 -->
+<script type="text/javascript"
+src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+HIRE;
+		return $src;
+	}
+
+/**
  * Image 250x250
  *
  * @return	html

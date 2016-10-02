@@ -1,30 +1,33 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://ogp.me/ns/fb#">
+<!DOCTYPE HTML>
+<!--[if lt IE 7 ]><html class="ie ie6"><![endif]-->
+<!--[if IE 7 ]><html class="ie ie7"><![endif]-->
+<!--[if IE 8 ]><html class="ie ie8"><![endif]-->
+<!--[if IE 9 ]><html class="ie ie9"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html><!--<![endif]-->
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta charset="utf-8">
+
 <title><?php echo $title_for_layout ?></title>
 <meta name="Keywords" content="<?php echo $keywords_for_layout ?>" />
 <meta name="Description" content="<?php echo $description_for_layout ?>" />
 
 <?php echo $this->Ogp->ogptags()?>
 
-<meta http-equiv="Content-Script-Type" content="text/javascript" />
-<meta http-equiv="Content-Style-Type" content="text/css" />
 <link rel="alternate" type="application/rss+xml" title="最新オンラインゲーム" href="http://feeds.feedburner.com/dz-game/newstart" />
 <link rel="alternate" type="application/rss+xml" title="新着レビュー投稿" href="http://feeds.feedburner.com/dz-game/review" />
 <link rel="alternate" type="application/rss+xml" title="無料テスト情報" href="http://feeds.feedburner.com/dz-game/test" />
 <link rel="alternate" type="application/rss+xml" title="新着オンラインゲーム" href="http://feeds.feedburner.com/dz-game/newgames" />
-<link href="/css/common.css" rel="stylesheet" type="text/css" />
-<link href="/css/index.css" rel="stylesheet" type="text/css" />
-<link href="/css/ranking.css" rel="stylesheet" type="text/css" />
-<link href="/css/search.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="/js/jquery.js"></script>
-<script type="text/javascript" src="/js/lib.js"></script>
-<script type="text/javascript" src="/js/hc.js"></script>
-<script type="text/javascript" src="/js/ng.js"></script>
 
-<script type="text/javascript" src="http://apis.google.com/js/plusone.js">{lang: 'ja'}</script>
-<script type="text/javascript" src="/js/analytics.js"></script>
+<!-- CSS Libs -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+
+<!-- CSS -->
+<link rel="stylesheet" href="/css/styles.css">
+
+<!-- JS Libs -->
+<script src="/js/libs/modernizr-2.8.3.min.js"></script>
+<script src="/js/libs/jquery-1.11.2.min.js"></script>
+
 </head>
 
 <body class="index">
@@ -38,71 +41,67 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
-<div id="back">
-	<div id="wrap">
-		<h1><?php echo $h1_for_layout ?></h1>
 
 <?php
 	echo $this->element('global_header', array(), array("cache" => array("config" => "element")));
 ?>
 
-		<!-- Contents -->
-		<div id="contents" class="clearfix">
-			<div id="newGames">
-				<!-- Thumbs -->
-				<div class="thumbs">
-					<ul>
-<?php foreach($newGames as $newGame):?>
-						<li>
-							<?php echo $this->Common->titleLinkThumb(
-								$this->Common->thumbName($newGame["Title"]["thumb_name"]),
-								$this->Common->titleWithCase($newGame["Title"]["title_official"], $newGame["Title"]["title_read"]),
-								$newGame["Title"]["url_str"], 80);?>
-						</li>
-<?php endforeach;?>
-					</ul>
-				</div>
-				<!-- Info -->
-				<div class="info">
-					<div id="slideContainer">
-						<div class="slide">
-							<div class="startImage"><?php echo $this->Html->image("design/index_newgames.gif", array("alt" => "新作オンラインゲーム"))?></div>
-						</div>
-<?php foreach($newGames as $newGame):?>
-						<div class="slide">
-							<div class="images">
-								<div class="thumb">
-									<?php echo $this->Common->titleLinkThumb(
-										$this->Common->thumbName($newGame["Title"]["thumb_name"]),
-										$this->Common->titleWithCase($newGame["Title"]["title_official"], $newGame["Title"]["title_read"]),
-										$newGame["Title"]["url_str"]);?>
-								</div>
 
-								<?php echo $this->Common->starBlock(100, $newGame["Titlesummary"]["vote_avg_all"], "総合評価", "black")?>
-
-							</div>
-							<div class="data">
-								<h3><?php echo $this->Common->titleLinkText(
-										$this->Common->titleWithSpan($newGame["Title"]["title_official"], $newGame["Title"]["title_read"]),
-										$newGame["Title"]["url_str"])?></h3>
-								<p class="description"><?php echo strip_tags($newGame["Title"]["description"])?></p>
-							</div>
-						</div>
+	<!-- index slider -->
+	<div class="newGames">
+		<div class="newGames-body">
+			<div class="thumbs">
+				<ul>
+<?php foreach($newGames as $newGame):?>
+					<li>
+						<?php echo $this->Common->title_link_thumb(
+							$this->Common->thumb_name($newGame["Title"]["thumb_name"]),
+							$this->Common->title_separated_case($newGame["Title"]["title_official"], $newGame["Title"]["title_read"]),
+							$newGame["Title"]["url_str"], 120);?>
+					</li>
 <?php endforeach;?>
-					</div>
-				</div>
+				</ul>
 			</div>
-			<!-- Main -->
-			<div id="main" class="clearfix">
-				<!-- Center -->
-				<div id="center" class="contents">
-				<?php
-					echo $content_for_layout;
-					echo $this->element("ad_center_bottoms", array(), array("cache" => array("config" => "element")));
-				?>
+			<div class="slide">
+				<ul>
+<?php foreach($newGames as $newGame):?>
+					<li>
+						<a href="<?php echo $this->Html->url(array("controller" => "titles", "action" => "index", "path" => $newGame["Title"]["url_str"], "ext" => "html"));?>">
+							<div class="images">
+								<div class="thumb"><?php echo $this->Html->image($this->Common->thumb_name($newGame["Title"]["thumb_name"]), array(
+									"alt"	=> $this->Common->title_separated_case($newGame["Title"]["title_official"], $newGame["Title"]["title_read"]),
+									"width"	=> 160));?></div>
+								<?php echo $this->Common->star_block($newGame["Titlesummary"]["vote_avg_all"]);?>
+							</div>
+							<div class="texts">
+								<p class="title"><?php echo $this->Common->title_separated_span($newGame["Title"]["title_official"], $newGame["Title"]["title_read"]);?></p>
+								<p class="description"><?php echo strip_tags($newGame["Title"]["description"]);?></p>
+							</div>
+						</a>
+					</li>
+<?php endforeach;?>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- Contents -->
+	<div class="contents">
+		<div class="contents-wrap">
+			<div class="contents-body">
+				<!-- Main contents -->
+				<div class="contents-main">
+					<main>
+					<?php
+						echo $content_for_layout;
+						echo $this->element("ad_center_bottoms", array(), array("cache" => array("config" => "element")));
+					?>
+					</main>
 				</div>
-				<!-- Left -->
-				<div id="left">
+				<!-- Side contents -->
+				<div class="contents-side">
+					<div class="floating">
 <?php
 	echo $this->element("ad_left_tops", array(), array("cache" => array("config" => "element")));
 	echo $this->element("left_category", array(), array("cache" => array("config" => "element")));
@@ -111,14 +110,17 @@
 	echo $this->element("left_pushsite");
 	echo $this->element("left_pcshop", array(), array("cache" => array("config" => "element")));
 	echo $this->element("left_feeds");
-	echo $this->element("left_share");
+	// echo $this->element("left_share");
 	echo $this->element("left_ranking", array(), array("cache" => array("config" => "element")));
 	echo $this->element("ad_left_bottoms", array(), array("cache" => array("config" => "element")));
 ?>
+					</div>
 				</div>
 			</div>
-			<!-- Right -->
-			<div id="right">
+
+			<!-- Sub contents -->
+			<div class="contents-sub">
+				<div class="floating">
 
 <?php
 	echo $this->element("ad_right_tops", array(), array("cache" => array("config" => "element")));
@@ -128,21 +130,22 @@
 	echo $this->element('right_fblikebox');
 	echo $this->element("ad_right_bottoms", array(), array("cache" => array("config" => "element")));
 ?>
-
+				</div>
 			</div>
 		</div>
-<?php
-if (Configure::read('debug') > 0)
-{
-	echo $this->element('sql_dump');
-	debug($this->request);
-}
-?>
+
+	</div>
+
 <?php
 	echo $this->element('footer');
 ?>
+<?php
+	echo $this->element('global_header_floating', array(), array("cache" => array("config" => "element")));
+?>
 
-	</div>
-</div>
+<!-- JS Libs -->
+<script src="/js/libs/slick-1.5.0/slick.min.js"></script>
+<!-- JS -->
+<script src="/js/ogl.newgames.js"></script>
 </body>
 </html>

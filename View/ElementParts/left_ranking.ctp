@@ -1,20 +1,19 @@
-<!--ランキング-->
-<div class="leftRanking leftBox leftPink">
-	<h2><?php echo $this->Html->image("design/leftbox_pink_title_ranking.gif", array("alt" => "人気ランキング"))?></h2>
-	<div class="comment"><?php echo $this->Html->image("design/leftbox_pink_comment_ranking.gif", array("alt" => "ゲーム選びの参考に"))?></div>
-	<div class="body">
-<?php $rankNum = 1?>
-		<ul>
+<!-- ranking -->
+<section class="ranking">
+	<h1>
+		<span class="main">ランキングTOP10</span>
+	</h1>
+	<ul>
 <?php foreach($leftRankings as $rank):?>
-			<li class="clearfix">
-				<h3>No.<?php echo ($rankNum++)?> <?php echo $this->Common->titleLinkText($rank["Title"]["title_official"], $rank["Title"]["url_str"])?></h3>
-				<p><?php echo $this->Common->titleLinkThumb(
-						$this->Common->thumbName($rank["Title"]["thumb_name"]),
-						$this->Common->titleWithCase($rank["Title"]["title_official"], $rank["Title"]["title_read"]),
-						$rank["Title"]["url_str"], 40)?></p>
-			</li>
+		<li>
+			<a href="<?php echo $this->Html->url(array("controller" => "titles", "action" => "index", "path" => $rank["Title"]["url_str"], "ext" => "html"));?>">
+				<div class="image"><?php echo $this->Html->image($this->Common->thumb_name($rank["Title"]["thumb_name"]), array("width" => 40, "height" => "30"));?></div>
+				<p class="title"><?php echo $rank["Title"]["title_official"];?></p>
+			</a>
+		</li>
 <?php endforeach;?>
-		</ul>
-		<p class="more"><?php echo $this->Html->link("≫ランキング詳細", array("controller" => "ranking", "action" => "index", "path" => "index", "ext" => "html"))?></p>
+	</ul>
+	<div class="more">
+		<?php echo $this->Html->link('ランキング詳細 <i class="zmdi zmdi-chevron-right"></i>', array("controller" => "ranking", "action" => "index", "path" => "index", "ext" => "html"), array("escape" => false));?>
 	</div>
-</div>
+</section>
