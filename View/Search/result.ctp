@@ -1,17 +1,16 @@
 <?php
 //スタイル
-$this->Html->css(array('search'), 'stylesheet', array('inline' => false));
 //
 $this->set("title_for_layout", "オンラインゲーム検索結果：" . $this->Paginator->current() . "ページ目");
 $this->set("keywords_for_layout", "");
 $this->set("description_for_layout", "");
-$this->set("h1_for_layout", "オンラインゲーム検索結果：" . $this->Paginator->current() . "ページ目");
 $this->set("pankuz_for_layout", array(array("str" => "オンラインゲーム検索", "url" => array("controller" => "search", "action" => "index")), "検索結果"));
 //paginator routing
 // $this->Paginator->options(array("url" => array("controller" => "search", "action" => "result")));
 ?>
 
 <!-- Search result -->
+<section>
 <div class="content searchResult">
 	<h2>検索結果：<?php echo $this->Paginator->current()?>ページ目</h2>
 <?php if(empty($titles)):?>
@@ -68,6 +67,16 @@ $this->set("pankuz_for_layout", array(array("str" => "オンラインゲーム�
 
 <?php endif;?>
 </div>
+</section>
 
 
-<?php echo $this->element("search_title_form")?>
+<!-- search -->
+<section class="search">
+	<h1>
+		<span class="main">オンラインゲーム検索</span>
+		<span class="sub">自分好みのオンラインゲームを探そう</span>
+	</h1>
+	<div class="form-search">
+<?php echo $this->element("search_title_form");?>
+	</div>
+</section>

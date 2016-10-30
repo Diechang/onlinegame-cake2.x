@@ -5,7 +5,7 @@
 class SearchPageHelper extends AppHelper
 {
 	//Use Helper
-	var $helpers = array('Html');
+	var $helpers = array('Html', 'Form');
 
 	var $others = array(
 					"free"		=> "基本プレイは無料がいい",
@@ -56,6 +56,15 @@ class SearchPageHelper extends AppHelper
 		$src .= $this->Html->link($item[$model]["str"], array("controller" => $controller, "action" => "index", "path" => $item[$model]["path"], "ext" => "html")) . "</li>\n";
 		return $src;
 	}
+	function check_list($item, $model)
+	{
+		return $this->output($this->Form->label(strtolower($model) . "_" . $item[$model]["id"],
+												$this->Form->checkbox(strtolower($model) . "[]", array(
+														"value" => $item[$model]["id"],
+														"checked" => (!empty($this->request->query[strtolower($model)]) && in_array($item[$model]["id"], $this->request->query[strtolower($model)])),
+														"id" => strtolower($model) . "_" . $item[$model]["id"],
+														"hiddenField" => false)) . " " . $item[$model]["str"]));
+	}
 
 	/**
 	 * ついでに（その他）チェックボックス
@@ -72,6 +81,18 @@ class SearchPageHelper extends AppHelper
 			$src .= '<li><input type="checkbox" name="' . $key . '"' . $checked . ' /> ' . $val . '</li>' . "\n";
 		}
 		return $src;
+	}
+	function other_check_list()
+	{
+		$src = "";
+		foreach($this->others as $key => $val)
+		{
+			$src .= "<li>" . $this->Form->label($key, $this->Form->checkbox($key, array(
+															"id" => $key,
+															"checked" => !empty($this->request->query[$key]),
+															"hiddenField" => false))) . " " . $val . "</li>\n";
+		}
+		return $this->output($src);
 	}
 
 	/**
@@ -98,6 +119,21 @@ class SearchPageHelper extends AppHelper
 			$count++;
 		}
 		return $src;
+	}
+	function order_check_list()
+	{
+		$src	= "";
+		$count	= 0;
+		foreach($this->orders as $key => $val)
+		{
+			$src .= "<li>" . $this->Form->label("order" . ucwords($key), $this->Form->input("order", array(
+															"type" => "radio",
+															"options" => array($key => (" " . $val)),
+															"default" => (isset($this->request->query["order"]) ? $this->request->query["order"] : "rating"),
+															"hiddenField" => false))) . "</li>\n";
+			$count++;
+		}
+		return $this->output($src);
 	}
 
 	/**

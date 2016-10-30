@@ -125,7 +125,7 @@
 		<span class="sub">自分好みのオンラインゲームを探そう</span>
 	</h1>
 	<div class="form-search">
-<?php // echo $this->element("search_title_form", array(), array("cache" => true))?>
+<?php echo $this->element("search_title_form");?>
 	</div>
 </section>
 
