@@ -1,10 +1,10 @@
 <?php if(!empty($rightVoted)):?>
 <section class="myPosts framed">
 	<div class="framed-body">
-		<h1>
+		<h2>
 			<span class="main">最近投稿したレビュー</span>
 			<span class="sub">パスワードがあればいつでも編集できます</span>
-		</h1>
+		</h2>
 		<ul class="titles">
 	<?php foreach($rightVoted as $rightVote):?>
 			<li>

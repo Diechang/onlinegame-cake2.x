@@ -1,8 +1,8 @@
 <!-- ranking -->
 <section class="ranking">
-	<h1>
+	<h2>
 		<span class="main">ランキングTOP10</span>
-	</h1>
+	</h2>
 	<ul>
 <?php foreach($leftRankings as $rank):?>
 		<li>

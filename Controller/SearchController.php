@@ -127,7 +127,7 @@ class SearchController extends AppController
 		/**
 		 * find
 		 */
-		$this->Title->unbindAll(array("Titlesummary"));
+		// $this->Title->unbindAll(array("Titlesummary", "Category", "Service", "Fee"));
 		// $titles = $this->Title->find("all", array(
 		// 	"conditions" => $conditions,
 		// 	"order" => $order,
@@ -136,6 +136,7 @@ class SearchController extends AppController
 		// pr($titles);
 		$this->Paginator->settings = array(
 			"Title" => array(
+				"contain" => array("Titlesummary", "Category", "Service", "Fee"),
 				"conditions" => $conditions,
 				"order" => $order,
 				"limit" => $this->limit,

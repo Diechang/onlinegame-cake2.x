@@ -1,8 +1,8 @@
 <!-- recommend sites -->
 <section class="sites">
-	<h1>
+	<h2>
 		<span class="main">おすすめサイト</span>
-	</h1>
+	</h2>
 	<ul>
 		<li><a href="http://onlinegamech.com/" target="_blank">オンラインゲームちゃんねる</a></li>
 		<li><a href="http://www.netgamebm.com/lib/ranking.php?countmode=in&in_id=1207" target="_blank">ネトゲブックマーク</a></li>

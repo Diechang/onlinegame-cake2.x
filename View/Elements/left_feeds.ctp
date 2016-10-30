@@ -1,8 +1,8 @@
 <!-- feeds -->
 <section class="feeds">
-	<h1>
+	<h2>
 		<span class="main"><i class="icon icon-feed"></i> 配信フィード</span>
-	</h1>
+	</h2>
 	<ul>
 		<li><a href="http://feeds.feedburner.com/dz-game/newstart">最新オンラインゲーム</a></li>
 		<li><a href="http://feeds.feedburner.com/dz-game/review">新着レビュー投稿</a></li>

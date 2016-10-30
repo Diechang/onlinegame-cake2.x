@@ -1,10 +1,10 @@
 <!-- pickups -->
 <section class="pickups framed">
 	<div class="framed-body">
-		<h1>
+		<h2>
 			<span class="main">新作ピックアップ</span>
 			<span class="sub">最近サービスが開始された注目タイトル！</span>
-		</h1>
+		</h2>
 		<ul class="titles">
 <?php foreach($rightPickups as $rightPickup):?>
 			<li>

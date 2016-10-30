@@ -1,10 +1,10 @@
 <!-- tests -->
 <section class="tests framed">
 	<div class="framed-body">
-		<h1>
+		<h2>
 			<span class="main">無料テスト中オンラインゲーム</span>
 			<span class="sub">新作ゲームを無料で遊ぶチャンス！</span>
-		</h1>
+		</h2>
 		<ul class="titles">
 <?php foreach($rightTests as $rightTest):?>
 			<li>

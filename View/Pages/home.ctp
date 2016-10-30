@@ -1,6 +1,9 @@
 <!-- information -->
-<section class="information">
-	<h1>Information</h1>
+<div class="information">
+	<h1 class="siteTitle">
+		<span class="caption">無料オンラインゲームの人気ランキング・レビュー</span>
+		<span class="logo"><?php echo $this->Html->image("design/logo.png", array("alt" => "オンラインゲームライフ", "width" => 400));?></span>
+	</h1>
 	<div class="text">
 		<p>【オンラインゲームライフ】-無料オンラインゲーム情報-では、無料で遊べるオンラインゲーム情報やレビューなど、オンラインゲーム好きのあなたのために、MMORPGをはじめ、アクションやスポーツなど、無料のオンラインゲームだけではなく、月額課金制の本格オンラインゲームまで幅広く紹介していきます。</p>
 		<p>レビューや評価点数の投稿もドンドンお待ちしています。<br>
@@ -9,7 +12,7 @@
 		<p>是非、あなた好みの面白いオンラインゲームを見つけてくださいね。</p>
 		<div class="gAds"><?php echo $this->Gads->both468()?></div>
 	</div>
-</section>
+</div>
 
 <!-- ranking -->
 <section class="ranking">
