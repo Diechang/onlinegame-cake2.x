@@ -7,6 +7,7 @@
 			<li>
 				<?php echo $this->Html->link("人気ランキング", array("controller" => "ranking", "action" => "index", "path" => "index", "ext" => "html"))?>
 				<ul>
+					<li><?php echo $this->Html->link("総合", array("controller" => "ranking", "action" => "index", "path" => "index", "ext" => "html"))?></li>
 <?php foreach($headerCategories as $category):?>
 					<li><?php echo $this->Html->link($category["Category"]["str"], array("controller" => "ranking", "action" => "index", "path" => $category["Category"]["path"], "ext" => "html"))?></li>
 <?php endforeach;?>

@@ -392,6 +392,30 @@ class Title extends AppModel
 	}
 
 /**
+ * カテゴリ別ランキング取得
+ * 
+ * @param	number	$limit
+ * @return	array
+ * @access	public
+ */
+	function getCategoryRankings($limit = 1)
+	{
+		$rankings = $this->Category->find("all", array(
+			"recursive" => -1,
+			"order" => "Category.sort",
+		));
+		foreach($rankings as &$ranking)
+		{
+			$ranking["Ranking"] = $this->getRanking(array(
+				"category_id" => $ranking["Category"]["id"],
+				"limit" => $limit,
+			));
+		}
+
+		return $rankings;
+	}
+
+/**
  * ランキング用タイトルID取得
  *
  * @param	array	$category_id

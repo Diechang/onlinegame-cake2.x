@@ -44,35 +44,28 @@ class RankingController extends AppController
 					"conditions" => array("Category.path" => $path)
 				));
 //				pr($pageData);
-				$str = $pageData["Category"]["str"];
+				$label = $pageData["Category"]["str"];
 				//Pankuz set
 				$this->set("pankuz_for_layout", array(
 					array(
 						"str" => "総合ランキング",
 						"url" => array("controller" => "ranking", "path" => "index", "ext" => "html")
 					),
-					$str,
+					$label,
 				));
 			}
 			elseif($path == "index")
 			{//Index - 総合
-				$str = "総合";
+				$label = "総合";
 				//Pankuz set
-				$this->set("pankuz_for_layout", $str . "ランキング");
+				$this->set("pankuz_for_layout", $label . "ランキング");
 			}
 			else
 			{
 				return $this->redirect(array("controller" => "ranking", "path" => "index", "ext" => "html"));
 			}
-			//Create
 			//
-			//Set
-			$this->set("title_for_layout", "【" . $str . "】人気オンラインゲームランキング");
-			$this->set("keywords_for_layout", $str . ",人気,ランキング,オンラインゲーム");
-			$this->set("description_for_layout", "【" . $str . "】人気オンラインゲームランキングです。ジャンル別の人気オンラインゲームがすぐわかる！");
-			$this->set("h1_for_layout", "【" . $str . "】人気オンラインゲームランキング");
-			//
-			$this->set("mainStr", $str);
+			$this->set("label", $label);
 			$this->set("path", $path);
 
 			/**
@@ -85,8 +78,9 @@ class RankingController extends AppController
 					"category_id" => $pageData["Category"]["id"],
 					"idList" => true,
 				));
-				$this->Title->unbindAll(array("Titlesummary"));
+				// $this->Title->unbindAll(array("Titlesummary"));
 				$norankings = $this->Title->find("all", array(
+					"contain" => array("Titlesummary"),
 					"conditions" => array(
 						"Title.public" => 1,
 						"Title.id" => $rankings["idList"],
@@ -104,8 +98,9 @@ class RankingController extends AppController
 			else
 			{//All
 				$rankings = $this->Title->getRanking(array("idList" => true));
-				$this->Title->unbindAll(array("Titlesummary"));
+				// $this->Title->unbindAll(array("Titlesummary"));
 				$norankings = $this->Title->find("all", array(
+					"contain" => array("Titlesummary"),
 					"conditions" => array(
 						"Title.public" => 1,
 						"Title.service_id" => array(2,3),
@@ -119,12 +114,14 @@ class RankingController extends AppController
 					"order" => "Title.title_official",
 				));
 			}
-//			pr($rankings);
-//			pr($norankings);
-//			exit;
+			// pr($rankings);
+			// pr($norankings);
+			// exit;
+			$categoryRankings = $this->Title->getCategoryRankings();
 			//
 			//Set
 			$this->set("rankings", $rankings);
+			$this->set("categoryRankings", $categoryRankings);
 			$this->set("norankings", $norankings);
 		}
 	}

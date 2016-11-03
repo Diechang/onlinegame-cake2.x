@@ -1,3 +1,4 @@
+<?php if(!empty($rankings[0])):?>
 <ul class="list">
 <?php foreach($rankings as $key => $rank):?>
 <?php if(is_numeric($key)):?>
@@ -67,3 +68,6 @@
 <?php endif;?>
 <?php endforeach;?>
 </ul>
+<?php else:?>
+	<p class="noData">ランキングデータがありません</p>
+<?php endif;?>

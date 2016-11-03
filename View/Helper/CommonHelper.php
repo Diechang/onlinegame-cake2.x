@@ -120,7 +120,7 @@ class CommonHelper extends AppHelper
 			}
 			elseif(is_string($data))
 			{//文字列
-				return " ＞ " . $data;
+				return '<li><i class="zmdi zmdi-chevron-right"></i> ' . $data . '</li>';
 			}
 		}
 		else

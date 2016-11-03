@@ -122,17 +122,7 @@ class PagesController extends AppController
 		));
 //		pr($rankings);
 //		exit;
-		$categoryRankings = $this->Title->Category->find("all", array(
-			"recursive" => -1,
-			"order" => "Category.sort",
-		));
-		foreach($categoryRankings as &$categoryRanking)
-		{
-			$categoryRanking["Ranking"] = $this->Title->getRanking(array(
-				"category_id" => $categoryRanking["Category"]["id"],
-				"limit" => 1,
-			));
-		}
+		$categoryRankings = $this->Title->getCategoryRankings();
 //		pr($categoryRankings);
 //		exit;
 		//
