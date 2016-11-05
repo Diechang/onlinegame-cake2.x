@@ -41,12 +41,6 @@ class LettersController extends AppController
 				$this->Session->setFlash("認証番号が不正です");
 			}
 		}
-		//Layout vars
-		$this->set("title_for_layout", "お問合せ");
-		$this->set("keywords_for_layout", "お問合せ");
-		$this->set("description_for_layout", "オンラインゲームライフへのお問い合わせはこちらからお願いします。");
-		$this->set("h1_for_layout", "お問合せ");
-		$this->set("pankuz_for_layout", "お問合せ");
 	}
 
 	/**

@@ -1,10 +1,8 @@
 <?php
-//スタイル
-//
-$this->set("title_for_layout", "【" . $label . "】人気オンラインゲームランキング");
-$this->set("keywords_for_layout", $label . ",人気,ランキング,オンラインゲーム");
-$this->set("description_for_layout", "【" . $label . "】人気オンラインゲームランキングです。ジャンル別の人気オンラインゲームがすぐわかる！");
-$this->set("h1_for_layout", "【" . $label . "】人気オンラインゲームランキング");
+//set blocks
+$this->assign("title", "【" . $label . "】人気オンラインゲームランキング");
+$this->assign("keywords", $label . ",人気,ランキング,オンラインゲーム");
+$this->assign("description", "【" . $label . "】人気オンラインゲームランキングです。ジャンル別の人気オンラインゲームがすぐわかる！");
 ?>
 <!-- ranking -->
 <section class="ranking">

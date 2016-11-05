@@ -1,10 +1,9 @@
 <?php
-$this->Html->css(array('pages'), 'stylesheet', array('inline' => false));
-//
-$this->set("title_for_layout", "当サイトについて");
-$this->set("keywords_for_layout", "オンラインゲームライフ");
-$this->set("description_for_layout", "オンラインゲームライフについてのページです。");
-$this->set("h1_for_layout", "当サイトについて");
+//set blocks
+$this->assign("title", "当サイトについて");
+$this->assign("keywords", "オンラインゲームライフ");
+$this->assign("description", "オンラインゲームライフについてのページです。");
+//pankuz
 $this->set("pankuz_for_layout", "当サイトについて");
 ?>
 <div class="content pages">

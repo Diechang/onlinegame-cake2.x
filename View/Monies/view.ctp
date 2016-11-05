@@ -1,6 +1,13 @@
 <?php
-//スタイル
-$this->Html->css(array('monies'), 'stylesheet', array('inline' => false));
+//set blocks
+$this->assign("title", $pageData["Moneycategory"]["str"] . "で稼ぐ！ゲーム料金を無料で稼ごう");
+$this->assign("keywords", $pageData["Moneycategory"] . ",小遣い稼ぎ,無料");
+$this->assign("description", $pageData["Moneycategory"]["str"] . "でゲーム料金を無料で稼ごう！管理人も登録している安心サイトのご紹介。");
+//pankuz
+$this->set("pankuz_for_layout", array(
+	array("str" => "ゲーム代を稼ぐ", "url" => array("action" => "index", "ext" => "html")),
+	$pageData["Moneycategory"]["str"]
+));
 ?>
 <div class="content">
 	<h2><?php echo $pageData["Moneycategory"]["str"]?>とは？</h2>

@@ -1,10 +1,31 @@
 <?php
-//スタイル
-$this->Html->css(array('links'), 'stylesheet', array('inline' => false));
+//set blocks
+if($path == "index")
+{
+	$this->assign("title", "相互リンク集");
+	$this->assign("keywords", "相互リンク");
+	$this->assign("description", "オンラインゲームライフと相互リンクしていただいているおすすめサイト集です。相互リンク依頼は専用フォームからどうぞ。");
+	//pankuz
+	$this->set("pankuz_for_layout", "相互リンク集");
+}
+else
+{
+	$this->assign("title", "【" . $label . "】相互リンク集");
+	$this->assign("keywords", "相互リンク," . $label);
+	$this->assign("description", "オンラインゲームライフと相互リンクしていただいている「" . $label . "」カテゴリのサイト集です。相互リンク依頼は専用フォームからどうぞ。");
+	//pankuz
+	$this->set("pankuz_for_layout", array(
+		array(
+			"str" => "相互リンク集",
+			"url" => array("controller" => "links", "path" => "index", "ext" => "html")
+		),
+		$label,
+	));
+}
 ?>
 <?php echo $this->Session->flash()?>
 <div class="content links">
-	<h2><?php echo (!empty($mainStr)) ? "【" . $mainStr . "】" : ""?>相互リンク集</h2>
+	<h2><?php echo (!empty($label)) ? "【" . $label . "】" : ""?>相互リンク集</h2>
 
 	<p>
 		<?php if($path == "index"):?>

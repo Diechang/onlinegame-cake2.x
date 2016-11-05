@@ -1,12 +1,9 @@
 <?php
-//カテゴリ
-$this->Html->css(array('list'), 'stylesheet', array('inline' => false));
-$this->Html->script(array('lc'), array('inline' => false));
-
-$this->set("title_for_layout", $this->Common->titleWithCase($pageData["Category"]["str"], $pageData["Category"]["str_sub"]));
-$this->set("keywords_for_layout", $pageData["Category"]["str"] . ((!empty($pageData["Category"]["str_sub"])) ? "," . $pageData["Category"]["str_sub"] : "") . ",オンラインゲーム");
-$this->set("description_for_layout", "【" . $this->Common->titleWithCase($pageData["Category"]["str"], $pageData["Category"]["str_sub"]) . "】オンラインゲームの一覧です。同じジャンルのオンラインゲームが探せます。");
-$this->set("h1_for_layout", "【" . $this->Common->titleWithCase($pageData["Category"]["str"], $pageData["Category"]["str_sub"]) . "】オンラインゲーム一覧");
+//set blocks
+$this->assign("title", $this->Common->titleWithCase($pageData["Category"]["str"], $pageData["Category"]["str_sub"]));
+$this->assign("keywords", $pageData["Category"]["str"] . ((!empty($pageData["Category"]["str_sub"])) ? "," . $pageData["Category"]["str_sub"] : "") . ",オンラインゲーム");
+$this->assign("description", "【" . $this->Common->titleWithCase($pageData["Category"]["str"], $pageData["Category"]["str_sub"]) . "】オンラインゲームの一覧です。同じジャンルのオンラインゲームが探せます。");
+//pankuz
 $this->set("pankuz_for_layout", $pageData["Category"]["str"]);
 ?>
 

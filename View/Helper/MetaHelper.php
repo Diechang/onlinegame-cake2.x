@@ -1,20 +1,62 @@
 <?php
 /**
- * Open Graph Protocol用ヘルパー
+ * Metaタグ用ヘルパー
  */
-class OgpHelper extends AppHelper
+class MetaHelper extends AppHelper
 {
+
+/**
+ * メタタグマップ
+ *
+ * @var		array
+ * @access	public
+ */
+	var $metaTagMaps = array(
+		"noindex" => array("name" => "robots", "contents" => "noindex"),
+	);
+
+/**
+ * Facebook vars
+ * @var string
+ */
 	var $fbAppId	= "293306697370465";
 	var $fbAdmins	= "100001729714962";
 	var $fbPageId	= "349894881721182";
-	var $options	= array();
+	var $fbOptions	= array();
 
-	/**
-	 * 出力
-	 *
-	 * @access public
-	 * @return html
-	 */
+/**
+ * metaタグ出力
+ *
+ * @param	array	$data Array(Array(cakephp meta options))
+ * @return	html
+ * @access	public
+ */
+	function metaTags(&$data)
+	{
+		$ret = "";
+		if(!empty($data))
+		{
+			foreach($data as $val)
+			{
+				if(is_string($val))
+				{
+					$ret .= $this->Html->meta($this->metaTagMaps[$val]) . "\n";
+				}
+				elseif(is_array($val))
+				{
+					$ret .= $this->Html->meta($val) . "\n";
+				}
+			}
+		}
+		return $this->output($ret);
+	}
+
+/**
+ * OGP出力
+ *
+ * @access public
+ * @return html
+ */
 	function ogptags()
 	{
 		$site_url = Configure::read("Site.url");
@@ -26,7 +68,7 @@ class OgpHelper extends AppHelper
 			"image"			=> $site_url . "img/design/logo_ogp.jpg",
 			"description"	=> "無料オンラインゲーム情報サイト。ユーザーによるレビュー・評価の投稿による人気オンラインゲームランキングや攻略サイトリンク集、ムービー検索も可能。",
 			"site_name"		=> "オンラインゲームライフ",
-		),$this->options);
+		),$this->fbOptions);
 
 		$ret = array(
 			"0" => '<meta property="fb:app_id" content="' . $this->fbAppId . '" />',

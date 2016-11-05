@@ -1,11 +1,7 @@
 <?php
-//レビュー
-//$this->Html->css(array('titles', 'review'), 'stylesheet', array('inline' => false));
-//Set - Layout vars
-$this->set("title_for_layout", $vote["Title"]["title_official"] . "レビュー・評価投稿完了");
-$this->set("keywords_for_layout", "");
-$this->set("description_for_layout", "");
-$this->set("h1_for_layout", $vote["Title"]["title_official"] . "レビュー・評価投稿完了");
+//set blocks
+$this->assign("title", $vote["Title"]["title_official"] . "レビュー・評価投稿完了");
+//pankuz
 $this->set("pankuz_for_layout", array(array("str" => $vote["Title"]["title_official"], "url" => array("controller" => "titles", "action" => "index", "path" => $vote["Title"]["url_str"], "ext" => "html")), "投稿完了"));
 ?>
 <?php echo $this->Session->flash()?>

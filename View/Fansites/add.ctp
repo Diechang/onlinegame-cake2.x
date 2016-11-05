@@ -1,16 +1,14 @@
 <?php
-//レビュー
-$this->Html->css(array('titles', 'review'), 'stylesheet', array('inline' => false));
 //Title vars
 $titleWithStr["Case"]	= $this->Common->titleWithCase($title["Title"]["title_official"], $title["Title"]["title_read"]);
 $titleWithStr["Span"]	= $this->Common->titleWithSpan($title["Title"]["title_official"], $title["Title"]["title_read"]);
 $titleWithStr["Abbr"]	= $this->Common->titleWithAbbr($title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"]);
 $titleWithStr["Sub"]	= $this->Common->titleWithSub($title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_sub"]);
-//Set - Layout vars
-$this->set("title_for_layout", $titleWithStr["Abbr"] . "攻略・ファンサイト登録");
-$this->set("keywords_for_layout", "");
-$this->set("description_for_layout", "");
-$this->set("h1_for_layout", $titleWithStr["Abbr"] . "攻略・ファンサイト登録");
+//set blocks
+$this->assign("title", $titleWithStr["Abbr"] . "攻略・ファンサイト登録");
+$this->assign("keywords", "");
+$this->assign("description", "");
+//pankuz
 $this->set("pankuz_for_layout", array(
 	array("str" => $titleWithStr["Case"], "url" => array("controller" => "titles", "action" => "index", "path" => $title["Title"]["url_str"], "ext" => "html")),
 	array("str" => "攻略・ファンサイト", "url" => array("controller" => "titles", "action" => "link", "path" => $title["Title"]["url_str"], "ext" => "html")),

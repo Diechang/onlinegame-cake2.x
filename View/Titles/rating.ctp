@@ -1,16 +1,14 @@
 <?php
-$this->Html->css(array('titles'), 'stylesheet', array('inline' => false));
-$this->Html->script(array('tcc', 'rac'), false);
 //Title vars
 $titleWithStr["Case"]	= $this->Common->titleWithCase($title["Title"]["title_official"], $title["Title"]["title_read"]);
 $titleWithStr["Span"]	= $this->Common->titleWithSpan($title["Title"]["title_official"], $title["Title"]["title_read"]);
 $titleWithStr["Abbr"]	= $this->Common->titleWithAbbr($title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"]);
 $titleWithStr["Sub"]	= $this->Common->titleWithSub($title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_sub"]);
-//Set
-$this->set("title_for_layout", $titleWithStr["Abbr"] . " 評価点数");
-$this->set("keywords_for_layout", $this->TitlePage->metaKeywords($this->request->params["action"], $title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"], $title["Title"]["title_sub"]));
-$this->set("description_for_layout", $titleWithStr["Sub"] . "の評価点数です。投票期間・項目別にプレイヤーの評価を見ることができるのでオンラインゲーム選びの参考にどうぞ！");
-$this->set("h1_for_layout", $titleWithStr["Abbr"] . " 評価点数");
+//set blocks
+$this->assign("title", $titleWithStr["Abbr"] . " 評価点数");
+$this->assign("keywords", $this->TitlePage->metaKeywords($this->request->params["action"], $title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"], $title["Title"]["title_sub"]));
+$this->assign("description", $titleWithStr["Sub"] . "の評価点数です。投票期間・項目別にプレイヤーの評価を見ることができるのでオンラインゲーム選びの参考にどうぞ！");
+//pankuz
 $this->set("pankuz_for_layout", array(array("str" => $titleWithStr["Case"], "url" => array("action" => "index", "path" => $title["Title"]["url_str"], "ext" => "html")), "評価点数"));
 //OGP
 $this->element("title_ogp", array("titleWithStr" => $titleWithStr));

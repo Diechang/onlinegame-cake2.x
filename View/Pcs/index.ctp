@@ -1,11 +1,9 @@
 <?php
-//スタイル
-$this->Html->css(array('pcs'), 'stylesheet', array('inline' => false));
-//
-$this->set("title_for_layout", "オンラインゲーム用PC（パソコン）");
-$this->set("keywords_for_layout", "オンラインゲーム,PC,パソコン,推奨,BTO");
-$this->set("description_for_layout", "オンラインゲーム用PC（パソコン）についてのページです。ゲームに特化したBTOパソコンで快適にプレイを楽しみたい方は参考にどうぞ。");
-$this->set("h1_for_layout", "オンラインゲーム用PC");
+//set blocks
+$this->assign("title", "オンラインゲーム用PC（パソコン）");
+$this->assign("keywords", "オンラインゲーム,PC,パソコン,推奨,BTO");
+$this->assign("description", "オンラインゲーム用PC（パソコン）についてのページです。ゲームに特化したBTOパソコンで快適にプレイを楽しみたい方は参考にどうぞ。");
+//pankuz
 $this->set("pankuz_for_layout", "オンラインゲーム用PC");
 ?>
 <div class="content titles">

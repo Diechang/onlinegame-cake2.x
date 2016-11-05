@@ -71,8 +71,6 @@ class FbappController extends AppController
 		$this->Auth->allow("*");
 		//Use layout
 		$this->layout = "fbapp";
-		//Set laytou vars
-		$this->set("title_for_layout", "Facebookアプリ");
 	}
 
 	function index()

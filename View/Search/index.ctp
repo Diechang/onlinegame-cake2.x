@@ -1,9 +1,9 @@
 <?php
-//スタイル
-//
-$this->set("title_for_layout", "オンラインゲーム検索");
-$this->set("keywords_for_layout", "検索,サーチ,オンラインゲーム");
-$this->set("description_for_layout", "オンラインゲーム検索フォームです。条件を設定して自分好みのオンラインゲームを探してください。");
+//set blocks
+$this->assign("title", "オンラインゲーム検索");
+$this->assign("keywords", "検索,サーチ,オンラインゲーム");
+$this->assign("description", "オンラインゲーム検索フォームです。条件を設定して自分好みのオンラインゲームを探してください。");
+//pankuz
 $this->set("pankuz_for_layout", "オンラインゲーム検索");
 ?>
 

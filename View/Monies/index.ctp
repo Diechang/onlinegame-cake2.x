@@ -1,6 +1,10 @@
 <?php
-//スタイル
-$this->Html->css(array('monies'), 'stylesheet', array('inline' => false));
+//set blocks
+$this->assign("title", "無料でお小遣い稼ぎ！ゲーム料金を無料で稼ごう");
+$this->assign("keywords", "オンラインゲーム,小遣い稼ぎ,無料,ポイントサイト,アフィリエイト,WebMoney,ウェブマネー");
+$this->assign("description", "ゲーム料金を無料で稼ごう！管理人も登録している安心サイトでゲーム料金＆お小遣い稼ぎ。。");
+//pankuz
+$this->set("pankuz_for_layout", "ゲーム代を稼ぐ");
 ?>
 <div class="content">
 	<h2 class="headimage"><?php echo $this->Html->image("design/headline_title_monies.gif", array("alt" => "ゲーム代を無料で稼ぐ：ネットを使ってお小遣い稼ぎ"))?></h2>

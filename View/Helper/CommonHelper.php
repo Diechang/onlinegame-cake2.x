@@ -15,47 +15,10 @@ class CommonHelper extends AppHelper
  */
 	var $emptyPosterName = "名無し";
 	var $empty_poster_name = "名無し";
-
-/**
- * メタタグマップ
- *
- * @var		array
- * @access	public
- */
-	var $metaTagMaps = array(
-		"noindex" => array("name" => "robots", "contents" => "noindex"),
-	);
+	
 
 /** Util
 ------------------------------ **/
-
-/**
- * metaタグ出力
- *
- * @param	array	$data Array(Array(cakephp meta options))
- * @return	html
- * @access	public
- */
-	function metaTags(&$data)
-	{
-		$ret = "";
-		if(!empty($data))
-		{
-			foreach($data as $val)
-			{
-				if(is_string($val))
-				{
-					$ret .= $this->Html->meta($this->metaTagMaps[$val]) . "\n";
-				}
-				elseif(is_array($val))
-				{
-					$ret .= $this->Html->meta($val) . "\n";
-				}
-			}
-		}
-		return $this->output($ret);
-	}
-
 
 /**
  * パンクズ出力
@@ -347,6 +310,16 @@ class CommonHelper extends AppHelper
 		$title .= $this->titleWithCase($official, $read);
 		return $this->output($title);
 	}
+	function title_with_abbr($official, $read = null, $abbr = null)
+	{
+		$title = "";
+		if(!empty($abbr))
+		{
+			$title .= $abbr . "：";
+		}
+		$title .= $this->titleWithCase($official, $read);
+		return $this->output($title);
+	}
 
 /**
  * タイトル（サブ）：ゲームタイトルでもポータルでも
@@ -358,6 +331,16 @@ class CommonHelper extends AppHelper
  * @access	public
  */
 	function titleWithSub($official, $read = null, $sub = null)
+	{
+		$title = "";
+		$title .= $this->titleWithCase($official, $read);
+		if(!empty($sub))
+		{
+			$title .= "～" . $sub . "～";
+		}
+		return $this->output($title);
+	}
+	function title_with_sub($official, $read = null, $sub = null)
 	{
 		$title = "";
 		$title .= $this->titleWithCase($official, $read);
@@ -379,6 +362,20 @@ class CommonHelper extends AppHelper
  * @access	public
  */
 	function titleAll($official, $read = null, $abbr = null, $sub = null)
+	{
+		$title = "";
+		if(!empty($abbr))
+		{
+			$title .= $abbr . "：";
+		}
+		$title .= $this->titleWithCase($official, $read);
+		if(!empty($sub))
+		{
+			$title .= "～" . $sub . "～";
+		}
+		return $this->output($title);
+	}
+	function title_all($official, $read = null, $abbr = null, $sub = null)
 	{
 		$title = "";
 		if(!empty($abbr))

@@ -1,15 +1,14 @@
 <?php
-$this->Html->css(array('titles'), 'stylesheet', array('inline' => false));
 //Title vars
 $titleWithStr["Case"]	= $this->Common->titleWithCase($title["Title"]["title_official"], $title["Title"]["title_read"]);
 $titleWithStr["Span"]	= $this->Common->titleWithSpan($title["Title"]["title_official"], $title["Title"]["title_read"]);
 $titleWithStr["Abbr"]	= $this->Common->titleWithAbbr($title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"]);
 $titleWithStr["Sub"]	= $this->Common->titleWithSub($title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_sub"]);
-//Set
-$this->set("title_for_layout", $titleWithStr["Abbr"] . " レビュー・評価全投稿");
-$this->set("keywords_for_layout", $this->TitlePage->metaKeywords($this->request->params["action"], $title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"], $title["Title"]["title_sub"]));
-$this->set("description_for_layout", $titleWithStr["Sub"] . "のレビュー・評価の全投稿です。オンラインゲーム選びの参考にプレイヤーのみなさんの評価点数、レビューをどうぞ。");
-$this->set("h1_for_layout", $titleWithStr["Abbr"] . " レビュー・評価全投稿");
+//set blocks
+$this->assign("title", $titleWithStr["Abbr"] . " レビュー・評価全投稿");
+$this->assign("keywords", $this->TitlePage->metaKeywords($this->request->params["action"], $title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"], $title["Title"]["title_sub"]));
+$this->assign("description", $titleWithStr["Sub"] . "のレビュー・評価の全投稿です。オンラインゲーム選びの参考にプレイヤーのみなさんの評価点数、レビューをどうぞ。");
+//pankuz
 $this->set("pankuz_for_layout", array(array("str" => $titleWithStr["Case"], "url" => array("action" => "index", "path" => $title["Title"]["url_str"], "ext" => "html")), "レビュー・評価全投稿"));
 //OGP
 $this->element("title_ogp", array("titleWithStr" => $titleWithStr));

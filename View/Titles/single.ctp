@@ -1,5 +1,4 @@
 <?php
-$this->Html->css(array('titles'), 'stylesheet', array('inline' => false));
 //Title vars
 $titleWithStr["Case"]	= $this->Common->titleWithCase($title["Title"]["title_official"], $title["Title"]["title_read"]);
 $titleWithStr["Span"]	= $this->Common->titleWithSpan($title["Title"]["title_official"], $title["Title"]["title_read"]);
@@ -11,11 +10,11 @@ $voteTitle		= (!empty($vote["Vote"]["title"])) ? "「" . h($vote["Vote"]["title"
 $posterName		= $this->Common->posterName($vote["Vote"]["poster_name"]);
 $nameWithType	= $posterName . "の" . $voteType;
 $postDate		= $this->Common->dateFormat($vote["Vote"]["created"], "datetime");
-//Set
-$this->set("title_for_layout", $voteTitle . $nameWithType . "(" . $postDate . ") | " . $titleWithStr["Abbr"]);
-$this->set("keywords_for_layout", $posterName . "," . $postDate . "," . $this->TitlePage->metaKeywords($this->request->params["action"], $title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"], $title["Title"]["title_sub"]));
-$this->set("description_for_layout", (!empty($vote["Vote"]["review"]) ? "" : "【" . $this->Common->pointFormat($vote["Vote"]["single_avg"]) . "点】") . $posterName . "が" . $titleWithStr["Case"] . "に投稿した" . $voteType . "です。投稿日：" . $postDate);
-$this->set("h1_for_layout", $voteTitle . $nameWithType . " " . $titleWithStr["Case"]);
+//set blocks
+$this->assign("title", $voteTitle . $nameWithType . "(" . $postDate . ") | " . $titleWithStr["Abbr"]);
+$this->assign("keywords", $posterName . "," . $postDate . "," . $this->TitlePage->metaKeywords($this->request->params["action"], $title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"], $title["Title"]["title_sub"]));
+$this->assign("description", (!empty($vote["Vote"]["review"]) ? "" : "【" . $this->Common->pointFormat($vote["Vote"]["single_avg"]) . "点】") . $posterName . "が" . $titleWithStr["Case"] . "に投稿した" . $voteType . "です。投稿日：" . $postDate);
+//pankuz
 $this->set("pankuz_for_layout", array(
 	array("str" => $titleWithStr["Case"], "url" => array("action" => "index", "path" => $title["Title"]["url_str"], "ext" => "html")),
 	(!empty($vote["Vote"]["review"]))

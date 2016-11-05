@@ -1,6 +1,10 @@
 <?php
-//スタイル
-$this->Html->css(array('portals'), 'stylesheet', array('inline' => false));
+//set blocks
+$this->assign("title", "オンラインゲームポータルサイト");
+$this->assign("keywords", "オンラインゲーム,ポータルサイト,アバター");
+$this->assign("description", "オンラインゲームポータルサイトについてのページです。");
+//pankuz
+$this->set("pankuz_for_layout", "オンラインゲームポータル");
 ?>
 <!--Description-->
 <div class="content description">

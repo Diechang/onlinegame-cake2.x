@@ -1,9 +1,9 @@
 <?php
-//スタイル
-//
-$this->set("title_for_layout", "オンラインゲーム検索結果：" . $this->Paginator->current() . "ページ目");
-$this->set("keywords_for_layout", "");
-$this->set("description_for_layout", "");
+//set blocks
+$this->assign("title", "オンラインゲーム検索結果：" . $this->Paginator->current() . "ページ目");
+$this->assign("keywords", "");
+$this->assign("description", "");
+//pankuz
 $this->set("pankuz_for_layout", array(array("str" => "オンラインゲーム検索", "url" => array("controller" => "search", "action" => "index", "ext" => "html")), "検索結果"));
 //paginator routing
 // $this->Paginator->options(array("url" => array("controller" => "search", "action" => "result")));

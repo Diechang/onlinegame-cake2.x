@@ -1,3 +1,9 @@
+<?php
+//set blocks
+$this->assign("title", "【オンラインゲームライフ】-無料オンラインゲームの人気ランキング・レビュー");
+$this->assign("keywords", "オンラインゲーム,無料,オンライン,ゲーム,人気,ランキング,レビュー");
+$this->assign("description", "無料オンラインゲーム情報サイト。ユーザーによるレビュー・評価の投稿による人気オンラインゲームランキングや攻略サイトリンク集、ムービー検索も可能。");
+?>
 <!-- information -->
 <div class="information">
 	<h1 class="siteTitle">

@@ -71,12 +71,6 @@ class PagesController extends AppController
 		//Use layout
 		$this->layout = "home";
 
-		//Layout vars
-		$this->set("title_for_layout", "【オンラインゲームライフ】-無料オンラインゲームの人気ランキング・レビュー");
-		$this->set("keywords_for_layout", "オンラインゲーム,無料,オンライン,ゲーム,人気,ランキング,レビュー");
-		$this->set("description_for_layout", "無料オンラインゲーム情報サイト。ユーザーによるレビュー・評価の投稿による人気オンラインゲームランキングや攻略サイトリンク集、ムービー検索も可能。");
-		$this->set("h1_for_layout", "【オンラインゲームライフ】レビュー・評価投稿で人気のオンラインゲーム、注目の最新無料オンラインゲームがすぐわかる！");
-
 
 		/**
 		 * New Games
@@ -292,13 +286,6 @@ class PagesController extends AppController
  */
 	function sitemap()
 	{
-		//Layout vars
-		$this->set("title_for_layout", "サイトマップ");
-		$this->set("keywords_for_layout", "サイトマップ,オンラインゲームライフ");
-		$this->set("description_for_layout", "オンラインゲームライフのサイトマップページ。");
-		$this->set("h1_for_layout", "サイトマップ");
-		$this->set("pankuz_for_layout", "サイトマップ");
-
 		//Get
 		//Category
 		$categories = $this->Title->Category->find("all", array(
@@ -398,12 +385,6 @@ class PagesController extends AppController
 		if(isset($this->request->query["u"]))
 		{
 			$this->set("u", $this->request->query["u"]);
-			//Layout vars
-			$this->set("title_for_layout", "JUMP");
-			$this->set("keywords_for_layout", "");
-			$this->set("description_for_layout", "");
-			$this->set("h1_for_layout", "JUMP");
-			$this->set("pankuz_for_layout", "JUMP");
 		}
 		else
 		{
@@ -560,7 +541,19 @@ class PagesController extends AppController
 			}
 			$this->set(compact('page', 'subpage', 'title_for_layout'));
 		}
-		$this->render(implode('/', $path));
+		
+		try
+		{
+			$this->render(implode('/', $path));
+		}
+		catch(MissingViewException $e)
+		{
+			if (Configure::read('debug'))
+			{
+				throw $e;
+			}
+			throw new NotFoundException();
+		}
 	}
 }
 

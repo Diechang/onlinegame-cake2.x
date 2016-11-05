@@ -1,15 +1,14 @@
 <?php
-$this->Html->css(array('titles'), 'stylesheet', array('inline' => false));
 //Title vars
 $titleWithStr["Case"]	= $this->Common->titleWithCase($title["Title"]["title_official"], $title["Title"]["title_read"]);
 $titleWithStr["Span"]	= $this->Common->titleWithSpan($title["Title"]["title_official"], $title["Title"]["title_read"]);
 $titleWithStr["Abbr"]	= $this->Common->titleWithAbbr($title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"]);
 $titleWithStr["Sub"]	= $this->Common->titleWithSub($title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_sub"]);
-//Set
-$this->set("title_for_layout", $event["Event"]["name"] . " | " . $titleWithStr["Abbr"]);
-$this->set("keywords_for_layout", $event["Event"]["name"] . "," . $this->TitlePage->metaKeywords($this->request->params["action"], $title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"], $title["Title"]["title_sub"]));
-$this->set("description_for_layout", $event["Event"]["summary"]);
-$this->set("h1_for_layout", $event["Event"]["name"] . " " . $titleWithStr["Case"]);
+//set blocks
+$this->assign("title", $event["Event"]["name"] . " | " . $titleWithStr["Abbr"]);
+$this->assign("keywords", $event["Event"]["name"] . "," . $this->TitlePage->metaKeywords($this->request->params["action"], $title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"], $title["Title"]["title_sub"]));
+$this->assign("description", $event["Event"]["summary"]);
+//pankuz
 $this->set("pankuz_for_layout", array(
 	array("str" => $titleWithStr["Case"], "url" => array("action" => "index", "path" => $title["Title"]["url_str"], "ext" => "html")),
 	array("str" => "イベント・キャンペーン", "url" => array("action" => "events", "path" => $title["Title"]["url_str"], "ext" => "html")),

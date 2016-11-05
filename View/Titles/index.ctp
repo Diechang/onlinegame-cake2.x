@@ -1,20 +1,14 @@
 <?php
-$this->Html->css(array('titles'), 'stylesheet', array('inline' => false));
-$this->Html->script(array(
-	'http://www.google.com/jsapi',
-	'http://widgets.twimg.com/j/2/widget.js',
-	'imu'
-), false);
 //Title vars
 $titleWithStr["Case"]	= $this->Common->titleWithCase($title["Title"]["title_official"], $title["Title"]["title_read"]);
 $titleWithStr["Span"]	= $this->Common->titleWithSpan($title["Title"]["title_official"], $title["Title"]["title_read"]);
 $titleWithStr["Abbr"]	= $this->Common->titleWithAbbr($title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"]);
 $titleWithStr["Sub"]	= $this->Common->titleWithSub($title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_sub"]);
-//Set
-$this->set("title_for_layout", $this->Common->titleAll($title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"], $title["Title"]["title_sub"]));
-$this->set("keywords_for_layout", $this->TitlePage->metaKeywords($this->request->params["action"], $title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"], $title["Title"]["title_sub"]));
-$this->set("description_for_layout", $titleWithStr["Sub"] . "のトップページです。動作環境や関連動画、" . $titleWithStr["Case"] . "の評価点数やレビューページへもこちらからどうぞ");
-$this->set("h1_for_layout", $titleWithStr["Abbr"]);
+//set blocks
+$this->assign("title", $this->Common->titleAll($title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"], $title["Title"]["title_sub"]));
+$this->assign("keywords", $this->TitlePage->metaKeywords($this->request->params["action"], $title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"], $title["Title"]["title_sub"]));
+$this->assign("description", $titleWithStr["Sub"] . "のトップページです。動作環境や関連動画、" . $titleWithStr["Case"] . "の評価点数やレビューページへもこちらからどうぞ");
+//pankuz
 $this->set("pankuz_for_layout", array($titleWithStr["Case"]));
 //OGP
 $this->element("title_ogp", array("titleWithStr" => $titleWithStr));

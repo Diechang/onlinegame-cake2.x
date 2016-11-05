@@ -1,6 +1,10 @@
 <?php
-//sitemap
-$this->Html->css(array('pages'), 'stylesheet', array('inline' => false));
+//set blocks
+$this->assign("title", "サイトマップ");
+$this->assign("keywords", "サイトマップ,オンラインゲームライフ");
+$this->assign("description", "オンラインゲームライフのサイトマップページ。");
+//pankuz
+$this->set("pankuz_for_layout", "サイトマップ");
 ?>
 <div class="content sitemap">
 	<h2>サイトマップ</h2>

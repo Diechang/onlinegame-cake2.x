@@ -7,22 +7,24 @@
 <head>
 <meta charset="utf-8">
 
-<title><?php echo $title_for_layout ?></title>
-<meta name="Keywords" content="<?php echo $keywords_for_layout ?>" />
-<meta name="Description" content="<?php echo $description_for_layout ?>" />
+<title><?php echo $this->fetch("title")?></title>
+<meta name="Keywords" content="<?php echo $this->fetch("keywords")?>">
+<meta name="Description" content="<?php echo $this->fetch("description")?>">
 
-<?php echo $this->Ogp->ogptags()?>
+<?php echo $this->fetch("meta")?>
+<?php echo $this->Meta->ogptags()?>
 
-<link rel="alternate" type="application/rss+xml" title="最新オンラインゲーム" href="http://feeds.feedburner.com/dz-game/newstart" />
-<link rel="alternate" type="application/rss+xml" title="新着レビュー投稿" href="http://feeds.feedburner.com/dz-game/review" />
-<link rel="alternate" type="application/rss+xml" title="無料テスト情報" href="http://feeds.feedburner.com/dz-game/test" />
-<link rel="alternate" type="application/rss+xml" title="新着オンラインゲーム" href="http://feeds.feedburner.com/dz-game/newgames" />
+<link rel="alternate" type="application/rss+xml" title="最新オンラインゲーム" href="http://feeds.feedburner.com/dz-game/newstart">
+<link rel="alternate" type="application/rss+xml" title="新着レビュー投稿" href="http://feeds.feedburner.com/dz-game/review">
+<link rel="alternate" type="application/rss+xml" title="無料テスト情報" href="http://feeds.feedburner.com/dz-game/test">
+<link rel="alternate" type="application/rss+xml" title="新着オンラインゲーム" href="http://feeds.feedburner.com/dz-game/newgames">
 
 <!-- CSS Libs -->
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
 
 <!-- CSS -->
 <link rel="stylesheet" href="/css/styles.css">
+<?php echo $this->fetch("css")?>
 
 <!-- JS Libs -->
 <script src="/js/libs/modernizr-2.8.3.min.js"></script>
@@ -94,7 +96,7 @@
 				<div class="contents-main">
 					<main>
 					<?php
-						echo $content_for_layout;
+						echo $this->fetch("content");
 						echo $this->element("ad_center_bottoms", array(), array("cache" => array("config" => "element")));
 					?>
 					</main>

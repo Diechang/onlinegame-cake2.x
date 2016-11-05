@@ -18,12 +18,6 @@ class PortalsController extends AppController
 		//
 		//Set
 		$this->set("portals", $portals);
-		//Set - Layout vars
-		$this->set("title_for_layout", "オンラインゲームポータルサイト");
-		$this->set("keywords_for_layout", "オンラインゲーム,ポータルサイト,アバター");
-		$this->set("description_for_layout", "オンラインゲームポータルサイトについてのページです。");
-		$this->set("h1_for_layout", "オンラインゲームポータル");
-		$this->set("pankuz_for_layout", "オンラインゲームポータル");
 	}
 
 	function view($path = null)
@@ -63,28 +57,10 @@ class PortalsController extends AppController
 //		exit;
 		$this->_emptyToURL($portal, array("action" => "index", "ext" => "html"));
 //		pr($portal);
-		//Create - meta Keywords
-		$keywords_for_layout[]	= $portal["Portal"]["title_official"];
-		if(!empty($portal["Portal"]["title_read"]))
-		{
-			$keywords_for_layout[] = $portal["Portal"]["title_read"];
-		}
-		$keywords_for_layout[]	= "オンラインゲーム";
-		$keywords_for_layout[]	= "ポータルサイト";
 		//
 		//Set
 		$this->set("portal", $portal);
 		$this->set("portals", $portals);
-		//Set - Layout vars
-		$titleTag = $this->TitleData->titleTag($portal["Portal"]["title_official"], $portal["Portal"]["title_read"]);
-		$this->set("title_for_layout", $titleTag);
-		$this->set("keywords_for_layout", implode(',', $keywords_for_layout));
-		$this->set("description_for_layout", "オンラインゲームポータル【" . $titleTag . "】についてのページです。");
-		$this->set("h1_for_layout", $titleTag);
-		$this->set("pankuz_for_layout", array(
-			array("str" => "オンラインゲームポータル", "url" => array("action" => "index", "ext" => "html")),
-			$titleTag,
-		));
 	}
 
 	/**

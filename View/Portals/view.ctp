@@ -1,6 +1,16 @@
 <?php
-//スタイル
-$this->Html->css(array('portals'), 'stylesheet', array('inline' => false));
+//create title tag
+$portalName = $this->Common->title_separated_case($portal["Portal"]["title_official"], $portal["Portal"]["title_read"]);
+//set blocks
+$this->assign("title", $portalName);
+$this->assign("keywords", "オンラインゲーム,ポータルサイト," . $portal["Portal"]["title_official"]);
+if(!empty($portal["Portal"]["title_read"])) $this->append("keywords", "," . $portal["Portal"]["title_read"]);
+$this->assign("description", "オンラインゲームポータル【" . $portalName . "】についてのページです。");
+//pankuz
+$this->set("pankuz_for_layout", array(
+	array("str" => "オンラインゲームポータル", "url" => array("action" => "index", "ext" => "html")),
+	$portalName,
+));
 ?>
 <!--Description-->
 <div class="content description">

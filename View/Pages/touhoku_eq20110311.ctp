@@ -1,10 +1,9 @@
 <?php
-$this->Html->css(array('pages'), 'stylesheet', array('inline' => false));
-//
-$this->set("title_for_layout", "【特設】東北地方太平洋沖地震について");
-$this->set("keywords_for_layout", "");
-$this->set("description_for_layout", "【特設】東北地方太平洋沖地震について");
-$this->set("h1_for_layout", "【特設】東北地方太平洋沖地震について");
+//set blocks
+$this->assign("title", "【特設】東北地方太平洋沖地震について");
+$this->assign("keywords", "");
+$this->assign("description", "【特設】東北地方太平洋沖地震について");
+//pankuz
 $this->set("pankuz_for_layout", "【特設】東北地方太平洋沖地震について");
 ?>
 <div class="content pages">

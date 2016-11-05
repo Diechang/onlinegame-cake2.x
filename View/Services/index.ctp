@@ -1,12 +1,9 @@
 <?php
-//サービス
-$this->Html->css(array('list'), 'stylesheet', array('inline' => false));
-$this->Html->script(array('lc'), array('inline' => false));
-
-$this->set("title_for_layout", $pageData["Service"]["str"]);
-$this->set("keywords_for_layout", $pageData["Service"]["str"] . ((!empty($pageData["Service"]["str_sub"])) ? "," . $pageData["Service"]["str_sub"] : "") . ",オンラインゲーム");
-$this->set("description_for_layout", "【" . $pageData["Service"]["str"] . "】オンラインゲームの一覧です。サービス状態別のオンラインゲームが探せます。");
-$this->set("h1_for_layout", "【" . $pageData["Service"]["str"] . "】オンラインゲーム一覧");
+//set blocks
+$this->assign("title", $pageData["Service"]["str"]);
+$this->assign("keywords", $pageData["Service"]["str"] . ((!empty($pageData["Service"]["str_sub"])) ? "," . $pageData["Service"]["str_sub"] : "") . ",オンラインゲーム");
+$this->assign("description", "【" . $pageData["Service"]["str"] . "】オンラインゲームの一覧です。サービス状態別のオンラインゲームが探せます。");
+//pankuz
 $this->set("pankuz_for_layout", $pageData["Service"]["str"]);
 ?>
 
