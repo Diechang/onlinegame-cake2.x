@@ -137,15 +137,7 @@ class PagesController extends AppController
 		//Get
 		$recents	= $this->Title->Vote->getNewer(NULL, true, 10);
 		$this->Title->unbindAll(array("Titlesummary"));
-		$waits		= $this->Title->find("all", array(
-			"conditions" => array(
-				"Title.public" => 1,
-				"Title.service_id" => array(2,3),
-				"Titlesummary.vote_count_vote" => 0,
-			),
-			"order" => "Title.ad_use DESC, Title.service_start DESC",
-			"limit" => 10
-		));
+		$waits		= $this->Title->Vote->getWaits();
 //		pr($recents);
 //		pr($waits);
 //		exit;

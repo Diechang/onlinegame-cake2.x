@@ -216,6 +216,26 @@ class Vote extends AppModel
 	}
 
 /**
+ * 未投稿タイトル取得
+ *
+ * @param	number	$limit
+ * @return	array
+ * @access	public
+ */
+	function getWaits($limit = 10)
+	{
+		return $this->Title->find("all", array(
+			"conditions" => array(
+				"Title.public" => 1,
+				"Title.service_id" => array(2,3),
+				"Titlesummary.vote_count_vote" => 0,
+			),
+			"order" => "Title.ad_use DESC, Title.service_start DESC",
+			"limit" => $limit
+		));
+	}
+
+/**
  * タイトル評価点数
  *
  * @param	number	$title_id

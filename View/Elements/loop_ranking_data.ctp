@@ -2,30 +2,30 @@
 <ul class="list">
 <?php foreach($rankings as $key => $rank):?>
 <?php if(is_numeric($key)):?>
-<?php $rankNum = $key + 1?>
-	<!-- <?php echo $rankNum?> -->
-	<li class="no<?php echo $rankNum;?>">
+<?php $rank_num = $key + 1?>
+	<!-- <?php echo $rank_num?> -->
+	<li class="no<?php echo $rank_num;?>">
 
 		<h2 class="title">
 			<a href="<?php echo $this->Html->url(array("controller" => "titles", "action" => "index", "path" => $rank["Title"]["url_str"], "ext" => "html"));?>">
-				<span class="num"><?php echo $rankNum;?></span>
+				<span class="num"><?php echo $rank_num;?></span>
 				<?php echo $this->Common->title_separated_span($rank["Title"]["title_official"], $rank["Title"]["title_read"], $rank["Title"]["url_str"]);?>
 			</a>
 		</h2>
 		<div class="images">
 			<div class="thumb">
-				<?php echo $this->Common->titleLinkThumb(
-					$this->Common->thumbName($rank["Title"]["thumb_name"]),
-					$this->Common->titleWithCase($rank["Title"]["title_official"], $rank["Title"]["title_read"]),
-					$rank["Title"]["url_str"], ($rankNum == 1) ? 160 : 120)?>
+				<?php echo $this->Common->title_link_thumb(
+					$this->Common->thumb_name($rank["Title"]["thumb_name"]),
+					$this->Common->title_separated_case($rank["Title"]["title_official"], $rank["Title"]["title_read"]),
+					$rank["Title"]["url_str"], ($rank_num == 1) ? 160 : 120)?>
 			</div>
-<?php if($rankNum == 1):?>
+<?php if($rank_num == 1):?>
 			<?php echo $this->Common->star_block($rank["Titlesummary"]["vote_avg_all"]);?>
 <?php endif;?>
 		</div>
 
 		<div class="data">
-<?php if($rankNum == 1):?>
+<?php if($rank_num == 1):?>
 			<div class="description"><?php echo $rank["Title"]["description"]?></div>
 <?php endif;?>
 			<div class="rates">

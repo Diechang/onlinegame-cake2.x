@@ -39,10 +39,12 @@ class ReviewController extends AppController
 		 */
 		//Get
 		$reviews = $this->Paginator->paginate("Vote");
+		$waits		= $this->Title->Vote->getWaits();
 //		pr($reviews);
 		//
 		//Set - data
 		$this->set("reviews", $reviews);
+		$this->set("waits", $waits);
 	}
 }
 ?>
