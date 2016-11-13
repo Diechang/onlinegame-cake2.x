@@ -101,7 +101,7 @@ class CommonHelper extends AppHelper
  */
 	function copyright($val)
 	{
-		return (!empty($val)) ? '<div class="content copyright"><p>' . nl2br($val) . '</p></div>' : "";
+		return (!empty($val)) ? '<div class="copyright">' . nl2br($val) . '</div>' : "";
 	}
 
 /**
