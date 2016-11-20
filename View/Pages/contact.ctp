@@ -7,4 +7,3 @@ $this->assign("description", "オンラインゲームライフへのお問い�
 $this->set("pankuz_for_layout", "お問合せ");
 ?>
 <?php echo $this->element("form_letter")?>
-<?php echo $this->Gads->ads468()?>

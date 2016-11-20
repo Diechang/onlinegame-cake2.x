@@ -8,4 +8,3 @@ $this->set("pankuz_for_layout", "お問合せ");
 ?>
 <?php echo $this->Session->flash()?>
 <?php echo $this->element("form_letter")?>
-<?php echo $this->Gads->ads468()?>
