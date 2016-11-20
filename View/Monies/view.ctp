@@ -10,7 +10,7 @@ $this->set("pankuz_for_layout", array(
 ));
 ?>
 <!-- about -->
-<div class="money-about">
+<div class="money-about pageInfo">
 	<h1 class="pageTitle">
 		<span class="main"><?php echo $pageData["Moneycategory"]["str"]?>で稼ぐ</span>
 		<span class="sub"><?php echo $pageData["Moneycategory"]["str"]?>とは</span>

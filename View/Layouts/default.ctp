@@ -7,12 +7,11 @@
 <head>
 <meta charset="utf-8">
 
-<title><?php echo $this->fetch("title") ?></title>
-<meta name="Keywords" content="<?php echo $this->fetch("keywords") ?>">
-<meta name="Description" content="<?php echo $this->fetch("description") ?>">
+<title><?php echo $this->fetch("title")?></title>
+<meta name="Keywords" content="<?php echo $this->fetch("keywords")?>">
+<meta name="Description" content="<?php echo $this->fetch("description")?>">
 
-
-<?php echo $this->fetch("meta") ?>
+<?php echo $this->fetch("meta")?>
 <?php echo $this->Meta->metaTags($metaTags)?>
 <?php echo $this->Meta->ogptags()?>
 
@@ -26,7 +25,7 @@
 
 <!-- CSS -->
 <link rel="stylesheet" href="/css/styles.css">
-<?php echo $this->fetch("css") ?>
+<?php echo $this->fetch("css")?>
 
 <!-- JS Libs -->
 <script src="/js/libs/modernizr-2.8.3.min.js"></script>

@@ -7,7 +7,7 @@ $this->assign("description", "いろんなオンラインゲームが窓口一�
 $this->set("pankuz_for_layout", "オンラインゲームポータル");
 ?>
 <!-- about -->
-<div class="portal-about">
+<div class="portal-about pageInfo">
 	<h1 class="pageTitle">
 		<span class="main">オンラインゲームポータルサイト</span>
 		<span class="sub">一つのサイトでいろんなゲームが楽しめる</span>

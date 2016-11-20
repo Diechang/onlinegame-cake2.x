@@ -7,7 +7,7 @@ $this->assign("description", "ゲーム料金を無料で稼ごう！管理人�
 $this->set("pankuz_for_layout", "ゲーム代を稼ぐ");
 ?>
 <!-- documents -->
-<section class="money-docs">
+<div class="money-docs pageInfo">
 	<h1 class="pageTitle">
 		<span class="main">ゲーム代を無料で稼ぐ</span>
 		<span class="sub">ネットを使ってお小遣い稼ぎ</span>
@@ -29,13 +29,13 @@ $this->set("pankuz_for_layout", "ゲーム代を稼ぐ");
 	インターネットで稼ぐわけですから、プロバイダ料金や電気代は当然かかります。</p>
 	<p>でも収入ゼロよりいいですよね？</p>
 	<p>もちろん、ここで紹介する方法は管理人も実際にやってます。</p>
-</section>
+</div>
 
 <!-- categories -->
 <section class="money-categories">
 	<h1>ネットでゲーム代（お小遣い）を稼ぐ方法</h1>
 	<p class="headline-description">ネットで稼ぐ方法はさまざまです。管理人が実際にコツコツ稼いでいる方法をいくつか紹介します。</p>
-	
+
 	<ul class="list">
 
 <?php foreach($moneycategories as $category):?>

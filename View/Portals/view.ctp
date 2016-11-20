@@ -13,7 +13,7 @@ $this->set("pankuz_for_layout", array(
 ));
 ?>
 <!-- about -->
-<div class="portal-about">
+<div class="portal-about pageInfo">
 	<h1 class="pageTitle">
 		<?php echo $this->Common->title_separated_span($portal["Portal"]["title_official"], $portal["Portal"]["title_read"])?>
 	</h1>
