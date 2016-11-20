@@ -71,7 +71,7 @@ $this->set("pankuz_for_layout", "当サイトについて");
 	※ダウンロードしてご利用ください。</p>
 	<section>
 		<h2 class="headline">相互リンクについて</h2>
-		<p>相互リンクをご希望の方は、<?php echo $this->Html->link("相互リンク依頼フォーム", array("controller" => "links", "path" => "index", "ext" => "html", "#" => "linkForm"))?>からご登録をお願いします。<br>
+		<p>相互リンクをご希望の方は、<?php echo $this->Html->link("相互リンク依頼フォーム", array("controller" => "links", "path" => "index", "ext" => "html", "#" => "form"))?>からご登録をお願いします。<br>
 		当サイトにリンクを貼った後に、ご自身のサイトにあったカテゴリにご登録ください。<br>
 		管理人によるサイト内容の確認、承認後に掲載されます。</p>
 		<p class="clDanger">※更新のないサイト様など、定期的にチェックしてリンクを解除する場合がありますのでご了承ください。</p>

@@ -28,7 +28,7 @@ class LettersController extends AppController
 					$email->subject('[DZ]お問合せ');
 					$email->send($this->request->data["Letter"]["body"]);
 					//
-					$this->Session->setFlash("お問合せありがとうございました", "flash_default", array("type" => "success"));
+					$this->Session->setFlash("お問合せありがとうございました", "flash_default", array("type" => "success", "body" => "頂いたお問い合わせ内容はすべて確認しておりますが、返信を保証するものではありませんのでご了承ください。"));
 					return $this->redirect(array('action' => 'add'));
 				}
 				else

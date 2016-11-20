@@ -4,6 +4,8 @@
  */
 class MetaHelper extends AppHelper
 {
+	//Use Helper
+	var $helpers = array('Html');
 
 /**
  * メタタグマップ

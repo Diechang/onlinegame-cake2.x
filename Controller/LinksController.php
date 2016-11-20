@@ -126,17 +126,17 @@ class LinksController extends AppController
 {$linksUrl}
 					");
 					//
-					$this->Session->setFlash("相互リンク申込ありがとうございます！<br />\n管理人の承認後に掲載されます。");
+					$this->Session->setFlash("相互リンク申込ありがとうございました！", "flash_default", array("type" => "success", "body" => "管理人の承認後に掲載されます。"));
 					return $this->redirect(array('action' => 'index'));
 				}
 				else
 				{
-					$this->Session->setFlash("登録できませんでした。<br />\n入力内容を確認してください。");
+					$this->Session->setFlash("登録できませんでした。", "flash_default", array("body" => "入力内容を確認してください。"));
 				}
 			}
 			else
 			{
-				$this->Session->setFlash("認証番号が不正です");
+				$this->Session->setFlash("認証番号が不正です", "flash_default");
 			}
 			//
 			$this->set("linkcategories", $this->Link->Linkcategory->find("list"));
