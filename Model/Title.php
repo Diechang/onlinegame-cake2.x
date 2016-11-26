@@ -560,7 +560,7 @@ class Title extends AppModel
  * @return	array
  * @access	public
  */
-	function relations($categories, $title_id = null)
+	function recommends($categories, $title_id = null)
 	{
 		$titles = $this->idListByCategory($categories);
 //		pr($titles);

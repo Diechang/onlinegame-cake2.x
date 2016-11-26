@@ -60,9 +60,7 @@
 	</aside>
 
 <?php
-if($this->request->params["controller"] != "titles")
-{
-}
+	echo $this->fetch("title_header");
 ?>
 
 	<!-- Contents -->

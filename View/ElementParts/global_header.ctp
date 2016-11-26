@@ -27,9 +27,9 @@
 		</div>
 		<div class="counts">
 			<ul>
-				<li><i class="zmdi zmdi-gamepad"></i> タイトル数 <span class="count"><?php echo $headCountTitle?></span>件</li>
-				<li><i class="zmdi zmdi-comments"></i> レビュー <span class="count"><?php echo $headCountReview?></span>件</li>
-				<li><i class="zmdi zmdi-thumb-up-down"></i> 評価 <span class="count"><?php echo $headCountVote?></span>件</li>
+				<li><i class="zmdi zmdi-gamepad"></i> タイトル数 <span class="count"><?php echo number_format($headCountTitle)?></span>件</li>
+				<li><i class="zmdi zmdi-comments"></i> レビュー <span class="count"><?php echo number_format($headCountReview)?></span>件</li>
+				<li><i class="zmdi zmdi-thumb-up-down"></i> 評価 <span class="count"><?php echo number_format($headCountVote)?></span>件</li>
 			</ul>
 		</div>
 	</div>

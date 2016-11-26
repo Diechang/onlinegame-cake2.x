@@ -442,6 +442,31 @@ class CommonHelper extends AppHelper
 		}
 		return $ret;
 	}
+	function fee_data($fee_text, $fee_id, $fee_str, $service_id, $service_str)
+	{
+		$ret	= "";
+		switch($service_id)
+		{
+			case 1:	//休止
+				$ret = $service_str;
+				break;
+			case 2: //正式
+				$ret = $fee_str;
+				if($fee_id == 3 && !empty($fee_text)) //月額
+				{
+					$ret .= " [" . $fee_text . "]";
+				}
+				break;
+			case 3: //テスト
+			case 4:
+				$ret = $service_str . "のため無料";
+				break;
+			case 5: //ティザーサイト
+				$ret = $service_str . "先行公開中";
+				break;
+		}
+		return $ret;
+	}
 
 /**
  * 期間フォーマット
@@ -785,6 +810,25 @@ class CommonHelper extends AppHelper
  * @access	public
  */
 	function stylesLink($styles, $tag = null)
+	{
+		$tagStart	= (!empty($tag)) ? "<" . $tag . ">" : "";
+		$tagEnd		= (!empty($tag)) ? "</" . $tag . ">" : "";
+
+		if(!empty($styles))
+		{
+			$text = "";
+			foreach($styles as $style)
+			{
+				$text .= $tagStart . $this->Html->link($style['str'], array('controller' => 'styles', 'path' => $style['path'], 'ext' => 'html')) . $tagEnd . "\n";
+			}
+		}
+		else
+		{
+			$text = "データ未登録";
+		}
+		return $text;
+	}
+	function styles_link($styles, $tag = null)
 	{
 		$tagStart	= (!empty($tag)) ? "<" . $tag . ">" : "";
 		$tagEnd		= (!empty($tag)) ? "</" . $tag . ">" : "";

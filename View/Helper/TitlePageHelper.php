@@ -36,6 +36,24 @@ class TitlePageHelper extends AppHelper
 		$ret = array_merge(array_filter($words), $mores[$action]);
 		return $this->output(implode(",", $ret));
 	}
+	function meta_keywords($action, $official, $read = null, $abbr = null, $sub = null)
+	{
+		$words	= array($official, $read, $abbr, $sub);
+		$mores	= array(
+			"index"		=> array("動作環境","スペック","ツイート","ニュース"),
+			"rating"	=> array("評価"),
+			"review"	=> array("レビュー"),
+			"allvotes"	=> array("レビュー","評価"),
+			"single"	=> array("レビュー","評価"),
+			"events"	=> array("イベント","キャンペーン"),
+			"event"		=> array("イベント","キャンペーン"),
+			"pc"		=> array("推奨PC","パソコン","モデル"),
+			"link"		=> array("攻略","WIKI","ファンサイト"),
+			"search"	=> array("動画","ムービー","ブログ"),
+		);
+		$ret = array_merge(array_filter($words), $mores[$action]);
+		return $this->output(implode(",", $ret));
+	}
 
 /**
  * Youtube ビデオ埋め込み
@@ -62,7 +80,19 @@ class TitlePageHelper extends AppHelper
 			return '<p class="none">関連動画が登録されていません。<br />ムービー・ブログページで探すことができます。</p>';
 		}
 	}
+	function video_embed($id)
+	{//$id = youtube v param
+		if(!empty($id))
+		{
+			return '<div class="video"><iframe width="640" height="360" src="https://www.youtube.com/embed/' . $id . '" frameborder="0" allowfullscreen></iframe></div>';
+		}
+		else
+		{
+			return '<p class="noData">関連動画が登録されていません。</p>';
+		}
+	}
 
+	
 /**
  * スペックデータ列：左右同値なら一行化
  *

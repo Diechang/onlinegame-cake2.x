@@ -21,8 +21,8 @@ class TitlesController extends AppController
 //		exit;
 
 		//おすすめ
-		$relations = $this->Title->relations(Set::extract('Cateogry/id', $title["Category"]), $title["Title"]["id"]);
-//		pr($relations);
+		$recommends = $this->Title->recommends(Set::extract('Cateogry/id', $title["Category"]), $title["Title"]["id"]);
+//		pr($recommends);
 
 		//投稿データ
 //		$ratings = $this->Title->Vote->titleRatings($title["Title"]["id"]);
@@ -33,7 +33,7 @@ class TitlesController extends AppController
 		 * セット
 		 */
 		$this->set("title", $title);
-		$this->set("relations", $relations);
+		$this->set("recommends", $recommends);
 	}
 
 	function rating()
@@ -58,8 +58,8 @@ class TitlesController extends AppController
 //		exit;
 
 		//おすすめ
-		$relations = $this->Title->relations(Set::extract('Cateogry/id', $title["Category"]), $title["Title"]["id"]);
-//		pr($relations);
+		$recommends = $this->Title->recommends(Set::extract('Cateogry/id', $title["Category"]), $title["Title"]["id"]);
+//		pr($recommends);
 
 		/**
 		 * セット
@@ -67,7 +67,7 @@ class TitlesController extends AppController
 		$this->set("title", $title);
 		$this->set("ratings", $ratings);
 		$this->set("voteItems", $this->Title->Vote->voteItems);
-		$this->set("relations", $relations);
+		$this->set("recommends", $recommends);
 	}
 
 	function review()
@@ -90,8 +90,8 @@ class TitlesController extends AppController
 //		exit;
 
 		//おすすめ
-		$relations = $this->Title->relations(Set::extract('Cateogry/id', $title["Category"]), $title["Title"]["id"]);
-//		pr($relations);
+		$recommends = $this->Title->recommends(Set::extract('Cateogry/id', $title["Category"]), $title["Title"]["id"]);
+//		pr($recommends);
 
 		/**
 		 * セット
@@ -99,7 +99,7 @@ class TitlesController extends AppController
 		$this->set("title", $title);
 		$this->set("reviews", $reviews);
 		$this->set("voteItems", $this->Title->Vote->voteItems);
-		$this->set("relations", $relations);
+		$this->set("recommends", $recommends);
 	}
 
 	function allvotes()
@@ -122,8 +122,8 @@ class TitlesController extends AppController
 //		exit;
 
 		//おすすめ
-		$relations = $this->Title->relations(Set::extract('Cateogry/id', $title["Category"]), $title["Title"]["id"]);
-//		pr($relations);
+		$recommends = $this->Title->recommends(Set::extract('Cateogry/id', $title["Category"]), $title["Title"]["id"]);
+//		pr($recommends);
 
 		/**
 		 * セット
@@ -131,7 +131,7 @@ class TitlesController extends AppController
 		$this->set("title", $title);
 		$this->set("votes", $votes);
 		$this->set("voteItems", $this->Title->Vote->voteItems);
-		$this->set("relations", $relations);
+		$this->set("recommends", $recommends);
 	}
 
 	function single()
@@ -180,8 +180,8 @@ class TitlesController extends AppController
 //		exit;
 
 		//おすすめ
-		$relations = $this->Title->relations(Set::extract('Cateogry/id', $title["Category"]), $title["Title"]["id"]);
-//		pr($relations);
+		$recommends = $this->Title->recommends(Set::extract('Cateogry/id', $title["Category"]), $title["Title"]["id"]);
+//		pr($recommends);
 
 		/**
 		 * セット
@@ -190,7 +190,7 @@ class TitlesController extends AppController
 		$this->set("vote", $vote);
 		$this->set("neighbors", $neighbors);
 		$this->set("voteItems", $this->Title->Vote->voteItems);
-		$this->set("relations", $relations);
+		$this->set("recommends", $recommends);
 		//評価のみはnoindex
 		if(empty($vote["Vote"]["review"]))
 		{
@@ -256,15 +256,15 @@ class TitlesController extends AppController
 //		exit;
 
 		//おすすめ
-		$relations = $this->Title->relations(Set::extract('Cateogry/id', $title["Category"]), $title["Title"]["id"]);
-//		pr($relations);
+		$recommends = $this->Title->recommends(Set::extract('Cateogry/id', $title["Category"]), $title["Title"]["id"]);
+//		pr($recommends);
 
 		/**
 		 * セット
 		 */
 		$this->set("title", $title);
 		$this->set("events", $events);
-		$this->set("relations", $relations);
+		$this->set("recommends", $recommends);
 	}
 
 	function _event()
@@ -311,8 +311,8 @@ class TitlesController extends AppController
 //		exit;
 
 		//おすすめ
-		$relations = $this->Title->relations(Set::extract('Cateogry/id', $title["Category"]), $title["Title"]["id"]);
-//		pr($relations);
+		$recommends = $this->Title->recommends(Set::extract('Cateogry/id', $title["Category"]), $title["Title"]["id"]);
+//		pr($recommends);
 
 		/**
 		 * セット
@@ -320,7 +320,7 @@ class TitlesController extends AppController
 		$this->set("title", $title);
 		$this->set("event", $event);
 		$this->set("events", $events);
-		$this->set("relations", $relations);
+		$this->set("recommends", $recommends);
 	}
 
 	function pc()
@@ -396,8 +396,8 @@ class TitlesController extends AppController
 //		exit;
 
 		//おすすめ
-		$relations = $this->Title->relations(Set::extract('Cateogry/id', $title["Category"]), $title["Title"]["id"]);
-//		pr($relations);
+		$recommends = $this->Title->recommends(Set::extract('Cateogry/id', $title["Category"]), $title["Title"]["id"]);
+//		pr($recommends);
 
 		/**
 		 * セット
@@ -406,7 +406,7 @@ class TitlesController extends AppController
 		$this->set("pcs", $pcs);
 		$this->set("pctypes", $pctypes);
 		$this->set("pcgrades", $pcgrades);
-		$this->set("relations", $relations);
+		$this->set("recommends", $recommends);
 	}
 
 	function link()
@@ -442,15 +442,15 @@ class TitlesController extends AppController
 //		exit;
 
 		//おすすめ
-		$relations = $this->Title->relations(Set::extract('Cateogry/id', $title["Category"]), $title["Title"]["id"]);
-//		pr($relations);
+		$recommends = $this->Title->recommends(Set::extract('Cateogry/id', $title["Category"]), $title["Title"]["id"]);
+//		pr($recommends);
 
 		/**
 		 * セット
 		 */
 		$this->set("title", $title);
 		$this->set("sites", $sites);
-		$this->set("relations", $relations);
+		$this->set("recommends", $recommends);
 	}
 
 	function search()
@@ -468,14 +468,14 @@ class TitlesController extends AppController
 //		exit;
 
 		//おすすめ
-		$relations = $this->Title->relations(Set::extract('Cateogry/id', $title["Category"]), $title["Title"]["id"]);
-//		pr($relations);
+		$recommends = $this->Title->recommends(Set::extract('Cateogry/id', $title["Category"]), $title["Title"]["id"]);
+//		pr($recommends);
 
 		/**
 		 * セット
 		 */
 		$this->set("title", $title);
-		$this->set("relations", $relations);
+		$this->set("recommends", $recommends);
 	}
 
 
