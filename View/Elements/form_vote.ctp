@@ -60,7 +60,7 @@
 				<?php echo $this->Form->text("pass", array(
 					"value" => "",
 					"size" => 8,
-					"maxLength" => 8))?><br />
+					"maxLength" => 8))?><br>
 				<span class="attention">※2～8文字の半角英数字のみです。</span>
 			</td>
 		</tr>
@@ -70,7 +70,7 @@
 		</tr>
 		<tr>
 			<th class="cRed">認証</th>
-			<td><span class="attention">スパム防止のため上記認証番号を半角で入力してください。</span><br />
+			<td><span class="attention">スパム防止のため上記認証番号を半角で入力してください。</span><br>
 				<?php echo $this->Form->text("spam_num", array(
 					"value" => "",
 					"size" => 4,
@@ -83,7 +83,7 @@
 				<?php echo $this->Form->button("評価点数を投稿！", array(
 					"type" => "submit",
 					"id" => "rateSubmit",
-					"class" => "button"))?><br />
+					"class" => "button"))?><br>
 				<span class="attention">※レビューも書きたい場合は下のフォームに入力してください</span>
 			</td>
 		</tr> -->
@@ -94,14 +94,14 @@
 			<th>投稿者名（HN）</th>
 			<td>
 				<?php echo $this->Form->text("poster_name", array(
-					"class" => "formText"))?><br />
+					"class" => "formText"))?><br>
 				<span class="attention">未入力の場合は「名無しさん」と表示されます</span></td>
 		</tr>
 		<tr>
 			<th>タイトル</th>
 			<td>
 				<?php echo $this->Form->text("title", array(
-					"class" => "formText"))?><br />
+					"class" => "formText"))?><br>
 				<span class="attention">一言で言うと？</span></td>
 		</tr>
 		<tr>
@@ -115,8 +115,8 @@
 		</tr>
 		<tr>
 			<th class="cRed">注意事項</th>
-			<td><span class="attention">※レビューは「ゲームに対する個人的感想」として投稿してください。<br />
-			他の方に対するレス等はトラブルの原因となり得ます。<br />
+			<td><span class="attention">※レビューは「ゲームに対する個人的感想」として投稿してください。<br>
+			他の方に対するレス等はトラブルの原因となり得ます。<br>
 			ご理解の上、ご利用くださいますようお願いします。</span></td>
 		</tr>
 		<tr>
@@ -128,8 +128,8 @@
 				<?php echo $this->Form->button("レビュー・評価を投稿！", array(
 					"type" => "submit",
 					"id" => "reviewSubmit",
-					"class" => "button"))?><br />
-				<span class="attention">※一度投稿したタイトルには投稿できません。<br />
+					"class" => "button"))?><br>
+				<span class="attention">※一度投稿したタイトルには投稿できません。<br>
 				（点数のみ、レビュー付関わらず）</span>
 			</td>
 		</tr>

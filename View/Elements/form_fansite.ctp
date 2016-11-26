@@ -7,7 +7,7 @@
 		<p><?php echo $title["Title"]["title_official"]?>の攻略サイト、ファンサイトを運営、またはご存知の方はぜひご登録をお願いします。</p>
 	</div>
 <?php echo $this->Form->create("Fansite", array("url" => array("action" => "add", $id), "inputDefaults" => array("div" => false, "label" => false, "legend" => false)))?>
-	<input type="hidden" name="titleId" value="xxx" />
+	<input type="hidden" name="titleId" value="xxx">
 	<table class="formTable">
 
 		<tr>
@@ -26,7 +26,7 @@
 						"1" => "攻略",
 						"2" => "ファン",
 					)
-				))?><br />
+				))?><br>
 			管理人の独断と偏見によりご希望に添わない場合があります。
 			</td>
 		</tr>
@@ -36,17 +36,17 @@
 		</tr>
 		<tr>
 			<th>リンク設置URL</th>
-			<td><?php echo $this->Form->input("link_url", array("class" => "formText"))?><br />
+			<td><?php echo $this->Form->input("link_url", array("class" => "formText"))?><br>
 			自薦の場合、相互リンクして頂けるととてもありがたいです。</td>
 		</tr>
 		<tr>
 			<th>メールアドレス</th>
 
-			<td><?php echo $this->Form->input("admin_mail", array("class" => "formText"))?><br />
+			<td><?php echo $this->Form->input("admin_mail", array("class" => "formText"))?><br>
 			相互リンクして頂ける方はメールアドレスもお願いします。</td>
 		</tr>
 		<tr>
-			<th>メッセージ<br />
+			<th>メッセージ<br>
 				（ありましたらどうぞ）</th>
 			<td><?php echo $this->Form->input("message", array("maxLength" => 255, "rows" => 4, "cols" => null, "class" => "formText"))?></td>
 		</tr>
@@ -56,7 +56,7 @@
 		</tr>
 		<tr>
 			<th>認証※</th>
-			<td><span class="attention">スパム防止のため上記認証番号を半角で入力してください。</span><br />
+			<td><span class="attention">スパム防止のため上記認証番号を半角で入力してください。</span><br>
 			<?php echo $this->Form->text("spam_num", array(
 				"size" => 4,
 				"maxLength" => 4))?></td>
@@ -75,10 +75,10 @@
 				<h3>相互リンクしていただけるサイト様へ</h3>
 				<p>相互リンクしていただけるサイト様は上位に表示され、トップページに新着10件まで表示されます。</p>
 				<p>
-					<?php echo $title["Title"]["title_official"]?>のトップページ<br />
-					<input onclick="this.select()" style="width:100%;" value="http://onlinegame.dz-life.net<?php echo $this->Html->url(array("controller" => "titles", "action" => "index", "path" => $title["Title"]["url_str"], "ext" => "html"))?>" /><br />
-					または、オンライゲームライフトップページ<br />
-					<input onclick="this.select()" style="width:100%;" value="http://onlinegame.dz-life.net/" /><br />
+					<?php echo $title["Title"]["title_official"]?>のトップページ<br>
+					<input onclick="this.select()" style="width:100%;" value="http://onlinegame.dz-life.net<?php echo $this->Html->url(array("controller" => "titles", "action" => "index", "path" => $title["Title"]["url_str"], "ext" => "html"))?>"><br>
+					または、オンライゲームライフトップページ<br>
+					<input onclick="this.select()" style="width:100%;" value="http://onlinegame.dz-life.net/"><br>
 					にリンクを貼っていただけますと幸いです。
 				</p>
 			</td>

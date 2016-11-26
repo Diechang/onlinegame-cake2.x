@@ -5,9 +5,9 @@
 		<div class="search">
 			<form action="http://www.google.co.jp/cse" id="cse-search-box" target="_blank">
 				<div class="gSearch">
-					<input type="hidden" name="cx" value="partner-pub-5378944923532596:hrh39ml3dzq" />
-					<input type="hidden" name="ie" value="UTF-8" />
-					<input type="text" class="gSearch-text" name="q" size="31" />
+					<input type="hidden" name="cx" value="partner-pub-5378944923532596:hrh39ml3dzq">
+					<input type="hidden" name="ie" value="UTF-8">
+					<input type="text" class="gSearch-text" name="q" size="31">
 					<button type="submit" class="gSearch-button" name="sa"><i class="zmdi zmdi-search zmdi-hc-2x"></i></button>
 				</div>
 			</form>
@@ -22,7 +22,7 @@
 				<!-- Google+1 -->
 				<li><div class="g-plusone" data-size="medium" data-annotation="none" data-href="<?php echo Configure::read("Site.url")?>"></div></li>
 				<!-- Hatena -->
-				<li><a href="http://b.hatena.ne.jp/entry/<?php echo Configure::read("Site.url")?>" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard-noballoon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a></li>
+				<li><a href="http://b.hatena.ne.jp/entry/<?php echo Configure::read("Site.url")?>" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard-noballoon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;"></a></li>
 			</ul>
 		</div>
 		<div class="counts">

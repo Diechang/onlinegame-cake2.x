@@ -25,6 +25,9 @@
 <!-- CSS -->
 <link rel="stylesheet" href="/css/styles.css">
 <?php echo $this->fetch("css")?>
+<?php if(Configure::read('debug') > 0):?>
+<link rel="stylesheet" href="/css/cake.css">
+<?php endif;?>
 
 <!-- JS Libs -->
 <script src="/js/libs/modernizr-2.8.3.min.js"></script>

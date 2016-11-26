@@ -1,6 +1,6 @@
 <?php
 //OGP
-$this->Ogp->options = array(
+$this->Meta->ogpOptions = array(
 	"type" => (isset($ogpType)) ? $ogpType : "article",
 	"title" => (isset($ogpTitle)) ? $ogpTitle : $this->Common->titleAll($title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"], $title["Title"]["title_sub"]),
 	"url" => "http://onlinegame.dz-life.net" . ((isset($ogpUrl)) ? $ogpUrl : $this->Html->url(array("controller" => "titles", "action" => "index", "path" => $title["Title"]["url_str"], "ext" => "html"))),
