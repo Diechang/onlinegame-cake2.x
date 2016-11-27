@@ -18,7 +18,7 @@ $this->set("pankuz_for_layout", array(
 	<div class="description">
 		<?php echo $pageData["Moneycategory"]["body"]?>
 	</div>
-	<div class="gAds"><?php echo $this->Gads->ads468()?></div>
+	<?php echo $this->Gads->ads468()?>
 </div>
 
 <!-- sites -->

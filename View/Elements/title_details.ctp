@@ -1,5 +1,8 @@
 <!-- summary -->
 <section class="title-summary">
+<?php if(empty($intro)):?>
+	<h2><?php echo $title_with_str["Span"]?></h2>
+<?php endif;?>
 	<section class="data">
 		<div class="data-counts">
 			<div class="rate">
@@ -60,7 +63,7 @@
 		<div class="intro-body">
 			<h2>ゲーム紹介</h2>
 			<div class="image"><?php echo $this->Html->image($this->Common->thumb_name($title["Title"]["thumb_name"]),
-				array("width" => 160, "alt" => $titleWithStr["Case"]))?></div>
+				array("width" => 160, "alt" => $title_with_str["Case"]))?></div>
 			<div class="body">
 				<?php echo $title["Title"]["description"]?>
 			</div>
@@ -68,10 +71,10 @@
 	</section>
 <?php endif;?>
 	
-	<?php echo $this->element("title_officiallink", array("link" => $this->Common->official_link_text(
-		$titleWithStr["Span"],
-		$title["Title"]["ad_use"], $title["Title"]["ad_text"], $title["Title"]["official_url"], $title["Title"]["service_id"], true)))?>
-
+	<!--Official Link-->
+	<?php echo $this->element("title_officiallink", array("title_with_str" => $title_with_str))?>
+<?if(!isset($share) or $share != false):?>
 	<?php echo $this->element("comp_shares", array("url" => $this->Html->url(array("controller" => "titles", "action" => "index", "path" => $title["Title"]["url_str"], "ext" => "html"), true)))?>
+<?php endif;?>
 	<?php echo $this->Common->copyright($title["Title"]["copyright"])?>
 </section>

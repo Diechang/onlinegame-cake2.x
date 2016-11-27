@@ -70,7 +70,7 @@ class VotesController extends AppController
 				//
 				if($checkCount > 0)
 				{
-					$this->Session->setFlash("同一タイトルへの投稿はできません");
+					$this->Session->setFlash("同一タイトルへの投稿はできません", "flash_default");
 				}
 				else
 				{
@@ -79,18 +79,18 @@ class VotesController extends AppController
 					if($this->Vote->save($this->request->data))
 					{
 						$this->_share($this->Vote->id);
-						$this->Session->setFlash("投稿ありがとうございました！");
+						$this->Session->setFlash("投稿ありがとうございました！", "flash_default");
 						return $this->redirect(array("controller" => "votes", "action" => "fin", $this->Vote->id));
 					}
 					else
 					{
-						$this->Session->setFlash("登録できませんでした。<br />\n入力内容を確認してください。");
+						$this->Session->setFlash("登録できませんでした。", "flash_default", array("body" => "入力内容を確認してください。"));
 					}
 				}
 			}
 			else
 			{
-				$this->Session->setFlash("認証番号が不正です");
+				$this->Session->setFlash("認証番号が不正です", "flash_default");
 			}
 			/**
 			 * Title data
@@ -161,22 +161,22 @@ class VotesController extends AppController
 					//Save
 					if($this->Vote->save($this->request->data))
 					{
-						$this->Session->setFlash("レビュー・評価の編集が完了しました");
+						$this->Session->setFlash("レビュー・評価の編集が完了しました", "flash_default");
 						return $this->redirect(array("controller" => "votes", "action" => "fin", $id));
 					}
 					else
 					{
-						$this->Session->setFlash("登録できませんでした。<br />\n入力内容を確認してください。");
+						$this->Session->setFlash("登録できませんでした。", "flash_default", array("body" => "入力内容を確認してください。"));
 					}
 				}
 				else
 				{
-					$this->Session->setFlash("認証番号が不正です");
+					$this->Session->setFlash("認証番号が不正です", "flash_default");
 				}
 			}
 			else
 			{
-				$this->Session->setFlash("パスワードが違います");
+				$this->Session->setFlash("パスワードが違います", "flash_default");
 			}
 			$this->request->data["Vote"]["id"] = $dataVote["Vote"]["id"];
 			$this->request->data["Title"] = $dataVote["Title"];

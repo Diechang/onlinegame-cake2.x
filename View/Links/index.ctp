@@ -65,7 +65,7 @@ else
 		</ul>
 <?php endif;?>
 	</section>
-	<div class="gAds"><?php echo $this->Gads->ads468()?></div>
+	<?php echo $this->Gads->ads468()?>
 </div>
 
 <?php echo $this->element("form_link")?>

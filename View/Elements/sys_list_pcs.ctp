@@ -39,7 +39,7 @@
 				<?php echo $this->Html->link($pc["Title"]["title_official"], array("controller" => "pcs", "action" => "index", "?" => array("title_id" => $pc["Pc"]["title_id"])))?>
 			</td>
 			<td class="adImage">
-				<?php echo (!empty($pc["Pc"]["ad_part_img_src"])) ? $this->Common->adLinkImage($pc["Pc"], "pc") : "none"?>
+				<?php echo (!empty($pc["Pc"]["ad_part_img_src"])) ? $this->Common->ad_link_image($pc["Pc"], "pc") : "none"?>
 			</td>
 			<td>
 				<?php echo $this->Html->link($pc["Pcshop"]["shop_name"], array("controller" => "pcs", "action" => "index", "?" => array("pcshop_id" => $pc["Pc"]["pcshop_id"])))?>

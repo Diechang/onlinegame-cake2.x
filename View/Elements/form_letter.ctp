@@ -52,5 +52,5 @@
 			</table>
 		<?php echo $this->Form->end()?>
 	</div>
-	<div class="gAds"><?php echo $this->Gads->ads468()?></div>
+	<?php echo $this->Gads->ads468()?>
 </section>

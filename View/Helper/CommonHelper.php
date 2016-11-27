@@ -391,6 +391,29 @@ class CommonHelper extends AppHelper
 	}
 
 /**
+ * タイトル全部のせ配列：ゲームタイトルでもポータルでも
+ *
+ * @param	string	$official
+ * @param	string	$read
+ * @param	string	$abbr
+ * @param	string	$sub
+ * @return	String
+ * @access	public
+ */
+	function title_with_str($official, $read = null, $abbr = null, $sub = null)
+	{
+		$title_with_str = array(
+			"Case"	=> $this->title_separated_case($official, $read),
+			"Span"	=> $this->title_separated_span($official, $read),
+			"Abbr"	=> $this->title_with_abbr($official, $read, $abbr),
+			"Sub"	=> $this->title_with_sub($official, $read, $sub),
+			"All"	=> $this->title_all($official, $read, $abbr, $sub)
+		);
+		
+		return $this->output($title_with_str);
+	}
+
+/**
  * サムネイルパス
  *
  * @param	string	$thumb_name
@@ -855,7 +878,7 @@ class CommonHelper extends AppHelper
  * @return	html
  * @access	public
  */
-	function adLinkText($modelData, $action)
+	function ad_link_text($modelData, $action)
 	{
 		if($modelData["ad_noredirect"])
 		{
@@ -876,20 +899,6 @@ class CommonHelper extends AppHelper
  * @return	html
  * @access	public
  */
-	function adLinkImage($modelData, $action)
-	{
-		if($modelData["ad_noredirect"])
-		{
-			return $modelData["ad_src_image"];
-		}
-		else
-		{
-			return $this->Html->link($this->Html->image($modelData["ad_part_img_src"],
-					array("alt" => (!empty($modelData["ad_part_text"])) ? $modelData["ad_part_text"] : "")),
-					array("controller" => "jump", "action" => $action, $modelData["id"], "sys" => false),
-					array("target" => "_blank", "rel" => "nofollow", "escape" => false));
-		}
-	}
 	function ad_link_image($modelData, $action)
 	{
 		if($modelData["ad_noredirect"])
@@ -912,7 +921,7 @@ class CommonHelper extends AppHelper
  * @return	html
  * @access	public
  */
-	function adTrackImg($modelData)
+	function ad_track_img($modelData)
 	{
 		if($modelData["ad_noredirect"])
 		{
@@ -931,7 +940,7 @@ class CommonHelper extends AppHelper
  * @return	html
  * @access	public
  */
-	function adLinkRakutenSearch($word)
+	function ad_link_rakuten_search($word)
 	{
 		return $this->output($this->Html->link("楽天で最安、関連商品を探す",
 					array("controller" => "jump", "action" => "rakutensearch", urlencode($word), "sys" => false),

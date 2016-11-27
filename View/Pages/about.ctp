@@ -26,7 +26,7 @@ $this->set("pankuz_for_layout", "当サイトについて");
 	<p>当サイトでは、一部Flashを使用しています。<br>
 	最新版の<a href="http://www.adobe.com/shockwave/download/index.cgi?Lang=Japanese&amp;P1_Prod_Version=ShockwaveFlash">FlashPlayer</a>をご利用ください。<br>
 	また、Javascript、Cookieを有効にしてご覧ください。</p>
-	<div class="gAds"><?php echo $this->Gads->ads468()?></div>
+	<?php echo $this->Gads->ads468()?>
 	<section>
 		<h2 class="headline">免責･注意事項</h2>
 		<p>当サイトは個人サイトであり、企業や団体とは一切関係ありません。</p>

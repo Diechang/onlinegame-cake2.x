@@ -22,12 +22,12 @@ $this->set("pankuz_for_layout", array(
 		<div class="description">
 			<?php echo $portal["Portal"]["description"]?>
 		</div>
-		<div class="officiallink">
-			<span class="caption">公式サイト</span>
-			<i class="icon zmdi zmdi-chevron-right"></i>
-			<?php echo $this->Common->official_link_text($portal["Portal"]["title_official"], $portal["Portal"]["ad_use"], $portal["Portal"]["ad_text"], $portal["Portal"]["official_url"])?>
-		</div>
-		<div class="gAds"><?php echo $this->Gads->ads468()?></div>
+
+		<?php echo $this->element("common_officiallink", array("link" => $this->Common->official_link_text(
+							$this->Common->title_separated_span($portal["Portal"]["title_official"], $portal["Portal"]["title_read"]),
+							$portal["Portal"]["ad_use"], $portal["Portal"]["ad_text"], $portal["Portal"]["official_url"])))?>
+
+		<?php echo $this->Gads->ads468()?>
 	</div>
 
 	<?php echo $this->element("comp_shares", array("url" => $this->Html->url(array("controller" => "portals", "action" => "view", "path" => $portal["Portal"]["url_str"], "ext" => "html"), true)))?>

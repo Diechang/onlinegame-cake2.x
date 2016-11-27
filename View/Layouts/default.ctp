@@ -7,7 +7,7 @@
 <head>
 <meta charset="utf-8">
 
-<title><?php echo $this->fetch("title")?></title>
+<title><?php echo $this->fetch("title")?> - オンラインゲームライフ</title>
 <meta name="Keywords" content="<?php echo $this->fetch("keywords")?>">
 <meta name="Description" content="<?php echo $this->fetch("description")?>">
 
@@ -60,6 +60,7 @@
 	</aside>
 
 <?php
+	//title header
 	echo $this->fetch("title_header");
 ?>
 
@@ -116,9 +117,15 @@
 <?php
 	echo $this->element('footer');
 ?>
+
+<!-- header floating -->
+<header class="floating">
 <?php
 	echo $this->element('global_header_floating', array(), array("cache" => array("config" => "element")));
+	//title nav
+	echo $this->fetch("title_nav_floating");
 ?>
+</header>
 
 <!-- JS -->
 <?php echo $this->fetch("script")?>

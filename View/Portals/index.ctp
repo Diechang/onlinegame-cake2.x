@@ -27,7 +27,7 @@ $this->set("pankuz_for_layout", "オンラインゲームポータル");
 		<p>オンラインゲームポータルサイトでは、ハンゲームや@gamesのように、<strong>アバター</strong>と呼ばれる「オンライン上の自分の分身」を持つことができるサービスもあります。<br>
 		オシャレな服を着せて、ペットを連れて街を歩いて、アバター同士で会話して。</p>
 		<p>ゲームの世界を超えた新しい友情や出会いがあるかもしれません。</p>
-		<div class="gAds"><?php echo $this->Gads->ads468()?></div>
+		<?php echo $this->Gads->ads468()?>
 	</section>
 </div>
 

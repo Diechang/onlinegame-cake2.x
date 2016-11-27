@@ -1,22 +1,22 @@
 <?php
 //Title vars
-$titleWithStr["Case"]	= $this->Common->titleWithCase($title["Title"]["title_official"], $title["Title"]["title_read"]);
-$titleWithStr["Span"]	= $this->Common->titleWithSpan($title["Title"]["title_official"], $title["Title"]["title_read"]);
-$titleWithStr["Abbr"]	= $this->Common->titleWithAbbr($title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"]);
-$titleWithStr["Sub"]	= $this->Common->titleWithSub($title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_sub"]);
+$title_with_str = $this->Common->title_with_str($title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"], $title["Title"]["title_sub"]);
 //set blocks
-$this->assign("title", $titleWithStr["Abbr"] . " 推奨PC（パソコン）");
-$this->assign("keywords", $this->TitlePage->metaKeywords($this->request->params["action"], $title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"], $title["Title"]["title_sub"]));
-$this->assign("description", $titleWithStr["Sub"] . "の推奨PC(パソコン)です。ショップが推奨するゲームモデルPCで快適プレイ！");
+$this->assign("title", $title_with_str["Abbr"] . " 推奨PC（パソコン）");
+$this->assign("keywords", $this->TitlePage->meta_keywords($this->request->params["action"], $title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"], $title["Title"]["title_sub"]));
+$this->assign("description", $title_with_str["Sub"] . "の推奨PC(パソコン)です。ショップが推奨するゲームモデルPCで快適プレイ！");
+//assigns
+$this->assign("title_header", $this->element("title_header"));
+$this->assign("title_nav_floating", $this->element("title_nav_floating", array("title" => $title)));
 //pankuz
-$this->set("pankuz_for_layout", array(array("str" => $titleWithStr["Case"], "url" => array("action" => "index", "path" => $title["Title"]["url_str"], "ext" => "html")), "推奨PC"));
+$this->set("pankuz_for_layout", array(array("str" => $title_with_str["Case"], "url" => array("action" => "index", "path" => $title["Title"]["url_str"], "ext" => "html")), "推奨PC"));
 //OGP
-$this->element("title_ogp", array("titleWithStr" => $titleWithStr));
+$this->element("title_ogp", array("title_with_str" => $title_with_str));
 ?>
 <?php echo $this->Session->flash()?>
-<?php echo $this->element("title_head_title")?>
 
-<?php echo $this->element("title_head_menu")?>
+<!-- nav -->
+<?php echo $this->element("title_nav")?>
 
 <!--Pcs-->
 <div class="content pcs">
@@ -27,10 +27,10 @@ $this->element("title_ogp", array("titleWithStr" => $titleWithStr));
 <?php else:?>
 	<?php foreach($pcs["pickups"] as $pickup):?>
 	<div class="pickup">
-		<h3><?php echo $this->Common->adLinkText($pickup["Pc"], "pc")?></h3>
+		<h3><?php echo $this->Common->ad_link_text($pickup["Pc"], "pc")?></h3>
 		<table>
 			<tr>
-				<td class="image" rowspan="8"><?php echo $this->Common->adLinkImage($pickup["Pc"], "pc")?></td>
+				<td class="image" rowspan="8"><?php echo $this->Common->ad_link_image($pickup["Pc"], "pc")?></td>
 				<th nowrap="nowrap">CPU</th>
 				<td><?php echo nl2br($pickup["Pc"]["cpu"])?></td>
 			</tr>
@@ -71,7 +71,7 @@ $this->element("title_ogp", array("titleWithStr" => $titleWithStr));
 			</div>
 		</div>
 		<?php endif;?>
-		<p class="detailsLink"><?php echo $this->Common->adLinkText($pickup["Pc"], "pc")?></p>
+		<p class="detailsLink"><?php echo $this->Common->ad_link_text($pickup["Pc"], "pc")?></p>
 	</div>
 	<?php endforeach;?>
 	<!--Types-->
@@ -87,10 +87,10 @@ $this->element("title_ogp", array("titleWithStr" => $titleWithStr));
 			</tr>
 				<?php foreach($pcs[$pctype["Pctype"]["path"]][$pcgrade["Pcgrade"]["path"]] as $pc):?>
 			<tr>
-				<th colspan="5" class="name<?php echo (!empty($pc["Pc"]["pickup"])) ? " pickup" : ""?>"><?php echo $this->Common->adLinkText($pc["Pc"], "pc")?></th>
+				<th colspan="5" class="name<?php echo (!empty($pc["Pc"]["pickup"])) ? " pickup" : ""?>"><?php echo $this->Common->ad_link_text($pc["Pc"], "pc")?></th>
 			</tr>
 			<tr>
-				<td rowspan="8" class="image"><?php echo $this->Common->adLinkImage($pc["Pc"], "pc")?></td>
+				<td rowspan="8" class="image"><?php echo $this->Common->ad_link_image($pc["Pc"], "pc")?></td>
 				<th nowrap="nowrap">CPU</th>
 				<td colspan="3"><?php echo nl2br($pc["Pc"]["cpu"])?></td>
 			</tr>
@@ -136,7 +136,7 @@ $this->element("title_ogp", array("titleWithStr" => $titleWithStr));
 <?php endif;?>
 </div>
 
-<?php echo $this->element("title_details", array("titleWithStr" => $titleWithStr))?>
+<?php echo $this->element("title_details", array("title_with_str" => $title_with_str))?>
 
 <?php echo $this->element("title_share")?>
 

@@ -51,9 +51,10 @@ class TitlesController extends AppController
 //		exit;
 
 		//期間別評価
-		$ratings["all"]		= $this->Title->Vote->titleRatings($title["Title"]["id"], null, true);
-		$ratings["year"]	= $this->Title->Vote->titleRatings($title["Title"]["id"], "-1year", true);
-		$ratings["days"]	= $this->Title->Vote->titleRatings($title["Title"]["id"], "-90days", true);
+		$ratings = $this->Title->Vote->titleRatings($title["Title"]["id"], null, true);
+		// $ratings["all"]		= $this->Title->Vote->titleRatings($title["Title"]["id"], null, true);
+		// $ratings["year"]	= $this->Title->Vote->titleRatings($title["Title"]["id"], "-1year", true);
+		// $ratings["days"]	= $this->Title->Vote->titleRatings($title["Title"]["id"], "-90days", true);
 //		pr($ratings);
 //		exit;
 

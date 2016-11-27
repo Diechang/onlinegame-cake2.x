@@ -88,5 +88,5 @@ $this->set("pankuz_for_layout", "サイトマップ");
 			<li><?php echo $this->Html->link("お問合せ", array("controller" => "pages", "action" => "contact", "ext" => "html"))?></li>
 		</ul>
 	</section>
-	<div class="gAds"><?php echo $this->Gads->ads468()?></div>
+	<?php echo $this->Gads->ads468()?>
 </section>

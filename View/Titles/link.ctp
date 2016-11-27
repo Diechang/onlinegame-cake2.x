@@ -1,22 +1,22 @@
 <?php
 //Title vars
-$titleWithStr["Case"]	= $this->Common->titleWithCase($title["Title"]["title_official"], $title["Title"]["title_read"]);
-$titleWithStr["Span"]	= $this->Common->titleWithSpan($title["Title"]["title_official"], $title["Title"]["title_read"]);
-$titleWithStr["Abbr"]	= $this->Common->titleWithAbbr($title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"]);
-$titleWithStr["Sub"]	= $this->Common->titleWithSub($title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_sub"]);
+$title_with_str = $this->Common->title_with_str($title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"], $title["Title"]["title_sub"]);
 //set blocks
-$this->assign("title", $titleWithStr["Abbr"] . " 攻略・ファンサイトリンク集");
-$this->assign("keywords", $this->TitlePage->metaKeywords($this->request->params["action"], $title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"], $title["Title"]["title_sub"]));
-$this->assign("description", $titleWithStr["Sub"] . "の攻略・ファンサイトリンク集です。");
+$this->assign("title", $title_with_str["Abbr"] . " 攻略・ファンサイトリンク集");
+$this->assign("keywords", $this->TitlePage->meta_keywords($this->request->params["action"], $title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"], $title["Title"]["title_sub"]));
+$this->assign("description", $title_with_str["Sub"] . "の攻略・ファンサイトリンク集です。");
+//assigns
+$this->assign("title_header", $this->element("title_header"));
+$this->assign("title_nav_floating", $this->element("title_nav_floating", array("title" => $title)));
 //pankuz
-$this->set("pankuz_for_layout", array(array("str" => $titleWithStr["Case"], "url" => array("action" => "index", "path" => $title["Title"]["url_str"], "ext" => "html")), "攻略・ファンサイト"));
+$this->set("pankuz_for_layout", array(array("str" => $title_with_str["Case"], "url" => array("action" => "index", "path" => $title["Title"]["url_str"], "ext" => "html")), "攻略・ファンサイト"));
 //OGP
-$this->element("title_ogp", array("titleWithStr" => $titleWithStr));
+$this->element("title_ogp", array("title_with_str" => $title_with_str));
 ?>
 <?php echo $this->Session->flash()?>
-<?php echo $this->element("title_head_title")?>
 
-<?php echo $this->element("title_head_menu")?>
+<!-- nav -->
+<?php echo $this->element("title_nav")?>
 
 <?php echo $this->TitlePage->voteLinkButton($title["Title"]["url_str"])?>
 
@@ -36,7 +36,7 @@ $this->element("title_ogp", array("titleWithStr" => $titleWithStr));
 	<?php endforeach;?>
 	</ul>
 <?php else:?>
-	<p class="noLinks"><?php echo $titleWithStr["Case"]?>の攻略サイト情報が登録されていません。攻略サイト、Wikiサイト等を運営、またはご存知の方はぜひご登録をお願いします。</p>
+	<p class="noLinks"><?php echo $title_with_str["Case"]?>の攻略サイト情報が登録されていません。攻略サイト、Wikiサイト等を運営、またはご存知の方はぜひご登録をお願いします。</p>
 <?php endif;?>
 	<div class="entryButton"><a href="<?php echo $this->Html->url(array("controller" => "fansites", "action" => "add", $title["Title"]["id"]))?>"><?php echo $this->Html->image("design/titles_links_button_entry.gif", array("alt" => "攻略・ファンサイトリンク集に登録・推薦する"))?></a></div>
 </div>
@@ -59,12 +59,12 @@ $this->element("title_ogp", array("titleWithStr" => $titleWithStr));
 	<?php endforeach;?>
 	</ul>
 <?php else:?>
-	<p class="noLinks"><?php echo $titleWithStr["Case"]?>のファンサイト情報が登録されていません。ファンサイト、プレイブログ等を運営、またはご存知の方はぜひご登録をお願いします。</p>
+	<p class="noLinks"><?php echo $title_with_str["Case"]?>のファンサイト情報が登録されていません。ファンサイト、プレイブログ等を運営、またはご存知の方はぜひご登録をお願いします。</p>
 <?php endif;?>
 	<div class="entryButton"><a href="<?php echo $this->Html->url(array("controller" => "fansites", "action" => "add", $title["Title"]["id"]))?>"><?php echo $this->Html->image("design/titles_links_button_entry.gif", array("alt" => "攻略・ファンサイトリンク集に登録・推薦する"))?></a></div>
 </div>
 
-<?php echo $this->element("title_details", array("titleWithStr" => $titleWithStr))?>
+<?php echo $this->element("title_details", array("title_with_str" => $title_with_str))?>
 
 <?php echo $this->element("title_share")?>
 

@@ -5,7 +5,7 @@
 class TitlePageHelper extends AppHelper
 {
 	//Use Helper
-	var $helpers = array('Html');
+	var $helpers = array('Html', 'Common');
 
 /**
  * メタキーワード
@@ -18,24 +18,6 @@ class TitlePageHelper extends AppHelper
  * @return	string
  * @access	public
  */
-	function metaKeywords($action, $official, $read = null, $abbr = null, $sub = null)
-	{
-		$words	= array($official, $read, $abbr, $sub);
-		$mores	= array(
-			"index"		=> array("動作環境","スペック","ツイート","ニュース"),
-			"rating"	=> array("評価"),
-			"review"	=> array("レビュー"),
-			"allvotes"	=> array("レビュー","評価"),
-			"single"	=> array("レビュー","評価"),
-			"events"	=> array("イベント","キャンペーン"),
-			"event"		=> array("イベント","キャンペーン"),
-			"pc"		=> array("推奨PC","パソコン","モデル"),
-			"link"		=> array("攻略","WIKI","ファンサイト"),
-			"search"	=> array("動画","ムービー","ブログ"),
-		);
-		$ret = array_merge(array_filter($words), $mores[$action]);
-		return $this->output(implode(",", $ret));
-	}
 	function meta_keywords($action, $official, $read = null, $abbr = null, $sub = null)
 	{
 		$words	= array($official, $read, $abbr, $sub);
@@ -102,7 +84,7 @@ class TitlePageHelper extends AppHelper
  * @return	html
  * @access	public
  */
-	function specRows($header, $low, $high)
+	function spec_rows($header, $low, $high)
 	{
 		if(!empty($low) or !empty($high))
 		{
@@ -143,7 +125,7 @@ class TitlePageHelper extends AppHelper
  * @return	html
  * @access	public
  */
-	function officialLinkBanner($ad_use, $ad_banner_l, $title, $official_url, $service_id = null, $onlybanner = false)
+	function official_link_banner($ad_use, $ad_banner_l, $title, $official_url, $service_id = null, $onlybanner = false)
 	{
 		if($service_id != 1 or $service_id == null)
 		{

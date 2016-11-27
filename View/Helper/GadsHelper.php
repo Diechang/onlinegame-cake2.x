@@ -15,7 +15,7 @@ class GadsHelper extends AppHelper
 	function ads468($withdiv = true)
 	{
 		$src = "";
-		$src .= ($withdiv) ?  "<div class=\"tCenter\">\n" : "";
+		$src .= ($withdiv) ?  "<div class=\"gAds\">\n" : "";
 		
 		$src .= $this->both468();
 		

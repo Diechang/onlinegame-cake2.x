@@ -1,17 +1,17 @@
 <?php
 //Title vars
-$titleWithStr["Case"]	= $this->Common->titleWithCase($title["Title"]["title_official"], $title["Title"]["title_read"]);
-$titleWithStr["Span"]	= $this->Common->titleWithSpan($title["Title"]["title_official"], $title["Title"]["title_read"]);
-$titleWithStr["Abbr"]	= $this->Common->titleWithAbbr($title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"]);
-$titleWithStr["Sub"]	= $this->Common->titleWithSub($title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_sub"]);
+$title_with_str["Case"]	= $this->Common->titleWithCase($title["Title"]["title_official"], $title["Title"]["title_read"]);
+$title_with_str["Span"]	= $this->Common->titleWithSpan($title["Title"]["title_official"], $title["Title"]["title_read"]);
+$title_with_str["Abbr"]	= $this->Common->titleWithAbbr($title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"]);
+$title_with_str["Sub"]	= $this->Common->titleWithSub($title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_sub"]);
 //set blocks
-$this->assign("title", $titleWithStr["Abbr"] . " 動画（ムービー）・ブログ記事検索");
-$this->assign("keywords", $this->TitlePage->metaKeywords($this->request->params["action"], $title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"], $title["Title"]["title_sub"]));
-$this->assign("description", $titleWithStr["Sub"] . "の動画（ムービー）・ブログ記事検索です。");
+$this->assign("title", $title_with_str["Abbr"] . " 動画（ムービー）・ブログ記事検索");
+$this->assign("keywords", $this->TitlePage->meta_keywords($this->request->params["action"], $title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"], $title["Title"]["title_sub"]));
+$this->assign("description", $title_with_str["Sub"] . "の動画（ムービー）・ブログ記事検索です。");
 //pankuz
-$this->set("pankuz_for_layout", array(array("str" => $titleWithStr["Case"], "url" => array("action" => "index", "path" => $title["Title"]["url_str"], "ext" => "html")), "動画・ブログ検索"));
+$this->set("pankuz_for_layout", array(array("str" => $title_with_str["Case"], "url" => array("action" => "index", "path" => $title["Title"]["url_str"], "ext" => "html")), "動画・ブログ検索"));
 //OGP
-$this->element("title_ogp", array("titleWithStr" => $titleWithStr));
+$this->element("title_ogp", array("title_with_str" => $title_with_str));
 ?>
 
 <?php echo $this->element("title_head_title")?>
@@ -98,7 +98,7 @@ $this->element("title_ogp", array("titleWithStr" => $titleWithStr));
 	</div>
 </div>
 
-<?php echo $this->element("title_details", array("titleWithStr" => $titleWithStr))?>
+<?php echo $this->element("title_details", array("title_with_str" => $title_with_str))?>
 
 <?php echo $this->element("title_share")?>
 

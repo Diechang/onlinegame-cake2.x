@@ -144,9 +144,13 @@
 <?php
 	echo $this->element('footer');
 ?>
+
+<!-- header floating -->
+<header class="floating">
 <?php
 	echo $this->element('global_header_floating', array(), array("cache" => array("config" => "element")));
 ?>
+</header>
 
 <!-- JS Libs -->
 <script src="/js/libs/slick-1.5.0/slick.min.js"></script>
