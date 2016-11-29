@@ -110,9 +110,8 @@ class TitlePageHelper extends AppHelper
 	}
 
 
-/**Links
+/** Links
 ------------------------------ **/
-
 /**
  * 公式バナー
  *
@@ -167,6 +166,23 @@ class TitlePageHelper extends AppHelper
 	function voteButton($path)
 	{
 		return '<div class="votebutton">' . $this->Html->image("design/titles_button_vote_normal.gif", array("alt" => "レビュー・評価", "url" => array("controller" => "titles", "action" => "review", "path" => $path, "ext" => "html", "#" => "voteform"))) . '</div>';
+	}
+
+
+/** Rates
+------------------------------ **/
+/**
+ * good class or bad class
+ * 
+ * @param	number	$point
+ * @param	array	$labels strings
+ * @param	number	$limit
+ * @return	string
+ * @access	public
+ */
+	function good_or_bad($point, $labels = array("good", "bad"), $limit = 3)
+	{
+		return ($point > $limit) ? $labels[0] : $labels[1];
 	}
 }
 ?>

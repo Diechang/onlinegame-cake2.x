@@ -52,10 +52,11 @@
 
 <!-- <script type="text/javascript" src="<?php echo Configure::read("Site.url")?>ra/script.php"></script><noscript><p><img src="<?php echo Configure::read("Site.url")?>ra/track.php" alt="" width="1" height="1"></p></noscript> -->
 
-<?php
-if (Configure::read('debug') > 0)
-{
-	echo $this->element('sql_dump');
-	debug($this->request);
-}
-?>
+<?php if (Configure::read('debug') > 0):?>
+<h2 style="margin: 0 20px; font-size:20px;">SQL dump</h2>
+<?php echo $this->element('sql_dump');?>
+<h2 style="margin: 0 20px; font-size:20px;">$this->request</h2>
+<?php debug($this->request);?>
+<h2 style="margin: 0 20px; font-size:20px;">$this->viewVars</h2>
+<?php debug($this->viewVars);?>
+<?php endif;?>

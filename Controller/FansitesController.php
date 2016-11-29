@@ -58,17 +58,17 @@ class FansitesController extends AppController
 {$listUrl}
 					");
 					//
-					$this->Session->setFlash("サイト登録申込ありがとうございます！<br />\n管理人の承認後に掲載されます。");
+					$this->Session->setFlash("サイト登録申込ありがとうございます！", "flash_default", array("body" => "管理人の承認後に掲載されます。", "type" => "success"));
 					return $this->redirect(array("controller" => "titles", "action" => "link", "path" => $title["Title"]["url_str"], "ext" => "html"));
 				}
 				else
 				{
-					$this->Session->setFlash("登録できませんでした。<br />\n入力内容を確認してください。");
+					$this->Session->setFlash("登録できませんでした。", "flash_default", array("body" => "入力内容を確認してください。"));
 				}
 			}
 			else
 			{
-				$this->Session->setFlash("認証番号が不正です");
+				$this->Session->setFlash("認証番号が不正です", "flash_default");
 			}
 		}
 		//Set
@@ -115,16 +115,16 @@ class FansitesController extends AppController
 
 				");
 				//
-				$this->Session->setFlash("リンク切れ報告を受け付けました。<br />\nご協力ありがとうございます。");
+				$this->Session->setFlash("リンク切れ報告を受け付けました。", "flash_default", array("body" => "ご協力ありがとうございました。", "type" => "success"));
 			}
 			else
 			{
-				$this->Session->setFlash("エラーが発生しました。");
+				$this->Session->setFlash("エラーが発生しました。", "flash_default");
 			}
 		}
 		else
 		{
-			$this->Session->setFlash("すでに非公開リンクとなっています。<br />\nご協力ありがとうございます。");
+			$this->Session->setFlash("すでに非公開リンクとなっています。", "flash_default", array("body" => "ご協力ありがとうございました。", "type" => "success"));
 		}
 		return $this->redirect($this->referer());
 	}

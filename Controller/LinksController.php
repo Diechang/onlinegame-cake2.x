@@ -126,7 +126,7 @@ class LinksController extends AppController
 {$linksUrl}
 					");
 					//
-					$this->Session->setFlash("相互リンク申込ありがとうございました！", "flash_default", array("type" => "success", "body" => "管理人の承認後に掲載されます。"));
+					$this->Session->setFlash("相互リンク申込ありがとうございました！", "flash_default", array("body" => "管理人の承認後に掲載されます。", "type" => "success"));
 					return $this->redirect(array('action' => 'index'));
 				}
 				else

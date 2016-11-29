@@ -88,13 +88,13 @@
 				</td>
 			</tr>
 			<tr>
-				<th class="must">認証番号</th>
+				<th>認証番号</th>
 				<td><?php echo $this->Html->image("design/spamnum.gif", array("alt" => "スパム防止番号"))?></td>
 			</tr>
 			<tr>
 				<th class="must">認証</th>
 				<td>
-					<span class="input-attention">スパム防止のため上記認証番号を半角で入力してください。</span>
+					<div class="input-attention">スパム防止のため上記認証番号を半角で入力してください。</div>
 					<?php echo $this->Form->text("spam_num", array(
 						"value" => "",
 						"class" => "input-text input-text-s",

@@ -405,8 +405,11 @@ class TitlesController extends AppController
 		 */
 		$this->set("title", $title);
 		$this->set("pcs", $pcs);
-		$this->set("pctypes", $pctypes);
-		$this->set("pcgrades", $pcgrades);
+		if(!empty($pcs))
+		{
+			$this->set("pctypes", $pctypes);
+			$this->set("pcgrades", $pcgrades);
+		}
 		$this->set("recommends", $recommends);
 	}
 

@@ -46,6 +46,7 @@ $this->element("title_ogp", array(
 	</ul>
 	<div class="review">
 		<p><?php echo (!empty($vote["Vote"]["review"]) ? nl2br(h($vote["Vote"]["review"])) : "<（評価点数のみ）")?></p>
+		<?php echo $this->Gads->text336();?>
 	</div>
 	
 	<div class="rate">
@@ -67,14 +68,10 @@ $this->element("title_ogp", array(
 				</ul>
 			</div>
 		</div>
-		<div class="title-comp-rate title-comp-rate-good">
+		<div class="title-comp-rate title-comp-rate-<?php echo $this->TitlePage->good_or_bad($vote["Vote"]["single_avg"])?>">
 			<div class="caption">総合評価</div>
 			<div class="point"><span class="num"><?php echo $this->Common->point_format($vote["Vote"]["single_avg"])?></span>点</div>
-		<?php if($vote["Vote"]["single_avg"] > 3):?>
-			<div class="icon"><i class="zmdi zmdi-thumb-up"></i> Good</div>
-		<?php else:?>
-			<div class="icon"><i class="zmdi zmdi-thumb-bad"></i> Bad</div>
-		<?php endif;?>
+			<div class="icon"><i class="zmdi zmdi-thumb-<?php echo $this->TitlePage->good_or_bad($vote["Vote"]["single_avg"], array("up", "down"))?>"></i> <?php echo ucfirst($this->TitlePage->good_or_bad($vote["Vote"]["single_avg"]))?></div>
 		</div>
 	</div>
 
@@ -100,8 +97,8 @@ $this->element("title_ogp", array(
 	<div class="neighbor neighbor-<?php echo $key?>">
 		<div class="neighbor-body">
 		<?php if(!empty($neighbor)):?>
-			<div class="caption caption-good">
-				<span class="rate"><i class="zmdi zmdi-thumb-<?php echo ($neighbor["Vote"]["single_avg"] > 3) ? "up" : "down"?>"></i> <?php echo $this->Common->point_format($neighbor["Vote"]["single_avg"])?>点</span>
+			<div class="caption caption-<?php echo $this->TitlePage->good_or_bad($neighbor["Vote"]["single_avg"])?>">
+				<span class="rate"><i class="zmdi zmdi-thumb-<?php echo $this->TitlePage->good_or_bad($neighbor["Vote"]["single_avg"], array("up", "down"))?>"></i> <?php echo $this->Common->point_format($neighbor["Vote"]["single_avg"])?>点</span>
 				<a href="<?php echo $this->Html->url(array("path" => $title["Title"]["url_str"], "voteid" => $neighbor["Vote"]["id"], "ext" => "html"))?>"><i class="zmdi zmdi-arrow-<?php echo $neighborStr[$key]["icon"]?>"></i> <?php echo $neighborStr[$key]["label"]?>のレビュー</a>
 			</div>
 			<div class="review">

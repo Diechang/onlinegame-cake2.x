@@ -24,19 +24,11 @@
 				</ul>
 			</div>
 		</div>
-	<?php if($vote["Vote"]["single_avg"] > 3):?>
-		<div class="title-comp-rate title-comp-rate-good">
+		<div class="title-comp-rate title-comp-rate-<?php echo $this->TitlePage->good_or_bad($vote["Vote"]["single_avg"])?>">
 			<div class="caption">総合評価</div>
 			<div class="point"><span class="num"><?php echo $this->Common->pointFormat($vote["Vote"]["single_avg"])?></span>点</div>
-			<div class="icon"><i class="zmdi zmdi-thumb-up"></i> Good</div>
+			<div class="icon"><i class="zmdi zmdi-thumb-<?php echo $this->TitlePage->good_or_bad($vote["Vote"]["single_avg"], array("up", "down"))?>"></i> <?php echo ucfirst($this->TitlePage->good_or_bad($vote["Vote"]["single_avg"]))?></div>
 		</div>
-	<?php else:?>
-		<div class="title-comp-rate title-comp-rate-bad">
-			<div class="caption">総合評価</div>
-			<div class="point"><span class="num"><?php echo $this->Common->pointFormat($vote["Vote"]["single_avg"])?></span>点</div>
-			<div class="icon"><i class="zmdi zmdi-thumb-down"></i> Bad</div>
-		</div>
-	<?php endif;?>
 	</li>
 <?php endforeach;?>
 </ul>
