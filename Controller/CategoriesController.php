@@ -49,6 +49,7 @@ class CategoriesController extends AppController
 				"ad_use",
 				"ad_text",
 				"official_url",
+				"Titlesummary.*",
 				"Service.*",
 				"Fee.*",
 			),
@@ -68,7 +69,7 @@ class CategoriesController extends AppController
 			),
 			"group" => array("Title.id"),
 			"order" => array("Service.sort" , "Title.service_start DESC" , "Title.test_start DESC" , "Title.test_end DESC"),
-			"contain" => array("Category", "Service", "Fee"),
+			"contain" => array("Titlesummary", "Category", "Service", "Fee"),
 		));
 //		pr($titles);
 //		exit;
@@ -89,7 +90,7 @@ class CategoriesController extends AppController
 				"Title.ad_use",
 				"Titlesummary.*"
 			),
-			"limit" => 4,
+			"limit" => 5,
 			"order" => array("Title.ad_use DESC , Titlesummary.vote_avg_all DESC , Titlesummary.vote_count_vote DESC"),
 		));
 //		pr($pickups);

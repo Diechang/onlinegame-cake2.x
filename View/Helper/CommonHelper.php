@@ -27,38 +27,6 @@ class CommonHelper extends AppHelper
  * @return	html
  * @access	public
  */
-	function pankuz($data)
-	{
-		if(!empty($data))
-		{
-			if(is_array($data))
-			{//配列
-				$ret = "";
-				foreach($data as $val)
-				{
-					$ret .= "<span" . $this->RichSnippets->typeof("Breadcrumb") . ">";
-					if(is_array($val))
-					{//文字列["str"]とURL配列["url"]の配列
-						$ret .= " ＞ " . $this->Html->link($val["str"], $val["url"], array("rel" => $this->RichSnippets->rels["url"], "property" => $this->RichSnippets->properties["title"]));
-					}
-					else
-					{//文字列
-						$ret .= " ＞ " . $val;
-					}
-					$ret .= "</span>";
-				}
-				return $ret;
-			}
-			elseif(is_string($data))
-			{//文字列
-				return " ＞ " . $data;
-			}
-		}
-		else
-		{
-			return "";
-		}
-	}
 	function pankuz_links($data)
 	{
 		if(!empty($data))

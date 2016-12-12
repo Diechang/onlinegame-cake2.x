@@ -48,11 +48,12 @@ class ServicesController extends AppController
 				"ad_use",
 				"ad_text",
 				"official_url",
+				"Titlesummary.*",
 				"Service.*",
 				"Fee.*",
 			),
 			"order" => array("Title.service_start DESC", "Title.test_start DESC", "Title.test_end DESC"),
-			"contain" => array("Category", "Service", "Fee"),
+			"contain" => array("Titlesummary", "Category", "Service", "Fee"),
 		));
 //		pr($titles);
 		//

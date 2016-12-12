@@ -1,8 +1,8 @@
 <?php
 //set blocks
-$this->assign("title", $this->Common->titleWithCase($pageData["Style"]["str"], $pageData["Style"]["str_sub"]));
+$this->assign("title", $this->Common->title_separated_case($pageData["Style"]["str"], $pageData["Style"]["str_sub"]));
 $this->assign("keywords", $pageData["Style"]["str"] .((!empty($pageData["Style"]["str_sub"])) ? "," . $pageData["Style"]["str_sub"] : "") . ",オンラインゲーム");
-$this->assign("description", "【" . $this->Common->titleWithCase($pageData["Style"]["str"], $pageData["Style"]["str_sub"]) . "】オンラインゲームの一覧です。同じスタイル・プレイ環境のオンラインゲームが探せます。");
+$this->assign("description", "【" . $this->Common->title_separated_case($pageData["Style"]["str"], $pageData["Style"]["str_sub"]) . "】オンラインゲームの一覧です。同じスタイル・プレイ環境のオンラインゲームが探せます。");
 //pankuz
 $this->set("pankuz_for_layout", $pageData["Style"]["str"]);
 ?>
@@ -10,30 +10,21 @@ $this->set("pankuz_for_layout", $pageData["Style"]["str"]);
 <?php
 	if(!empty($pageData["Style"]["description"]))
 	{
-		echo $this->element('prop_summary', array('pageData' => $pageData["Style"]));
+		echo $this->element('archive_about', array('pageData' => $pageData["Style"]));
 	}
 ?>
 
 <?php
 	if(!empty($pickups))
 	{
-		echo $this->element('prop_pickups', array('pickups' => $pickups, "mainStr" => $pageData["Style"]["str"]));
+		echo $this->element('archive_pickups', array('pickups' => $pickups, "mainStr" => $pageData["Style"]["str"]));
 	}
 ?>
 
-<div class="content titles">
-	<h2>【<?php echo $pageData["Style"]["str"]?>】オンラインゲーム一覧</h2>
-	<ul class="listChangeTabs">
-		<li class="details"><a href="javascript:void(0)"><?php echo $this->Html->image("design/list_tabs_details_normal.gif", array("alt" => "詳細表示"))?></a></li>
-		<li class="thumb"><a href="javascript:void(0)"><?php echo $this->Html->image("design/list_tabs_thumb_normal.gif", array("alt" => "画像表示"))?></a></li>
-	</ul>
-	<!--<ul id="titlesList" class="thumbList clearfix">-->
-	<ul id="titlesList" class="detailsList clearfix">
-<?php echo $this->element('loop_general_data', array("titles" => $titles))?>
-	</ul>
-	<ul class="listChangeTabs">
-		<li class="details"><a href="javascript:void(0)"><?php echo $this->Html->image("design/list_tabs_details_normal.gif", array("alt" => "詳細表示"))?></a></li>
-		<li class="thumb"><a href="javascript:void(0)"><?php echo $this->Html->image("design/list_tabs_thumb_normal.gif", array("alt" => "画像表示"))?></a></li>
-	</ul>
-<?php echo $this->Gads->ads468()?>
-</div>
+<!-- titles -->
+<section class="archive-titles">
+	<h1 class="headline"><span class="label label-primary"><?php echo $pageData["Style"]["str"]?></span>オンラインゲーム一覧</h1>
+
+	<?php echo $this->element('loop_general_data', array("titles" => $titles))?>
+</section>
+
