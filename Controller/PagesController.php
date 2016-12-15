@@ -353,7 +353,7 @@ class PagesController extends AppController
 
 
 		// $this->Title->unbindAll(array("Titlesummary"));
-		$this->Title->Behaviors->load("Containable");
+		// $this->Title->Behaviors->load("Containable");
 		$titles = $this->Title->find("all", array(
 			"conditions" => array(
 				"AND" => array(

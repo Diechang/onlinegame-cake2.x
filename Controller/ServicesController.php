@@ -26,35 +26,40 @@ class ServicesController extends AppController
 		 * Title Data
 		 */
 		//Get
-		$this->Title->Behaviors->attach('Containable');
-		$titles = $this->Title->find("all", array(
-			"conditions" => array(
-				"Title.public" => 1,
-				"Service.id" => $pageData["Service"]["id"],
-			),
-			"fields" => array(
-				"title_official",
-				"title_read",
-				"url_str",
-				"thumb_name",
-				"description",
-				"service_id",
-				"service_start",
-				"test_start",
-				"test_end",
-				"category_text",
-				"fee_id",
-				"fee_text",
-				"ad_use",
-				"ad_text",
-				"official_url",
-				"Titlesummary.*",
-				"Service.*",
-				"Fee.*",
-			),
-			"order" => array("Title.service_start DESC", "Title.test_start DESC", "Title.test_end DESC"),
-			"contain" => array("Titlesummary", "Category", "Service", "Fee"),
-		));
+		// $this->Title->Behaviors->attach('Containable');
+		$this->Paginator->settings = array(
+			"Title" => array(
+				"conditions" => array(
+					"Title.public" => 1,
+					"Title.service_id" => $pageData["Service"]["id"],
+				),
+				"fields" => array(
+					"Title.title_official",
+					"Title.title_read",
+					"Title.url_str",
+					"Title.thumb_name",
+					"Title.description",
+					"Title.service_id",
+					"Title.service_start",
+					"Title.test_start",
+					"Title.test_end",
+					"Title.category_text",
+					"Title.fee_id",
+					"Title.fee_text",
+					"Title.ad_use",
+					"Title.ad_text",
+					"Title.official_url",
+					"Titlesummary.*",
+					"Service.*",
+					"Fee.*",
+				),
+				// "order" => array("Title.service_start DESC", "Title.test_start DESC", "Title.test_end DESC"),
+				"order" => "Title.service_start DESC",
+				"contain" => array("Titlesummary", "Category", "Service", "Fee"),
+				"paramType" => "querystring",
+			)
+		);
+		$titles = $this->Paginator->paginate("Title");
 //		pr($titles);
 		//
 		//Set
