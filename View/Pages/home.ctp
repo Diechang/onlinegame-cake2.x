@@ -74,20 +74,20 @@ $this->assign("description", "無料オンラインゲーム情報サイト。�
 	<?php foreach($testCurrents as $test):?>
 			<li>
 				<h2 class="title">
-					<?php echo $this->Common->test_label($test["Service"]["id"]);?>
-					<?php echo $this->Common->title_link_text(
-						$this->Common->title_separated_span($test["Title"]["title_official"], $test["Title"]["title_read"]),
+					<?php echo $this->Common->testLabel($test["Service"]["id"]);?>
+					<?php echo $this->Common->titleLinkText(
+						$this->Common->titleSeparatedSpan($test["Title"]["title_official"], $test["Title"]["title_read"]),
 						$test["Title"]["url_str"])?>
 				</h2>
 				<div class="thumb">
-					<?php echo $this->Common->title_link_thumb(
-						$this->Common->thumb_name($test["Title"]["thumb_name"]),
-						$this->Common->title_separated_case($test["Title"]["title_official"], $test["Title"]["title_read"]),
+					<?php echo $this->Common->titleLinkThumb(
+						$this->Common->thumbName($test["Title"]["thumb_name"]),
+						$this->Common->titleWithCase($test["Title"]["title_official"], $test["Title"]["title_read"]),
 						$test["Title"]["url_str"], 120)?>
 				</div>
 				<div class="data">
 					<p class="description"><?php echo nl2br(strip_tags($test["Title"]["description"]))?></p>
-					<div class="date"><span class="fwBold">実施期間</span>：<?php echo $this->Common->date_format($test["Title"]["test_start"], "date")?> 〜 <?php echo $this->Common->date_format($test["Title"]["test_end"], "date")?></div>
+					<div class="date"><span class="fwBold">実施期間</span>：<?php echo $this->Common->dateFormat($test["Title"]["test_start"], "date")?> 〜 <?php echo $this->Common->dateFormat($test["Title"]["test_end"], "date")?></div>
 				</div>
 			</li>
 	<?php endforeach;?>
@@ -106,19 +106,19 @@ $this->assign("description", "無料オンラインゲーム情報サイト。�
 	<?php foreach($testFutures as $test):?>
 			<li>
 				<div class="thumb">
-					<?php echo $this->Common->title_link_thumb(
-						$this->Common->thumb_name($test["Title"]["thumb_name"]),
-						$this->Common->title_separated_case($test["Title"]["title_official"], $test["Title"]["title_read"]),
+					<?php echo $this->Common->titleLinkThumb(
+						$this->Common->thumbName($test["Title"]["thumb_name"]),
+						$this->Common->titleWithCase($test["Title"]["title_official"], $test["Title"]["title_read"]),
 						$test["Title"]["url_str"], 80)?>
 				</div>
 				<div class="title">
-					<?php echo $this->Common->title_link_text(
-						$this->Common->title_separated_span($test["Title"]["title_official"], $test["Title"]["title_read"]),
+					<?php echo $this->Common->titleLinkText(
+						$this->Common->titleSeparatedSpan($test["Title"]["title_official"], $test["Title"]["title_read"]),
 						$test["Title"]["url_str"])?>
 				</div>
 				<div class="date">
-					<?php echo $this->Common->test_label($test["Service"]["id"]);?>
-					<?php echo $this->Common->date_format($test["Title"]["test_start"], "date")?> 〜 <?php echo $this->Common->date_format($test["Title"]["test_end"], "date")?>
+					<?php echo $this->Common->testLabel($test["Service"]["id"]);?>
+					<?php echo $this->Common->dateFormat($test["Title"]["test_start"], "date")?> 〜 <?php echo $this->Common->dateFormat($test["Title"]["test_end"], "date")?>
 				</div>
 			</li>
 	<?php endforeach;?>
@@ -148,11 +148,11 @@ $this->assign("description", "無料オンラインゲーム情報サイト。�
 			<li>
 				<a href="<?php echo $this->Html->url(array("controller" => "titles", "action" => "index", "path" => $newer["Title"]["url_str"], "ext" => "html"));?>">
 					<div class="thumb">
-						<?php echo $this->Html->image($this->Common->thumb_name($newer["Title"]["thumb_name"]),
-						array("alt" => $this->Common->title_separated_case($newer["Title"]["title_official"], $newer["Title"]["title_read"]), "width" => 80));?>
+						<?php echo $this->Html->image($this->Common->thumbName($newer["Title"]["thumb_name"]),
+						array("alt" => $this->Common->titleWithCase($newer["Title"]["title_official"], $newer["Title"]["title_read"]), "width" => 80));?>
 					</div>
 					<p>
-						<?php echo $this->Common->title_separated_span($newer["Title"]["title_official"], $newer["Title"]["title_read"]);?>
+						<?php echo $this->Common->titleSeparatedSpan($newer["Title"]["title_official"], $newer["Title"]["title_read"]);?>
 					</p>
 				</a>
 			</li>
@@ -176,7 +176,7 @@ $this->assign("description", "無料オンラインゲーム情報サイト。�
 		<h1>更新履歴</h1>
 		<dl>
 <?php foreach($updates as $update):?>
-			<dt><?php echo $this->Common->date_format($update["Update"]["created"], "date")?></dt>
+			<dt><?php echo $this->Common->dateFormat($update["Update"]["created"], "date")?></dt>
 			<dd><?php echo $update["Update"]["text"]?></dd>
 <?php endforeach;?>
 		</dl>

@@ -13,7 +13,7 @@
 
 <?php echo $this->fetch("meta")?>
 <?php echo $this->Meta->metaTags($metaTags)?>
-<?php echo $this->Meta->ogptags()?>
+<?php echo $this->Meta->ogpTags()?>
 
 <link rel="alternate" type="application/rss+xml" title="最新オンラインゲーム" href="http://feeds.feedburner.com/dz-game/newstart">
 <link rel="alternate" type="application/rss+xml" title="新着レビュー投稿" href="http://feeds.feedburner.com/dz-game/review">
@@ -55,7 +55,7 @@
 	<aside class="pankuz">
 		<ul>
 			<li class="top"><a href="/">トップ</a></li>
-			<?php echo $this->Common->pankuz_links($pankuz_for_layout)?>
+			<?php echo $this->Common->pankuzLinks($pankuz_for_layout)?>
 		</ul>
 	</aside>
 

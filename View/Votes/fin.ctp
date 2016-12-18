@@ -39,8 +39,8 @@ $this->set("pankuz_for_layout", array(array("str" => $vote["Title"]["title_offic
 	<ul>
 	<?php foreach($noneTitles as $none):?>
 		<li>
-			<?php echo $this->Common->title_link_text(
-				$this->Common->title_separated_span($none["Title"]["title_official"], $none["Title"]["title_read"]),
+			<?php echo $this->Common->titleLinkText(
+				$this->Common->titleSeparatedSpan($none["Title"]["title_official"], $none["Title"]["title_read"]),
 				$none["Title"]["url_str"])?>
 		</li>
 	<?php endforeach;?>

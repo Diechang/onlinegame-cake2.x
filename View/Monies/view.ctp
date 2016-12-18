@@ -28,7 +28,7 @@ $this->set("pankuz_for_layout", array(
 <?php foreach($monies as $money):?>
 		<li>
 			<h2 class="title">
-				<?php echo $this->Common->official_link_text($money["Money"]["title"], $money["Money"]["ad_use"], $money["Money"]["ad_text"], $money["Money"]["official_url"])?>
+				<?php echo $this->Common->officialLinkText($money["Money"]["title"], $money["Money"]["ad_use"], $money["Money"]["ad_text"], $money["Money"]["official_url"])?>
 			</h2>
 	<?php if(!empty($money["Money"]["ad_use"]) && !empty($money["Money"]["ad_banner"])):?>
 			<div class="banner"><?php echo $money["Money"]["ad_banner"]?></div>

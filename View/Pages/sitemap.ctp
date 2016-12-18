@@ -48,7 +48,7 @@ $this->set("pankuz_for_layout", "サイトマップ");
 		<ul class="titles">
 	<?php foreach($titles as $t):?>
 			<li>
-				<?php echo $this->Common->title_link_text($this->Common->title_separated_span($t["Title"]["title_official"], $t["Title"]["title_read"]), $t["Title"]["url_str"])?>
+				<?php echo $this->Common->titleLinkText($this->Common->titleSeparatedSpan($t["Title"]["title_official"], $t["Title"]["title_read"]), $t["Title"]["url_str"])?>
 				<?php echo ($t["Service"]["id"] != 2) ? $t["Service"]["str"] : ""?>
 			</li>
 	<?php endforeach;?>
@@ -59,7 +59,7 @@ $this->set("pankuz_for_layout", "サイトマップ");
 		<ul class="titles">
 			<li><?php echo $this->Html->link("オンラインゲームポータルとは", array("controller" => "portals", "action" => "index", "ext" => "html"))?></li>
 	<?php foreach($portals as $portal):?>
-			<li><?php echo $this->Html->link($this->Common->title_separated_span($portal["Portal"]["title_official"], $portal["Portal"]["title_read"]),
+			<li><?php echo $this->Html->link($this->Common->titleSeparatedSpan($portal["Portal"]["title_official"], $portal["Portal"]["title_read"]),
 										array("controller" => "portals", "action" => "view", "path" => $portal["Portal"]["url_str"], "ext" => "html"), array("escape" => false))?></li>
 	<?php endforeach;?>
 		</ul>

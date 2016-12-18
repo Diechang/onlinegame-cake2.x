@@ -9,18 +9,18 @@
 		<h2 class="title">
 			<a href="<?php echo $this->Html->url(array("controller" => "titles", "action" => "index", "path" => $rank["Title"]["url_str"], "ext" => "html"));?>">
 				<span class="num"><?php echo $rank_num;?></span>
-				<?php echo $this->Common->title_separated_span($rank["Title"]["title_official"], $rank["Title"]["title_read"], $rank["Title"]["url_str"]);?>
+				<?php echo $this->Common->titleSeparatedSpan($rank["Title"]["title_official"], $rank["Title"]["title_read"], $rank["Title"]["url_str"]);?>
 			</a>
 		</h2>
 		<div class="images">
 			<div class="thumb">
-				<?php echo $this->Common->title_link_thumb(
-					$this->Common->thumb_name($rank["Title"]["thumb_name"]),
-					$this->Common->title_separated_case($rank["Title"]["title_official"], $rank["Title"]["title_read"]),
+				<?php echo $this->Common->titleLinkThumb(
+					$this->Common->thumbName($rank["Title"]["thumb_name"]),
+					$this->Common->titleWithCase($rank["Title"]["title_official"], $rank["Title"]["title_read"]),
 					$rank["Title"]["url_str"], ($rank_num == 1) ? 160 : 120)?>
 			</div>
 <?php if($rank_num == 1):?>
-			<?php echo $this->Common->star_block($rank["Titlesummary"]["vote_avg_all"]);?>
+			<?php echo $this->Common->starBlock($rank["Titlesummary"]["vote_avg_all"]);?>
 <?php endif;?>
 		</div>
 
@@ -32,14 +32,14 @@
 				<div class="rate">
 					<div class="caption">総合評価</div>
 					<div class="value">
-						<span class="num"><?php echo $this->Common->point_format($rank["Titlesummary"]["vote_avg_all"])?></span>
+						<span class="num"><?php echo $this->Common->pointFormat($rank["Titlesummary"]["vote_avg_all"])?></span>
 						<span class="unit">点</span>
 					</div>
 				</div>
 				<div class="rate">
 					<div class="caption">面白さ</div>
 					<div class="value">
-						<span class="num"><?php echo $this->Common->point_format($rank["Titlesummary"]["vote_avg_item1"])?></span>
+						<span class="num"><?php echo $this->Common->pointFormat($rank["Titlesummary"]["vote_avg_item1"])?></span>
 						<span class="unit">点</span>
 					</div>
 				</div>
@@ -61,7 +61,7 @@
 
 			<div class="official">
 				<span class="label label-official">公式サイト</span>
-				<?php echo $this->Common->official_link_text($rank["Title"]["title_official"], $rank["Title"]["ad_use"], $rank["Title"]["ad_text"], $rank["Title"]["official_url"], $rank["Title"]["service_id"])?>
+				<?php echo $this->Common->officialLinkText($rank["Title"]["title_official"], $rank["Title"]["ad_use"], $rank["Title"]["ad_text"], $rank["Title"]["official_url"], $rank["Title"]["service_id"])?>
 			</div>
 		</div>
 	</li>

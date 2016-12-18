@@ -2,7 +2,7 @@
 <section class="ads">
 	<!-- Ads160 -->
 	<div class="ad ad-banner">
-		<?php echo $this->Common->ad_link_image($adLeftBottoms["AdLeftBottom"], "adlb")?>
+		<?php echo $this->Common->adLinkImage($adLeftBottoms["AdLeftBottom"], "adlb")?>
 	</div>
 <?php 
 	// <!-- リンクユニット -->

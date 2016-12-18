@@ -27,8 +27,8 @@ $this->assign("description", "【" . $label . "】人気オンラインゲーム
 		あなたの投稿でランクインされます！</p>
 		<ul class="list">
 	<?php foreach($norankings as $norank):?>
-			<li><?php echo $this->Common->title_link_text(
-					$this->Common->title_separated_span($norank["Title"]["title_official"], $norank["Title"]["title_read"]),
+			<li><?php echo $this->Common->titleLinkText(
+					$this->Common->titleSeparatedSpan($norank["Title"]["title_official"], $norank["Title"]["title_read"]),
 					$norank["Title"]["url_str"])?></li>
 	<?php endforeach;?>
 		</ul>

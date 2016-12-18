@@ -26,9 +26,9 @@ $this->set("pankuz_for_layout", "オンラインゲーム用PC");
 		<li>
 			<div class="images">
 				<div class="thumb">
-					<?php echo $this->Common->title_link_thumb(
-						$this->Common->thumb_name($title["Title"]["thumb_name"]),
-						$this->Common->title_separated_case($title["Title"]["title_official"], $title["Title"]["title_read"]),
+					<?php echo $this->Common->titleLinkThumb(
+						$this->Common->thumbName($title["Title"]["thumb_name"]),
+						$this->Common->titleWithCase($title["Title"]["title_official"], $title["Title"]["title_read"]),
 						$title["Title"]["url_str"], 160, "pc")?>
 				</div>
 				<div class="counts">
@@ -43,8 +43,8 @@ $this->set("pankuz_for_layout", "オンラインゲーム用PC");
 				</div>
 			</div>
 			<h2 class="title">
-				<?php echo $this->Common->title_link_text(
-					$this->Common->title_separated_span($title["Title"]["title_official"], $title["Title"]["title_read"]),
+				<?php echo $this->Common->titleLinkText(
+					$this->Common->titleSeparatedSpan($title["Title"]["title_official"], $title["Title"]["title_read"]),
 					$title["Title"]["url_str"], "pc")?>
 			</h2>
 			<div class="price">

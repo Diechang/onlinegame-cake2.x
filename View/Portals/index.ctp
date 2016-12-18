@@ -39,19 +39,19 @@ $this->set("pankuz_for_layout", "オンラインゲームポータル");
 		<li>
 			<h2 class="title">
 				<a href="<?php echo $this->Html->url(array("controller" => "portals", "action" => "view", "path" => $portal["Portal"]["url_str"], "ext" => "html"))?>">
-					<?php echo $this->Common->title_separated_span($portal["Portal"]["title_official"], $portal["Portal"]["title_read"])?>
+					<?php echo $this->Common->titleSeparatedSpan($portal["Portal"]["title_official"], $portal["Portal"]["title_read"])?>
 				</a>
 			</h2>
 			<div class="images">
 				<div class="thumb">
 					<a href="<?php echo $this->Html->url(array("controller" => "portals", "action" => "view", "path" => $portal["Portal"]["url_str"], "ext" => "html"))?>">
-						<img src="http://capture.heartrails.com/160x120?<?php echo $portal["Portal"]["official_url"]?>" alt="<?php echo $this->Common->title_separated_case($portal["Portal"]["title_official"], $portal["Portal"]["title_read"])?>">
+						<img src="http://capture.heartrails.com/160x120?<?php echo $portal["Portal"]["official_url"]?>" alt="<?php echo $this->Common->titleWithCase($portal["Portal"]["title_official"], $portal["Portal"]["title_read"])?>">
 					</a>
 				</div>
 			</div>
 			<div class="data">
 				<p class="description"><?php echo strip_tags($portal["Portal"]["description"])?></p>
-				<p class="official"><span class="label label-official">公式サイト</span> <?php echo $this->Common->official_link_text($portal["Portal"]["title_official"], $portal["Portal"]["ad_use"], $portal["Portal"]["ad_text"], $portal["Portal"]["official_url"])?></p>
+				<p class="official"><span class="label label-official">公式サイト</span> <?php echo $this->Common->officialLinkText($portal["Portal"]["title_official"], $portal["Portal"]["ad_use"], $portal["Portal"]["ad_text"], $portal["Portal"]["official_url"])?></p>
 			</div>
 		</li>
 <?php endforeach;?>

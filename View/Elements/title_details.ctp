@@ -1,13 +1,13 @@
 <!-- summary -->
 <section class="title-summary">
 <?php if(empty($intro)):?>
-	<h2><?php echo $title_with_str["Span"]?></h2>
+	<h2><?php echo $titleWithStrs["Span"]?></h2>
 <?php endif;?>
 	<section class="data">
 		<div class="data-counts">
 			<div class="rate">
-				<div class="value">総合評価<span class="num"><?php echo $this->Common->point_format($title["Titlesummary"]["vote_avg_all"], " -- ")?></span>点</div>
-				<?php echo $this->Common->star_block($title["Titlesummary"]["vote_avg_all"])?>
+				<div class="value">総合評価<span class="num"><?php echo $this->Common->pointFormat($title["Titlesummary"]["vote_avg_all"], " -- ")?></span>点</div>
+				<?php echo $this->Common->starBlock($title["Titlesummary"]["vote_avg_all"])?>
 			</div>
 			<div class="count count-review">
 				<div class="caption">レビュー</div>
@@ -22,27 +22,27 @@
 			<table>
 				<tr>
 					<th>料金</th>
-					<td><?php echo $this->Common->fee_data($title["Title"]["fee_text"], $title["Title"]["fee_id"], $title["Fee"]["str"], $title["Title"]["service_id"], $title["Service"]["str"])?></td>
+					<td><?php echo $this->Common->feeData($title["Title"]["fee_text"], $title["Title"]["fee_id"], $title["Fee"]["str"], $title["Title"]["service_id"], $title["Service"]["str"])?></td>
 				</tr>
 				<tr>
 					<th>ジャンル</th>
 					<td>
-						<?php echo $this->Common->categories_link($title["Category"])?>
+						<?php echo $this->Common->categoriesLink($title["Category"])?>
 					</td>
 				</tr>
 				<tr>
 					<th>スタイル</th>
 					<td>
-						<?php echo $this->Common->styles_link($title["Style"])?>
+						<?php echo $this->Common->stylesLink($title["Style"])?>
 					</td>
 				</tr>
 				<tr>
 					<th><?php echo $title["Service"]["str"]?></th>
 					<td>
 <?php if($title["Service"]["id"] == 2):?>
-						<?php echo $this->Common->date_format($title["Title"]["service_start"], "date")?>
+						<?php echo $this->Common->dateFormat($title["Title"]["service_start"], "date")?>
 <?php elseif($title["Service"]["id"] == 3 or $title["Service"]["id"] == 4):?>
-						<?php echo $this->Common->term_format($title["Title"]["test_start"], $title["Title"]["test_end"])?>
+						<?php echo $this->Common->termFormat($title["Title"]["test_start"], $title["Title"]["test_end"])?>
 <?php else:?>
 <?php endif;?>
 					</td>
@@ -62,8 +62,8 @@
 	<section class="intro">
 		<div class="intro-body">
 			<h2>ゲーム紹介</h2>
-			<div class="image"><?php echo $this->Html->image($this->Common->thumb_name($title["Title"]["thumb_name"]),
-				array("width" => 160, "alt" => $title_with_str["Case"]))?></div>
+			<div class="image"><?php echo $this->Html->image($this->Common->thumbName($title["Title"]["thumb_name"]),
+				array("width" => 160, "alt" => $titleWithStrs["Case"]))?></div>
 			<div class="body">
 				<?php echo $title["Title"]["description"]?>
 			</div>
@@ -72,7 +72,7 @@
 <?php endif;?>
 	
 	<!--Official Link-->
-	<?php echo $this->element("title_officiallink", array("title_with_str" => $title_with_str))?>
+	<?php echo $this->element("title_officiallink", array("titleWithStrs" => $titleWithStrs))?>
 <?if(!isset($share) or $share != false):?>
 	<?php echo $this->element("comp_shares", array("url" => $this->Html->url(array("controller" => "titles", "action" => "index", "path" => $title["Title"]["url_str"], "ext" => "html"), true)))?>
 <?php endif;?>

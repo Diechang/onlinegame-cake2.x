@@ -12,7 +12,7 @@
 <meta name="Description" content="<?php echo $this->fetch("description")?>">
 
 <?php echo $this->fetch("meta")?>
-<?php echo $this->Meta->ogptags()?>
+<?php echo $this->Meta->ogpTags()?>
 
 <link rel="alternate" type="application/rss+xml" title="最新オンラインゲーム" href="http://feeds.feedburner.com/dz-game/newstart">
 <link rel="alternate" type="application/rss+xml" title="新着レビュー投稿" href="http://feeds.feedburner.com/dz-game/review">
@@ -59,9 +59,9 @@
 				<ul>
 <?php foreach($newGames as $newGame):?>
 					<li>
-						<?php echo $this->Common->title_link_thumb(
-							$this->Common->thumb_name($newGame["Title"]["thumb_name"]),
-							$this->Common->title_separated_case($newGame["Title"]["title_official"], $newGame["Title"]["title_read"]),
+						<?php echo $this->Common->titleLinkThumb(
+							$this->Common->thumbName($newGame["Title"]["thumb_name"]),
+							$this->Common->titleWithCase($newGame["Title"]["title_official"], $newGame["Title"]["title_read"]),
 							$newGame["Title"]["url_str"], 120);?>
 					</li>
 <?php endforeach;?>
@@ -73,13 +73,13 @@
 					<li>
 						<a href="<?php echo $this->Html->url(array("controller" => "titles", "action" => "index", "path" => $newGame["Title"]["url_str"], "ext" => "html"));?>">
 							<div class="images">
-								<div class="thumb"><?php echo $this->Html->image($this->Common->thumb_name($newGame["Title"]["thumb_name"]), array(
-									"alt"	=> $this->Common->title_separated_case($newGame["Title"]["title_official"], $newGame["Title"]["title_read"]),
+								<div class="thumb"><?php echo $this->Html->image($this->Common->thumbName($newGame["Title"]["thumb_name"]), array(
+									"alt"	=> $this->Common->titleWithCase($newGame["Title"]["title_official"], $newGame["Title"]["title_read"]),
 									"width"	=> 160));?></div>
-								<?php echo $this->Common->star_block($newGame["Titlesummary"]["vote_avg_all"]);?>
+								<?php echo $this->Common->starBlock($newGame["Titlesummary"]["vote_avg_all"]);?>
 							</div>
 							<div class="texts">
-								<p class="title"><?php echo $this->Common->title_separated_span($newGame["Title"]["title_official"], $newGame["Title"]["title_read"]);?></p>
+								<p class="title"><?php echo $this->Common->titleSeparatedSpan($newGame["Title"]["title_official"], $newGame["Title"]["title_read"]);?></p>
 								<p class="description"><?php echo strip_tags($newGame["Title"]["description"]);?></p>
 							</div>
 						</a>

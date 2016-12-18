@@ -1,17 +1,17 @@
 <?php
 //Title vars
-$title_with_str = $this->Common->title_with_str($title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"], $title["Title"]["title_sub"]);
+$titleWithStrs = $this->Common->titleWithStrs($title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"], $title["Title"]["title_sub"]);
 //set blocks
-$this->assign("title", $title_with_str["Abbr"] . " ユーザーレビュー");
-$this->assign("keywords", $this->TitlePage->meta_keywords($this->request->params["action"], $title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"], $title["Title"]["title_sub"]));
-$this->assign("description", $title_with_str["Sub"] . "のユーザーレビューです。プレイヤーのみなさんのレビュー（口コミ）を読んで" . $title_with_str["Sub"] . "の評判をチェック！");
+$this->assign("title", $titleWithStrs["Abbr"] . " ユーザーレビュー");
+$this->assign("keywords", $this->TitlePage->metaKeywords($this->request->params["action"], $title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"], $title["Title"]["title_sub"]));
+$this->assign("description", $titleWithStrs["Sub"] . "のユーザーレビューです。プレイヤーのみなさんのレビュー（口コミ）を読んで" . $titleWithStrs["Sub"] . "の評判をチェック！");
 //assigns
 $this->assign("title_header", $this->element("title_header"));
 $this->assign("title_nav_floating", $this->element("title_nav_floating", array("title" => $title)));
 //pankuz
-$this->set("pankuz_for_layout", array(array("str" => $title_with_str["Case"], "url" => array("action" => "index", "path" => $title["Title"]["url_str"], "ext" => "html")), "ユーザーレビュー"));
+$this->set("pankuz_for_layout", array(array("str" => $titleWithStrs["Case"], "url" => array("action" => "index", "path" => $title["Title"]["url_str"], "ext" => "html")), "ユーザーレビュー"));
 //OGP
-$this->element("title_ogp", array("title_with_str" => $title_with_str));
+$this->element("title_ogp", array("titleWithStrs" => $titleWithStrs));
 ?>
 <?php echo $this->Session->flash()?>
 
@@ -28,7 +28,7 @@ $this->element("title_ogp", array("title_with_str" => $title_with_str));
 	<?php echo $this->element("title_votes", array("votes" => $reviews, "titlePath" => $title["Title"]["url_str"], "all" => false))?>
 
 	<!--Official Link-->
-	<?php echo $this->element("title_officiallink", array("title_with_str" => $title_with_str))?>
+	<?php echo $this->element("title_officiallink", array("titleWithStrs" => $titleWithStrs))?>
 </section>
 
 <!-- vote form -->
@@ -45,7 +45,7 @@ $this->element("title_ogp", array("title_with_str" => $title_with_str));
 </section>
 
 <!-- details -->
-<?php echo $this->element("title_details", array("title_with_str" => $title_with_str))?>
+<?php echo $this->element("title_details", array("titleWithStrs" => $titleWithStrs))?>
 
 <!-- recommends -->
 <?php echo $this->element("title_recommends", array($recommends))?>

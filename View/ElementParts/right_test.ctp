@@ -9,24 +9,24 @@
 <?php foreach($rightTests as $rightTest):?>
 			<li>
 				<h2 class="title">
-					<?php echo $this->Common->title_link_text(
-						$this->Common->title_separated_span($rightTest["Title"]["title_official"], $rightTest["Title"]["title_read"]),
+					<?php echo $this->Common->titleLinkText(
+						$this->Common->titleSeparatedSpan($rightTest["Title"]["title_official"], $rightTest["Title"]["title_read"]),
 						$rightTest["Title"]["url_str"])?>
 				</h2>
 				<div class="image">
-					<?php echo $this->Common->title_link_thumb(
-						$this->Common->thumb_name($rightTest["Title"]["thumb_name"]),
-						$this->Common->title_separated_case($rightTest["Title"]["title_official"], $rightTest["Title"]["title_read"]),
+					<?php echo $this->Common->titleLinkThumb(
+						$this->Common->thumbName($rightTest["Title"]["thumb_name"]),
+						$this->Common->titleWithCase($rightTest["Title"]["title_official"], $rightTest["Title"]["title_read"]),
 						$rightTest["Title"]["url_str"], 60)?>
 				</div>
 				<p class="description"><?php echo mb_strimwidth(strip_tags($rightTest["Title"]["description"]), 0, 120, " …", "UTF-8")?></p>
 				<p class="data">
-					<?php echo $this->Common->test_label($rightTest["Service"]["id"]);?>
-					<span class="value"><?php echo $this->Common->date_format($rightTest["Title"]["test_start"], "date") . "～" . $this->Common->date_format($rightTest["Title"]["test_end"], "date")?></span>
+					<?php echo $this->Common->testLabel($rightTest["Service"]["id"]);?>
+					<span class="value"><?php echo $this->Common->dateFormat($rightTest["Title"]["test_start"], "date") . "～" . $this->Common->dateFormat($rightTest["Title"]["test_end"], "date")?></span>
 				</p>
 				<p class="data data-official">
 					<span class="label label-official">公式サイト</span>
-					<?php echo $this->Common->official_link_text($rightTest["Title"]["title_official"], $rightTest["Title"]["ad_use"], $rightTest["Title"]["ad_text"], $rightTest["Title"]["official_url"])?>
+					<?php echo $this->Common->officialLinkText($rightTest["Title"]["title_official"], $rightTest["Title"]["ad_use"], $rightTest["Title"]["ad_text"], $rightTest["Title"]["official_url"])?>
 				</p>
 			</li>
 <?php endforeach;?>

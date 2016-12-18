@@ -1,7 +1,7 @@
 
 	<nav class="titles">
 		<a href="<?php echo $this->Html->url(array("controller" => "titles", "action" => "index", "path" => $title["Title"]["url_str"], "ext" => "html"))?>" class="title">
-			<div class="image"><?php echo $this->Html->image($this->Common->thumb_name($title["Title"]["thumb_name"]),
+			<div class="image"><?php echo $this->Html->image($this->Common->thumbName($title["Title"]["thumb_name"]),
 				array("width" => 160, "alt" => $title["Title"]["title_official"]))?></div>
 			<p class="official"><?php echo $title["Title"]["title_official"]?></p>
 		</a>

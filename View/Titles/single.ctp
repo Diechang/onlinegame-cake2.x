@@ -1,6 +1,6 @@
 <?php
 //Title vars
-$title_with_str = $this->Common->title_with_str($title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"], $title["Title"]["title_sub"]);
+$titleWithStrs = $this->Common->titleWithStrs($title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"], $title["Title"]["title_sub"]);
 //Vote vars
 $voteType		= (!empty($vote["Vote"]["review"]) ? "レビュー" : "評価");
 $voteTitle		= (!empty($vote["Vote"]["title"])) ? "「" . h($vote["Vote"]["title"]) . "」 " : "【" . $this->Common->pointFormat($vote["Vote"]["single_avg"]) . "点】";
@@ -8,15 +8,15 @@ $posterName		= $this->Common->posterName($vote["Vote"]["poster_name"]);
 $nameWithType	= $posterName . "の" . $voteType;
 $postDate		= $this->Common->dateFormat($vote["Vote"]["created"], "datetime");
 //set blocks
-$this->assign("title", $voteTitle . $nameWithType . "(" . $postDate . ") | " . $title_with_str["Abbr"]);
-$this->assign("keywords", $posterName . "," . $postDate . "," . $this->TitlePage->meta_keywords($this->request->params["action"], $title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"], $title["Title"]["title_sub"]));
-$this->assign("description", (!empty($vote["Vote"]["review"]) ? "" : "【" . $this->Common->pointFormat($vote["Vote"]["single_avg"]) . "点】") . $posterName . "が" . $title_with_str["Case"] . "に投稿した" . $voteType . "です。投稿日：" . $postDate);
+$this->assign("title", $voteTitle . $nameWithType . "(" . $postDate . ") | " . $titleWithStrs["Abbr"]);
+$this->assign("keywords", $posterName . "," . $postDate . "," . $this->TitlePage->metaKeywords($this->request->params["action"], $title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"], $title["Title"]["title_sub"]));
+$this->assign("description", (!empty($vote["Vote"]["review"]) ? "" : "【" . $this->Common->pointFormat($vote["Vote"]["single_avg"]) . "点】") . $posterName . "が" . $titleWithStrs["Case"] . "に投稿した" . $voteType . "です。投稿日：" . $postDate);
 //assigns
 $this->assign("title_header", $this->element("title_header"));
 $this->assign("title_nav_floating", $this->element("title_nav_floating", array("title" => $title)));
 //pankuz
 $this->set("pankuz_for_layout", array(
-	array("str" => $title_with_str["Case"], "url" => array("action" => "index", "path" => $title["Title"]["url_str"], "ext" => "html")),
+	array("str" => $titleWithStrs["Case"], "url" => array("action" => "index", "path" => $title["Title"]["url_str"], "ext" => "html")),
 	(!empty($vote["Vote"]["review"]))
 	? array("str" => "ユーザーレビュー", "url" => array("action" => "review", "path" => $title["Title"]["url_str"], "ext" => "html"))
 	: array("str" => "評価点数", "url" => array("action" => "rating", "path" => $title["Title"]["url_str"], "ext" => "html")),
@@ -24,9 +24,9 @@ $this->set("pankuz_for_layout", array(
 ));
 //OGP
 $this->element("title_ogp", array(
-	"ogpTitle" => $voteTitle . $nameWithType . "(" . $postDate . ") | " . $title_with_str["Abbr"],
+	"ogpTitle" => $voteTitle . $nameWithType . "(" . $postDate . ") | " . $titleWithStrs["Abbr"],
 	"ogpUrl" => $this->request->here,
-	"ogpDescription" => (!empty($vote["Vote"]["review"])) ? mb_strimwidth($vote["Vote"]["review"], 0, 120, " …", "UTF-8") : $title_with_str["Case"] . "の評価",
+	"ogpDescription" => (!empty($vote["Vote"]["review"])) ? mb_strimwidth($vote["Vote"]["review"], 0, 120, " …", "UTF-8") : $titleWithStrs["Case"] . "の評価",
 ));
 ?>
 <?php echo $this->Session->flash()?>
@@ -36,10 +36,10 @@ $this->element("title_ogp", array(
 
 <!-- review single -->
 <section class="title-review-single">
-	<h1><?php echo $this->Common->vote_title($vote["Vote"])?></h1>
+	<h1><?php echo $this->Common->voteTitle($vote["Vote"])?></h1>
 	<ul class="data">
-		<li><i class="zmdi zmdi-account"></i> <?php echo $this->Common->poster_name($vote["Vote"]["poster_name"])?></li>
-		<li><i class="zmdi zmdi-time"></i> <?php echo $this->Common->date_format($vote["Vote"]["created"], "datetime")?></li>
+		<li><i class="zmdi zmdi-account"></i> <?php echo $this->Common->posterName($vote["Vote"]["poster_name"])?></li>
+		<li><i class="zmdi zmdi-time"></i> <?php echo $this->Common->dateFormat($vote["Vote"]["created"], "datetime")?></li>
 <?php if(!empty($vote["Vote"]["pass"])):?>
 		<li><i class="zmdi zmdi-edit"></i> <?php echo $this->Html->link("編集", array("controller" => "votes", "action" => "edit", $vote["Vote"]["id"]), array("rel" => "nofollow"))?></li>
 <?php endif;?>
@@ -68,17 +68,17 @@ $this->element("title_ogp", array(
 				</ul>
 			</div>
 		</div>
-		<div class="title-comp-rate title-comp-rate-<?php echo $this->TitlePage->good_or_bad($vote["Vote"]["single_avg"])?>">
+		<div class="title-comp-rate title-comp-rate-<?php echo $this->TitlePage->goodOrBad($vote["Vote"]["single_avg"])?>">
 			<div class="caption">総合評価</div>
-			<div class="point"><span class="num"><?php echo $this->Common->point_format($vote["Vote"]["single_avg"])?></span>点</div>
-			<div class="icon"><i class="zmdi zmdi-thumb-<?php echo $this->TitlePage->good_or_bad($vote["Vote"]["single_avg"], array("up", "down"))?>"></i> <?php echo ucfirst($this->TitlePage->good_or_bad($vote["Vote"]["single_avg"]))?></div>
+			<div class="point"><span class="num"><?php echo $this->Common->pointFormat($vote["Vote"]["single_avg"])?></span>点</div>
+			<div class="icon"><i class="zmdi zmdi-thumb-<?php echo $this->TitlePage->goodOrBad($vote["Vote"]["single_avg"], array("up", "down"))?>"></i> <?php echo ucfirst($this->TitlePage->goodOrBad($vote["Vote"]["single_avg"]))?></div>
 		</div>
 	</div>
 
 	<?php echo $this->element("comp_shares", array("url" => $this->Html->url(null, true) . $this->request->here))?>
 
 	<!--Official Link-->
-	<?php echo $this->element("title_officiallink", array("title_with_str" => $title_with_str))?>
+	<?php echo $this->element("title_officiallink", array("titleWithStrs" => $titleWithStrs))?>
 </section>
 
 <?php if(!empty($neighbors["prev"]) or !empty($neighbors["next"])):?>
@@ -97,17 +97,17 @@ $this->element("title_ogp", array(
 	<div class="neighbor neighbor-<?php echo $key?>">
 		<div class="neighbor-body">
 		<?php if(!empty($neighbor)):?>
-			<div class="caption caption-<?php echo $this->TitlePage->good_or_bad($neighbor["Vote"]["single_avg"])?>">
-				<span class="rate"><i class="zmdi zmdi-thumb-<?php echo $this->TitlePage->good_or_bad($neighbor["Vote"]["single_avg"], array("up", "down"))?>"></i> <?php echo $this->Common->point_format($neighbor["Vote"]["single_avg"])?>点</span>
+			<div class="caption caption-<?php echo $this->TitlePage->goodOrBad($neighbor["Vote"]["single_avg"])?>">
+				<span class="rate"><i class="zmdi zmdi-thumb-<?php echo $this->TitlePage->goodOrBad($neighbor["Vote"]["single_avg"], array("up", "down"))?>"></i> <?php echo $this->Common->pointFormat($neighbor["Vote"]["single_avg"])?>点</span>
 				<a href="<?php echo $this->Html->url(array("path" => $title["Title"]["url_str"], "voteid" => $neighbor["Vote"]["id"], "ext" => "html"))?>"><i class="zmdi zmdi-arrow-<?php echo $neighborStr[$key]["icon"]?>"></i> <?php echo $neighborStr[$key]["label"]?>のレビュー</a>
 			</div>
 			<div class="review">
-				<h2><?php echo $this->Html->link($this->Common->vote_title($neighbor["Vote"]), array("path" => $title["Title"]["url_str"], "voteid" => $neighbor["Vote"]["id"], "ext" => "html"))?></h2>
+				<h2><?php echo $this->Html->link($this->Common->voteTitle($neighbor["Vote"]), array("path" => $title["Title"]["url_str"], "voteid" => $neighbor["Vote"]["id"], "ext" => "html"))?></h2>
 				<p><?php echo mb_strimwidth(h($neighbor["Vote"]["review"]), 0, 300, " … " . $this->Html->link("続き", array("path" => $title["Title"]["url_str"], "voteid" => $neighbor["Vote"]["id"], "ext" => "html")))?></p>
 			</div>
 			<ul class="data">
-				<li><i class="zmdi zmdi-account"></i> <?php echo $this->Common->poster_name($neighbor["Vote"]["poster_name"])?></li>
-				<li><i class="zmdi zmdi-time"></i> <?php echo $this->Common->date_format($neighbor["Vote"]["created"], "datetime")?></li>
+				<li><i class="zmdi zmdi-account"></i> <?php echo $this->Common->posterName($neighbor["Vote"]["poster_name"])?></li>
+				<li><i class="zmdi zmdi-time"></i> <?php echo $this->Common->dateFormat($neighbor["Vote"]["created"], "datetime")?></li>
 			</ul>
 
 		<?php else:?>
@@ -120,7 +120,7 @@ $this->element("title_ogp", array(
 <?php endif;?>
 
 <!-- details -->
-<?php echo $this->element("title_details", array("title_with_str" => $title_with_str, "share" => false))?>
+<?php echo $this->element("title_details", array("titleWithStrs" => $titleWithStrs, "share" => false))?>
 
 <!-- recommends -->
 <?php echo $this->element("title_recommends", array($recommends))?>

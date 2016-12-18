@@ -1,8 +1,8 @@
 <?php
 //set blocks
-$this->assign("title", $this->Common->title_separated_case($pageData["Category"]["str"], $pageData["Category"]["str_sub"]) . (($this->Paginator->current() > 1) ? (" " . $this->Paginator->current() . "ページ目") : ""));
+$this->assign("title", $this->Common->titleWithCase($pageData["Category"]["str"], $pageData["Category"]["str_sub"]) . (($this->Paginator->current() > 1) ? (" " . $this->Paginator->current() . "ページ目") : ""));
 $this->assign("keywords", $pageData["Category"]["str"] . ((!empty($pageData["Category"]["str_sub"])) ? "," . $pageData["Category"]["str_sub"] : "") . ",オンラインゲーム");
-$this->assign("description", "【" . $this->Common->title_separated_case($pageData["Category"]["str"], $pageData["Category"]["str_sub"]) . "】オンラインゲームの一覧です。同じジャンルのオンラインゲームが探せます。");
+$this->assign("description", "【" . $this->Common->titleWithCase($pageData["Category"]["str"], $pageData["Category"]["str_sub"]) . "】オンラインゲームの一覧です。同じジャンルのオンラインゲームが探せます。");
 //pankuz
 $this->set("pankuz_for_layout", $pageData["Category"]["str"]);
 ?>

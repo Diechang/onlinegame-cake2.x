@@ -48,7 +48,7 @@ class TitleDataComponent extends Component
  * @return	html
  * @access	public
  */
-	function titleWithSpan($title, $read)
+	function titleSeparatedSpan($title, $read)
 	{
 		$ret = $title;
 		if(!empty($read))
@@ -57,7 +57,7 @@ class TitleDataComponent extends Component
 		}
 		return $ret;
 	}
-	function titleWithCase($title, $read)
+	function titleSeparatedCase($title, $read)
 	{
 		$ret = $title;
 		if(!empty($read))
@@ -65,18 +65,6 @@ class TitleDataComponent extends Component
 			$ret .= "(" . $read . ")";
 		}
 		return $ret;
-	}
-
-/**
- * カッコ付きタイトル読み
- *
- * @param	string	$read
- * @return	String
- * @access	public
- */
-	function titleReadWithCase($read)
-	{
-		return (!empty($read)) ? "(" . $read . ")" : "";
 	}
 
 /**
@@ -96,7 +84,7 @@ class TitleDataComponent extends Component
 		{
 			$ret .= $abbr . "：";
 		}
-		$ret .= $this->titleWithCase($official, $read);
+		$ret .= $this->titleSeparatedCase($official, $read);
 		if(!empty($sub))
 		{
 			$ret .= "〜" . $sub . "〜";

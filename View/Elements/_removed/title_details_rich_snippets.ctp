@@ -5,12 +5,12 @@
 	<div class="body">
 		<p class="title"<?php echo $this->RichSnippets->property("itemreviewed")?>>
 			<?php echo $this->Common->officialLinkText(
-			$title_with_str["Span"],
+			$titleWithStrs["Span"],
 			$title["Title"]["ad_use"], $title["Title"]["ad_text"], $title["Title"]["official_url"], $title["Title"]["service_id"], true)?>
 		</p>
 		<div class="thumb">
 			<?php echo $this->Html->image($this->Common->thumbName($title["Title"]["thumb_name"]),
-				array("width" => 160, "alt" => $title_with_str["Case"], "rel" => $this->RichSnippets->rels["photo"]))?>
+				array("width" => 160, "alt" => $titleWithStrs["Case"], "rel" => $this->RichSnippets->rels["photo"]))?>
 		</div>
 		<div class="description"><?php echo $title["Title"]["description"]?></div>
 		<table class="properties">
@@ -61,5 +61,5 @@
 	</div>
 </div>
 <?php else:?>
-<?php echo $this->element("title_details", array("title_with_str" => $title_with_str)) //投稿不可時はリッチスニペットなし?>
+<?php echo $this->element("title_details", array("titleWithStrs" => $titleWithStrs)) //投稿不可時はリッチスニペットなし?>
 <?php endif;?>

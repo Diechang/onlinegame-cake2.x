@@ -1,4 +1,4 @@
 <!-- ad center bottom -->
 <section class="adCenterBottom">
-	<?php echo $this->Common->ad_link_image($adCenterBottoms["AdCenterBottom"], "adcb")?>
+	<?php echo $this->Common->adLinkImage($adCenterBottoms["AdCenterBottom"], "adcb")?>
 </section>

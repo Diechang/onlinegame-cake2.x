@@ -12,16 +12,16 @@
 		<?php if(!empty($spec["caption"])):?>
 		<tr class="caption"><th colspan="3"><?php echo $spec["caption"]?></th></tr>
 		<?php endif;?>
-		<?php echo $this->TitlePage->spec_rows("OS", $spec["os_low"], $spec["os_high"])?>
-		<?php echo $this->TitlePage->spec_rows("CPU", $spec["cpu_low"], $spec["cpu_high"])?>
-		<?php echo $this->TitlePage->spec_rows("メモリ", $spec["memory_low"], $spec["memory_high"])?>
-		<?php echo $this->TitlePage->spec_rows("ディスク容量", $spec["disc_low"], $spec["disc_high"])?>
-		<?php echo $this->TitlePage->spec_rows("グラフィック", $spec["graphic_low"], $spec["graphic_high"])?>
-		<?php echo $this->TitlePage->spec_rows("サウンド", $spec["sound_low"], $spec["sound_high"])?>
-		<?php echo $this->TitlePage->spec_rows("ネットワーク", $spec["network_low"], $spec["network_high"])?>
-		<?php echo $this->TitlePage->spec_rows("ディスプレイ", $spec["display_low"], $spec["display_high"])?>
-		<?php echo $this->TitlePage->spec_rows("DirectX", $spec["directx_low"], $spec["directx_high"])?>
-		<?php echo $this->TitlePage->spec_rows("その他", $spec["other_low"], $spec["other_high"])?>
+		<?php echo $this->TitlePage->specRows("OS", $spec["os_low"], $spec["os_high"])?>
+		<?php echo $this->TitlePage->specRows("CPU", $spec["cpu_low"], $spec["cpu_high"])?>
+		<?php echo $this->TitlePage->specRows("メモリ", $spec["memory_low"], $spec["memory_high"])?>
+		<?php echo $this->TitlePage->specRows("ディスク容量", $spec["disc_low"], $spec["disc_high"])?>
+		<?php echo $this->TitlePage->specRows("グラフィック", $spec["graphic_low"], $spec["graphic_high"])?>
+		<?php echo $this->TitlePage->specRows("サウンド", $spec["sound_low"], $spec["sound_high"])?>
+		<?php echo $this->TitlePage->specRows("ネットワーク", $spec["network_low"], $spec["network_high"])?>
+		<?php echo $this->TitlePage->specRows("ディスプレイ", $spec["display_low"], $spec["display_high"])?>
+		<?php echo $this->TitlePage->specRows("DirectX", $spec["directx_low"], $spec["directx_high"])?>
+		<?php echo $this->TitlePage->specRows("その他", $spec["other_low"], $spec["other_high"])?>
 		<tr>
 			<th>更新日</th>
 			<td colspan="2">2010年12月16日</td>

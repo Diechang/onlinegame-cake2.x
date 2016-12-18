@@ -1,6 +1,6 @@
 <?php
 //create title tag
-$portal_name = $this->Common->title_separated_case($portal["Portal"]["title_official"], $portal["Portal"]["title_read"]);
+$portal_name = $this->Common->titleWithCase($portal["Portal"]["title_official"], $portal["Portal"]["title_read"]);
 //set blocks
 $this->assign("title", $portal_name);
 $this->assign("keywords", "オンラインゲーム,ポータルサイト," . $portal["Portal"]["title_official"]);
@@ -15,7 +15,7 @@ $this->set("pankuz_for_layout", array(
 <!-- about -->
 <div class="portal-about pageInfo">
 	<h1 class="pageTitle">
-		<?php echo $this->Common->title_separated_span($portal["Portal"]["title_official"], $portal["Portal"]["title_read"])?>
+		<?php echo $this->Common->titleSeparatedSpan($portal["Portal"]["title_official"], $portal["Portal"]["title_read"])?>
 	</h1>
 	<div class="portal-summary">
 		<div class="capture"><img src="http://capture.heartrails.com/200x200?<?php echo $portal["Portal"]["official_url"]?>" alt="<?php echo $portal["Portal"]["title_official"]?>" width="200"></div>
@@ -23,8 +23,8 @@ $this->set("pankuz_for_layout", array(
 			<?php echo $portal["Portal"]["description"]?>
 		</div>
 
-		<?php echo $this->element("common_officiallink", array("link" => $this->Common->official_link_text(
-							$this->Common->title_separated_span($portal["Portal"]["title_official"], $portal["Portal"]["title_read"]),
+		<?php echo $this->element("common_officiallink", array("link" => $this->Common->officialLinkText(
+							$this->Common->titleSeparatedSpan($portal["Portal"]["title_official"], $portal["Portal"]["title_read"]),
 							$portal["Portal"]["ad_use"], $portal["Portal"]["ad_text"], $portal["Portal"]["official_url"])))?>
 
 		<?php echo $this->Gads->ads468()?>
@@ -43,16 +43,16 @@ $this->set("pankuz_for_layout", array(
 <?php foreach($portal["Title"] as $pTitle):?>
 		<li>
 			<h2 class="title">
-				<?php echo $this->Common->title_link_text(
-					$this->Common->title_separated_span($pTitle["title_official"], $pTitle["title_read"]),
+				<?php echo $this->Common->titleLinkText(
+					$this->Common->titleSeparatedSpan($pTitle["title_official"], $pTitle["title_read"]),
 					$pTitle["url_str"]);?>
 			</h2>
 			<div class="summary">
 				<div class="images">
 					<div class="thumb">
-						<?php echo $this->Common->title_link_thumb(
-							$this->Common->thumb_name($pTitle["thumb_name"]),
-							$this->Common->title_separated_case($pTitle["title_official"], $pTitle["title_read"]),
+						<?php echo $this->Common->titleLinkThumb(
+							$this->Common->thumbName($pTitle["thumb_name"]),
+							$this->Common->titleWithCase($pTitle["title_official"], $pTitle["title_read"]),
 							$pTitle["url_str"])?>
 					</div>
 				</div>
@@ -65,7 +65,7 @@ $this->set("pankuz_for_layout", array(
 					<div class="rate">
 						<div class="caption">総合評価</div>
 						<div class="value">
-							<span class="num"><?php echo $this->Common->point_format($pTitle["Titlesummary"]["vote_avg_all"], "-")?></span>
+							<span class="num"><?php echo $this->Common->pointFormat($pTitle["Titlesummary"]["vote_avg_all"], "-")?></span>
 							<span class="unit">点</span>
 						</div>
 					</div>
@@ -73,7 +73,7 @@ $this->set("pankuz_for_layout", array(
 				<div class="attributes">
 					<p class="service"><span class="label label-service">サービス</span> <?php echo $pTitle["Service"]["str"]?></p>
 					<p class="fee"><span class="label label-fee">料金</span> <?php echo $pTitle["Fee"]["str"]?></p>
-					<p class="genres"><span class="label label-genre">ジャンル</span> <?php echo $this->Common->categories_link($pTitle["Category"])?></p>
+					<p class="genres"><span class="label label-genre">ジャンル</span> <?php echo $this->Common->categoriesLink($pTitle["Category"])?></p>
 				</div>
 			</div>
 		</li>
@@ -89,19 +89,19 @@ $this->set("pankuz_for_layout", array(
 		<li>
 			<h2 class="title">
 				<a href="<?php echo $this->Html->url(array("controller" => "portals", "action" => "view", "path" => $portal["Portal"]["url_str"], "ext" => "html"))?>">
-					<?php echo $this->Common->title_separated_span($portal["Portal"]["title_official"], $portal["Portal"]["title_read"])?>
+					<?php echo $this->Common->titleSeparatedSpan($portal["Portal"]["title_official"], $portal["Portal"]["title_read"])?>
 				</a>
 			</h2>
 			<div class="images">
 				<div class="thumb">
 					<a href="<?php echo $this->Html->url(array("controller" => "portals", "action" => "view", "path" => $portal["Portal"]["url_str"], "ext" => "html"))?>">
-						<img src="http://capture.heartrails.com/160x120?<?php echo $portal["Portal"]["official_url"]?>" alt="<?php echo $this->Common->title_separated_case($portal["Portal"]["title_official"], $portal["Portal"]["title_read"])?>">
+						<img src="http://capture.heartrails.com/160x120?<?php echo $portal["Portal"]["official_url"]?>" alt="<?php echo $this->Common->titleWithCase($portal["Portal"]["title_official"], $portal["Portal"]["title_read"])?>">
 					</a>
 				</div>
 			</div>
 			<div class="data">
 				<p class="description"><?php echo strip_tags($portal["Portal"]["description"])?></p>
-				<p class="official"><span class="label label-official">公式サイト</span> <?php echo $this->Common->official_link_text($portal["Portal"]["title_official"], $portal["Portal"]["ad_use"], $portal["Portal"]["ad_text"], $portal["Portal"]["official_url"])?></p>
+				<p class="official"><span class="label label-official">公式サイト</span> <?php echo $this->Common->officialLinkText($portal["Portal"]["title_official"], $portal["Portal"]["ad_use"], $portal["Portal"]["ad_text"], $portal["Portal"]["official_url"])?></p>
 			</div>
 		</li>
 <?php endforeach;?>

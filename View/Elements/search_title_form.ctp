@@ -12,7 +12,7 @@
 		<div class="inputs">
 			<ul>
 	<?php foreach($searchMst["Categories"] as $mstCategory):?>
-				<li><?php echo $this->SearchPage->check_list($mstCategory, "Category");?></li>
+				<li><?php echo $this->SearchPage->checkList($mstCategory, "Category");?></li>
 	<?php endforeach;?>
 			</ul>
 		</div>
@@ -23,7 +23,7 @@
 		<div class="inputs">
 			<ul>
 	<?php foreach($searchMst["Styles"] as $mstStyle):?>
-				<li><?php echo $this->SearchPage->check_list($mstStyle, "Style");?></li>
+				<li><?php echo $this->SearchPage->checkList($mstStyle, "Style");?></li>
 	<?php endforeach;?>
 			</ul>
 		</div>
@@ -34,7 +34,7 @@
 		<div class="inputs">
 			<ul>
 <?php foreach($searchMst["Services"] as $mstService):?>
-				<li><?php echo $this->SearchPage->check_list($mstService, "Service", "services")?></li>
+				<li><?php echo $this->SearchPage->checkList($mstService, "Service", "services")?></li>
 <?php endforeach;?>
 			</ul>
 		</div>
@@ -44,7 +44,7 @@
 		<legend>ついでに</legend>
 		<div class="inputs">
 			<ul>
-				<?php echo $this->SearchPage->other_check_list()?>
+				<?php echo $this->SearchPage->otherCheckList()?>
 			</ul>
 		</div>
 	</fieldset>
@@ -53,7 +53,7 @@
 		<legend>並び順</legend>
 		<div class="inputs">
 			<ul>
-				<?php echo $this->SearchPage->order_check_list()?>
+				<?php echo $this->SearchPage->orderCheckList()?>
 			</ul>
 		</div>
 	</fieldset>

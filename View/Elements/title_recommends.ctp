@@ -9,15 +9,15 @@
 	<?php foreach($recommends as $recommend):?>
 		<li>
 			<h2 class="title">
-				<?php echo $this->Common->title_link_text(
-				$this->Common->title_separated_span($recommend["Title"]["title_official"], $recommend["Title"]["title_read"]),
+				<?php echo $this->Common->titleLinkText(
+				$this->Common->titleSeparatedSpan($recommend["Title"]["title_official"], $recommend["Title"]["title_read"]),
 				$recommend["Title"]["url_str"])?>
 			</h2>
 			<div class="images">
 				<div class="thumb">
-					<?php echo $this->Common->title_link_thumb(
-						$this->Common->thumb_name($recommend["Title"]["thumb_name"]),
-						$this->Common->title_separated_case($recommend["Title"]["title_official"], $recommend["Title"]["title_read"]),
+					<?php echo $this->Common->titleLinkThumb(
+						$this->Common->thumbName($recommend["Title"]["thumb_name"]),
+						$this->Common->titleWithCase($recommend["Title"]["title_official"], $recommend["Title"]["title_read"]),
 						$recommend["Title"]["url_str"])?>
 				</div>
 			</div>
@@ -26,14 +26,14 @@
 					<div class="rate">
 						<div class="caption">総合評価</div>
 						<div class="value">
-							<span class="num"><?php echo $this->Common->point_format($recommend["Titlesummary"]["vote_avg_all"])?></span>
+							<span class="num"><?php echo $this->Common->pointFormat($recommend["Titlesummary"]["vote_avg_all"])?></span>
 							<span class="unit">点</span>
 						</div>
 					</div>
 					<div class="rate">
 						<div class="caption">面白さ</div>
 						<div class="value">
-							<span class="num"><?php echo $this->Common->point_format($recommend["Titlesummary"]["vote_avg_item1"])?></span>
+							<span class="num"><?php echo $this->Common->pointFormat($recommend["Titlesummary"]["vote_avg_item1"])?></span>
 							<span class="unit">点</span>
 						</div>
 					</div>

@@ -7,7 +7,7 @@
 <?php foreach($leftRankings as $rank):?>
 		<li>
 			<a href="<?php echo $this->Html->url(array("controller" => "titles", "action" => "index", "path" => $rank["Title"]["url_str"], "ext" => "html"));?>">
-				<div class="image"><?php echo $this->Html->image($this->Common->thumb_name($rank["Title"]["thumb_name"]), array("width" => 40, "height" => "30"));?></div>
+				<div class="image"><?php echo $this->Html->image($this->Common->thumbName($rank["Title"]["thumb_name"]), array("width" => 40, "height" => "30"));?></div>
 				<p class="title"><?php echo $rank["Title"]["title_official"];?></p>
 			</a>
 		</li>

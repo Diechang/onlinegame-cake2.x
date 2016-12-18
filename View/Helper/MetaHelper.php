@@ -60,7 +60,7 @@ class MetaHelper extends AppHelper
  * @access public
  * @return html
  */
-	function ogptags()
+	function ogpTags()
 	{
 		$site_url = Configure::read("Site.url");
 		//Default params

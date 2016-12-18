@@ -1,17 +1,17 @@
 <?php
 //Title vars
-$title_with_str = $this->Common->title_with_str($title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"], $title["Title"]["title_sub"]);
+$titleWithStrs = $this->Common->titleWithStrs($title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"], $title["Title"]["title_sub"]);
 //set blocks
-$this->assign("title", $title_with_str["Abbr"] . " 推奨PC（パソコン）");
-$this->assign("keywords", $this->TitlePage->meta_keywords($this->request->params["action"], $title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"], $title["Title"]["title_sub"]));
-$this->assign("description", $title_with_str["Sub"] . "の推奨PC(パソコン)です。ショップが推奨するゲームモデルPCで快適プレイ！");
+$this->assign("title", $titleWithStrs["Abbr"] . " 推奨PC（パソコン）");
+$this->assign("keywords", $this->TitlePage->metaKeywords($this->request->params["action"], $title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"], $title["Title"]["title_sub"]));
+$this->assign("description", $titleWithStrs["Sub"] . "の推奨PC(パソコン)です。ショップが推奨するゲームモデルPCで快適プレイ！");
 //assigns
 $this->assign("title_header", $this->element("title_header"));
 $this->assign("title_nav_floating", $this->element("title_nav_floating", array("title" => $title)));
 //pankuz
-$this->set("pankuz_for_layout", array(array("str" => $title_with_str["Case"], "url" => array("action" => "index", "path" => $title["Title"]["url_str"], "ext" => "html")), "推奨PC"));
+$this->set("pankuz_for_layout", array(array("str" => $titleWithStrs["Case"], "url" => array("action" => "index", "path" => $title["Title"]["url_str"], "ext" => "html")), "推奨PC"));
 //OGP
-$this->element("title_ogp", array("title_with_str" => $title_with_str));
+$this->element("title_ogp", array("titleWithStrs" => $titleWithStrs));
 ?>
 <?php echo $this->Session->flash()?>
 
@@ -38,8 +38,8 @@ $this->element("title_ogp", array("title_with_str" => $title_with_str));
 		<?php foreach($pcs["pickups"] as $pickup):?>
 		<section class="pickup">
 			<span class="ribbon">おすすめ</span>
-			<h2><?php echo $this->Common->ad_link_text($pickup["Pc"], "pc")?></h2>
-			<div class="image"><?php echo $this->Common->ad_link_image($pickup["Pc"], "pc")?></div>
+			<h2><?php echo $this->Common->adLinkText($pickup["Pc"], "pc")?></h2>
+			<div class="image"><?php echo $this->Common->adLinkImage($pickup["Pc"], "pc")?></div>
 			<div class="data">
 				<table>
 					<tr>
@@ -88,7 +88,7 @@ $this->element("title_ogp", array("title_with_str" => $title_with_str));
 			<div class="shoplink">
 				<span class="caption">商品の購入・詳細はこちら</span>
 				<i class="icon zmdi zmdi-chevron-right"></i>
-				<?php echo $this->Common->ad_link_text($pickup["Pc"], "pc")?>
+				<?php echo $this->Common->adLinkText($pickup["Pc"], "pc")?>
 			</div>
 		</section>
 		<?php endforeach;?>
@@ -103,9 +103,9 @@ $this->element("title_ogp", array("title_with_str" => $title_with_str));
 					<h3 class="<?php echo $pcgrade["Pcgrade"]["path"]?>"><?php echo $pcgrade["Pcgrade"]["str"]?></h3>
 					<dl>
 					<?php foreach($pcs[$pctype["Pctype"]["path"]][$pcgrade["Pcgrade"]["path"]] as $pc):?>
-						<dt class="<?php echo (!empty($pc["Pc"]["pickup"])) ? "pickup" : ""?>"><?php echo $this->Common->ad_link_text($pc["Pc"], "pc")?></dt>
+						<dt class="<?php echo (!empty($pc["Pc"]["pickup"])) ? "pickup" : ""?>"><?php echo $this->Common->adLinkText($pc["Pc"], "pc")?></dt>
 						<dd>
-							<div class="image"><?php echo $this->Common->ad_link_image($pc["Pc"], "pc")?></div>
+							<div class="image"><?php echo $this->Common->adLinkImage($pc["Pc"], "pc")?></div>
 							<div class="data">
 								<table>
 									<tr>
@@ -159,7 +159,7 @@ $this->element("title_ogp", array("title_with_str" => $title_with_str));
 </section>
 
 <!-- details -->
-<?php echo $this->element("title_details", array("title_with_str" => $title_with_str))?>
+<?php echo $this->element("title_details", array("titleWithStrs" => $titleWithStrs))?>
 
 <!-- recommends -->
 <?php echo $this->element("title_recommends", array($recommends))?>

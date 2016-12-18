@@ -1,17 +1,17 @@
 <?php
 //Title vars
-$title_with_str = $this->Common->title_with_str($title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"], $title["Title"]["title_sub"]);
+$titleWithStrs = $this->Common->titleWithStrs($title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"], $title["Title"]["title_sub"]);
 //set blocks
-$this->assign("title", $title_with_str["Abbr"] . " 評価点数");
-$this->assign("keywords", $this->TitlePage->meta_keywords($this->request->params["action"], $title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"], $title["Title"]["title_sub"]));
-$this->assign("description", $title_with_str["Sub"] . "の評価点数です。投票期間・項目別にプレイヤーの評価を見ることができるのでオンラインゲーム選びの参考にどうぞ！");
+$this->assign("title", $titleWithStrs["Abbr"] . " 評価点数");
+$this->assign("keywords", $this->TitlePage->metaKeywords($this->request->params["action"], $title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"], $title["Title"]["title_sub"]));
+$this->assign("description", $titleWithStrs["Sub"] . "の評価点数です。投票期間・項目別にプレイヤーの評価を見ることができるのでオンラインゲーム選びの参考にどうぞ！");
 //assigns
 $this->assign("title_header", $this->element("title_header"));
 $this->assign("title_nav_floating", $this->element("title_nav_floating", array("title" => $title)));
 //pankuz
-$this->set("pankuz_for_layout", array(array("str" => $title_with_str["Case"], "url" => array("action" => "index", "path" => $title["Title"]["url_str"], "ext" => "html")), "評価点数"));
+$this->set("pankuz_for_layout", array(array("str" => $titleWithStrs["Case"], "url" => array("action" => "index", "path" => $title["Title"]["url_str"], "ext" => "html")), "評価点数"));
 //OGP
-$this->element("title_ogp", array("title_with_str" => $title_with_str));
+$this->element("title_ogp", array("titleWithStrs" => $titleWithStrs));
 ?>
 <?php echo $this->Session->flash()?>
 
@@ -29,8 +29,8 @@ $this->element("title_ogp", array("title_with_str" => $title_with_str));
 	<section class="total">
 		<div class="counts">
 			<div class="rate">
-				<div class="value">総合評価<span class="num"><?php echo $this->Common->point_format($title["Titlesummary"]["vote_avg_all"], " -- ")?></span>点</div>
-				<?php echo $this->Common->star_block($title["Titlesummary"]["vote_avg_all"])?>
+				<div class="value">総合評価<span class="num"><?php echo $this->Common->pointFormat($title["Titlesummary"]["vote_avg_all"], " -- ")?></span>点</div>
+				<?php echo $this->Common->starBlock($title["Titlesummary"]["vote_avg_all"])?>
 			</div>
 			<div class="count count-review">
 				<div class="caption">レビュー</div>
@@ -47,15 +47,15 @@ $this->element("title_ogp", array("title_with_str" => $title_with_str));
 <?php foreach($ratings["details"] as $detKey => $detail):?>
 				<li>
 					<div class="caption"><?php echo $detail["label"]?></div>
-					<div class="num"><?php echo $this->Common->point_format($ratings["ratings"]["vote_avg_" . $detKey])?>点</div>
-					<?php echo $this->Common->star_block($ratings["ratings"]["vote_avg_" . $detKey])?>
+					<div class="num"><?php echo $this->Common->pointFormat($ratings["ratings"]["vote_avg_" . $detKey])?>点</div>
+					<?php echo $this->Common->starBlock($ratings["ratings"]["vote_avg_" . $detKey])?>
 				</li>
 <?php endforeach;?>
 			</ul>
 		</div>
 
 		<!--Official Link-->
-		<?php echo $this->element("title_officiallink", array("title_with_str" => $title_with_str))?>
+		<?php echo $this->element("title_officiallink", array("titleWithStrs" => $titleWithStrs))?>
 	</section>
 
 	
@@ -78,7 +78,7 @@ $this->element("title_ogp", array("title_with_str" => $title_with_str));
 		</div>
 
 		<!--Official Link-->
-		<?php echo $this->element("title_officiallink", array("title_with_str" => $title_with_str))?>
+		<?php echo $this->element("title_officiallink", array("titleWithStrs" => $titleWithStrs))?>
 	</section>
 </section>
 
@@ -96,7 +96,7 @@ $this->element("title_ogp", array("title_with_str" => $title_with_str));
 </section>
 
 <!-- details -->
-<?php echo $this->element("title_details", array("title_with_str" => $title_with_str))?>
+<?php echo $this->element("title_details", array("titleWithStrs" => $titleWithStrs))?>
 
 <!-- recommends -->
 <?php echo $this->element("title_recommends", array($recommends))?>
