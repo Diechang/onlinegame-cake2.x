@@ -56,6 +56,7 @@
 	<div class="newGames">
 		<div class="newGames-body">
 			<div class="thumbs">
+				<div class="caption"><?php echo $this->Html->image("/img/design/index_newgames.png", array("alt" => "New Games 新作オンラインゲーム"));?></div>
 				<ul>
 <?php foreach($newGames as $newGame):?>
 					<li>
