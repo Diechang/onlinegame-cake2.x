@@ -67,7 +67,7 @@ $this->element("title_ogp", array("titleWithStrs" => $titleWithStrs));
 				<ul>
 	<?php for($i = 5; $i > 0 ; $i--):?>
 					<li>
-						<div class="graph"><div class="bar" style="width: <?php echo ($detail[$i . "pt"] / $ratings["ratings"]["vote_count_vote"]) * 100?>%;"></div></div>
+						<div class="graph"><div class="bar" style="width: <?php echo (($detail[$i . "pt"] == 0) ? 0 : ($detail[$i . "pt"] / $ratings["ratings"]["vote_count_vote"]) * 100)?>%;"></div></div>
 						<div class="point"><?php echo $i;?>点</div>
 						<div class="count"><?php echo $detail[$i . "pt"]?>件</div>
 					</li>
@@ -90,6 +90,7 @@ $this->element("title_ogp", array("titleWithStrs" => $titleWithStrs));
 	</h1>
 <?php echo $this->element("form_vote", array(
 	"titleId"	=> $title["Title"]["id"],
+	"serviceId"	=> $title["Title"]["service_id"],
 	"votable"	=> $title["Title"]["votable"],
 	"voteItems"	=> $voteItems,
 ))?>

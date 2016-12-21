@@ -7,9 +7,9 @@
 				<div class="review">
 	<?php if(!empty($vote["Vote"]["review"])):?>
 					<h2><?php echo $this->Html->link($this->Common->voteTitle($vote["Vote"]), 
-						array("controller" => "titles", "action" => "single", "path" => $titlePath, "voteid" => $vote["Vote"]["id"], "ext" => "html"),
+						array("controller" => "titles", "action" => "single", "path" => $titleData["url_str"], "voteid" => $vote["Vote"]["id"], "ext" => "html"),
 						(empty($vote["Vote"]["review"]) ? array("rel" => "nofollow") : null))?></h2>
-					<p><?php echo mb_strimwidth(h($vote["Vote"]["review"]), 0, 300, " … " . $this->Html->link("続き", array("action" => "single", "path" => $titlePath, "voteid" => $vote["Vote"]["id"], "ext" => "html")))?></p>
+					<p><?php echo mb_strimwidth(h($vote["Vote"]["review"]), 0, 300, " … " . $this->Html->link("続き", array("action" => "single", "path" => $titleData["url_str"], "voteid" => $vote["Vote"]["id"], "ext" => "html")))?></p>
 	<?php else:?>
 					<h2>評価点数のみ</h2>
 	<?php endif;?>
@@ -35,6 +35,8 @@
 <?php else:?>
 <div class="flash flash-info">
 	<div class="flash-title">投稿がありません。</div>
+	<?php if($titleData["service_id"] != 1 && $titleData["votable"] == true):?>
 	<div class="flash-body">プレイヤーの方はぜひ投稿をお願いします。</div>
+	<?php endif;?>
 </div>
 <?php endif;?>

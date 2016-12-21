@@ -12,7 +12,7 @@ class AdBannerComponent extends Component
  * 
  * @param	Controller	controller
  */
-	function initialize(&$controller)
+	function initialize(Controller $controller)
 	{
 		$this->controller =& $controller;
 	}

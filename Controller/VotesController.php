@@ -79,7 +79,7 @@ class VotesController extends AppController
 					if($this->Vote->save($this->request->data))
 					{
 						$this->_share($this->Vote->id);
-						$this->Session->setFlash("投稿ありがとうございました！", "flash_default", "type" => "success");
+						$this->Session->setFlash("投稿ありがとうございました！", "flash_default", array("type" => "success"));
 						return $this->redirect(array("controller" => "votes", "action" => "fin", $this->Vote->id));
 					}
 					else

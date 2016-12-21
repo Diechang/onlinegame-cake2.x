@@ -33,7 +33,7 @@ class FacebookComponent extends Component
 	 *
 	 * @params	controller	controller
 	 */
-	function initialize(&$controller)
+	function initialize(Controller $controller)
 	{
 		$this->controller =& $controller;
 	}

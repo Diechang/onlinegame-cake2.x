@@ -41,7 +41,10 @@ $this->element("title_ogp", array("titleWithStrs" => $titleWithStrs));
 	<?php endforeach;?>
 		</ul>
 <?php else:?>
-		<p class="noData"><?php echo $titleWithStrs["Case"]?>の攻略サイト情報が登録されていません。攻略サイト、Wikiサイト等を運営、またはご存知の方は<a href="#form">こちらから</a>ぜひご登録をお願いします。</p>
+		<div class="flash flash-info">
+			<div class="flash-title">攻略サイト情報が登録されていません。</div>
+			<div class="flash-body"><?php echo $titleWithStrs["Case"]?>の攻略サイト、Wikiサイト等を運営、またはご存知の方は<a href="#form">こちらから</a>ぜひご登録をお願いします。</div>
+		</div>
 <?php endif;?>
 		<?php echo $this->Html->link("攻略・ファンサイトリンク集に登録・推薦する", array("controller" => "fansites", "action" => "add", $title["Title"]["id"]), array("class" => "button button-block"))?>
 	</section>
@@ -62,7 +65,10 @@ $this->element("title_ogp", array("titleWithStrs" => $titleWithStrs));
 	<?php endforeach;?>
 		</ul>
 <?php else:?>
-		<p class="noData"><?php echo $titleWithStrs["Case"]?>のファンサイト情報が登録されていません。ファンサイト、プレイブログ等を運営、またはご存知の方は<a href="#form">こちらから</a>ぜひご登録をお願いします。</p>
+		<div class="flash flash-info">
+			<div class="flash-title">ファンサイト情報が登録されていません。</div>
+			<div class="flash-body"><?php echo $titleWithStrs["Case"]?>の攻略サイト、Wikiサイト等を運営、またはご存知の方は<a href="#form">こちらから</a>ぜひご登録をお願いします。</div>
+		</div>
 <?php endif;?>
 		<?php echo $this->Html->link("攻略・ファンサイトリンク集に登録・推薦する", array("controller" => "fansites", "action" => "add", $title["Title"]["id"]), array("class" => "button button-block"))?>
 	</section>

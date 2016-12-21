@@ -128,8 +128,15 @@
 	<?php echo $this->Form->end()?>
 </div>
 <?php else:?>
+	<?php if($serviceId == 1):?>
+<div class="flash flash-danger">
+	<div class="flash-title">現在レビュー・評価の投稿は受け付けておりません。</div>
+	<div class="flash-body">サービス終了・休止中のタイトルへは投稿できません。</div>
+</div>
+	<?php else:?>
 <div class="flash flash-info">
 	<div class="flash-title">現在レビュー・評価の投稿は受け付けておりません。</div>
 	<div class="flash-body">正式・テストサービスが開始されるまでお待ち下さい。</div>
 </div>
+	<?php endif;?>
 <?php endif;?>

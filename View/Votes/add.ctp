@@ -13,6 +13,7 @@ $this->set("pankuz_for_layout", array(array("str" => $title["Title"]["title_offi
 <?php
 	echo $this->element("form_vote", array(
 	"titleId"	=> $title["Title"]["id"],
+	"serviceId"	=> $title["Title"]["service_id"],
 	"votable"	=> $title["Title"]["votable"],
 ))?>
 </section>

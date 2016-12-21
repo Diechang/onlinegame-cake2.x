@@ -25,7 +25,7 @@ $this->element("title_ogp", array("titleWithStrs" => $titleWithStrs));
 		<span class="sub"><?php echo $title["Title"]["title_official"]?>へのレビュー・評価</span>
 	</h1>
 
-	<?php echo $this->element("title_votes", array("votes" => $reviews, "titlePath" => $title["Title"]["url_str"], "all" => false))?>
+	<?php echo $this->element("title_votes", array("votes" => $reviews, "titleData" => $title["Title"], "all" => false))?>
 
 	<!--Official Link-->
 	<?php echo $this->element("title_officiallink", array("titleWithStrs" => $titleWithStrs))?>
@@ -39,6 +39,7 @@ $this->element("title_ogp", array("titleWithStrs" => $titleWithStrs));
 	</h1>
 	<?php echo $this->element("form_vote", array(
 		"titleId"	=> $title["Title"]["id"],
+		"serviceId"	=> $title["Title"]["service_id"],
 		"votable"	=> $title["Title"]["votable"],
 		"voteItems"	=> $voteItems,
 	))?>
