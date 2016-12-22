@@ -69,7 +69,13 @@ $this->set("pankuz_for_layout", array(array("str" => "オンラインゲーム�
 					</div>
 				</div>
 				<div class="attributes">
-					<p class="service"><span class="label label-service">サービス</span> <?php echo $title["Service"]["str"]?></p>
+					<p class="service">
+						<span class="label label-service">サービス</span>
+						<?php echo $title["Service"]["str"]?>
+	<?php if($title["Service"]["id"] == 3 or $title["Service"]["id"] == 4):?>
+						<?php echo $this->Common->termFormat($title["Title"]["test_start"], $title["Title"]["test_end"])?>
+	<?php endif;?>
+					</p>
 					<p class="fee"><span class="label label-fee">料金</span> <?php echo $title["Fee"]["str"]?></p>
 					<p class="genres"><span class="label label-genre">ジャンル</span> <?php echo $this->Common->categoriesLink($title["Category"])?></p>
 				</div>

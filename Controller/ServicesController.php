@@ -17,7 +17,7 @@ class ServicesController extends AppController
 		));
 		//リダイレクト
 		$this->_emptyToHome($pageData);
-//		pr($pageData);
+		// debug($pageData);
 		//
 		//Set
 		$this->set("pageData", $pageData);
@@ -54,7 +54,7 @@ class ServicesController extends AppController
 					"Fee.*",
 				),
 				// "order" => array("Title.service_start DESC", "Title.test_start DESC", "Title.test_end DESC"),
-				"order" => "Title.service_start DESC",
+				"order" => (($pageData["Service"]["id"] == 3 || $pageData["Service"]["id"] == 4) ? "Title.test_start DESC" : "Title.service_start DESC"),
 				"contain" => array("Titlesummary", "Category", "Service", "Fee"),
 				"paramType" => "querystring",
 			)

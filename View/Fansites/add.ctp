@@ -33,4 +33,4 @@ $this->set("pankuz_for_layout", array(
 </section>
 
 <!-- details -->
-<?php echo $this->element("title_details", array("titleWithStrs" => $titleWithStrs))?>
+<?php echo $this->element("title_details", array("titleWithStrs" => $titleWithStrs, "share" => false))?>
