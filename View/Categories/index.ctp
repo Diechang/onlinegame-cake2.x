@@ -3,6 +3,7 @@
 $this->assign("title", $this->Common->titleWithCase($pageData["Category"]["str"], $pageData["Category"]["str_sub"]) . (($this->Paginator->current() > 1) ? (" " . $this->Paginator->current() . "ページ目") : ""));
 $this->assign("keywords", $pageData["Category"]["str"] . ((!empty($pageData["Category"]["str_sub"])) ? "," . $pageData["Category"]["str_sub"] : "") . ",オンラインゲーム");
 $this->assign("description", "【" . $this->Common->titleWithCase($pageData["Category"]["str"], $pageData["Category"]["str_sub"]) . "】オンラインゲームの一覧です。同じジャンルのオンラインゲームが探せます。");
+$this->assign("meta", $this->Meta->pagePrevNext(array('controller' => $this->request->params["controller"], 'action' => $this->request->params["action"], 'path' => $pageData["Category"]["path"], 'ext' => 'html'), $this->Paginator));
 //pankuz
 $this->set("pankuz_for_layout", $pageData["Category"]["str"]);
 ?>

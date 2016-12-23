@@ -29,7 +29,10 @@ $this->element("title_ogp", array("titleWithStrs" => $titleWithStrs));
 	<section class="total">
 		<div class="counts">
 			<div class="rate">
-				<div class="value">総合評価<span class="num"><?php echo $this->Common->pointFormat($title["Titlesummary"]["vote_avg_all"], " -- ")?></span>点</div>
+				<div class="caption">総合評価</div>
+				<div class="value">
+					<span class="num"><?php echo $this->Common->pointFormat($title["Titlesummary"]["vote_avg_all"], " -- ")?></span>点
+				</div>
 				<?php echo $this->Common->starBlock($title["Titlesummary"]["vote_avg_all"])?>
 			</div>
 			<div class="count count-review">

@@ -3,6 +3,7 @@
 $this->assign("title", $pageData["Service"]["str"] . (($this->Paginator->current() > 1) ? (" " . $this->Paginator->current() . "ページ目") : ""));
 $this->assign("keywords", $pageData["Service"]["str"] . ((!empty($pageData["Service"]["str_sub"])) ? "," . $pageData["Service"]["str_sub"] : "") . ",オンラインゲーム");
 $this->assign("description", "【" . $pageData["Service"]["str"] . "】オンラインゲームの一覧です。サービス状態別のオンラインゲームが探せます。");
+$this->assign("meta", $this->Meta->pagePrevNext(array('controller' => $this->request->params["controller"], 'action' => $this->request->params["action"], 'path' => $pageData["Service"]["path"], 'ext' => 'html'), $this->Paginator));
 //pankuz
 $this->set("pankuz_for_layout", $pageData["Service"]["str"]);
 ?>

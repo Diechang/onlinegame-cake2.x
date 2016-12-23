@@ -4,7 +4,7 @@
 	<ul class="list">
 <?php foreach($pickups as $pickup):?>
 		<li>
-			<a href="titles_index.html">
+			<a href="<?php echo $this->Html->url(array("controller" => "titles", "action" => "index", "path" => $pickup["Title"]["url_str"], "ext" => "html"))?>">
 				<div class="thumb">
 					<?php echo $this->Html->image($this->Common->thumbName($pickup["Title"]["thumb_name"]),
 						array("alt" => $this->Common->titleWithCase($pickup["Title"]["title_official"], $pickup["Title"]["title_read"])));?>

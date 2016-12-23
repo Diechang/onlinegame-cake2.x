@@ -12,6 +12,7 @@
 <meta name="Description" content="<?php echo $this->fetch("description")?>">
 
 <?php echo $this->fetch("meta")?>
+
 <?php echo $this->Meta->ogpTags()?>
 
 <link rel="alternate" type="application/rss+xml" title="最新オンラインゲーム" href="http://feeds.feedburner.com/dz-game/newstart">

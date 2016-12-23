@@ -55,6 +55,34 @@ class MetaHelper extends AppHelper
 	}
 
 /**
+ * next prev出力
+ *
+ * @param	array	$url
+ * @param	array	$paginator
+ * @return	html
+ * @access	public
+ */
+	function pagePrevNext($url = array(), $paginator, $full = false)
+	{
+		$links = array();
+		if($paginator->hasPrev())
+		{
+			$links[] = $this->Html->meta(array(
+				'rel' => 'prev',
+				'link' => $this->Html->url(array_merge($url, array("?" => array('page' => $paginator->current() - 1))), $full)
+			));
+		}
+		if($paginator->hasNext())
+		{
+			$links[] = $this->Html->meta(array(
+				'rel' => 'next',
+				'link' => $this->Html->url(array_merge($url, array("?" => array('page' => $paginator->current() + 1))), $full)
+			));
+		}
+		return implode($links);
+	}
+
+/**
  * OGP出力
  *
  * @access public
