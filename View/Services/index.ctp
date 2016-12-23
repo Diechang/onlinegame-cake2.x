@@ -6,6 +6,8 @@ $this->assign("description", "【" . $pageData["Service"]["str"] . "】オンラ
 $this->assign("meta", $this->Meta->pagePrevNext(array('controller' => $this->request->params["controller"], 'action' => $this->request->params["action"], 'path' => $pageData["Service"]["path"], 'ext' => 'html'), $this->Paginator));
 //pankuz
 $this->set("pankuz_for_layout", $pageData["Service"]["str"]);
+//json ld
+$this->assign("json_ld", $this->JsonLd->breadCrumbList($pageData["Service"]["str"]));
 ?>
 
 <?php

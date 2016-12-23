@@ -5,8 +5,11 @@ $this->assign("keywords", "");
 $this->assign("description", "");
 //pankuz
 $this->set("pankuz_for_layout", array(array("str" => "オンラインゲーム検索", "url" => array("controller" => "search", "action" => "index", "ext" => "html")), "検索結果"));
-//paginator routing
-// $this->Paginator->options(array("url" => array("controller" => "search", "action" => "result")));
+//json ld
+$this->assign("json_ld", $this->JsonLd->breadCrumbList(array(
+	array("name" => "オンラインゲーム検索", "id" => $this->Html->url(array("controller" => "search", "action" => "index", "ext" => "html")), true),
+	"検索結果",
+)));
 ?>
 
 <!-- Search result -->

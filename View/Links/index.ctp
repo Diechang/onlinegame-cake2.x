@@ -7,6 +7,8 @@ if($path == "index")
 	$this->assign("description", "オンラインゲームライフと相互リンクしていただいているおすすめサイト集です。相互リンク依頼は専用フォームからどうぞ。");
 	//pankuz
 	$this->set("pankuz_for_layout", "相互リンク集");
+	//json ld
+	$this->assign("json_ld", $this->JsonLd->breadCrumbList("相互リンク集"));
 }
 else
 {
@@ -21,6 +23,11 @@ else
 		),
 		$label,
 	));
+	//json ld
+	$this->assign("json_ld", $this->JsonLd->breadCrumbList(array(
+		array("name" => "相互リンク集", "id" => $this->Html->url(array("controller" => "links", "action" => "index", "path" => "index", "ext" => "html"), true)),
+		$label,
+	)));
 }
 ?>
 <?php echo $this->Session->flash()?>

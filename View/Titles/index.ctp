@@ -10,6 +10,8 @@ $this->assign("title_header", $this->element("title_header"));
 $this->assign("title_nav_floating", $this->element("title_nav_floating", array("title" => $title)));
 //pankuz
 $this->set("pankuz_for_layout", array($titleWithStrs["Case"]));
+//json ld
+$this->assign("json_ld", $this->JsonLd->breadCrumbList($titleWithStrs["Case"]));
 //OGP
 $this->element("title_ogp", array("titleWithStrs" => $titleWithStrs));
 ?>

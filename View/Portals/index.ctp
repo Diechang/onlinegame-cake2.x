@@ -5,6 +5,8 @@ $this->assign("keywords", "オンラインゲーム,ポータルサイト,アバ
 $this->assign("description", "いろんなオンラインゲームが窓口一つで楽しめる。オンラインゲームポータルサイトについてのページです。");
 //pankuz
 $this->set("pankuz_for_layout", "オンラインゲームポータル");
+//json ld
+$this->assign("json_ld", $this->JsonLd->breadCrumbList("オンラインゲームポータル"));
 ?>
 <!-- about -->
 <div class="portal-about pageInfo">

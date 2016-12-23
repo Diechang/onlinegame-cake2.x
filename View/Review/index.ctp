@@ -7,8 +7,8 @@ $this->assign("keywords", "レビュー,評価,オンラインゲーム");
 $this->assign("description", "当サイトに投稿されたオンラインゲームレビュー投稿一覧の" . $this->Paginator->current() . "ページ目です。");
 //pankuz
 $this->set("pankuz_for_layout", "レビュー投稿一覧 " . $this->Paginator->current() . "ページ目");
-//paginator routing
-// $this->Paginator->options(array("url" => array("controller" => "review", "action" => "index")))
+//json ld
+$this->assign("json_ld", $this->JsonLd->breadCrumbList("レビュー投稿一覧"));
 ?>
 
 <!-- review -->
@@ -20,11 +20,11 @@ $this->set("pankuz_for_layout", "レビュー投稿一覧 " . $this->Paginator->
 
 	<section class="recents">
 
-<?php echo $this->element("comp_pages");?>
+<?php echo $this->element("comp_pages", array("urlOptions" => array('ext' => null)));?>
 
 <?php echo $this->element("loop_review_data", array("reviews" => $reviews))?>
 
-<?php echo $this->element("comp_pages");?>
+<?php echo $this->element("comp_pages", array("urlOptions" => array('ext' => null)));?>
 
 		<div class="more"><a href="http://feeds.feedburner.com/dz-game/review" class="feed"><i class="icon icon-feed"></i> 新着レビューをRSSで！</a></div>
 

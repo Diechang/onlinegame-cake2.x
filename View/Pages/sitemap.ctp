@@ -5,6 +5,8 @@ $this->assign("keywords", "サイトマップ,オンラインゲームライフ"
 $this->assign("description", "オンラインゲームライフのサイトマップページ。");
 //pankuz
 $this->set("pankuz_for_layout", "サイトマップ");
+//json ld
+$this->assign("json_ld", $this->JsonLd->breadCrumbList("サイトマップ"));
 ?>
 
 <!-- sitemap -->

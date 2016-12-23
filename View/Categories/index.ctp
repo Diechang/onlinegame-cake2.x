@@ -6,6 +6,8 @@ $this->assign("description", "【" . $this->Common->titleWithCase($pageData["Cat
 $this->assign("meta", $this->Meta->pagePrevNext(array('controller' => $this->request->params["controller"], 'action' => $this->request->params["action"], 'path' => $pageData["Category"]["path"], 'ext' => 'html'), $this->Paginator));
 //pankuz
 $this->set("pankuz_for_layout", $pageData["Category"]["str"]);
+//json ld
+$this->assign("json_ld", $this->JsonLd->breadCrumbList($pageData["Category"]["str"]));
 ?>
 
 <?php if($this->Paginator->current() <= 1):?>

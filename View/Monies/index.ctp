@@ -5,6 +5,8 @@ $this->assign("keywords", "オンラインゲーム,小遣い稼ぎ,無料,ポ�
 $this->assign("description", "ゲーム料金を無料で稼ごう！管理人も登録している安心サイトでゲーム料金＆お小遣い稼ぎ。。");
 //pankuz
 $this->set("pankuz_for_layout", "ゲーム代を稼ぐ");
+//json ld
+$this->assign("json_ld", $this->JsonLd->breadCrumbList("ゲーム代を稼ぐ"));
 ?>
 <!-- documents -->
 <div class="money-docs pageInfo">

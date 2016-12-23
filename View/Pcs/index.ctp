@@ -5,6 +5,8 @@ $this->assign("keywords", "オンラインゲーム,PC,パソコン,推奨,BTO")
 $this->assign("description", "オンラインゲーム用PC（パソコン）についてのページです。ゲームに特化したBTOパソコンで快適にプレイを楽しみたい方は参考にどうぞ。");
 //pankuz
 $this->set("pankuz_for_layout", "オンラインゲーム用PC");
+//json ld
+$this->assign("json_ld", $this->JsonLd->breadCrumbList("オンラインゲーム用PC"));
 ?>
 <!-- documents -->
 <div class="pc-about pageInfo">

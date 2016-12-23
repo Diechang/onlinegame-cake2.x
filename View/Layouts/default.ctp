@@ -129,5 +129,7 @@
 
 <!-- JS -->
 <?php echo $this->fetch("script")?>
+
+<?php echo $this->fetch("json_ld")?>
 </body>
 </html>

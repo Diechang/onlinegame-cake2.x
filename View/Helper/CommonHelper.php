@@ -5,7 +5,7 @@
 class CommonHelper extends AppHelper
 {
 	//Use Helper
-	var $helpers = array('Html', 'RichSnippets');
+	var $helpers = array('Html');
 
 /**
  * 投稿者名初期値

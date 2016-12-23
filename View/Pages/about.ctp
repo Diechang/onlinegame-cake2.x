@@ -5,6 +5,8 @@ $this->assign("keywords", "オンラインゲームライフ");
 $this->assign("description", "オンラインゲームライフについてのページです。");
 //pankuz
 $this->set("pankuz_for_layout", "当サイトについて");
+//json ld
+$this->assign("json_ld", $this->JsonLd->breadCrumbList("当サイトについて"));
 ?>
 
 <!-- documents -->

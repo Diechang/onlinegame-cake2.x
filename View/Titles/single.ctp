@@ -22,6 +22,14 @@ $this->set("pankuz_for_layout", array(
 	: array("str" => "評価点数", "url" => array("action" => "rating", "path" => $title["Title"]["url_str"], "ext" => "html")),
 	$nameWithType,
 ));
+//json ld
+$this->assign("json_ld", $this->JsonLd->breadCrumbList(array(
+	array("name" => $titleWithStrs["Case"], "id" => $this->Html->url(array("action" => "index", "path" => $title["Title"]["url_str"], "ext" => "html")), true),
+	(!empty($vote["Vote"]["review"]))
+	? array("name" => "ユーザーレビュー", "id" => $this->Html->url(array("action" => "review", "path" => $title["Title"]["url_str"], "ext" => "html")), true)
+	: array("name" => "評価点数", "id" => $this->Html->url(array("action" => "rating", "path" => $title["Title"]["url_str"], "ext" => "html")), true),
+	$nameWithType,
+)));
 //OGP
 $this->element("title_ogp", array(
 	"ogpTitle" => $voteTitle . $nameWithType . "(" . $postDate . ") | " . $titleWithStrs["Abbr"],

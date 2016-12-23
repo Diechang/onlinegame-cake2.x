@@ -11,6 +11,11 @@ $this->set("pankuz_for_layout", array(
 	array("str" => "オンラインゲームポータル", "url" => array("action" => "index", "ext" => "html")),
 	$portal_name,
 ));
+//json ld
+$this->assign("json_ld", $this->JsonLd->breadCrumbList(array(
+	array("name" => "オンラインゲームポータル", "id" => $this->Html->url(array("action" => "index", "ext" => "html")), true),
+	$portal_name,
+)));
 ?>
 <!-- about -->
 <div class="portal-about pageInfo">
