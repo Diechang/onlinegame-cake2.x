@@ -155,14 +155,20 @@ class FansitesController extends AppController
 		}
 		$this->Fansite->recursive = 2;
 		$this->Fansite->Title->unbindAll(array("Titlesummary"));
-		$this->set('fansites', $this->Fansite->find("all", array(
-			"conditions" => $fConditions,
-			"fields" => array(
-				"Fansite.*",
-				"Title.*",
-			),
-			"order" => "Fansite.id DESC"
-		)));
+		$this->Paginator->settings = array(
+			"Fansite" => array(
+				"conditions" => $fConditions,
+				"fields" => array(
+					"Fansite.*",
+					"Title.*",
+				),
+				"order" => "Fansite.id DESC",
+				 "limit" => 100,
+				"paramType" => "querystring",
+			)
+		);
+		$fansites = $this->Paginator->paginate();
+		$this->set('fansites', $fansites);
 		//
 		//Title data
 		$titles =  $this->Fansite->Title->find("list", array(

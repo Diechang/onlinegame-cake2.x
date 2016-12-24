@@ -31,23 +31,24 @@ class LumpEditComponent extends Component
 			"fields" => $fields,
 			"order" => "id " . $order,
 		));
-		// pr($befores);
-		// pr($data);
+		// debug($befores);
+		// debug($data);
+		// exit;
 		$changed = array();
-		$index = 0;
+		// $index = 0;
 		foreach($data as $key => $val)
 		{
-			// pr($val);
-			// pr($befores[$key][$modelName]);
+			// debug($val);
+			// debug($befores[$key][$modelName]);
 			if($val != $befores[$key][$modelName])
 			{
-				$changed[$index] = $val;
-				$index++;
+				$changed[] = $val;
+				// $index++;
 				// echo "changed: " . $index;
 			}
 		}
-		// pr($data);
-		// pr($changed);
+		// debug($data);
+		// debug($changed);
 		// exit;
 		$data = $changed;
 		return (!empty($data)) ? true : false;

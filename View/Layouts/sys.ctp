@@ -64,6 +64,10 @@
 				<li class="active"><?php else:?>
 				<li><?php endif;?><?php echo $this->Html->link("タイトル一覧", array("controller" => "titles", "action" => "index", "sys" => true))?></li>
 
+<?php if($params["controller"] == "titles" && ($params["action"] == "sys_withads")):?>
+				<li class="active"><?php else:?>
+				<li><?php endif;?><?php echo $this->Html->link("広告付きタイトル", array("controller" => "titles", "action" => "withads", "sys" => true))?></li>
+
 <?php if($params["controller"] == "specs" && ($params["action"] == "sys_index" || $params["action"] == "sys_edit")):?>
 				<li class="active"><?php else:?>
 				<li><?php endif;?><?php echo $this->Html->link("動作環境一覧/登録", array("controller" => "specs", "action" => "index", "sys" => true))?></li>

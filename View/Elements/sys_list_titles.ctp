@@ -51,7 +51,7 @@
 				<?php echo $this->Html->link($title["Service"]["str"], array("controller" => "titles", "action" => "index", "?" => array("service" => $title["Service"]["id"])))?>
 				<span><?php echo $title["Title"]["test_start"]?> - <?php echo $title["Title"]["test_end"]?></span>
 			</td>
-			<td><?php echo $title["Title"]["service_start"]?></td>
+			<td nowrap="nowrap"><?php echo $title["Title"]["service_start"]?></td>
 			<td class="<?php echo $this->Common->addClassZero(count($title["Vote"]), "tCenter")?>">
 				<?php echo $this->Html->link(sprintf("%.2f", $title["Titlesummary"]["vote_avg_all"]) . "(" . count($title["Vote"]) . ")", array("controller" => "votes", "action" => "index", "?" => array("title_id" => $title["Title"]["id"])), array("class" => $this->Common->addClassZero(count($title["Vote"]))))?>
 			</td>

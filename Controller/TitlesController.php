@@ -554,10 +554,15 @@ class TitlesController extends AppController
 		// $this->Title->hasAndBelongsToMany["Portal"]["fields"] = array("id", "url_str");
 		//
 		// pr($this->Title);
-		$titles = $this->Title->find("all", array(
-			"conditions" => $conditions,
-			"order" => "Title.id DESC",
-		));
+		$this->Paginator->settings = array(
+			"Title" => array(
+				"conditions" => $conditions,
+				"order" => "Title.id DESC",
+				 "limit" => 100,
+				"paramType" => "querystring",
+			)
+		);
+		$titles = $this->Paginator->paginate("Title");
 		// pr($conditions);
 		// pr($titles);
 		// exit;
@@ -577,6 +582,36 @@ class TitlesController extends AppController
 //		}
 //		$this->set('title', $this->Title->read(null, $id));
 //	}
+
+	function sys_withads()
+	{
+		//タイトルデータ
+		$this->Title->unbindAll(array("Service"));
+		$this->Paginator->settings = array(
+			"Title" => array(
+				"conditions" => array(
+					"OR" => array(
+						"ad_use" => true,
+						"NOT" => array(
+							"ad_text" => null,
+							"ad_banner_s" => null,
+							"ad_banner_m" => null,
+							"ad_banner_l" => null,
+						),
+					)
+				),
+				"order" => "Title.id DESC",
+				 "limit" => 100,
+				"paramType" => "querystring",
+			)
+		);
+		$titles = $this->Paginator->paginate("Title");
+		// pr($titles);
+		// exit;
+		$this->set("titles", $titles);
+		//
+		$this->set("pankuz_for_layout", "広告付きタイトル一覧");
+	}
 
 	function sys_add()
 	{
