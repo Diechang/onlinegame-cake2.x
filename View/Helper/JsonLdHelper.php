@@ -64,7 +64,68 @@ class JsonLdHelper extends AppHelper
 		}
 
 		return $this->out($data);
-}
+	}
+
+
+/**
+ * AggregateRating
+ *
+ * @param	model	$title = ["Title"] and ["Titlesummary"]
+ * @param	string	$name
+ * @return	html
+ * @access	public
+ */
+	function aggregateRating($title, $name)
+	{
+		$data = array(
+			"@context" => "http://schema.org/",
+			"@type" => "Product",
+			"name" => ((!empty($name)) ? $name : $title["Title"]),
+			"aggregateRating" => array(
+				"@type" => "AggregateRating",
+				"ratingValue" => $title["Titlesummary"]["vote_avg_all"],
+				"ratingCount" => $title["Titlesummary"]["vote_count_vote"],
+			)
+		);
+
+		return $this->out($data);
+	}
+
+
+/**
+ * Review
+ *
+ * @param	model	$vote = ["Vote"]
+ * @param	string	$name
+ * @return	html
+ * @access	public
+ */
+	function review($vote, $name)
+	{
+		debug($vote);
+
+		$data = array(
+			"@context" => "http://schema.org/",
+			"@type" => "Review",
+			"itemReviewed" => array(
+				"@type" => "Product",
+				"name" => $name
+			),
+			"author" => array(
+				"@type" => "Person",
+				"name" => $vote["Vote"]["poster_name"]
+			),
+			"description" => $vote["Vote"]["title"],
+			"reviewBody" => $vote["Vote"]["review"],
+			"datePublished" => date("Y-m-d", strtotime($vote["Vote"]["modified"])),
+			"reviewRating" => array(
+				"@type" => "Rating",
+				"ratingValue" => $vote["Vote"]["single_avg"]
+			)
+		);
+
+		return $this->out($data);
+	}
 
 /**
  * out

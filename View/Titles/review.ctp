@@ -15,6 +15,7 @@ $this->assign("json_ld", $this->JsonLd->breadCrumbList(array(
 	array("name" => $titleWithStrs["Case"], "id" => $this->Html->url(array("action" => "index", "path" => $title["Title"]["url_str"], "ext" => "html")), true),
 	"ユーザーレビュー",
 )));
+$this->append("json_ld", $this->JsonLd->aggregateRating($title, $titleWithStrs["Case"]));
 //OGP
 $this->element("title_ogp", array("titleWithStrs" => $titleWithStrs));
 ?>

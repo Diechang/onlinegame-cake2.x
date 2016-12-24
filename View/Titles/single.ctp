@@ -30,6 +30,8 @@ $this->assign("json_ld", $this->JsonLd->breadCrumbList(array(
 	: array("name" => "評価点数", "id" => $this->Html->url(array("action" => "rating", "path" => $title["Title"]["url_str"], "ext" => "html")), true),
 	$nameWithType,
 )));
+$this->append("json_ld", $this->JsonLd->review($vote, $titleWithStrs["Case"]));
+// $this->append("json_ld", $this->JsonLd->aggregateRating($title, $titleWithStrs["Case"]));
 //OGP
 $this->element("title_ogp", array(
 	"ogpTitle" => $voteTitle . $nameWithType . "(" . $postDate . ") | " . $titleWithStrs["Abbr"],
