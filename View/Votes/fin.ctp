@@ -4,6 +4,7 @@ $this->assign("title", $vote["Title"]["title_official"] . "レビュー・評価
 //pankuz
 $this->set("pankuz_for_layout", array(array("str" => $vote["Title"]["title_official"], "url" => array("controller" => "titles", "action" => "index", "path" => $vote["Title"]["url_str"], "ext" => "html")), "投稿完了"));
 ?>
+
 <div class="flash flash-success">
 	<div class="flash-title"><?php echo $vote["Title"]["title_official"]?>への投稿ありがとうございました！</div>
 	<div class="flash-body">
@@ -14,7 +15,7 @@ $this->set("pankuz_for_layout", array(array("str" => $vote["Title"]["title_offic
 <section>
 	<p><?php echo $this->Html->link("投稿したページを見る", array("controller" => "titles", "action" => "single", "path" => $vote["Title"]["url_str"], "voteid" => $vote["Vote"]["id"], "ext" => "html"))?></p>
 	<h2 class="headline">投稿を共有しませんか？</h2>
-	<?php $url = "http://onlinegame.dz-life.net" . $this->Html->url(array("controller" => "titles", "action" => "single", "path" => $vote["Title"]["url_str"], "voteid" => $vote["Vote"]["id"], "ext" => "html"))?>
+	<?php $url = $this->Html->url(array("controller" => "titles", "action" => "single", "path" => $vote["Title"]["url_str"], "voteid" => $vote["Vote"]["id"], "ext" => "html"), true)?>
 	<section>
 		<fb:comments href="<?php echo $url?>" num_posts="2" width="510"></fb:comments>
 		<div class="shares">

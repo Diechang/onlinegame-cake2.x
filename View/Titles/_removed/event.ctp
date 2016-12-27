@@ -18,7 +18,7 @@ $this->element("title_ogp", array(
 	"ogpDescription" => mb_strimwidth($event["Event"]["summary"], 0, 120, " …", "UTF-8"),
 ));
 ?>
-<?php echo $this->Session->flash()?>
+
 <?php echo $this->element("title_head_title")?>
 
 <?php echo $this->element("title_head_menu")?>

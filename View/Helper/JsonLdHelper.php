@@ -75,7 +75,7 @@ class JsonLdHelper extends AppHelper
  * @return	html
  * @access	public
  */
-	function aggregateRating($title, $name)
+	function titleRating($title, $name)
 	{
 		$data = array(
 			"@context" => "http://schema.org/",
@@ -100,10 +100,8 @@ class JsonLdHelper extends AppHelper
  * @return	html
  * @access	public
  */
-	function review($vote, $name)
+	function titleReview($vote, $name)
 	{
-		debug($vote);
-
 		$data = array(
 			"@context" => "http://schema.org/",
 			"@type" => "Review",
@@ -121,6 +119,33 @@ class JsonLdHelper extends AppHelper
 			"reviewRating" => array(
 				"@type" => "Rating",
 				"ratingValue" => $vote["Vote"]["single_avg"]
+			)
+		);
+
+		return $this->out($data);
+	}
+
+
+/**
+ * PCs
+ *
+ * @param	number	$lowPrice
+ * @param	number	$highPrice
+ * @param	string	$name
+ * @return	html
+ * @access	public
+ */
+	function titlePcs($lowPrice, $highPrice, $name)
+	{
+		$data = array(
+			"@context" => "http://schema.org/",
+			"@type" => "Product",
+			"name" => $name,
+			"offers" => array(
+				"@type" => "AggregateOffer",
+				"lowPrice" => $lowPrice,
+				"highPrice" => $highPrice,
+				"priceCurrency" => "JPY"
 			)
 		);
 

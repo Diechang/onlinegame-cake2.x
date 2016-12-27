@@ -30,7 +30,7 @@ else
 	)));
 }
 ?>
-<?php echo $this->Session->flash()?>
+
 <!-- about -->
 <div class="link-about pageInfo">
 	<h1 class="pageTitle">

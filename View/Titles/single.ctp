@@ -30,8 +30,7 @@ $this->assign("json_ld", $this->JsonLd->breadCrumbList(array(
 	: array("name" => "評価点数", "id" => $this->Html->url(array("action" => "rating", "path" => $title["Title"]["url_str"], "ext" => "html")), true),
 	$nameWithType,
 )));
-$this->append("json_ld", $this->JsonLd->review($vote, $titleWithStrs["Case"]));
-// $this->append("json_ld", $this->JsonLd->aggregateRating($title, $titleWithStrs["Case"]));
+$this->append("json_ld", $this->JsonLd->titleReview($vote, $titleWithStrs["Case"]));
 //OGP
 $this->element("title_ogp", array(
 	"ogpTitle" => $voteTitle . $nameWithType . "(" . $postDate . ") | " . $titleWithStrs["Abbr"],
@@ -39,7 +38,6 @@ $this->element("title_ogp", array(
 	"ogpDescription" => (!empty($vote["Vote"]["review"])) ? mb_strimwidth($vote["Vote"]["review"], 0, 120, " …", "UTF-8") : $titleWithStrs["Case"] . "の評価",
 ));
 ?>
-<?php echo $this->Session->flash()?>
 
 <!-- nav -->
 <?php echo $this->element("title_nav")?>
@@ -55,7 +53,7 @@ $this->element("title_ogp", array(
 <?php endif;?>
 	</ul>
 	<div class="review">
-		<p><?php echo (!empty($vote["Vote"]["review"]) ? nl2br(h($vote["Vote"]["review"])) : "<（評価点数のみ）")?></p>
+		<p><?php echo (!empty($vote["Vote"]["review"]) ? nl2br(h($vote["Vote"]["review"])) : "（評価点数のみ）")?></p>
 		<?php echo $this->Gads->text336();?>
 	</div>
 	

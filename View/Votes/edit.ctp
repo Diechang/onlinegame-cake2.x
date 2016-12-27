@@ -4,7 +4,7 @@ $this->assign("title", $this->request->data["Title"]["title_official"] . "レビ
 //pankuz
 $this->set("pankuz_for_layout", array(array("str" => $this->request->data["Title"]["title_official"], "url" => array("controller" => "titles", "action" => "index", "path" => $this->request->data["Title"]["url_str"], "ext" => "html")), "レビュー・評価編集"));
 ?>
-<?php echo $this->Session->flash()?>
+
 <section id="form" class="title-form-vote">
 	<h1>
 		<span class="main">レビュー・評価を編集する</span>

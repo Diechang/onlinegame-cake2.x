@@ -70,6 +70,9 @@
 			<div class="contents-body">
 				<!-- Main contents -->
 				<div class="contents-main">
+					
+					<?php echo $this->Session->flash()?>
+
 					<main>
 					<?php
 						echo $this->fetch("content");
@@ -131,5 +134,6 @@
 <?php echo $this->fetch("script")?>
 
 <?php echo $this->fetch("json_ld")?>
+
 </body>
 </html>

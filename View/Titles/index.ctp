@@ -12,11 +12,10 @@ $this->assign("title_nav_floating", $this->element("title_nav_floating", array("
 $this->set("pankuz_for_layout", array($titleWithStrs["Case"]));
 //json ld
 $this->assign("json_ld", $this->JsonLd->breadCrumbList($titleWithStrs["Case"]));
-$this->append("json_ld", $this->JsonLd->aggregateRating($title, $titleWithStrs["Case"]));
+$this->append("json_ld", $this->JsonLd->titleRating($title, $titleWithStrs["Case"]));
 //OGP
 $this->element("title_ogp", array("titleWithStrs" => $titleWithStrs));
 ?>
-<?php echo $this->Session->flash()?>
 
 <!-- nav -->
 <?php echo $this->element("title_nav")?>

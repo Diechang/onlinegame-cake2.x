@@ -15,10 +15,10 @@ $this->assign("json_ld", $this->JsonLd->breadCrumbList(array(
 	array("name" => $titleWithStrs["Case"], "id" => $this->Html->url(array("action" => "index", "path" => $title["Title"]["url_str"], "ext" => "html")), true),
 	"推奨PC",
 )));
+$this->append("json_ld", $this->JsonLd->titlePcs($lowPrice, $highPrice, $titleWithStrs["Case"] . "推奨PC"));
 //OGP
 $this->element("title_ogp", array("titleWithStrs" => $titleWithStrs));
 ?>
-<?php echo $this->Session->flash()?>
 
 <!-- nav -->
 <?php echo $this->element("title_nav")?>

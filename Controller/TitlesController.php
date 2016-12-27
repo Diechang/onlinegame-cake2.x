@@ -103,37 +103,37 @@ class TitlesController extends AppController
 		$this->set("recommends", $recommends);
 	}
 
-	function allvotes()
-	{
-		$this->_checkParams();
+// 	function _allvotes()
+// 	{
+// 		$this->_checkParams();
 
-		/**
-		 * データ取得
-		 */
-		//タイトルデータ
-		$this->Title->unbindAll(array("Titlesummary", "Category", "Style", "Service", "Fee"));
-		$title = $this->_getTitleData();
-		$this->_afterGetTitleData($title);
-//		pr($title);
-//		exit;
+// 		/**
+// 		 * データ取得
+// 		 */
+// 		//タイトルデータ
+// 		$this->Title->unbindAll(array("Titlesummary", "Category", "Style", "Service", "Fee"));
+// 		$title = $this->_getTitleData();
+// 		$this->_afterGetTitleData($title);
+// //		pr($title);
+// //		exit;
 
-		//レビュー
-		$votes = $this->Title->Vote->getNewer($title["Title"]["id"]);
-//		pr($votes);
-//		exit;
+// 		//レビュー
+// 		$votes = $this->Title->Vote->getNewer($title["Title"]["id"]);
+// //		pr($votes);
+// //		exit;
 
-		//おすすめ
-		$recommends = $this->Title->recommends(Set::extract('Cateogry/id', $title["Category"]), $title["Title"]["id"]);
-//		pr($recommends);
+// 		//おすすめ
+// 		$recommends = $this->Title->recommends(Set::extract('Cateogry/id', $title["Category"]), $title["Title"]["id"]);
+// //		pr($recommends);
 
-		/**
-		 * セット
-		 */
-		$this->set("title", $title);
-		$this->set("votes", $votes);
-		$this->set("voteItems", $this->Title->Vote->voteItems);
-		$this->set("recommends", $recommends);
-	}
+// 		/**
+// 		 * セット
+// 		 */
+// 		$this->set("title", $title);
+// 		$this->set("votes", $votes);
+// 		$this->set("voteItems", $this->Title->Vote->voteItems);
+// 		$this->set("recommends", $recommends);
+// 	}
 
 	function single()
 	{
@@ -199,130 +199,130 @@ class TitlesController extends AppController
 		}
 	}
 
-	function _events()
-	{
-		$this->_checkParams();
+// 	function _events()
+// 	{
+// 		$this->_checkParams();
 
-		/**
-		 * データ取得
-		 */
-		//タイトルデータ
-		$this->Title->unbindAll(array("Titlesummary", "Category", "Style", "Service", "Fee"));
-		$title = $this->_getTitleData();
-		$this->_afterGetTitleData($title);
+// 		/**
+// 		 * データ取得
+// 		 */
+// 		//タイトルデータ
+// 		$this->Title->unbindAll(array("Titlesummary", "Category", "Style", "Service", "Fee"));
+// 		$title = $this->_getTitleData();
+// 		$this->_afterGetTitleData($title);
 
-		/**
-		 * イベントデータ
-		 */
-		if(!empty($title["Titlesummary"]["event_count"]))
-		{
-			$now = date("Y-m-d H:i:s");
-			//開催中
-			$events["current"] = $this->Title->Event->find("all", array(
-				"recursive" => -1,
-				"conditions" => array(
-					"Event.title_id" => $title["Title"]["id"],
-					"Event.public" => 1,
-					"Event.start <=" => $now,
-					"Event.end >=" => $now,
-				),
-				"order" => "Event.start DESC"
-			));
-			//開催予定
-			$events["future"] = $this->Title->Event->find("all", array(
-				"recursive" => -1,
-				"conditions" => array(
-					"Event.title_id" => $title["Title"]["id"],
-					"Event.public" => 1,
-					"Event.start >=" => $now,
-				),
-				"order" => "Event.start DESC"
-			));
-			//開催済み
-			$events["back"] = $this->Title->Event->find("all", array(
-				"recursive" => -1,
-				"conditions" => array(
-					"Event.title_id" => $title["Title"]["id"],
-					"Event.public" => 1,
-					"Event.end <=" => $now,
-				),
-				"order" => "Event.start DESC"
-			));
-		}
-		else
-		{
-			$events = null;
-		}
-//		pr($events);
-//		exit;
+// 		/**
+// 		 * イベントデータ
+// 		 */
+// 		if(!empty($title["Titlesummary"]["event_count"]))
+// 		{
+// 			$now = date("Y-m-d H:i:s");
+// 			//開催中
+// 			$events["current"] = $this->Title->Event->find("all", array(
+// 				"recursive" => -1,
+// 				"conditions" => array(
+// 					"Event.title_id" => $title["Title"]["id"],
+// 					"Event.public" => 1,
+// 					"Event.start <=" => $now,
+// 					"Event.end >=" => $now,
+// 				),
+// 				"order" => "Event.start DESC"
+// 			));
+// 			//開催予定
+// 			$events["future"] = $this->Title->Event->find("all", array(
+// 				"recursive" => -1,
+// 				"conditions" => array(
+// 					"Event.title_id" => $title["Title"]["id"],
+// 					"Event.public" => 1,
+// 					"Event.start >=" => $now,
+// 				),
+// 				"order" => "Event.start DESC"
+// 			));
+// 			//開催済み
+// 			$events["back"] = $this->Title->Event->find("all", array(
+// 				"recursive" => -1,
+// 				"conditions" => array(
+// 					"Event.title_id" => $title["Title"]["id"],
+// 					"Event.public" => 1,
+// 					"Event.end <=" => $now,
+// 				),
+// 				"order" => "Event.start DESC"
+// 			));
+// 		}
+// 		else
+// 		{
+// 			$events = null;
+// 		}
+// //		pr($events);
+// //		exit;
 
-		//おすすめ
-		$recommends = $this->Title->recommends(Set::extract('Cateogry/id', $title["Category"]), $title["Title"]["id"]);
-//		pr($recommends);
+// 		//おすすめ
+// 		$recommends = $this->Title->recommends(Set::extract('Cateogry/id', $title["Category"]), $title["Title"]["id"]);
+// //		pr($recommends);
 
-		/**
-		 * セット
-		 */
-		$this->set("title", $title);
-		$this->set("events", $events);
-		$this->set("recommends", $recommends);
-	}
+// 		/**
+// 		 * セット
+// 		 */
+// 		$this->set("title", $title);
+// 		$this->set("events", $events);
+// 		$this->set("recommends", $recommends);
+// 	}
 
-	function _event()
-	{
-		$this->_checkParams();
-		if(empty($this->request->params["eventid"]))
-		{
-			return $this->redirect(array("controller" => "titles", "action" => "events", "path" => $this->request->params["path"], "ext" => "html"));
-		}
+// 	function _event()
+// 	{
+// 		$this->_checkParams();
+// 		if(empty($this->request->params["eventid"]))
+// 		{
+// 			return $this->redirect(array("controller" => "titles", "action" => "events", "path" => $this->request->params["path"], "ext" => "html"));
+// 		}
 
-		/**
-		 * データ取得
-		 */
-		//タイトルデータ
-		$this->Title->unbindAll(array("Titlesummary", "Category", "Style", "Service", "Fee"));
-		$title = $this->_getTitleData();
-		$this->_afterGetTitleData($title);
-//		pr($title);
-//		exit;
+// 		/**
+// 		 * データ取得
+// 		 */
+// 		//タイトルデータ
+// 		$this->Title->unbindAll(array("Titlesummary", "Category", "Style", "Service", "Fee"));
+// 		$title = $this->_getTitleData();
+// 		$this->_afterGetTitleData($title);
+// //		pr($title);
+// //		exit;
 
-		//イベントデータ
-		$event = $this->Title->Event->find("first", array(
-			"recursive" => -1,
-			"conditions" => array(
-				"Event.public" => 1,
-				"Event.id" => $this->request->params["eventid"],
-				"Event.title_id" => $title["Title"]["id"],
-			),
-		));
-//		pr($event);
-//		exit;
-		$this->_emptyToHome($event);
+// 		//イベントデータ
+// 		$event = $this->Title->Event->find("first", array(
+// 			"recursive" => -1,
+// 			"conditions" => array(
+// 				"Event.public" => 1,
+// 				"Event.id" => $this->request->params["eventid"],
+// 				"Event.title_id" => $title["Title"]["id"],
+// 			),
+// 		));
+// //		pr($event);
+// //		exit;
+// 		$this->_emptyToHome($event);
 
-		//一覧
-		$events = $this->Title->Event->find("all", array(
-			"recursive" => -1,
-			"conditions" => array(
-				"Event.public" => 1,
-				"Event.title_id" => $title["Title"]["id"],
-			),
-			"order" => "Event.start DESC",
-		));
-//		pr($events);
-//		exit;
+// 		//一覧
+// 		$events = $this->Title->Event->find("all", array(
+// 			"recursive" => -1,
+// 			"conditions" => array(
+// 				"Event.public" => 1,
+// 				"Event.title_id" => $title["Title"]["id"],
+// 			),
+// 			"order" => "Event.start DESC",
+// 		));
+// //		pr($events);
+// //		exit;
 
-		//おすすめ
-		$recommends = $this->Title->recommends(Set::extract('Cateogry/id', $title["Category"]), $title["Title"]["id"]);
-//		pr($recommends);
+// 		//おすすめ
+// 		$recommends = $this->Title->recommends(Set::extract('Cateogry/id', $title["Category"]), $title["Title"]["id"]);
+// //		pr($recommends);
 
-		/**
-		 * セット
-		 */
-		$this->set("title", $title);
-		$this->set("event", $event);
-		$this->set("events", $events);
-		$this->set("recommends", $recommends);
-	}
+// 		/**
+// 		 * セット
+// 		 */
+// 		$this->set("title", $title);
+// 		$this->set("event", $event);
+// 		$this->set("events", $events);
+// 		$this->set("recommends", $recommends);
+// 	}
 
 	function pc()
 	{
@@ -370,7 +370,9 @@ class TitlesController extends AppController
 				"fields" => $pcFields,
 				"order" => $pcOrder,
 			));
-			//types
+			//types & prices
+			$lowPrice = null;
+			$highPrice = null;
 			foreach($pctypes as $pctype)
 			{
 				$typePcs = $this->Title->Pc->find("all", array(
@@ -386,6 +388,13 @@ class TitlesController extends AppController
 				foreach($typePcs as $typePc)
 				{
 					$pcs[$pctype["Pctype"]["path"]][$typePc["Pcgrade"]["path"]][] = $typePc;
+
+					// low price
+					$lowPrice	= ($lowPrice == null) ? $typePc["Pc"]["price"]
+									: ($typePc["Pc"]["price"] <= $lowPrice) ? $typePc["Pc"]["price"] : $lowPrice;
+					// hight price
+					$highPrice	= ($highPrice == null) ? $typePc["Pc"]["price"]
+									: ($typePc["Pc"]["price"] >= $highPrice) ? $typePc["Pc"]["price"] : $highPrice;
 				}
 			}
 		}
@@ -410,6 +419,7 @@ class TitlesController extends AppController
 			$this->set("pctypes", $pctypes);
 			$this->set("pcgrades", $pcgrades);
 		}
+		$this->set(compact("lowPrice", "highPrice"));
 		$this->set("recommends", $recommends);
 	}
 
@@ -679,6 +689,12 @@ class TitlesController extends AppController
 		if(empty($this->request->data))
 		{
 			$this->request->data = $this->Title->read(null, $id);
+			
+			if(empty($this->request->data))
+			{
+				$this->Session->setFlash(Configure::read("Error.id"));
+				return $this->redirect(array('action' => 'index'));
+			}
 		}
 		//
 		$this->_sysSetTitleAssociations();

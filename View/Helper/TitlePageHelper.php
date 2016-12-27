@@ -164,7 +164,7 @@ class TitlePageHelper extends AppHelper
  */
 	function goodOrBad($point, $labels = array("good", "bad"), $limit = 3)
 	{
-		return ($point > $limit) ? $labels[0] : $labels[1];
+		return ($point < $limit) ? $labels[1] : $labels[0];
 	}
 }
 ?>

@@ -9,5 +9,5 @@ $this->set("pankuz_for_layout", array(
 	"登録申込",
 ));
 ?>
-<?php echo $this->Session->flash()?>
+
 <?php echo $this->element("form_link")?>

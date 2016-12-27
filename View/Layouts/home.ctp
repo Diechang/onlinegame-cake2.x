@@ -99,6 +99,9 @@
 			<div class="contents-body">
 				<!-- Main contents -->
 				<div class="contents-main">
+					
+					<?php echo $this->Session->flash()?>
+
 					<main>
 					<?php
 						echo $this->fetch("content");
@@ -158,5 +161,6 @@
 <script src="/js/libs/slick-1.5.0/slick.min.js"></script>
 <!-- JS -->
 <script src="/js/ogl.newgames.js"></script>
+
 </body>
 </html>

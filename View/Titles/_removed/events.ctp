@@ -10,7 +10,7 @@ $this->set("pankuz_for_layout", array(array("str" => $titleWithStrs["Case"], "ur
 //OGP
 $this->element("title_ogp", array("titleWithStrs" => $titleWithStrs));
 ?>
-<?php echo $this->Session->flash()?>
+
 <?php echo $this->element("title_head_title")?>
 
 <?php echo $this->element("title_head_menu")?>
