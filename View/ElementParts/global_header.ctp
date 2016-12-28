@@ -3,15 +3,28 @@
 	<div class="header-body">
 		<h1 class="logo"><?php echo $this->Html->image("design/logo_header.png", array("alt" => "【オンラインゲームライフ】-無料オンラインゲーム情報-", "width" => 230, "height" => 40, "url" => "/"));?></h1>
 		<div class="search">
-			<form action="http://www.google.co.jp/cse" id="cse-search-box" target="_blank">
-				<div class="gSearch">
-					<input type="hidden" name="cx" value="partner-pub-5378944923532596:hrh39ml3dzq">
-					<input type="hidden" name="ie" value="UTF-8">
-					<input type="text" class="gSearch-text" name="q" size="31">
-					<button type="submit" class="gSearch-button" name="sa"><i class="zmdi zmdi-search zmdi-hc-2x"></i></button>
+			<?php echo $this->Form->create(false, array(
+				"url" => array("controller" => "pages", "action" => "gsearch"),
+				"type" => "get",
+				"class" => "search-form",
+				"inputDefaults" => array(
+					"label" => false,
+					"div" => false
+				)
+			))?>
+				<div class="search-inputs">
+					<?php echo $this->Form->input("q", array(
+						"type" => "text",
+						"class" => "search-text",
+						"size" => "31",
+						"placeholder" => "キーワード検索",
+					))?>
+					<?php echo $this->Form->button('<i class="zmdi zmdi-search zmdi-hc-2x"></i>', array(
+						"type" => "submit",
+						"class" => "search-button"
+					))?>
 				</div>
-			</form>
-			<script type="text/javascript" src="http://www.google.co.jp/coop/cse/brand?form=cse-search-box&amp;lang=ja"></script>
+			<?php echo $this->Form->end()?>
 		</div>
 		<div class="shares">
 			<ul>
