@@ -16,18 +16,15 @@ $this->assign("json_ld", $this->JsonLd->breadCrumbList("当サイトについて
 		<dt>サイト名</dt>
 		<dd>オンラインゲームライフ</dd>
 		<dt>URL</dt>
-		<dd><?php echo Configure::read("Site.url")?></dd>
+		<dd><?php echo $this->Html->url("/", true)?></dd>
 		<dt>サイト内容</dt>
 		<dd>無料で遊べるオンラインゲームをメインに紹介します。<br>
 		「ゲームが好きだから、ゲームのサイトをやろう」そんな単純な思いで始めたサイトです。<br>
 		ゲームの評価点数やレビューの投稿も可能になっていますのでどんどん投稿をお願いします。<br>
-		※同一タイトルへの投稿は原則できませんが、投稿時に編集用パスワードを設定することで後から編集することは可能です。</dd>
+		※Javascript、Cookieを有効にしてご覧ください。</dd>
 		<dt>管理人</dt>
 		<dd>ZILOW</dd>
 	</dl>
-	<p>当サイトでは、一部Flashを使用しています。<br>
-	最新版の<a href="http://www.adobe.com/shockwave/download/index.cgi?Lang=Japanese&amp;P1_Prod_Version=ShockwaveFlash">FlashPlayer</a>をご利用ください。<br>
-	また、Javascript、Cookieを有効にしてご覧ください。</p>
 	<?php echo $this->Gads->ads468()?>
 	<section>
 		<h2 class="headline">免責･注意事項</h2>
@@ -84,6 +81,6 @@ $this->assign("json_ld", $this->JsonLd->breadCrumbList("当サイトについて
 		各ゲームコンテンツページからのリンクになりますので、相互リンク集より多くのアクセスが期待できます。</p>
 		<p>自薦、他薦は問いませんので、各タイトルの『攻略・ファンサイト』ページからお気軽に登録をお願いします。<br>
 		掲載基準は若干厳しく設定させていただきますが、自薦の場合は当サイトと相互リンクしていただけると上位に表示されます。</p>
-		<p>また、掲載されているリンクは管理人の独断＆無断で掲載させていただいているものが多数あります。もし不快に思われるサイト運営者の方がいましたら、お手数ですがご連絡いただければただちに削除いたします。</p>
+		<p>また、掲載されているリンクは管理人の独断＆無断で掲載させていただいているものが多数あります。もし不快に思われるサイト運営者の方がいましたら、お手数ですが<?php echo $this->Html->link("お問い合わせフォーム", array("controller" => "pages", "action" => "contact", "ext" => "html"))?>よりご連絡いただければただちに削除いたします。</p>
 	</section>
 </section>
