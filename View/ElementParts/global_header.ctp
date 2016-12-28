@@ -4,7 +4,7 @@
 		<h1 class="logo"><?php echo $this->Html->image("design/logo_header.png", array("alt" => "【オンラインゲームライフ】-無料オンラインゲーム情報-", "width" => 230, "height" => 40, "url" => "/"));?></h1>
 		<div class="search">
 			<?php echo $this->Form->create(false, array(
-				"url" => array("controller" => "pages", "action" => "gsearch"),
+				"url" => array("controller" => "search", "action" => "gsearch"),
 				"type" => "get",
 				"class" => "search-form",
 				"inputDefaults" => array(

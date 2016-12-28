@@ -185,5 +185,12 @@ class SearchController extends AppController
 		// $this->set("paging", $paging);
 		// $this->set("queryParams", $queryParams);
 	}
+
+/**
+ * Google search result
+ */
+	function gsearch()
+	{
+	}
 }
 ?>

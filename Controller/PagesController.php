@@ -282,13 +282,6 @@ class PagesController extends AppController
 	}
 
 /**
- * Google search
- */
-	function gsearch()
-	{
-	}
-
-/**
  * Sitemap
  */
 	function sitemap()
