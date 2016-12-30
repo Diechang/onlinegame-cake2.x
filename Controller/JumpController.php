@@ -90,7 +90,8 @@ class JumpController extends AppController
 	{
 		$this->_emptyToHome($id);
 		$this->$model->recursive = -1;
-		$this->set("url", $this->$model->findById($id)[$model]["ad_part_url"]);
+		$jump = $this->$model->findById($id);
+		$this->set("url", $jump[$model]["ad_part_url"]);
 		//Use layout
 		$this->layout = false;
 
