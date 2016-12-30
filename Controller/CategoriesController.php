@@ -25,6 +25,10 @@ class CategoriesController extends AppController
 		/**
 		 * Title Data
 		 */
+		$titleIds = $this->Title->CategoriesTitle->find("list", array(
+			"fields" => "title_id",
+			"conditions" => array("category_id" => $pageData["Category"]["id"]),
+		));
 		//Get
 		// $this->Title->Behaviors->attach('Containable');
 		$this->Paginator->settings = array(
@@ -32,10 +36,7 @@ class CategoriesController extends AppController
 				"conditions" => array(
 					"Title.public" => 1,
 					"Title.service_id NOT" => 1,
-					"Title.id IN" => $this->Title->CategoriesTitle->find("list", array(
-						"fields" => "title_id",
-						"conditions" => array("category_id" => $pageData["Category"]["id"]),
-					)),
+					"Title.id" =>  $titleIds,
 					// "Category.id" => $pageData["Category"]["id"],
 				),
 				"fields" => array(
@@ -87,7 +88,7 @@ class CategoriesController extends AppController
 		$pickups = $this->Title->find("all" , array(
 			"conditions" => array(
 				"Title.public" => 1,
-				"Title.id IN" => Set::extract($titles , "{n}.Title.id"),
+				"Title.id" => $titleIds,
 				"NOT" => array("Title.service_id" => 1),
 			),
 			"fields" => array(

@@ -1,5 +1,6 @@
+<?php if(!empty($titles)):?>
 	<ul class="list">
-<?php foreach($titles as $title):?>
+	<?php foreach($titles as $title):?>
 		<li>
 			<h2 class="title">
 				<?php echo $this->Common->titleLinkText(
@@ -33,14 +34,17 @@
 					<p class="service">
 						<span class="label label-service">サービス</span>
 						<?php echo $title["Service"]["str"]?>
-	<?php if($title["Service"]["id"] == 3 or $title["Service"]["id"] == 4):?>
+		<?php if($title["Service"]["id"] == 3 or $title["Service"]["id"] == 4):?>
 						<?php echo $this->Common->termFormat($title["Title"]["test_start"], $title["Title"]["test_end"])?>
-	<?php endif;?>
+		<?php endif;?>
 					</p>
 					<p class="fee"><span class="label label-fee">料金</span> <?php echo $title["Fee"]["str"]?></p>
 					<p class="genres"><span class="label label-genre">ジャンル</span> <?php echo $this->Common->categoriesLink($title["Category"])?></p>
 				</div>
 			</div>
 		</li>
-<?php endforeach;?>
+	<?php endforeach;?>
 	</ul>
+<?php else:?>
+	<p class="noData">データがありません</p>
+<?php endif;?>

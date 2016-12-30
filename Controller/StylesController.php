@@ -25,6 +25,10 @@ class StylesController extends AppController
 		/**
 		 * Title Data
 		 */
+		$titleIds = $this->Title->StylesTitle->find("list", array(
+			"fields" => "title_id",
+			"conditions" => array("style_id" => $pageData["Style"]["id"]),
+		));
 		//Get
 		// $this->Title->Behaviors->attach('Containable');
 		$this->Paginator->settings = array(
@@ -32,10 +36,7 @@ class StylesController extends AppController
 				"conditions" => array(
 					"Title.public" => 1,
 					"Title.service_id NOT" => 1,
-					"Title.id IN" => $this->Title->StylesTitle->find("list", array(
-						"fields" => "title_id",
-						"conditions" => array("style_id" => $pageData["Style"]["id"]),
-					)),
+					"Title.id" => $titleIds,
 					// "Style.id" => $pageData["Style"]["id"],
 				),
 				"fields" => array(
@@ -87,7 +88,7 @@ class StylesController extends AppController
 		$pickups = $this->Title->find("all", array(
 			"conditions" => array(
 				"Title.public" => 1,
-				"Title.id IN" => Set::extract($titles, "{n}.Title.id"),
+				"Title.id" => $titleIds,
 				"NOT" => array("Title.service_id" => 1),
 			),
 			"fields" => array(
