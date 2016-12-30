@@ -1,57 +1,57 @@
 <?php
-$this->Html->css(array('titles'), 'stylesheet', array('inline' => false));
 //Title vars
-$titleWithStr["Case"]	= $this->Common->titleWithCase($title["Title"]["title_official"], $title["Title"]["title_read"]);
-$titleWithStr["Span"]	= $this->Common->titleWithSpan($title["Title"]["title_official"], $title["Title"]["title_read"]);
-$titleWithStr["Abbr"]	= $this->Common->titleWithAbbr($title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"]);
-$titleWithStr["Sub"]	= $this->Common->titleWithSub($title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_sub"]);
-//Set
-$this->set("title_for_layout", $titleWithStr["Abbr"] . " ユーザーレビュー");
-$this->set("keywords_for_layout", $this->TitlePage->metaKeywords($this->request->params["action"], $title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"], $title["Title"]["title_sub"]));
-$this->set("description_for_layout", $titleWithStr["Sub"] . "のユーザーレビューです。プレイヤーのみなさんのレビュー（口コミ）を読んで" . $titleWithStr["Sub"] . "の評判をチェック！");
-$this->set("h1_for_layout", $titleWithStr["Abbr"] . " ユーザーレビュー");
-$this->set("pankuz_for_layout", array(array("str" => $titleWithStr["Case"], "url" => array("action" => "index", "path" => $title["Title"]["url_str"], "ext" => "html")), "ユーザーレビュー"));
+$titleWithStrs = $this->Common->titleWithStrs($title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"], $title["Title"]["title_sub"]);
+//set blocks
+$this->assign("title", $titleWithStrs["Abbr"] . " ユーザーレビュー");
+$this->assign("keywords", $this->TitlePage->metaKeywords($this->request->params["action"], $title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"], $title["Title"]["title_sub"]));
+$this->assign("description", $titleWithStrs["Sub"] . "のユーザーレビューです。プレイヤーのみなさんのレビュー（口コミ）を読んで" . $titleWithStrs["Sub"] . "の評判をチェック！");
+//assigns
+$this->assign("title_header", $this->element("title_header"));
+$this->assign("title_nav_floating", $this->element("title_nav_floating", array("title" => $title)));
+//pankuz
+$this->set("pankuz_for_layout", array(array("str" => $titleWithStrs["Case"], "url" => array("action" => "index", "path" => $title["Title"]["url_str"], "ext" => "html")), "ユーザーレビュー"));
+//json ld
+$this->assign("json_ld", $this->JsonLd->breadCrumbList(array(
+	array("name" => $titleWithStrs["Case"], "id" => $this->Html->url(array("action" => "index", "path" => $title["Title"]["url_str"], "ext" => "html")), true),
+	"ユーザーレビュー",
+)));
+$this->append("json_ld", $this->JsonLd->titleRating($title, $titleWithStrs["Case"]));
 //OGP
-$this->element("title_ogp", array("titleWithStr" => $titleWithStr));
+$this->element("title_ogp", array("titleWithStrs" => $titleWithStrs));
 ?>
-<?php echo $this->Session->flash()?>
-<?php echo $this->element("title_head_title")?>
 
-<?php echo $this->element("title_head_menu")?>
+<!-- nav -->
+<?php echo $this->element("title_nav")?>
 
-<!--Review-->
-<div class="content reviews">
-	<h2><?php echo $this->Html->image("design/titles_reviews_title.gif", array("alt" => "ユーザーレビュー一覧"))?></h2>
-	<p class="description"><?php echo $title["Title"]["title_official"]?>のレビュー一覧
-	<?php if(!empty($reviews)):?>
-	：<?php echo sizeof($reviews)?>件のレビュー
-	<?php endif;?>
-	</p>
-	<ul class="voteTabs">
-		<li><a href="<?php echo $this->Html->url(array("action" => "review", "path" => $title["Title"]["url_str"], "ext" => "html"))?>"><?php echo $this->Html->image("design/titles_reviews_tabs_list_active.gif", array("alt" => "レビュー一覧を表示"))?></a></li>
-		<li><a href="<?php echo $this->Html->url(array("action" => "allvotes", "path" => $title["Title"]["url_str"], "ext" => "html"))?>"><?php echo $this->Html->image("design/titles_reviews_tabs_all_normal.gif", array("alt" => "すべての投稿を表示"))?></a></li>
-	</ul>
+<!-- review -->
+<section class="title-review">
+	<h1>
+		<span class="main">プレイヤーのレビュー・評価投稿一覧（<?php echo number_format($title["Titlesummary"]["vote_count_review"])?>）</span>
+		<span class="sub"><?php echo $title["Title"]["title_official"]?>へのレビュー・評価</span>
+	</h1>
 
-<?php echo $this->element("title_votes", array("votes" => $reviews, "titlePath" => $title["Title"]["url_str"], "all" => false))?>
+	<?php echo $this->element("title_votes", array("votes" => $reviews, "titleData" => $title["Title"], "all" => false))?>
 
-	<p class="officialLink">
-		<?php echo $this->Common->officialLinkText(
-		$title["Title"]["title_official"],
-		$title["Title"]["ad_use"], $title["Title"]["ad_text"], $title["Title"]["official_url"], $title["Title"]["service_id"])?>
-	</p>
-</div>
+	<!--Official Link-->
+	<?php echo $this->element("title_officiallink", array("titleWithStrs" => $titleWithStrs))?>
+</section>
 
-<?php echo $this->element("form_vote", array(
-	"title"		=> $titleWithStr["Case"],
-	"titleId"	=> $title["Title"]["id"],
-	"votable"	=> $title["Title"]["votable"],
-	"voteItems"	=> $voteItems,
-))?>
+<!-- vote form -->
+<section id="form" class="title-form-vote">
+	<h1>
+		<span class="main">レビュー・評価を投稿する</span>
+		<span class="sub">みなさまの投稿がランキングに反映されます</span>
+	</h1>
+	<?php echo $this->element("form_vote", array(
+		"titleId"	=> $title["Title"]["id"],
+		"serviceId"	=> $title["Title"]["service_id"],
+		"votable"	=> $title["Title"]["votable"],
+		"voteItems"	=> $voteItems,
+	))?>
+</section>
 
-<?php echo $this->element("title_details_rich_snippets", array("titleWithStr" => $titleWithStr))?>
+<!-- details -->
+<?php echo $this->element("title_details", array("titleWithStrs" => $titleWithStrs))?>
 
-<?php echo $this->element("title_share")?>
-
-<?php echo $this->element("title_relations", array($relations))?>
-
-<?php echo $this->Common->copyright($title["Title"]["copyright"])?>
+<!-- recommends -->
+<?php echo $this->element("title_recommends", array($recommends))?>

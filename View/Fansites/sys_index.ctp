@@ -1,3 +1,4 @@
+<?php if($this->Paginator->current() == 1):?>
 <?php echo $this->Form->create("Fansite", array("action" => "add", "inputDefaults" => array("div" => false, "label" => false, "legend" => false)))?>
 	<h2>ファンサイト新規登録</h2>
 	<table class="edit table table-bordered">
@@ -57,6 +58,7 @@
 		</tr>
 	</table>
 <?php echo $this->Form->end()?>
+<?php endif;?>
 
 <h2>ファンサイト一覧</h2>
 <?php echo $this->Form->create("Fansite", array("action" => "index", "type" => "get", "inputDefaults" => array("div" => false, "label" => false)))?>
@@ -65,10 +67,11 @@
 	<?php echo $this->Form->submit("検索", array("div" => false, "class" => "btn"))?>
 <?php echo $this->Form->end()?>
 <?php echo $this->Form->create("Fansite", array("action" => "lump"))?>
-	<p id="results"></p>
+	
+	<?php echo $this->element("sys_paginate")?>
+
 	<div class="controll">
 		<input type="submit" value="一括修正" class="btn" />
-		<input type="text" id="word_searcher" />
 	</div>
 <?php echo $this->element("sys_list_fansites", array("fansites" => $fansites))?>
 	<div class="controll"><input type="submit" value="一括修正" class="btn" /></div>

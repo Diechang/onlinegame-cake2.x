@@ -7,6 +7,7 @@ class ElementPartsController extends AppController
 							"AdCenterBottom", "AdLeftBottom", "AdLeftTop", "AdRightBottom", "AdRightTop");
 	var $helpers	= array("SearchPage");
 	var $components	= array("Auth");
+	
 
 	function beforeFilter()
 	{
@@ -65,6 +66,27 @@ class ElementPartsController extends AppController
 		$this->set("headCountReview", $headCountReview);
 		$this->set("headCountVote", $headCountVote);
 	}
+	//floating
+	function global_header_floating()
+	{
+		//Menu
+		$headerCategories = $this->Category->find("all", array(
+			"conditions" => array("Category.public" => 1),
+			"recursive" => -1,
+			"order" => "Category.sort"
+		));
+		$headerMoneycategories = $this->Moneycategory->find("all", array(
+			"conditions" => array("Moneycategory.public" => 1),
+			"recursive" => -1,
+			"order" => "Moneycategory.sort"
+		));
+		//
+		$this->set("headerCategories", $headerCategories);
+		$this->set("headerMoneycategories", $headerMoneycategories);
+		//titles
+		if($this->params["action"] == "titles") $this->set("headerTitleData", array());
+	}
+
 
 	/**
 	 * Left parts

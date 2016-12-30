@@ -1,73 +1,104 @@
 <?php
-//スタイル
-$this->Html->css(array('search'), 'stylesheet', array('inline' => false));
-//
-$this->set("title_for_layout", "オンラインゲーム検索結果：" . $this->Paginator->current() . "ページ目");
-$this->set("keywords_for_layout", "");
-$this->set("description_for_layout", "");
-$this->set("h1_for_layout", "オンラインゲーム検索結果：" . $this->Paginator->current() . "ページ目");
-$this->set("pankuz_for_layout", array(array("str" => "オンラインゲーム検索", "url" => array("controller" => "search", "action" => "index")), "検索結果"));
-//paginator routing
-// $this->Paginator->options(array("url" => array("controller" => "search", "action" => "result")));
+//set blocks
+$this->assign("title", "オンラインゲーム検索結果：" . $this->Paginator->current() . "ページ目");
+$this->assign("keywords", "");
+$this->assign("description", "");
+//pankuz
+$this->set("pankuz_for_layout", array(array("str" => "オンラインゲーム検索", "url" => array("controller" => "search", "action" => "index", "ext" => "html")), "検索結果"));
+//json ld
+$this->assign("json_ld", $this->JsonLd->breadCrumbList(array(
+	array("name" => "オンラインゲーム検索", "id" => $this->Html->url(array("controller" => "search", "action" => "index", "ext" => "html")), true),
+	"検索結果",
+)));
 ?>
 
 <!-- Search result -->
-<div class="content searchResult">
-	<h2>検索結果：<?php echo $this->Paginator->current()?>ページ目</h2>
+<section class="search-result">
+	<h1 class="pageTitle">
+		<span class="main">オンラインゲーム検索結果</span>
+		<span class="sub"><?php echo $this->Paginator->current()?>ページ目</span>
+	</h1>
+
 <?php if(empty($titles)):?>
-	<p class="noResult">検索条件に該当するタイトルが見つかりませんでした。</p>
+	<div class="noData">検索条件に該当するタイトルが見つかりませんでした。</div>
 <?php else:?>
-	<p><?php echo $this->Paginator->counter(array("format" => '検索結果<span class="wBold">{:count}件中</span> {:start}件目 ～ {:end}件表示'))?></p>
+	
+	<?php echo $this->element("comp_pages");?>
 
-	<p class="paging">
-		<?php echo $this->Paginator->prev("≪前へ")?>
-		<?php echo $this->Paginator->numbers()?>
-		<?php echo $this->Paginator->next("次へ≫")?>
-	</p>
-
-	<table class="result">
+	<ul class="list">
 	<?php foreach($titles as $title):?>
-		<tr>
-			<th colspan="7">
+		<li>
+			<h2 class="title">
 				<?php echo $this->Common->titleLinkText(
-					$this->Common->titleWithSpan($title["Title"]["title_official"], $title["Title"]["title_read"]),
+					$this->Common->titleSeparatedSpan($title["Title"]["title_official"], $title["Title"]["title_read"]),
 					$title["Title"]["url_str"])?>
-				</th>
-		</tr>
-		<tr>
-			<td rowspan="2" class="thumb">
-				<?php echo $this->Common->titleLinkThumb(
+			</h2>
+			<div class="images">
+				<div class="thumb"><?php echo $this->Common->titleLinkThumb(
 					$this->Common->thumbName($title["Title"]["thumb_name"]),
 					$this->Common->titleWithCase($title["Title"]["title_official"], $title["Title"]["title_read"]),
-					$title["Title"]["url_str"], 120)?>
-			</td>
-			<th class="rating">評価</th>
-			<td class="<?php echo $this->Common->addClassZero($title["Titlesummary"]["vote_avg_all"], "rating")?>">
-				<?php echo $this->Common->titleLinkText($this->Common->pointFormat($title["Titlesummary"]["vote_avg_all"], "--") . "点", $title["Title"]["url_str"], "rating")?>
-			</td>
-			<th class="review">レビュー</th>
-			<td class="<?php echo $this->Common->addClassZero($title["Titlesummary"]["vote_count_review"], "review")?>">
-				<?php echo $this->Common->titleLinkText($title["Titlesummary"]["vote_count_review"] . "件", $title["Title"]["url_str"], "review")?>
-			</td>
-			<th class="link">リンク</th>
-			<td class="<?php echo $this->Common->addClassZero($title["Titlesummary"]["fansite_count"], "link")?>">
-				<?php echo $this->Common->titleLinkText($title["Titlesummary"]["fansite_count"] . "件", $title["Title"]["url_str"], "link")?>
-			</td>
-		</tr>
-		<tr>
-			<td colspan="6" class="description"><?php echo mb_strimwidth(strip_tags($title["Title"]["description"]), 0, 160, " …", "UTF-8")?></td>
-		</tr>
+					$title["Title"]["url_str"], 160)?>
+				</div>
+			</div>
+			<div class="data">
+				<div class="counts">
+					<div class="count count-total">
+						<div class="caption">総合評価</div>
+						<div class="value">
+							<span class="num"><?php echo $this->Common->pointFormat($title["Titlesummary"]["vote_avg_all"], "--")?></span>
+							<span class="unit">点</span>
+						</div>
+					</div>
+					<div class="count count-rate">
+						<div class="caption">評価投稿</div>
+						<div class="value">
+							<span class="num"><?php echo $title["Titlesummary"]["vote_count_vote"]?></span>
+							<span class="unit">件</span>
+						</div>
+					</div>
+					<div class="count count-review">
+						<div class="caption">レビュー</div>
+						<div class="value">
+							<span class="num"><?php echo $title["Titlesummary"]["vote_count_review"]?></span>
+							<span class="unit">件</span>
+						</div>
+					</div>
+					<div class="count count-link">
+						<div class="caption">リンク</div>
+						<div class="value">
+							<span class="num"><?php echo $title["Titlesummary"]["fansite_count"]?></span>
+							<span class="unit">件</span>
+						</div>
+					</div>
+				</div>
+				<div class="attributes">
+					<p class="service">
+						<span class="label label-service">サービス</span>
+						<?php echo $title["Service"]["str"]?>
+	<?php if($title["Service"]["id"] == 3 or $title["Service"]["id"] == 4):?>
+						<?php echo $this->Common->termFormat($title["Title"]["test_start"], $title["Title"]["test_end"])?>
+	<?php endif;?>
+					</p>
+					<p class="fee"><span class="label label-fee">料金</span> <?php echo $title["Fee"]["str"]?></p>
+					<p class="genres"><span class="label label-genre">ジャンル</span> <?php echo $this->Common->categoriesLink($title["Category"])?></p>
+				</div>
+			</div>
+		</li>
 	<?php endforeach;?>
-	</table>
-
-	<p class="paging">
-		<?php echo $this->Paginator->prev("≪前へ")?>
-		<?php echo $this->Paginator->numbers()?>
-		<?php echo $this->Paginator->next("次へ≫")?>
-	</p>
-
+	</ul>
+	
+	<?php echo $this->element("comp_pages");?>
 <?php endif;?>
-</div>
+</section>
 
 
-<?php echo $this->element("search_title_form")?>
+<!-- search -->
+<section class="search">
+	<h1>
+		<span class="main">オンラインゲーム検索</span>
+		<span class="sub">自分好みのオンラインゲームを探そう</span>
+	</h1>
+	<div class="form-search">
+<?php echo $this->element("search_title_form");?>
+	</div>
+</section>

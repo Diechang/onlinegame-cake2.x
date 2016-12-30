@@ -18,38 +18,56 @@ class PortalsController extends AppController
 		//
 		//Set
 		$this->set("portals", $portals);
-		//Set - Layout vars
-		$this->set("title_for_layout", "オンラインゲームポータルサイト");
-		$this->set("keywords_for_layout", "オンラインゲーム,ポータルサイト,アバター");
-		$this->set("description_for_layout", "オンラインゲームポータルサイトについてのページです。");
-		$this->set("h1_for_layout", "オンラインゲームポータル");
-		$this->set("pankuz_for_layout", "オンラインゲームポータル");
 	}
 
 	function view($path = null)
 	{
 		$this->_emptyToURL($path, array("action" => "index", "ext" => "html"));
 		//Get
-		$this->Portal->Title->unbindAll(array("Category", "Titlesummary"));
+		// $this->Portal->Title->unbindAll(array("Fee", "Category", "Titlesummary"));
 
 //		$defPortalTitleConditions = $this->Portal->hasAndBelongsToMany["Title"]["conditions"];
-		$this->Portal->hasAndBelongsToMany["Title"]["conditions"] = array(
-			"Title.public" => 1,
-			"NOT" => array(
-				"Title.service_id" => 1
-			)
-		);
+		// $this->Portal->hasAndBelongsToMany["Title"]["conditions"] = array(
+		// 	"Title.public" => 1,
+		// 	"NOT" => array(
+		// 		"Title.service_id" => 1
+		// 	)
+		// );
 //		$this->Portal->hasAndBelongsToMany["Title"]["conditions"] = $defPortalTitleConditions;
+		$this->Portal->Behaviors->load('Containable');
 
 		$portal = $this->Portal->find("first", array(
-			"recursive" => 2,
+			"contain" => array(
+				"Title" => array(
+					"fields" => array("title_official", "title_read", "url_str", "thumb_name", "description", "category_text"),
+					"conditions" => array(
+						"Title.public" => 1,
+						"NOT" => array(
+							"Title.service_id" => 1
+						),
+					),
+					"Titlesummary" => array(
+						"fields" => array("vote_avg_all")
+					),
+					"Category" => array(
+						"fields" => array("str", "path")
+					),
+					"Fee" => array(
+						"fields" => array("str", "path")
+					),
+					"Service" => array(
+						"fields" => array("str", "path")
+					)
+				)
+			),
+			// "recursive" => 2,
 			"conditions" => array(
 				"Portal.public" => 1,
 				"Portal.url_str" => $path,
 			),
 		));
-//		pr($portal);
-//		exit;
+		// pr($portal);
+		// exit;
 		$portals = $this->Portal->find("all", array(
 			"recursive" => -1,
 			"conditions" => array(
@@ -63,28 +81,10 @@ class PortalsController extends AppController
 //		exit;
 		$this->_emptyToURL($portal, array("action" => "index", "ext" => "html"));
 //		pr($portal);
-		//Create - meta Keywords
-		$keywords_for_layout[]	= $portal["Portal"]["title_official"];
-		if(!empty($portal["Portal"]["title_read"]))
-		{
-			$keywords_for_layout[] = $portal["Portal"]["title_read"];
-		}
-		$keywords_for_layout[]	= "オンラインゲーム";
-		$keywords_for_layout[]	= "ポータルサイト";
 		//
 		//Set
 		$this->set("portal", $portal);
 		$this->set("portals", $portals);
-		//Set - Layout vars
-		$titleTag = $this->TitleData->titleTag($portal["Portal"]["title_official"], $portal["Portal"]["title_read"]);
-		$this->set("title_for_layout", $titleTag);
-		$this->set("keywords_for_layout", implode(',', $keywords_for_layout));
-		$this->set("description_for_layout", "オンラインゲームポータル【" . $titleTag . "】についてのページです。");
-		$this->set("h1_for_layout", $titleTag);
-		$this->set("pankuz_for_layout", array(
-			array("str" => "オンラインゲームポータル", "url" => array("action" => "index", "ext" => "html")),
-			$titleTag,
-		));
 	}
 
 	/**

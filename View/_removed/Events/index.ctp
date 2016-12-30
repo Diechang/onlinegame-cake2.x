@@ -1,11 +1,9 @@
 <?php
-//スタイル
-$this->Html->css(array('event'), 'stylesheet', array('inline' => false));
-//
-$this->set("title_for_layout", "イベント・キャンペーン情報一覧 " . $this->Paginator->current() . "ページ目");
-$this->set("keywords_for_layout", "イベント,キャンペーン,オンラインゲーム");
-$this->set("description_for_layout", "イベント・キャンペーン情報一覧の" . $this->Paginator->current() . "ページ目です。");
-$this->set("h1_for_layout", "イベント・キャンペーン情報一覧" . $this->Paginator->current() . "ページ目");
+//set blocks
+$this->assign("title", "イベント・キャンペーン情報一覧 " . $this->Paginator->current() . "ページ目");
+$this->assign("keywords", "イベント,キャンペーン,オンラインゲーム");
+$this->assign("description", "イベント・キャンペーン情報一覧の" . $this->Paginator->current() . "ページ目です。");
+//pankuz
 $this->set("pankuz_for_layout", "イベント・キャンペーン情報一覧" . $this->Paginator->current() . "ページ目");
 ?>
 <div class="content events">

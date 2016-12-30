@@ -1,147 +1,134 @@
 <?php
-$this->Html->css(array('titles'), 'stylesheet', array('inline' => false));
 //Title vars
-$titleWithStr["Case"]	= $this->Common->titleWithCase($title["Title"]["title_official"], $title["Title"]["title_read"]);
-$titleWithStr["Span"]	= $this->Common->titleWithSpan($title["Title"]["title_official"], $title["Title"]["title_read"]);
-$titleWithStr["Abbr"]	= $this->Common->titleWithAbbr($title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"]);
-$titleWithStr["Sub"]	= $this->Common->titleWithSub($title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_sub"]);
+$titleWithStrs = $this->Common->titleWithStrs($title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"], $title["Title"]["title_sub"]);
 //Vote vars
 $voteType		= (!empty($vote["Vote"]["review"]) ? "レビュー" : "評価");
 $voteTitle		= (!empty($vote["Vote"]["title"])) ? "「" . h($vote["Vote"]["title"]) . "」 " : "【" . $this->Common->pointFormat($vote["Vote"]["single_avg"]) . "点】";
 $posterName		= $this->Common->posterName($vote["Vote"]["poster_name"]);
 $nameWithType	= $posterName . "の" . $voteType;
 $postDate		= $this->Common->dateFormat($vote["Vote"]["created"], "datetime");
-//Set
-$this->set("title_for_layout", $voteTitle . $nameWithType . "(" . $postDate . ") | " . $titleWithStr["Abbr"]);
-$this->set("keywords_for_layout", $posterName . "," . $postDate . "," . $this->TitlePage->metaKeywords($this->request->params["action"], $title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"], $title["Title"]["title_sub"]));
-$this->set("description_for_layout", (!empty($vote["Vote"]["review"]) ? "" : "【" . $this->Common->pointFormat($vote["Vote"]["single_avg"]) . "点】") . $posterName . "が" . $titleWithStr["Case"] . "に投稿した" . $voteType . "です。投稿日：" . $postDate);
-$this->set("h1_for_layout", $voteTitle . $nameWithType . " " . $titleWithStr["Case"]);
+//set blocks
+$this->assign("title", $voteTitle . $nameWithType . "(" . $postDate . ") | " . $titleWithStrs["Abbr"]);
+$this->assign("keywords", $posterName . "," . $postDate . "," . $this->TitlePage->metaKeywords($this->request->params["action"], $title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"], $title["Title"]["title_sub"]));
+$this->assign("description", (!empty($vote["Vote"]["review"]) ? "" : "【" . $this->Common->pointFormat($vote["Vote"]["single_avg"]) . "点】") . $posterName . "が" . $titleWithStrs["Case"] . "に投稿した" . $voteType . "です。投稿日：" . $postDate);
+//assigns
+$this->assign("title_header", $this->element("title_header"));
+$this->assign("title_nav_floating", $this->element("title_nav_floating", array("title" => $title)));
+//pankuz
 $this->set("pankuz_for_layout", array(
-	array("str" => $titleWithStr["Case"], "url" => array("action" => "index", "path" => $title["Title"]["url_str"], "ext" => "html")),
+	array("str" => $titleWithStrs["Case"], "url" => array("action" => "index", "path" => $title["Title"]["url_str"], "ext" => "html")),
 	(!empty($vote["Vote"]["review"]))
 	? array("str" => "ユーザーレビュー", "url" => array("action" => "review", "path" => $title["Title"]["url_str"], "ext" => "html"))
 	: array("str" => "評価点数", "url" => array("action" => "rating", "path" => $title["Title"]["url_str"], "ext" => "html")),
 	$nameWithType,
 ));
+//json ld
+$this->assign("json_ld", $this->JsonLd->breadCrumbList(array(
+	array("name" => $titleWithStrs["Case"], "id" => $this->Html->url(array("action" => "index", "path" => $title["Title"]["url_str"], "ext" => "html")), true),
+	(!empty($vote["Vote"]["review"]))
+	? array("name" => "ユーザーレビュー", "id" => $this->Html->url(array("action" => "review", "path" => $title["Title"]["url_str"], "ext" => "html")), true)
+	: array("name" => "評価点数", "id" => $this->Html->url(array("action" => "rating", "path" => $title["Title"]["url_str"], "ext" => "html")), true),
+	$nameWithType,
+)));
+$this->append("json_ld", $this->JsonLd->titleReview($vote, $titleWithStrs["Case"]));
 //OGP
 $this->element("title_ogp", array(
-	"ogpTitle" => $this->viewVars["title_for_layout"],
+	"ogpTitle" => $voteTitle . $nameWithType . "(" . $postDate . ") | " . $titleWithStrs["Abbr"],
 	"ogpUrl" => $this->request->here,
-	"ogpDescription" => (!empty($vote["Vote"]["review"])) ? mb_strimwidth($vote["Vote"]["review"], 0, 120, " …", "UTF-8") : $titleWithStr["Case"] . "の評価",
+	"ogpDescription" => (!empty($vote["Vote"]["review"])) ? mb_strimwidth($vote["Vote"]["review"], 0, 120, " …", "UTF-8") : $titleWithStrs["Case"] . "の評価",
 ));
 ?>
 
-<div<?php echo $this->RichSnippets->ns("Review")?>>
+<!-- nav -->
+<?php echo $this->element("title_nav")?>
 
-<?php echo $this->Session->flash()?>
-
-<div<?php echo $this->RichSnippets->property("itemreviewed")?>>
-<?php echo $this->element("title_head_title")?>
-</div>
-
-<?php echo $this->element("title_head_menu")?>
-<!--Single-->
-<div class="content single">
-	<h2<?php echo $this->RichSnippets->property("summary")?>><?php echo $this->Common->voteTitle($vote["Vote"])?></h2>
-	<table class="data">
-		<tr>
-			<th><?php echo $this->Html->image("design/icon_poster20.gif", array("alt" => "投稿者"))?></th>
-			<td<?php echo $this->RichSnippets->property("reviewer")?>><?php echo $this->Common->posterName($vote["Vote"]["poster_name"])?></td>
-			<th><?php echo $this->Html->image("design/icon_date20.gif", array("alt" => "投稿日"))?></th>
-			<td<?php echo $this->RichSnippets->property("dtreviewed")?><?php echo $this->RichSnippets->content($vote["Vote"]["created"])?>><?php echo $postDate?></td>
+<!-- review single -->
+<section class="title-review-single">
+	<h1><?php echo $this->Common->voteTitle($vote["Vote"])?></h1>
+	<ul class="data">
+		<li><i class="zmdi zmdi-account"></i> <?php echo $this->Common->posterName($vote["Vote"]["poster_name"])?></li>
+		<li><i class="zmdi zmdi-time"></i> <?php echo $this->Common->dateFormat($vote["Vote"]["created"], "datetime")?></li>
 <?php if(!empty($vote["Vote"]["pass"])):?>
-			<th><?php echo $this->Html->image("design/icon_edit20.gif", array("alt" => "編集"))?></th>
-			<td><?php echo $this->Html->link("編集", array("controller" => "votes", "action" => "edit", $vote["Vote"]["id"]), array("rel" => "nofollow"))?></td>
+		<li><i class="zmdi zmdi-edit"></i> <?php echo $this->Html->link("編集", array("controller" => "votes", "action" => "edit", $vote["Vote"]["id"]), array("rel" => "nofollow"))?></li>
 <?php endif;?>
-		</tr>
-	</table>
-	<p class="review"<?php echo $this->RichSnippets->property("description")?>>
-		<?php echo (!empty($vote["Vote"]["review"]) ? nl2br(h($vote["Vote"]["review"])) : "<span class=\"cGray9\">（評価点数のみ）</span>")?>
-	</p>
-
-	<?php echo (!empty($vote["Vote"]["review"]) ? '<p>' . $this->Gads->text336() . '</p>' : "")?>
-	<div class="points">
-		<div class="top">
-			<table class="total">
-				<tr>
-					<th>総合評価</th>
-					<td class="star">
-						<?php echo $this->Common->starBlock(100, $vote["Vote"]["single_avg"])?>
-					</td>
-					<td class="point"<?php echo $this->RichSnippets->property("rating")?>><?php echo $this->Common->pointFormat($vote["Vote"]["single_avg"])?></td>
-				</tr>
-			</table>
-		</div>
-		<div class="body">
-			<table class="items">
-				<tr>
-<?php foreach($voteItems as $voteItem):?>
-					<th title="<?php echo $voteItem["label"]?>"><?php echo $voteItem["abbr"]?></th>
-<?php endforeach;?>
-				</tr>
-				<tr>
-<?php foreach($voteItems as $key => $voteItem):?>
-					<td><?php echo $vote["Vote"][$key]?></td>
-<?php endforeach;?>
-				</tr>
-			</table>
-		</div>
+	</ul>
+	<div class="review">
+		<p><?php echo (!empty($vote["Vote"]["review"]) ? nl2br(h($vote["Vote"]["review"])) : "（評価点数のみ）")?></p>
+		<?php echo $this->Gads->text336();?>
 	</div>
-
-<?php echo $this->element("title_share_single")?>
-
-	<div class="officialLinkFrame">
-		<p class="officialLink">
-			<?php echo $this->Common->officialLinkText(
-			$title["Title"]["title_official"],
-			$title["Title"]["ad_use"], $title["Title"]["ad_text"], $title["Title"]["official_url"], $title["Title"]["service_id"])?>
-		</p>
-	</div>
-<?php if(!empty($neighbors["prev"]) or !empty($neighbors["next"])):?>
-	<div class="neighbors clearfix">
-	<?php foreach($neighbors as $key => $neighbor):?>
-		<?php $neighborStr = array("prev" => "前", "next" => "次")?>
-		<div class="neighbor <?php echo $key?>">
-		<?php if(!empty($neighbor)):?>
-			<h3><?php echo $this->Html->image("design/titles_reviews_neighbor_" . $key . ".gif", array("alt" => $neighborStr[$key] . "のレビュー"))?></h3>
-			<div class="body">
-				<h4 class="title"><?php echo $this->Html->link($this->Common->voteTitle($neighbor["Vote"]), array("path" => $title["Title"]["url_str"], "voteid" => $neighbor["Vote"]["id"], "ext" => "html"))?></h4>
-				<table class="total">
-					<tr>
-						<th>評価</th>
-						<td class="star">
-							<?php echo $this->Common->starBlock(50, $neighbor["Vote"]["single_avg"])?>
-						</td>
-						<td class="point"><?php echo $this->Common->pointFormat($neighbor["Vote"]["single_avg"])?></td>
-					</tr>
-				</table>
-				<p class="review">
-					<?php echo mb_strimwidth(h($neighbor["Vote"]["review"]), 0, 200, " … " . $this->Html->link("続き", array("path" => $title["Title"]["url_str"], "voteid" => $neighbor["Vote"]["id"], "ext" => "html")))?>
-				</p>
-				<table class="footer">
-					<tr>
-						<th><?php echo $this->Html->image("design/icon_poster20.gif", array("alt" => "投稿者"))?></th>
-						<td><?php echo $this->Common->posterName($neighbor["Vote"]["poster_name"])?></td>
-					</tr>
-					<tr>
-						<th><?php echo $this->Html->image("design/icon_date20.gif", array("alt" => "投稿日"))?></th>
-						<td><?php echo $this->Common->dateFormat($neighbor["Vote"]["created"], "datetime")?></td>
-					</tr>
-				</table>
+	
+	<div class="rate">
+		<div class="points">
+			<div class="points-body">
+				<ul>
+				<?php foreach($voteItems as $key => $voteItem):?>
+					<?php if($vote["Vote"][$key] > 3):?>
+					<li class="good">
+				<?php elseif($vote["Vote"][$key] < 3):?>
+					<li class="bad">
+				<?php else:?>
+					<li>
+				<?php endif;?>
+						<div class="caption" title="<?php echo $voteItem["label"]?>"><?php echo $voteItem["abbr"]?></div>
+						<div class="num"><?php echo $vote["Vote"][$key]?><span class="unit">点</span></div>
+					</li>
+				<?php endforeach;?>
+				</ul>
 			</div>
+		</div>
+		<div class="title-comp-rate title-comp-rate-<?php echo $this->TitlePage->goodOrBad($vote["Vote"]["single_avg"])?>">
+			<div class="caption">総合評価</div>
+			<div class="point"><span class="num"><?php echo $this->Common->pointFormat($vote["Vote"]["single_avg"])?></span>点</div>
+			<div class="icon"><i class="zmdi zmdi-thumb-<?php echo $this->TitlePage->goodOrBad($vote["Vote"]["single_avg"], array("up", "down"))?>"></i> <?php echo ucfirst($this->TitlePage->goodOrBad($vote["Vote"]["single_avg"]))?></div>
+		</div>
+	</div>
+
+	<?php echo $this->element("comp_shares", array("url" => $this->Html->url(null, true) . $this->request->here))?>
+
+	<!--Official Link-->
+	<?php echo $this->element("title_officiallink", array("titleWithStrs" => $titleWithStrs))?>
+</section>
+
+<?php if(!empty($neighbors["prev"]) or !empty($neighbors["next"])):?>
+<!-- review neighbors -->
+<section class="title-review-neighbors">
+	<?php $neighborStr = array(
+		"prev" => array(
+			"label" => "前",
+			"icon" => "left",
+		),
+		"next" => array(
+			"label" => "次",
+			"icon" => "right",
+		))?>
+	<?php foreach($neighbors as $key => $neighbor):?>
+	<div class="neighbor neighbor-<?php echo $key?>">
+		<div class="neighbor-body">
+		<?php if(!empty($neighbor)):?>
+			<div class="caption caption-<?php echo $this->TitlePage->goodOrBad($neighbor["Vote"]["single_avg"])?>">
+				<span class="rate"><i class="zmdi zmdi-thumb-<?php echo $this->TitlePage->goodOrBad($neighbor["Vote"]["single_avg"], array("up", "down"))?>"></i> <?php echo $this->Common->pointFormat($neighbor["Vote"]["single_avg"])?>点</span>
+				<a href="<?php echo $this->Html->url(array("path" => $title["Title"]["url_str"], "voteid" => $neighbor["Vote"]["id"], "ext" => "html"))?>"><i class="zmdi zmdi-arrow-<?php echo $neighborStr[$key]["icon"]?>"></i> <?php echo $neighborStr[$key]["label"]?>のレビュー</a>
+			</div>
+			<div class="review">
+				<h2><?php echo $this->Html->link($this->Common->voteTitle($neighbor["Vote"]), array("path" => $title["Title"]["url_str"], "voteid" => $neighbor["Vote"]["id"], "ext" => "html"))?></h2>
+				<p><?php echo mb_strimwidth(h($neighbor["Vote"]["review"]), 0, 300, " … " . $this->Html->link("続き", array("path" => $title["Title"]["url_str"], "voteid" => $neighbor["Vote"]["id"], "ext" => "html")))?></p>
+			</div>
+			<ul class="data">
+				<li><i class="zmdi zmdi-account"></i> <?php echo $this->Common->posterName($neighbor["Vote"]["poster_name"])?></li>
+				<li><i class="zmdi zmdi-time"></i> <?php echo $this->Common->dateFormat($neighbor["Vote"]["created"], "datetime")?></li>
+			</ul>
+
 		<?php else:?>
-			<?php echo $this->Gads->both250()?>
+			<?php echo $this->Gads->image300()?>
 		<?php endif;?>
 		</div>
-	<?php endforeach;?>
 	</div>
+	<?php endforeach;?>
+</section>
 <?php endif;?>
-</div>
-</div>
-<?php echo $this->element("title_details", array("titleWithStr" => $titleWithStr))?>
 
-<?php //echo $this->element("title_share")?>
+<!-- details -->
+<?php echo $this->element("title_details", array("titleWithStrs" => $titleWithStrs, "share" => false))?>
 
-<?php echo $this->element("title_relations", array($relations))?>
-
-<?php echo $this->Common->copyright($title["Title"]["copyright"])?>
+<!-- recommends -->
+<?php echo $this->element("title_recommends", array($recommends))?>

@@ -15,12 +15,6 @@ class MoniesController extends AppController
 		//
 		//Set
 		$this->set("moneycategories", $moneycategories);
-		//Set - Layout vars
-		$this->set("title_for_layout", "無料でお小遣い稼ぎ！ゲーム料金を無料で稼ごう");
-		$this->set("keywords_for_layout", "オンラインゲーム,小遣い稼ぎ,無料,ポイントサイト,アフィリエイト,WebMoney,ウェブマネー");
-		$this->set("description_for_layout", "ゲーム料金を無料で稼ごう！管理人も登録している安心サイトでゲーム料金＆お小遣い稼ぎ。。");
-		$this->set("h1_for_layout", "無料でお小遣い稼ぎ！ゲーム料金を無料で稼ごう");
-		$this->set("pankuz_for_layout", "ゲーム代を稼ぐ");
 	}
 
 	function view($path = null)
@@ -72,15 +66,6 @@ class MoniesController extends AppController
 			$this->set("pageData", $pageData);
 			$this->set("monies", $monies);
 			$this->set("moneycategories", $moneycategories);
-			//Set - Layout vars
-			$this->set("title_for_layout", $pageData["Moneycategory"]["str"] . "で稼ぐ！ゲーム料金を無料で稼ごう");
-			$this->set("keywords_for_layout", $pageData["Moneycategory"] . ",小遣い稼ぎ,無料");
-			$this->set("description_for_layout", $pageData["Moneycategory"]["str"] . "でゲーム料金を無料で稼ごう！管理人も登録している安心サイトのご紹介。");
-			$this->set("h1_for_layout", $pageData["Moneycategory"]["str"] . "で稼ぐ！ゲーム料金を無料で稼ごう");
-			$this->set("pankuz_for_layout", array(
-				array("str" => "ゲーム代を稼ぐ", "url" => array("action" => "index", "ext" => "html")),
-				$pageData["Moneycategory"]["str"]
-			));
 		}
 	}
 

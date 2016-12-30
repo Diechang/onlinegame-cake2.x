@@ -1,11 +1,11 @@
 <?php
-$this->Html->css(array('pages'), 'stylesheet', array('inline' => false));
-//
-$this->set("title_for_layout", "お問合せ");
-$this->set("keywords_for_layout", "お問合せ");
-$this->set("description_for_layout", "オンラインゲームライフへのお問い合わせはこちらからお願いします。");
-$this->set("h1_for_layout", "お問合せ");
+//set blocks
+$this->assign("title", "お問合せ");
+$this->assign("keywords", "お問合せ");
+$this->assign("description", "オンラインゲームライフへのお問い合わせはこちらからお願いします。");
+//pankuz
 $this->set("pankuz_for_layout", "お問合せ");
+//json ld
+$this->assign("json_ld", $this->JsonLd->breadCrumbList("お問合せ"));
 ?>
 <?php echo $this->element("form_letter")?>
-<?php echo $this->Gads->ads468()?>

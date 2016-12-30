@@ -7,10 +7,11 @@
 <?php echo $this->Form->end()?>
 <?php echo $this->Form->create("Title", array("action" => "lump"))?>
 	<h2>タイトル一覧</h2>
-	<p id="results"></p>
+	
+	<?php echo $this->element("sys_paginate")?>
+
 	<div class="controll">
 		<input type="submit" value="一括修正" class="btn" />
-		<input type="text" id="word_searcher" />
 	</div>
 <?php echo $this->element("sys_list_titles", array("titles" => $titles))?>
 	<div class="controll"><input type="submit" value="一括修正" class="btn" /></div>

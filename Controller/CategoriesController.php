@@ -25,59 +25,70 @@ class CategoriesController extends AppController
 		/**
 		 * Title Data
 		 */
-		//Get
-		$this->Title->Behaviors->attach('Containable');
-		$titles = $this->Title->find("all" , array(
-			"conditions" => array(
-				"Title.public" => 1,
-				"Title.service_id NOT" => 1,
-				"Category.id" => $pageData["Category"]["id"],
-			),
-			"fields" => array(
-				"title_official",
-				"title_read",
-				"url_str",
-				"thumb_name",
-				"description",
-				"service_id",
-				"service_start",
-				"test_start",
-				"test_end",
-				"category_text",
-				"fee_id",
-				"fee_text",
-				"ad_use",
-				"ad_text",
-				"official_url",
-				"Service.*",
-				"Fee.*",
-			),
-			"joins" => array(
-				array(
-					'table' => 'categories_titles',
-					'alias' => 'CategoriesTitle',
-					'type' => 'INNER',
-					'conditions' => 'CategoriesTitle.title_id = Title.id'
-				),
-				array(
-					'table' => 'categories',
-					'alias' => 'Category',
-					'type' => 'INNER',
-					'conditions' => 'Category.id = CategoriesTitle.category_id'
-				)
-			),
-			"group" => array("Title.id"),
-			"order" => array("Service.sort" , "Title.service_start DESC" , "Title.test_start DESC" , "Title.test_end DESC"),
-			"contain" => array("Category", "Service", "Fee"),
+		$titleIds = $this->Title->CategoriesTitle->find("list", array(
+			"fields" => "title_id",
+			"conditions" => array("category_id" => $pageData["Category"]["id"]),
 		));
-//		pr($titles);
-//		exit;
+		//Get
+		// $this->Title->Behaviors->attach('Containable');
+		$this->Paginator->settings = array(
+			"Title" => array(
+				"conditions" => array(
+					"Title.public" => 1,
+					"Title.service_id NOT" => 1,
+					"Title.id" =>  $titleIds,
+					// "Category.id" => $pageData["Category"]["id"],
+				),
+				"fields" => array(
+					"Title.title_official",
+					"Title.title_read",
+					"Title.url_str",
+					"Title.thumb_name",
+					"Title.description",
+					"Title.service_id",
+					"Title.service_start",
+					"Title.test_start",
+					"Title.test_end",
+					"Title.category_text",
+					"Title.fee_id",
+					"Title.fee_text",
+					"Title.ad_use",
+					"Title.ad_text",
+					"Title.official_url",
+					"Titlesummary.*",
+					"Service.*",
+					"Fee.*",
+				),
+				// "joins" => array(
+				// 	array(
+				// 		'table' => 'categories_titles',
+				// 		'alias' => 'CategoriesTitle',
+				// 		'type' => 'INNER',
+				// 		'conditions' => 'CategoriesTitle.title_id = Title.id'
+				// 	),
+				// 	array(
+				// 		'table' => 'categories',
+				// 		'alias' => 'Category',
+				// 		'type' => 'INNER',
+				// 		'conditions' => 'Category.id = CategoriesTitle.category_id'
+				// 	)
+				// ),
+				// "group" => array("Title.id"),
+				// "order" => array("Service.sort, Title.service_start DESC, Title.test_start DESC, Title.test_end DESC"),
+				"order" => "Title.service_start DESC",
+				"contain" => array("Titlesummary", "Category", "Service", "Fee"),
+				"paramType" => "querystring",
+			)
+		);
+		$titles = $this->Paginator->paginate("Title");
+		// pr($titles);
+		// exit;
 
-		$this->Title->unbindAll(array("Titlesummary"));
+		// $this->Title->unbindAll(array("Titlesummary"));
 		$pickups = $this->Title->find("all" , array(
 			"conditions" => array(
 				"Title.public" => 1,
-				"Title.id" => Set::extract($titles , "{n}.Title.id"),
+				"Title.id" => $titleIds,
 				"NOT" => array("Title.service_id" => 1),
 			),
 			"fields" => array(
@@ -89,11 +100,12 @@ class CategoriesController extends AppController
 				"Title.ad_use",
 				"Titlesummary.*"
 			),
-			"limit" => 4,
+			"limit" => 5,
 			"order" => array("Title.ad_use DESC , Titlesummary.vote_avg_all DESC , Titlesummary.vote_count_vote DESC"),
+			"contain" => "Titlesummary",
 		));
-//		pr($pickups);
-//		exit();
+		// pr($pickups);
+		// exit();
 		//
 		//Set
 		$this->set("titles" , $titles);

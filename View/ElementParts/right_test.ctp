@@ -1,32 +1,35 @@
-<!-- テスト -->
-<div class="rightBox rightTest">
-	<h2><?php echo $this->Html->image("design/rightbox_test_title.gif", array("alt" => "無料テスト中オンラインゲーム"))?></h2>
-	<div class="comment"><?php echo $this->Html->image("design/rightbox_test_comment.gif", array("alt" => "完全無料のテスト中タイトル"))?></div>
-	<div class="body">
+<!-- tests -->
+<section class="tests framed">
+	<div class="framed-body">
+		<h2>
+			<span class="main">無料テスト中オンラインゲーム</span>
+			<span class="sub">新作ゲームを無料で遊ぶチャンス！</span>
+		</h2>
+		<ul class="titles">
 <?php foreach($rightTests as $rightTest):?>
-		<div class="item">
-			<h3>
-				<?php echo $this->Common->titleLinkText(
-				$this->Common->titleWithSpan($rightTest["Title"]["title_official"], $rightTest["Title"]["title_read"]),
-				$rightTest["Title"]["url_str"])?>
-			</h3>
-			<div class="thumb">
-				<?php echo $this->Common->titleLinkThumb(
-					$this->Common->thumbName($rightTest["Title"]["thumb_name"]),
-					$this->Common->titleWithCase($rightTest["Title"]["title_official"], $rightTest["Title"]["title_read"]),
-					$rightTest["Title"]["url_str"], 60)?>
-			</div>
-			<p class="description">
-				<?php echo mb_strimwidth(strip_tags($rightTest["Title"]["description"]), 0, 120, " …", "UTF-8")?>
-			</p>
-			<p class="icon_<?php echo $rightTest["Service"]["path"]?>">
-				<?php echo $this->Common->dateFormat($rightTest["Title"]["test_start"], "date") . "～" . $this->Common->dateFormat($rightTest["Title"]["test_end"], "date")?>
-			</p>
-			<p class="icon_official">
-				<?php echo $this->Common->officialLinkText($rightTest["Title"]["title_official"], $rightTest["Title"]["ad_use"], $rightTest["Title"]["ad_text"], $rightTest["Title"]["official_url"])?>
-			</p>
-		</div>
+			<li>
+				<h2 class="title">
+					<?php echo $this->Common->titleLinkText(
+						$this->Common->titleSeparatedSpan($rightTest["Title"]["title_official"], $rightTest["Title"]["title_read"]),
+						$rightTest["Title"]["url_str"])?>
+				</h2>
+				<div class="image">
+					<?php echo $this->Common->titleLinkThumb(
+						$this->Common->thumbName($rightTest["Title"]["thumb_name"]),
+						$this->Common->titleWithCase($rightTest["Title"]["title_official"], $rightTest["Title"]["title_read"]),
+						$rightTest["Title"]["url_str"], 60)?>
+				</div>
+				<p class="description"><?php echo mb_strimwidth(strip_tags($rightTest["Title"]["description"]), 0, 120, " …", "UTF-8")?></p>
+				<p class="data">
+					<?php echo $this->Common->testLabel($rightTest["Service"]["id"]);?>
+					<span class="value"><?php echo $this->Common->dateFormat($rightTest["Title"]["test_start"], "date") . "～" . $this->Common->dateFormat($rightTest["Title"]["test_end"], "date")?></span>
+				</p>
+				<p class="data data-official">
+					<span class="label label-official">公式サイト</span>
+					<?php echo $this->Common->officialLinkText($rightTest["Title"]["title_official"], $rightTest["Title"]["ad_use"], $rightTest["Title"]["ad_text"], $rightTest["Title"]["official_url"])?>
+				</p>
+			</li>
 <?php endforeach;?>
-		<p class="icon_feed16"><?php echo $this->Html->link("無料テスト情報RSS", "http://feeds.feedburner.com/dz-game/test")?></p>
+		</ul>
 	</div>
-</div>
+</section>

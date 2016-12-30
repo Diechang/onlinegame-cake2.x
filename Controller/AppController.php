@@ -35,7 +35,7 @@
 class AppController extends Controller
 {
 
-	var $helpers	= array("Html", "Form", "Session", "Paginator", "Common", "Gads", "Ogp", "RichSnippets");
+	var $helpers	= array("Html" => array('configFile' => 'html5_tags'), "Form", "Session", "Paginator", "Common", "Gads", "Meta", "JsonLd");
 	var $uses		= array("Title", "User");
 	var $components	= array("Session" ,/* "Security", */"Cookie", "RequestHandler", "Paginator", 
 						"Auth" => array(
@@ -45,9 +45,9 @@ class AppController extends Controller
 								"sys" => true,
 							),
 							"loginRedirect" => array(
+								"sys" => true,
 								"controller" => "pages",
 								"action" => "home",
-								"sys" => true,
 							),
 							"logoutRedirect" => array(
 								"controller" => "users",

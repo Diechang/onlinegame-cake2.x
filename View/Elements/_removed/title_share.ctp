@@ -1,4 +1,4 @@
-<?php $url = "http://onlinegame.dz-life.net" . $this->Html->url(array("controller" => "titles", "action" => "index", "path" => $title["Title"]["url_str"], "ext" => "html"))?>
+<?php $url = $this->Html->url(array("controller" => "titles", "action" => "index", "path" => $title["Title"]["url_str"], "ext" => "html"), true)?>
 <!--Bookmark & Share-->
 <?php if($this->request->action == "index"):?>
 <fb:comments href="<?php echo $url?>" num_posts="2" width="510"></fb:comments>

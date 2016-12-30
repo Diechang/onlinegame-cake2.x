@@ -5,7 +5,7 @@
 class TitlePageHelper extends AppHelper
 {
 	//Use Helper
-	var $helpers = array('Html');
+	var $helpers = array('Html', 'Common');
 
 /**
  * メタキーワード
@@ -22,16 +22,16 @@ class TitlePageHelper extends AppHelper
 	{
 		$words	= array($official, $read, $abbr, $sub);
 		$mores	= array(
-			"index"		=> array("動作環境","スペック","ツイート","ニュース"),
+			"index"		=> array("動作環境", "スペック", "動画", "ムービー", "パッケージ"),
 			"rating"	=> array("評価"),
 			"review"	=> array("レビュー"),
-			"allvotes"	=> array("レビュー","評価"),
-			"single"	=> array("レビュー","評価"),
-			"events"	=> array("イベント","キャンペーン"),
-			"event"		=> array("イベント","キャンペーン"),
-			"pc"		=> array("推奨PC","パソコン","モデル"),
-			"link"		=> array("攻略","WIKI","ファンサイト"),
-			"search"	=> array("動画","ムービー","ブログ"),
+			"allvotes"	=> array("レビュー", "評価"),
+			"single"	=> array("レビュー", "評価"),
+			"events"	=> array("イベント", "キャンペーン"),
+			"event"		=> array("イベント", "キャンペーン"),
+			"pc"		=> array("推奨PC", "パソコン", "モデル"),
+			"link"		=> array("攻略", "WIKI", "ファンサイト"),
+			"search"	=> array("動画", "ムービー", "ブログ"),
 		);
 		$ret = array_merge(array_filter($words), $mores[$action]);
 		return $this->output(implode(",", $ret));
@@ -48,21 +48,15 @@ class TitlePageHelper extends AppHelper
 	{//$id = youtube v param
 		if(!empty($id))
 		{
-			return '<div class="movie">
-						<object width="500" height="295">
-						<param name="movie" value="http://www.youtube.com/v/' . $id . '?fs=1&amp;hl=ja_JP"></param>
-						<param name="allowFullScreen" value="true"></param>
-						<param name="allowscriptaccess" value="always"></param>
-						<embed src="http://www.youtube.com/v/' . $id . '?fs=1&amp;hl=ja_JP" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="500" height="295"></embed>
-						</object>
-					</div>';
+			return '<div class="video"><iframe width="640" height="360" src="https://www.youtube.com/embed/' . $id . '" frameborder="0" allowfullscreen></iframe></div>';
 		}
 		else
 		{
-			return '<p class="none">関連動画が登録されていません。<br />ムービー・ブログページで探すことができます。</p>';
+			return '<p class="noData">関連動画が登録されていません。</p>';
 		}
 	}
 
+	
 /**
  * スペックデータ列：左右同値なら一行化
  *
@@ -98,9 +92,8 @@ class TitlePageHelper extends AppHelper
 	}
 
 
-/**Links
+/** Links
 ------------------------------ **/
-
 /**
  * 公式バナー
  *
@@ -113,25 +106,25 @@ class TitlePageHelper extends AppHelper
  * @return	html
  * @access	public
  */
-	function officialLinkBanner($ad_use, $ad_banner_l, $title, $official_url, $service_id = null, $onlybanner = false)
-	{
-		if($service_id != 1 or $service_id == null)
-		{
-			$ret	 = "<div class=\"tCenter officialLink\">";
-			$ret	.= (!$onlybanner) ? $title . "で遊ぶ！<br />\n" : "";
-			if(!empty($ad_use))
-			{
-				$ret	.= $ad_banner_l;
-			}
-			else
-			{
-				$ret	.= $this->Html->link($title . "公式サイト", $official_url, array("target" => "_blank"));
-			}
-			$ret	.= "</div>";
-			//
-			return $ret;
-		}
-	}
+	// function official_link_banner($ad_use, $ad_banner_l, $title, $official_url, $service_id = null, $onlybanner = false)
+	// {
+	// 	if($service_id != 1 or $service_id == null)
+	// 	{
+	// 		$ret	 = "<div class=\"tCenter officialLink\">";
+	// 		$ret	.= (!$onlybanner) ? $title . "で遊ぶ！<br />\n" : "";
+	// 		if(!empty($ad_use))
+	// 		{
+	// 			$ret	.= $ad_banner_l;
+	// 		}
+	// 		else
+	// 		{
+	// 			$ret	.= $this->Html->link($title . "公式サイト", $official_url, array("target" => "_blank"));
+	// 		}
+	// 		$ret	.= "</div>";
+	// 		//
+	// 		return $ret;
+	// 	}
+	// }
 
 /**
  * 投稿リンクボタン
@@ -140,10 +133,10 @@ class TitlePageHelper extends AppHelper
  * @return	html
  * @access	public
  */
-	function voteLinkButton($path)
-	{
-		return '<div class="voteButton">' . $this->Html->image("design/titles_common_button_vote.gif", array("alt" => "評価点数・レビューを投稿する", "url" => array("controller" => "titles", "action" => "review", "path" => $path, "ext" => "html", "#" => "voteform"))) . '</div>';
-	}
+	// function voteLinkButton($path)
+	// {
+	// 	return '<div class="voteButton">' . $this->Html->image("design/titles_common_button_vote.gif", array("alt" => "評価点数・レビューを投稿する", "url" => array("controller" => "titles", "action" => "review", "path" => $path, "ext" => "html", "#" => "voteform"))) . '</div>';
+	// }
 
 /**
  * 投稿ボタン
@@ -152,9 +145,26 @@ class TitlePageHelper extends AppHelper
  * @return	html
  * @access	public
  */
-	function voteButton($path)
+	// function voteButton($path)
+	// {
+	// 	return '<div class="votebutton">' . $this->Html->image("design/titles_button_vote_normal.gif", array("alt" => "レビュー・評価", "url" => array("controller" => "titles", "action" => "review", "path" => $path, "ext" => "html", "#" => "voteform"))) . '</div>';
+	// }
+
+
+/** Rates
+------------------------------ **/
+/**
+ * good class or bad class
+ * 
+ * @param	number	$point
+ * @param	array	$labels strings
+ * @param	number	$limit
+ * @return	string
+ * @access	public
+ */
+	function goodOrBad($point, $labels = array("good", "bad"), $limit = 3)
 	{
-		return '<div class="votebutton">' . $this->Html->image("design/titles_button_vote_normal.gif", array("alt" => "レビュー・評価", "url" => array("controller" => "titles", "action" => "review", "path" => $path, "ext" => "html", "#" => "voteform"))) . '</div>';
+		return ($point < $limit) ? $labels[1] : $labels[0];
 	}
 }
 ?>

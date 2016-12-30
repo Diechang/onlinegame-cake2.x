@@ -1,61 +1,80 @@
-<!--Details-->
-<div class="content details">
-	<h2><?php echo $this->Html->image("design/titles_details_title.gif", array("alt" => "ゲーム紹介"))?></h2>
-	<div class="body">
-		<p class="title">
-			<?php echo $this->Common->officialLinkText(
-			$titleWithStr["Span"],
-			$title["Title"]["ad_use"], $title["Title"]["ad_text"], $title["Title"]["official_url"], $title["Title"]["service_id"], true)?>
-		</p>
-		<div class="thumb">
-			<?php echo $this->Html->image($this->Common->thumbName($title["Title"]["thumb_name"]),
-				array("width" => 160, "alt" => $titleWithStr["Case"]))?>
+<!-- summary -->
+<section class="title-summary">
+<?php if(empty($intro)):?>
+	<h2><?php echo $titleWithStrs["Span"]?></h2>
+<?php endif;?>
+	<section class="data">
+		<div class="data-counts">
+			<div class="rate">
+				<div class="value">総合評価<span class="num"><?php echo $this->Common->pointFormat($title["Titlesummary"]["vote_avg_all"], " -- ")?></span>点</div>
+				<?php echo $this->Common->starBlock($title["Titlesummary"]["vote_avg_all"])?>
+			</div>
+			<div class="count count-review">
+				<div class="caption">レビュー</div>
+				<div class="value"><span class="num"><?php echo number_format($title["Titlesummary"]["vote_count_review"])?></span>件</div>
+			</div>
+			<div class="count count-vote">
+				<div class="caption">評価投稿</div>
+				<div class="value"><span class="num"><?php echo number_format($title["Titlesummary"]["vote_count_vote"])?></span>件</div>
+			</div>
 		</div>
-		<div class="description"><?php echo $title["Title"]["description"]?></div>
-		<table class="properties">
-			<tr>
-				<th><?php echo $this->Html->image("design/icon_fee.gif", array("alt" => "料金"))?></th>
-				<td><?php echo $this->Common->feeData($title["Title"]["fee_text"], $title["Title"]["fee_id"], $title["Fee"]["str"], $title["Title"]["service_id"], $title["Service"]["str"])?></td>
-			</tr>
-			<tr>
-				<th><?php echo $this->Html->image("design/icon_genre.gif", array("alt" => "ジャンル"))?></th>
-				<td>
-					<?php echo $this->Common->categoriesLink($title["Category"])?>
-				</td>
-			</tr>
-			<tr>
-				<th><?php echo $this->Html->image("design/icon_style.gif", array("alt" => "スタイル"))?></th>
-				<td>
-					<?php echo $this->Common->stylesLink($title["Style"])?>
-				</td>
-			</tr>
-<?php if($title["Service"]["id"] == 3 or $title["Service"]["id"] == 4):?>
-			<tr>
-				<th><?php echo $this->Html->image("design/icon_" . $title["Service"]["path"] . ".gif", array("alt" => $title["Service"]["str"]))?></th>
-				<td><?php echo $this->Common->termFormat($title["Title"]["test_start"], $title["Title"]["test_end"])?></td>
-			</tr>
+		<div class="data-properties">
+			<table>
+				<tr>
+					<th>料金</th>
+					<td><?php echo $this->Common->feeData($title["Title"]["fee_text"], $title["Title"]["fee_id"], $title["Fee"]["str"], $title["Title"]["service_id"], $title["Service"]["str"])?></td>
+				</tr>
+				<tr>
+					<th>ジャンル</th>
+					<td>
+						<?php echo $this->Common->categoriesLink($title["Category"])?>
+					</td>
+				</tr>
+				<tr>
+					<th>スタイル</th>
+					<td>
+						<?php echo $this->Common->stylesLink($title["Style"])?>
+					</td>
+				</tr>
+				<tr>
+					<th><?php echo $title["Service"]["str"]?></th>
+					<td>
+<?php if($title["Service"]["id"] == 2):?>
+						<?php echo $this->Common->dateFormat($title["Title"]["service_start"], "date")?>
+<?php elseif($title["Service"]["id"] == 3 or $title["Service"]["id"] == 4):?>
+						<?php echo $this->Common->termFormat($title["Title"]["test_start"], $title["Title"]["test_end"])?>
+<?php else:?>
 <?php endif;?>
+					</td>
+				</tr>
+			</table>
+
 <?php if(isset($title["Title"]["votable"]) && $title["Title"]["votable"]):?>
-			<tr>
-				<th><?php echo $this->Html->image("design/icon_rating_total.gif", array("alt" => "総合評価"))?></th>
-				<td>
-					<span class="point cRed"><?php echo $this->Common->pointFormat($title["Titlesummary"]["vote_avg_all"], " -- ")?>点</span>
-					/ <a href="<?php echo $this->Html->url(array("action" => "review", "path" => $title["Title"]["url_str"], "ext" => "html"))?>">レビュー：<?php echo $this->Common->countFormat($title["Titlesummary"]["vote_count_review"])?>件</a>
-					/ <a href="<?php echo $this->Html->url(array("action" => "rating", "path" => $title["Title"]["url_str"], "ext" => "html"))?>">評価：<?php echo $this->Common->countFormat($title["Titlesummary"]["vote_count_vote"])?>件</a>
-				</td>
-			</tr>
+			<div class="actions">
+				<div class="vote"><?php echo $this->Html->link("レビュー・評価を投稿", array("action" => "review", "path" => $title["Title"]["url_str"], "ext" => "html", "#" => "form"), array("class" => "button button-accent button-block"))?></div>
+				<div class="link"><?php echo $this->Html->link("攻略・ファンサイトを登録", array("controller" => "fansites", "action" => "add", $title["Title"]["id"]), array("class" => "button button-info button-block"))?></div>
+			</div>
 <?php endif;?>
-		</table>
-<?php if(isset($title["Title"]["votable"]) && $title["Title"]["votable"]):?>
-		<ul class="buttons">
-			<li class="votes"><a href="<?php echo $this->Html->url(array("action" => "review", "path" => $title["Title"]["url_str"], "ext" => "html", "#" => "voteform"))?>"><?php echo $this->Html->image("design/titles_details_button_votes.gif", array("alt" => "評価・レビューを投稿"))?></a></li>
-			<li class="links"><a href="<?php echo $this->Html->url(array("controller" => "fansites", "action" => "add", $title["Title"]["id"]))?>"><?php echo $this->Html->image("design/titles_details_button_links.gif", array("alt" => "攻略・ファンサイトを登録"))?></a></li>
-		</ul>
+		</div>
+	</section>
+
+<?php if(!empty($intro)):?>
+	<section class="intro">
+		<div class="intro-body">
+			<h2>ゲーム紹介</h2>
+			<div class="image"><?php echo $this->Html->image($this->Common->thumbName($title["Title"]["thumb_name"]),
+				array("width" => 160, "alt" => $titleWithStrs["Case"]))?></div>
+			<div class="body">
+				<?php echo $title["Title"]["description"]?>
+			</div>
+		</div>
+	</section>
 <?php endif;?>
-		<p class="officialLink">
-			<?php echo $this->Common->officialLinkText(
-			$title["Title"]["title_official"],
-			$title["Title"]["ad_use"], $title["Title"]["ad_text"], $title["Title"]["official_url"], $title["Title"]["service_id"])?>
-		</p>
-	</div>
-</div>
+	
+	<!--Official Link-->
+	<?php echo $this->element("title_officiallink", array("titleWithStrs" => $titleWithStrs))?>
+<?if(!isset($share) or $share != false):?>
+	<?php echo $this->element("comp_shares", array("url" => $this->Html->url(array("controller" => "titles", "action" => "index", "path" => $title["Title"]["url_str"], "ext" => "html"), true)))?>
+<?php endif;?>
+	<?php echo $this->Common->copyright($title["Title"]["copyright"])?>
+</section>

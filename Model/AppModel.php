@@ -45,6 +45,17 @@ class AppModel extends Model
 	}
 
 /**
+ * コールバック
+ *
+ * @params	array	$queryData
+ * @access	public
+ */
+	// function beforeFind($queryData)
+	// {
+	// 	debug($queryData);
+	// }
+
+/**
  * バーチャルフィールド用配列
  *
  * @var		array

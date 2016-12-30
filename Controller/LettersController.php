@@ -28,25 +28,19 @@ class LettersController extends AppController
 					$email->subject('[DZ]お問合せ');
 					$email->send($this->request->data["Letter"]["body"]);
 					//
-					$this->Session->setFlash("お問合せありがとうございました");
+					$this->Session->setFlash("お問合せありがとうございました", "flash_default", array("type" => "success", "body" => "頂いたお問い合わせ内容はすべて確認しておりますが、返信を保証するものではありませんのでご了承ください。"));
 					return $this->redirect(array('action' => 'add'));
 				}
 				else
 				{
-					$this->Session->setFlash("入力エラーです");
+					$this->Session->setFlash("入力エラーです", "flash_default");
 				}
 			}
 			else
 			{
-				$this->Session->setFlash("認証番号が不正です");
+				$this->Session->setFlash("認証番号が不正です", "flash_default");
 			}
 		}
-		//Layout vars
-		$this->set("title_for_layout", "お問合せ");
-		$this->set("keywords_for_layout", "お問合せ");
-		$this->set("description_for_layout", "オンラインゲームライフへのお問い合わせはこちらからお願いします。");
-		$this->set("h1_for_layout", "お問合せ");
-		$this->set("pankuz_for_layout", "お問合せ");
 	}
 
 	/**

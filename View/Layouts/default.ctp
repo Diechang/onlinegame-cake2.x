@@ -1,59 +1,82 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://ogp.me/ns/fb#">
+<!DOCTYPE HTML>
+<!--[if lt IE 7 ]><html class="ie ie6"><![endif]-->
+<!--[if IE 7 ]><html class="ie ie7"><![endif]-->
+<!--[if IE 8 ]><html class="ie ie8"><![endif]-->
+<!--[if IE 9 ]><html class="ie ie9"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html><!--<![endif]-->
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title><?php echo $title_for_layout ?> - <?php echo Configure::read("Site.name")?></title>
-<meta name="Keywords" content="<?php echo $keywords_for_layout ?>" />
-<meta name="Description" content="<?php echo $description_for_layout ?>" />
-<?php echo $this->Common->metaTags($metaTags)?>
+<meta charset="utf-8">
 
-<?php echo $this->Ogp->ogptags()?>
+<title><?php echo $this->fetch("title")?> - オンラインゲームライフ</title>
+<meta name="Keywords" content="<?php echo $this->fetch("keywords")?>">
+<meta name="Description" content="<?php echo $this->fetch("description")?>">
 
-<meta http-equiv="Content-Script-Type" content="text/javascript" />
-<meta http-equiv="Content-Style-Type" content="text/css" />
-<link rel="alternate" type="application/rss+xml" title="最新オンラインゲーム" href="http://feeds.feedburner.com/dz-game/newstart" />
-<link rel="alternate" type="application/rss+xml" title="新着レビュー投稿" href="http://feeds.feedburner.com/dz-game/review" />
-<link rel="alternate" type="application/rss+xml" title="無料テスト情報" href="http://feeds.feedburner.com/dz-game/test" />
-<link rel="alternate" type="application/rss+xml" title="新着オンラインゲーム" href="http://feeds.feedburner.com/dz-game/newgames" />
-<link href="/css/common.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="/js/jquery.js"></script>
-<script type="text/javascript" src="/js/lib.js"></script>
-<script type="text/javascript" src="/js/hc.js"></script>
+<?php echo $this->fetch("meta")?>
 
-<?php echo $scripts_for_layout?>
+<?php echo $this->Meta->ogpTags()?>
 
-<script type="text/javascript" src="http://apis.google.com/js/plusone.js">{lang: 'ja'}</script>
-<script type="text/javascript" src="/js/analytics.js"></script>
+<link rel="alternate" type="application/rss+xml" title="最新オンラインゲーム" href="http://feeds.feedburner.com/dz-game/newstart">
+<link rel="alternate" type="application/rss+xml" title="新着レビュー投稿" href="http://feeds.feedburner.com/dz-game/review">
+<link rel="alternate" type="application/rss+xml" title="無料テスト情報" href="http://feeds.feedburner.com/dz-game/test">
+<link rel="alternate" type="application/rss+xml" title="新着オンラインゲーム" href="http://feeds.feedburner.com/dz-game/newgames">
+
+<!-- CSS Libs -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+
+<!-- CSS -->
+<link rel="stylesheet" href="/css/styles.css">
+<?php echo $this->fetch("css")?>
+<?php if(Configure::read('debug') > 0):?>
+<link rel="stylesheet" href="/css/cake.css">
+<?php endif;?>
+
+<!-- JS Libs -->
+<script src="/js/libs/modernizr-2.8.3.min.js"></script>
+<script src="/js/libs/jquery-1.11.2.min.js"></script>
+
 </head>
 
-<body>
-<!-- FB SDK -->
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.3&appId=293306697370465";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+<body<?php if(isset($body_class)):?> class="<?php echo $body_class?>"<?php endif;?>>
+<?php
+	echo $this->element('code_analytics');
+	echo $this->element('code_fbsdk');
+?>
 
-<div id="back">
-	<div id="wrap">
-		<h1><?php echo $h1_for_layout ?></h1>
-		<!-- Contents -->
-		<div id="contents" class="clearfix">
-			<p class="pankuz"<?php echo $this->RichSnippets->ns()?>><span<?php echo $this->RichSnippets->typeof("Breadcrumb")?>><a href="/" <?php echo $this->RichSnippets->rel("url")?><?php echo $this->RichSnippets->property("title")?><?php echo $this->RichSnippets->content(Configure::read("Site.name"))?>>オンラインゲームライフトップ</a></span><?php echo $this->Common->pankuz($pankuz_for_layout)?></p>
-			<!-- Main -->
-			<div id="main" class="clearfix">
-				<!-- Center -->
-				<div id="center" class="contents">
+<?php
+	echo $this->element('global_header', array(), array("cache" => array("config" => "element")));
+?>
+	
+	<aside class="pankuz">
+		<ul>
+			<li class="top"><a href="/">トップ</a></li>
+			<?php echo $this->Common->pankuzLinks($pankuz_for_layout)?>
+		</ul>
+	</aside>
+
+<?php
+	//title header
+	echo $this->fetch("title_header");
+?>
+
+	<!-- Contents -->
+	<div class="contents">
+		<div class="contents-wrap">
+			<div class="contents-body">
+				<!-- Main contents -->
+				<div class="contents-main">
+					
+					<?php echo $this->Session->flash()?>
+
+					<main>
 					<?php
-						echo $content_for_layout;
-					echo $this->element("ad_center_bottoms", array(), array("cache" => array("config" => "element")));
+						echo $this->fetch("content");
+						echo $this->element("ad_center_bottoms", array(), array("cache" => array("config" => "element")));
 					?>
+					</main>
 				</div>
-				<!-- Left -->
-				<div id="left">
+				<!-- Side contents -->
+				<div class="contents-side">
+					<div class="floating">
 <?php
 	echo $this->element("ad_left_tops", array(), array("cache" => array("config" => "element")));
 	echo $this->element("left_category", array(), array("cache" => array("config" => "element")));
@@ -62,17 +85,18 @@
 	echo $this->element("left_pushsite");
 	echo $this->element("left_pcshop", array(), array("cache" => array("config" => "element")));
 	echo $this->element("left_feeds");
-if($this->request->params["controller"] != "titles")
-{
-	echo $this->element("left_share");
-}
+	// echo $this->element("left_share");
 	echo $this->element("left_ranking", array(), array("cache" => array("config" => "element")));
 	echo $this->element("ad_left_bottoms", array(), array("cache" => array("config" => "element")));
 ?>
+					</div>
 				</div>
 			</div>
-			<!-- Right -->
-			<div id="right">
+
+			<!-- Sub contents -->
+			<div class="contents-sub">
+				<div class="floating">
+
 <?php
 	echo $this->element("ad_right_tops", array(), array("cache" => array("config" => "element")));
 	echo $this->element('right_test', array(), array("cache" => array("config" => "element")));
@@ -81,25 +105,29 @@ if($this->request->params["controller"] != "titles")
 	echo $this->element('right_fblikebox');
 	echo $this->element("ad_right_bottoms", array(), array("cache" => array("config" => "element")));
 ?>
-
+				</div>
 			</div>
 		</div>
 
-<?php
-	echo $this->element('global_header', array(), array("cache" => array("config" => "element")));
-?>
-<?php
-if (Configure::read('debug') > 0)
-{
-	echo $this->element('sql_dump');
-	debug($this->request);
-}
-?>
+	</div>
+
 <?php
 	echo $this->element('footer');
 ?>
 
-	</div>
-</div>
+<!-- header floating -->
+<header class="floating">
+<?php
+	echo $this->element('global_header_floating', array(), array("cache" => array("config" => "element")));
+	//title nav
+	echo $this->fetch("title_nav_floating");
+?>
+</header>
+
+<!-- JS -->
+<?php echo $this->fetch("script")?>
+
+<?php echo $this->fetch("json_ld")?>
+
 </body>
 </html>

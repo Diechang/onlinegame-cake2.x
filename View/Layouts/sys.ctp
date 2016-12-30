@@ -6,13 +6,13 @@
 
 <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <link href="/css/bubblepopup/jquery.bubblepopup.css" rel="stylesheet" type="text/css" />
-<link href="/css/sys_new.css" rel="stylesheet" type="text/css" />
+<link href="/css/sys.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <!-- <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script> -->
 <script type="text/javascript" src="/js/jquery.tablesorter.min.js"></script>
 <script type="text/javascript" src="/js/jquery.bubblepopup.min.js"></script>
 <script type="text/javascript" src="/js/tiny_mce/jquery.tinymce.js"></script>
-<script type="text/javascript" src="/js/sys_new.js"></script>
+<script type="text/javascript" src="/js/sys.js"></script>
 </head>
 
 <body>
@@ -63,6 +63,10 @@
 <?php if($params["controller"] == "titles" && ($params["action"] == "sys_index" || $params["action"] == "sys_edit")):?>
 				<li class="active"><?php else:?>
 				<li><?php endif;?><?php echo $this->Html->link("タイトル一覧", array("controller" => "titles", "action" => "index", "sys" => true))?></li>
+
+<?php if($params["controller"] == "titles" && ($params["action"] == "sys_withads")):?>
+				<li class="active"><?php else:?>
+				<li><?php endif;?><?php echo $this->Html->link("広告付きタイトル", array("controller" => "titles", "action" => "withads", "sys" => true))?></li>
 
 <?php if($params["controller"] == "specs" && ($params["action"] == "sys_index" || $params["action"] == "sys_edit")):?>
 				<li class="active"><?php else:?>

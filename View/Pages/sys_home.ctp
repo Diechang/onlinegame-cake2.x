@@ -10,7 +10,10 @@
 </h3>
 
 <?php echo $this->Form->create("Title", array("url" => array("controller" => "titles", "action" => "lump")))?>
-	<h2>タイトル10件 <?php echo $this->Html->link("一覧", array("controller" => "titles", "action" => "index"))?></h2>
+	<h2>タイトル10件
+		<?php echo $this->Html->link("一覧", array("controller" => "titles", "action" => "index"))?>
+		<?php echo $this->Html->link("広告付きタイトル", array("controller" => "titles", "action" => "withads"))?>
+	</h2>
 	<?php echo $this->element("sys_list_titles", array("titles" => $titles))?>
 	<div class="controll"><input type="submit" value="タイトル一括修正" class="btn" /></div>
 <?php echo $this->Form->end()?>

@@ -15,7 +15,7 @@ class GadsHelper extends AppHelper
 	function ads468($withdiv = true)
 	{
 		$src = "";
-		$src .= ($withdiv) ?  "<div class=\"tCenter\">\n" : "";
+		$src .= ($withdiv) ?  "<div class=\"gAds\">\n" : "";
 		
 		$src .= $this->both468();
 		
@@ -67,6 +67,30 @@ google_ad_height = 250;
 </script>
 <script type="text/javascript"
 src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+HIRE;
+		return $src;
+	}
+
+/**
+ * Image 300x250
+ *
+ * @return	html
+ * @access	public
+ */
+	function image300()
+	{
+		$src = <<< HIRE
+<!-- Google Adsense 300 -->
+<script type="text/javascript">
+google_ad_client = "ca-pub-5378944923532596";
+google_ad_slot = "6748251167";
+google_ad_width = 300;
+google_ad_height = 250;
+</script>
+<!-- [DZ]onlinegame image300 -->
+<script type="text/javascript"
+src="//pagead2.googlesyndication.com/pagead/show_ads.js">
 </script>
 HIRE;
 		return $src;

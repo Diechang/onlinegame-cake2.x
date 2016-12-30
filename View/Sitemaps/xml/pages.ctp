@@ -26,9 +26,11 @@
 <url><loc><?php echo $domain . $this->Html->url(array("controller" => "titles", "action" => "index", "path" => $t["Title"]["url_str"], "ext" => "html"))?></loc></url>
 <url><loc><?php echo $domain . $this->Html->url(array("controller" => "titles", "action" => "rating", "path" => $t["Title"]["url_str"], "ext" => "html"))?></loc></url>
 <url><loc><?php echo $domain . $this->Html->url(array("controller" => "titles", "action" => "review", "path" => $t["Title"]["url_str"], "ext" => "html"))?></loc></url>
-<url><loc><?php echo $domain . $this->Html->url(array("controller" => "titles", "action" => "allvotes", "path" => $t["Title"]["url_str"], "ext" => "html"))?></loc></url>
 <url><loc><?php echo $domain . $this->Html->url(array("controller" => "titles", "action" => "link", "path" => $t["Title"]["url_str"], "ext" => "html"))?></loc></url>
+<?php /*
+<url><loc><?php echo $domain . $this->Html->url(array("controller" => "titles", "action" => "allvotes", "path" => $t["Title"]["url_str"], "ext" => "html"))?></loc></url>
 <url><loc><?php echo $domain . $this->Html->url(array("controller" => "titles", "action" => "search", "path" => $t["Title"]["url_str"], "ext" => "html"))?></loc></url>
+*/ ?>
 <?php if(!empty($t["Titlesummary"]["pc_count"])):?>
 <url><loc><?php echo $domain . $this->Html->url(array("controller" => "titles", "action" => "pc", "path" => $t["Title"]["url_str"], "ext" => "html"))?></loc></url>
 <?php endif;?>

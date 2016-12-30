@@ -5,7 +5,7 @@
 class CommonHelper extends AppHelper
 {
 	//Use Helper
-	var $helpers = array('Html', 'RichSnippets');
+	var $helpers = array('Html');
 
 /**
  * 投稿者名初期値
@@ -14,47 +14,11 @@ class CommonHelper extends AppHelper
  * @access	public
  */
 	var $emptyPosterName = "名無し";
-
-/**
- * メタタグマップ
- *
- * @var		array
- * @access	public
- */
-	var $metaTagMaps = array(
-		"noindex" => array("name" => "robots", "contents" => "noindex"),
-	);
+	var $empty_poster_name = "名無し";
+	
 
 /** Util
 ------------------------------ **/
-
-/**
- * metaタグ出力
- *
- * @param	array	$data Array(Array(cakephp meta options))
- * @return	html
- * @access	public
- */
-	function metaTags(&$data)
-	{
-		$ret = "";
-		if(!empty($data))
-		{
-			foreach($data as $val)
-			{
-				if(is_string($val))
-				{
-					$ret .= $this->Html->meta($this->metaTagMaps[$val]) . "\n";
-				}
-				elseif(is_array($val))
-				{
-					$ret .= $this->Html->meta($val) . "\n";
-				}
-			}
-		}
-		return $this->output($ret);
-	}
-
 
 /**
  * パンクズ出力
@@ -63,7 +27,7 @@ class CommonHelper extends AppHelper
  * @return	html
  * @access	public
  */
-	function pankuz($data)
+	function pankuzLinks($data)
 	{
 		if(!empty($data))
 		{
@@ -72,22 +36,22 @@ class CommonHelper extends AppHelper
 				$ret = "";
 				foreach($data as $val)
 				{
-					$ret .= "<span" . $this->RichSnippets->typeof("Breadcrumb") . ">";
+					$ret .= "<li>";
 					if(is_array($val))
 					{//文字列["str"]とURL配列["url"]の配列
-						$ret .= " ＞ " . $this->Html->link($val["str"], $val["url"], array("rel" => $this->RichSnippets->rels["url"], "property" => $this->RichSnippets->properties["title"]));
+						$ret .= '<i class="zmdi zmdi-chevron-right"></i> ' . $this->Html->link($val["str"], $val["url"]);
 					}
 					else
 					{//文字列
-						$ret .= " ＞ " . $val;
+						$ret .= '<i class="zmdi zmdi-chevron-right"></i> ' . $val;
 					}
-					$ret .= "</span>";
+					$ret .= "</li>";
 				}
 				return $ret;
 			}
 			elseif(is_string($data))
 			{//文字列
-				return " ＞ " . $data;
+				return '<li><i class="zmdi zmdi-chevron-right"></i> ' . $data . '</li>';
 			}
 		}
 		else
@@ -105,7 +69,7 @@ class CommonHelper extends AppHelper
  */
 	function copyright($val)
 	{
-		return (!empty($val)) ? '<div class="content copyright"><p>' . nl2br($val) . '</p></div>' : "";
+		return (!empty($val)) ? '<div class="copyright">' . nl2br($val) . '</div>' : "";
 	}
 
 /**
@@ -218,18 +182,18 @@ class CommonHelper extends AppHelper
  * @return	html
  * @access	public
  */
-	function titleWithSpan($title_official, $title_read = null)
+	function titleSeparatedSpan($title_official, $title_read = null)
 	{
-		$title = $title_official;
+		$title = '<span class="official">' . $title_official . '</span>';
 		if(!empty($title_read))
 		{
-			$title .= "<span>" . $title_read . "</span>";
+			$title .= '<span class="read">' . $title_read . '</span>';
 		}
 		return $this->output($title);
 	}
 
 /**
- * カッコ付きタイトル：ゲームタイトルでもポータルでも
+ * タイトル（読み）：ゲームタイトルでもポータルでも
  *
  * @param	string	$title_official
  * @param	string	$title_read
@@ -247,7 +211,7 @@ class CommonHelper extends AppHelper
 	}
 
 /**
- * タイトル（省略）：ゲームタイトルでもポータルでも
+ * 省略：タイトル：ゲームタイトルでもポータルでも
  *
  * @param	string	$official
  * @param	string	$read
@@ -267,7 +231,7 @@ class CommonHelper extends AppHelper
 	}
 
 /**
- * タイトル（サブ）：ゲームタイトルでもポータルでも
+ * タイトル〜サブ〜：ゲームタイトルでもポータルでも
  *
  * @param	string	$official
  * @param	string	$read
@@ -309,6 +273,29 @@ class CommonHelper extends AppHelper
 			$title .= "～" . $sub . "～";
 		}
 		return $this->output($title);
+	}
+
+/**
+ * タイトル全部のせ配列：ゲームタイトルでもポータルでも
+ *
+ * @param	string	$official
+ * @param	string	$read
+ * @param	string	$abbr
+ * @param	string	$sub
+ * @return	String
+ * @access	public
+ */
+	function titleWithStrs($official, $read = null, $abbr = null, $sub = null)
+	{
+		$titleWithStrs = array(
+			"Case"	=> $this->titleWithCase($official, $read),
+			"Span"	=> $this->titleSeparatedSpan($official, $read),
+			"Abbr"	=> $this->titleWithAbbr($official, $read, $abbr),
+			"Sub"	=> $this->titleWithSub($official, $read, $sub),
+			"All"	=> $this->titleAll($official, $read, $abbr, $sub)
+		);
+		
+		return $this->output($titleWithStrs);
 	}
 
 /**
@@ -373,6 +360,29 @@ class CommonHelper extends AppHelper
 		return $this->dateFormat($start, "term") . "～" . $this->dateFormat($end, "term");
 	}
 
+/**
+ * テストラベル
+ * 
+ * @param	date	$start
+ * @param	date	$end
+ * @return	html
+ * @access	public
+ */
+	function testLabel($service_id)
+	{
+		switch($service_id)
+		{
+			case 3:
+				$ret = '<span class="label label-open">オープンβ</span>';
+				break;
+			case 4:
+				$ret = '<span class="label label-closed">クローズドβ</span>';
+				break;
+		}
+
+		return $this->output($ret);
+	}
+
 
 /** Votes
 ------------------------------ **/
@@ -386,7 +396,7 @@ class CommonHelper extends AppHelper
  */
 	function posterName($name)
 	{
-		$ret = (!empty($name)) ? $name : $this->emptyPosterName;
+		$ret = (!empty($name)) ? $name : $this->empty_poster_name;
 		return h($ret . "さん");
 	}
 
@@ -447,33 +457,15 @@ class CommonHelper extends AppHelper
 /**
  * スター表示
  *
- * @param	number	$type
- * @param	number	$point
- * @param	string	$alt
- * @param	string	$color	"white" or "black"
+ * @param	number	$rate
+ * @param	string	$color	"w" or "b"
+ * @param	number	$width
  * @return	html
  * @access	public
  */
-	function starBlock($type, $point, $alt = "総合評価", $color = "white")
+	function starBlock($rate = 0, $color = "w", $width = 150)
 	{
-		$point = $this->pointFormat($point);
-		switch($color)
-		{
-			case "white" :
-				$col = "";
-				break;
-			case "black":
-				$col = "b";
-				break;
-		}
-
-		$ret  = "";
-		$ret .= "<div class=\"star" . $type . $col . "Back\">\n";
-		$ret .=	"<div class=\"star" . $type . "\" style=\"" . $this->starWidthPx($type, $point) . "\">\n";
-		$ret .= $this->Html->image("design/rating_star" . $type . $col . ".gif", array("alt" => $alt . "：" . $point . "点"));
-		$ret .= "\n</div>\n";
-		$ret .= "</div>\n";
-
+		$ret = '<div class="stars stars-' . $color . $width . ' stars-rate' . round($rate * 2) * 10 . '"></div>';
 		return $this->output($ret);
 	}
 
@@ -545,7 +537,7 @@ class CommonHelper extends AppHelper
 			{
 				$ret = "サービス終了・休止中";
 			}
-			return "<span>" . $ret . "</span>";
+			return '<span class="ended">' . $ret . '</span>';
 		}
 	}
 
@@ -648,7 +640,8 @@ class CommonHelper extends AppHelper
 		}
 		else
 		{
-			return $this->Html->link($this->Html->image($modelData["ad_part_img_src"], array("alt" => (!empty($modelData["ad_part_text"])) ? $modelData["ad_part_text"] : "")),
+			return $this->Html->link($this->Html->image($modelData["ad_part_img_src"],
+					array("alt" => (!empty($modelData["ad_part_text"])) ? $modelData["ad_part_text"] : "")),
 					array("controller" => "jump", "action" => $action, $modelData["id"], "sys" => false),
 					array("target" => "_blank", "rel" => "nofollow", "escape" => false));
 		}

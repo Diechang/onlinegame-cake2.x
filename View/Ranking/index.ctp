@@ -1,47 +1,37 @@
 <?php
-//スタイル
-$this->Html->css(array('ranking'), 'stylesheet', array('inline' => false));
+//set blocks
+$this->assign("title", "【" . $label . "】人気オンラインゲームランキング");
+$this->assign("keywords", $label . ",人気,ランキング,オンラインゲーム");
+$this->assign("description", "【" . $label . "】人気オンラインゲームランキングです。ジャンル別の人気オンラインゲームがすぐわかる！");
 ?>
-<div class="content ranking">
-	<h2 class="image common">【<?php echo $mainStr?>】人気オンラインゲームランキング</h2>
-	<div class="body">
-		<div class="rankingWide">
-			<div class="top">
-				<div class="body">
-<!--
-					<ul class="rankChangeTabs clearfix">
-						<li<?php if($path == "index"){ echo " class=\"active\"";}?>><?php echo $this->Html->link("総合", array("controller" => "ranking", "path" => "index", "ext" => "html"))?></li>
-						<?php foreach($categories as $category):?>
-						<li<?php if($path == $category["Category"]["path"]){ echo " class=\"active\"";}?>><?php echo $this->Html->link($category["Category"]["str"], array("controller" => "ranking", "path" => $category["Category"]["path"], "ext" => "html"))?></li>
-						<?php endforeach;?>
-					</ul>
--->
-<?php echo $this->element("loop_ranking_data", $rankings)?>
-
-					<ul class="rankChangeTabs clearfix">
-						<li<?php if($path == "index"){ echo " class=\"active\"";}?>><?php echo $this->Html->link("総合", array("controller" => "ranking", "path" => "index", "ext" => "html"))?></li>
-						<?php foreach($categories as $category):?>
-						<li<?php if($path == $category["Category"]["path"]){ echo " class=\"active\"";}?>><?php echo $this->Html->link($category["Category"]["str"], array("controller" => "ranking", "path" => $category["Category"]["path"], "ext" => "html"))?></li>
-						<?php endforeach;?>
-					</ul>
-
-<?php //echo $this->Gads->both468()?>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+<!-- ranking -->
+<section class="ranking">
+	<h1 class="pageTitle">
+		<span class="main"><span class="label label-primary"><?php echo $label?></span>人気オンラインゲームランキング</span>
+		<span class="sub">正式サービス、各種テスト開始から2年以内の人気オンラインゲームランキングです</span>
+	</h1>
+	<!-- all -->
+	<section class="all">
+		<?php echo $this->element("loop_ranking_data", array("rankings" => $rankings))?>
+	</section>
+	<!-- genres -->
+	<section class="genres">
+		<h2 class="headline">ジャンル別ランキング</h2>
+		<?php echo $this->element("loop_ranking_categories", array("categoryRankings" => $categoryRankings))?>
+	</section>
 <?php if(!empty($norankings)):?>
-<div class="content moreList">
-	<h2>評価がまだ投稿されていないゲーム</h2>
-	<p>プレイしたことがあるタイトルには是非投稿を！<br />
-	あなたの投稿でランクインされます！</p>
-	<ul>
+	<!-- waits -->
+	<section class="waits">
+		<h2 class="headline">評価がまだ投稿されていないゲーム</h2>
+		<p class="headline-description">プレイしたことがあるタイトルには是非投稿を！<br>
+		あなたの投稿でランクインされます！</p>
+		<ul class="list">
 	<?php foreach($norankings as $norank):?>
-		<li><?php echo $this->Common->titleLinkText(
-				$this->Common->titleWithSpan($norank["Title"]["title_official"], $norank["Title"]["title_read"]),
-				$norank["Title"]["url_str"])?></li>
+			<li><?php echo $this->Common->titleLinkText(
+					$this->Common->titleSeparatedSpan($norank["Title"]["title_official"], $norank["Title"]["title_read"]),
+					$norank["Title"]["url_str"])?></li>
 	<?php endforeach;?>
-	</ul>
-</div>
+		</ul>
+	</section>
 <?php endif;?>
+</section>

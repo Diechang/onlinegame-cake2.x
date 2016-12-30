@@ -1,4 +1,4 @@
-<div class="rightFbLikeBox">
-<fb:like-box href="https://www.facebook.com/onlinegame.life" width="250" show_faces="false" stream="true" header="true"></fb:like-box>
-<fb:recommendations site="onlinegame.dz-life.net" app_id="293306697370465" width="250" height="250" header="false" linktarget="_top"></fb:recommendations>
-</div>
+<!-- facebook page -->
+<section class="fbPage">
+	<div class="fb-page" data-href="https://www.facebook.com/onlinegamelife/" data-tabs="timeline" data-width="300" data-height="480" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false"><blockquote cite="https://www.facebook.com/onlinegamelife/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/onlinegamelife/">オンラインゲームライフ Community</a></blockquote></div>
+</section>

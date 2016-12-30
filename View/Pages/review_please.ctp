@@ -32,7 +32,7 @@
 <ul>
 
 <?php foreach($titles as $t):?>
-<li><a href='/titles/<?php echo $t["Title"]["url_str"]; ?>/review.html#voteform' target='_blank'><?php echo $this->Common->titleWithCase($t["Title"]["title_official"], $t["Title"]["title_read"]); ?></a></li>
+<li><a href='/titles/<?php echo $t["Title"]["url_str"]; ?>/review.html#form' target='_blank'><?php echo $this->Common->titleWithCase($t["Title"]["title_official"], $t["Title"]["title_read"]); ?></a></li>
 <?php endforeach;?>
 
 </ul>

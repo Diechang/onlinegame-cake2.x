@@ -1,5 +1,6 @@
 <?php
-//スタイル
+//set blocks
+$this->assign("title", "Facebookアプリ");
 //$this->Html->css(array('fbapp'), 'stylesheet', array('inline' => false));
 //$this->Html->script(array('fbapp'), array('inline' => false));
 ?>

@@ -1,62 +1,46 @@
 <?php
 //meta
 $this->Html->meta("canonical", $this->Html->url(array('controller' => 'review', 'action' => 'index'), true), array("rel" => "canonical", "type" => null, "title" => null, "inline" => false));
-//スタイル
-$this->Html->css(array('review'), 'stylesheet', array('inline' => false));
-//
-$this->set("title_for_layout", "オンラインゲームレビュー一覧 " . $this->Paginator->current() . "ページ目");
-$this->set("keywords_for_layout", "レビュー,評価,オンラインゲーム");
-$this->set("description_for_layout", "当サイトに投稿されたオンラインゲームレビュー一覧の" . $this->Paginator->current() . "ページ目です。");
-$this->set("h1_for_layout", "オンラインゲームレビュー一覧" . $this->Paginator->current() . "ページ目");
-$this->set("pankuz_for_layout", "レビュー一覧" . $this->Paginator->current() . "ページ目");
-//paginator routing
-// $this->Paginator->options(array("url" => array("controller" => "review", "action" => "index")))
+//set blocks
+$this->assign("title", "オンラインゲームレビュー一覧 " . $this->Paginator->current() . "ページ目");
+$this->assign("keywords", "レビュー,評価,オンラインゲーム");
+$this->assign("description", "当サイトに投稿されたオンラインゲームレビュー投稿一覧の" . $this->Paginator->current() . "ページ目です。");
+//pankuz
+$this->set("pankuz_for_layout", "レビュー投稿一覧 " . $this->Paginator->current() . "ページ目");
+//json ld
+$this->assign("json_ld", $this->JsonLd->breadCrumbList("レビュー投稿一覧"));
 ?>
-<div class="content review">
-	<h2 class="headimage"><?php echo $this->Html->image("design/headline_title_reviews.gif", array("alt" => "レビュー投稿一覧：プレイヤーのみなさんの声を参考に"))?></h2>
-	<p class="icon_feed16"><?php echo $this->Html->link("新着レビューをRSSで！", "http://feeds.feedburner.com/dz-game/review")?></p>
-	<p><?php echo $this->Paginator->counter(array("format" => "レビュー総数<span class=\"wBold\">%count%件中</span> %start%件目 ～ %end%件表示"))?></p>
-	<p class="paging">
-		<?php echo $this->Paginator->prev("≪前へ")?>
-		<?php echo $this->Paginator->numbers()?>
-		<?php echo $this->Paginator->next("次へ≫")?>
-	</p>
-	<ul class="reviewList">
-<?php foreach($reviews as $review):?>
-		<li>
-			<h3><?php echo $this->Html->link($this->Common->voteTitle($review["Vote"]), array("controller" => "titles", "action" => "single", "path" => $review["Title"]["url_str"], "voteid" => $review["Vote"]["id"], "ext" => "html"))?></h3>
-			<div class="thumb">
-				<?php echo $this->Common->titleLinkThumb(
-					$this->Common->thumbName($review["Title"]["thumb_name"]),
-					$this->Common->titleWithCase($review["Title"]["title_official"], $review["Title"]["title_read"]),
-					$review["Title"]["url_str"], 120, "review")?>
-			</div>
-			<p class="text"><?php echo mb_strimwidth(h($review["Vote"]["review"]), 0, 250, " … " . $this->Common->titleLinkText("続き", $review["Title"]["url_str"], "review", "v".$review["Vote"]["id"]), "UTF-8")?></p>
-			<p class="title">
-				<?php echo $this->Common->titleLinkText(
-					$this->Common->titleWithCase($review["Title"]["title_official"], $review["Title"]["title_read"]) . "のレビュー一覧",
-					$review["Title"]["url_str"], "review")?>
-			</p>
-			<div class="footer">
-				<table class="voteData">
-					<tr>
-						<th class="total">総合評価</th>
-						<td class="total"><?php echo $this->Common->pointFormat($review["Vote"]["single_avg"])?>点</td>
-						<th>投稿日時</th>
-						<td><?php echo $this->Common->dateFormat($review["Vote"]["created"])?></td>
-						<?php if(!empty($review["Vote"]["pass"])):?>
-						<td><?php echo $this->Html->link("編集", array("controller" => "votes", "action" => "edit", $review["Vote"]["id"]), array("rel" => "nofollow"))?></td>
-						<?php endif;?>
-					</tr>
-				</table>
-			</div>
-		</li>
-<?php endforeach;?>
-	</ul>
-	<p class="paging">
-		<?php echo $this->Paginator->prev("≪前の10件", null, null, "li")?>
-		<?php echo $this->Paginator->numbers()?>
-		<?php echo $this->Paginator->next("次の10件≫", null, null, "li")?>
-	</p>
+
+<!-- review -->
+<section class="review">
+	<h1 class="pageTitle">
+		<span class="main">ユーザーレビュー投稿一覧</span>
+		<span class="sub">オンラインゲーム選びの参考にどうぞ</span>
+	</h1>
+
+	<section class="recents">
+
+<?php echo $this->element("comp_pages", array("urlOptions" => array('ext' => null)));?>
+
+<?php echo $this->element("loop_review_data", array("reviews" => $reviews))?>
+
+<?php echo $this->element("comp_pages", array("urlOptions" => array('ext' => null)));?>
+
+		<div class="more"><a href="http://feeds.feedburner.com/dz-game/review" class="feed"><i class="icon icon-feed"></i> 新着レビューをRSSで！</a></div>
+
+	</section>
+
+<?php if($this->Paginator->current() == 1):?>
+	<section class="waits">
+		<h2 class="headline">
+			<span class="main">レビュー・評価投稿募集中！</span>
+			<span class="sub">まだ投稿がされていないオンラインゲームの一部です</span>
+		</h2>
+
+		<?php echo $this->element("loop_review_waits", array("waits" => $waits))?>
+	</section>
+<?php endif;?>
+
 <?php echo $this->Gads->ads468()?>
-</div>
+
+</section>

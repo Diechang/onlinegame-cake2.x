@@ -47,20 +47,7 @@ class LinksController extends AppController
 					"conditions" => array("Linkcategory.path" => $path)
 				));
 //				pr($dataPage);
-				$str = $dataPage["Linkcategory"]["str"];
-				//Pankuz set
-				$this->set("pankuz_for_layout", array(
-					array(
-						"str" => "相互リンク集",
-						"url" => array("controller" => "links", "path" => "index", "ext" => "html")
-					),
-					$str,
-				));
-				//Set
-				$this->set("title_for_layout", "【" . $str . "】相互リンク集");
-				$this->set("keywords_for_layout", "相互リンク," . $str);
-				$this->set("description_for_layout", "オンラインゲームライフと相互リンクしていただいている「" . $str . "」カテゴリのサイト集です。相互リンク依頼は専用フォームからどうぞ。");
-				$this->set("h1_for_layout", "【" . $str . "】相互リンク集");
+				$label = $dataPage["Linkcategory"]["str"];
 				//
 				//Conditions
 				$conditions = array(
@@ -70,14 +57,7 @@ class LinksController extends AppController
 			}
 			elseif($path == "index")
 			{//Index - 総合
-				$str = "おすすめ";
-				//Pankuz set
-				$this->set("pankuz_for_layout", "相互リンク集");
-				//Set
-				$this->set("title_for_layout", "相互リンク集");
-				$this->set("keywords_for_layout", "相互リンク");
-				$this->set("description_for_layout", "オンラインゲームライフと相互リンクしていただいているおすすめサイト集です。相互リンク依頼は専用フォームからどうぞ。");
-				$this->set("h1_for_layout", "相互リンク集");
+				$label = "おすすめ";
 				//
 				//Conditions
 				$conditions = array(
@@ -90,7 +70,7 @@ class LinksController extends AppController
 				throw new NotFoundException();
 			}
 			//
-			$this->set("mainStr", $str);
+			$this->set("label", $label);
 			$this->set("path", $path);
 
 			$this->set("metaTags", array("noindex"));
@@ -146,29 +126,20 @@ class LinksController extends AppController
 {$linksUrl}
 					");
 					//
-					$this->Session->setFlash("相互リンク申込ありがとうございます！<br />\n管理人の承認後に掲載されます。");
+					$this->Session->setFlash("相互リンク申込ありがとうございました！", "flash_default", array("body" => "管理人の承認後に掲載されます。", "type" => "success"));
 					return $this->redirect(array('action' => 'index'));
 				}
 				else
 				{
-					$this->Session->setFlash("登録できませんでした。<br />\n入力内容を確認してください。");
+					$this->Session->setFlash("登録できませんでした。", "flash_default", array("body" => "入力内容を確認してください。"));
 				}
 			}
 			else
 			{
-				$this->Session->setFlash("認証番号が不正です");
+				$this->Session->setFlash("認証番号が不正です", "flash_default");
 			}
 			//
 			$this->set("linkcategories", $this->Link->Linkcategory->find("list"));
-			//Set - Layout vars
-			$this->set("title_for_layout", "相互リンク登録申込");
-			$this->set("keywords_for_layout", "");
-			$this->set("description_for_layout", "");
-			$this->set("h1_for_layout", "相互リンク登録申込");
-			$this->set("pankuz_for_layout", array(
-				array("str" => "相互リンク集", "url" => array("controller" => "links", "action" => "index", "path" => "index", "ext" => "html")),
-				"登録申込",
-			));
 
 			$this->set("metaTags", array("noindex"));
 		}
