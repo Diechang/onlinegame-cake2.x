@@ -33,27 +33,27 @@ class JumpController extends AppController
 	//AdCenterBottom
 	function adcb($id = null)
 	{
-		$this->_simpleRedirect("AdCenterBottom", $id);
+		$this->_metaRedirect("AdCenterBottom", $id);
 	}
 	//AdLeftBottom
 	function adlb($id = null)
 	{
-		$this->_simpleRedirect("AdLeftBottom", $id);
+		$this->_metaRedirect("AdLeftBottom", $id);
 	}
 	//AdLeftTop
 	function adlt($id = null)
 	{
-		$this->_simpleRedirect("AdLeftTop", $id);
+		$this->_metaRedirect("AdLeftTop", $id);
 	}
 	//AdRightBottom
 	function adrb($id = null)
 	{
-		$this->_simpleRedirect("AdRightBottom", $id);
+		$this->_metaRedirect("AdRightBottom", $id);
 	}
 	//AdRightTop
 	function adrt($id = null)
 	{
-		$this->_simpleRedirect("AdRightTop", $id);
+		$this->_metaRedirect("AdRightTop", $id);
 	}
 
 /** Other
@@ -80,6 +80,21 @@ class JumpController extends AppController
 //		@include '/home/diechang/www/onlinegame.dz-life.net/ra/phptrack.php';
 //		@_raTrack('Jump - ' . $model . ' - ' . $id);
 		return $this->redirect($jump[$model]["ad_part_url"]);
+	}
+
+
+/**
+ * 単一モデル仕様のメタタグリダイレクト
+ */
+	private function _metaRedirect($model, $id)
+	{
+		$this->_emptyToHome($id);
+		$this->$model->recursive = -1;
+		$this->set("url", $this->$model->findById($id)[$model]["ad_part_url"]);
+		//Use layout
+		$this->layout = false;
+
+		$this->render("/Layouts/metaredirect");
 	}
 }
 ?>
