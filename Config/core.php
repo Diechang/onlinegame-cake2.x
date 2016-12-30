@@ -78,7 +78,7 @@
 		'handler' => 'ErrorHandler::handleException',
 		'renderer' => 'ExceptionRenderer',
 		'log' => true,
-		'skipLog' => array('NotFoundException', 'MissingControllerException', 'MissingActionException', 'RecordNotFoundException'),
+		// 'skipLog' => array('NotFoundException', 'MissingControllerException', 'MissingActionException', 'RecordNotFoundException'),
 	));
 
 /**
