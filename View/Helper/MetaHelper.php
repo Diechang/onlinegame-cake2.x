@@ -96,7 +96,7 @@ class MetaHelper extends AppHelper
 			"type"			=> "website",
 			"title"			=> "オンラインゲームライフ",
 			"url"			=> $site_url,
-			"image"			=> $site_url . "img/design/logo_ogp.jpg",
+			"image"			=> $site_url . "img/design/logo_header.png",
 			"description"	=> "無料オンラインゲーム情報サイト。ユーザーによるレビュー・評価の投稿による人気オンラインゲームランキングや攻略サイトリンク集、ムービー検索も可能。",
 			"site_name"		=> "オンラインゲームライフ",
 		), $this->ogpOptions);
