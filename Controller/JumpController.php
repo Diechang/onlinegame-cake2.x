@@ -20,15 +20,15 @@ class JumpController extends AppController
 
 	function pc($id = null)
 	{
-		$this->_simpleRedirect("Pc", $id);
+		$this->_metaRedirect("Pc", $id);
 	}
 
 	function package($id = null)
 	{
-		$this->_simpleRedirect("Package", $id);
+		$this->_metaRedirect("Package", $id);
 	}
 
-/** Ad modelds
+/** Ad models
 ------------------------------ **/
 	//AdCenterBottom
 	function adcb($id = null)
