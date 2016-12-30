@@ -87,7 +87,7 @@ class AdBannerComponent extends Component
 	{
 		if(!empty($this->controller->request->data))
 		{
-			if($model->saveAll($this->controller->request->data["AdLeftTop"]))
+			if($model->saveAll($this->controller->request->data[$model->name]))
 			{
 				$this->controller->Session->setFlash(Configure::read("Success.lump"));
 			}

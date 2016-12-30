@@ -52,6 +52,7 @@
 		'handler' => 'ErrorHandler::handleError',
 		'level' => E_ALL & ~E_DEPRECATED,
 		'trace' => true,
+		'skipLog' => array('NotFoundException', 'MissingControllerException', 'MissingActionException', 'RecordNotFoundException'),
 	));
 
 /**
@@ -77,8 +78,7 @@
 	Configure::write('Exception', array(
 		'handler' => 'ErrorHandler::handleException',
 		'renderer' => 'ExceptionRenderer',
-		'log' => true,
-		'skipLog' => array('NotFoundException', 'MissingControllerException', 'MissingActionException', 'RecordNotFoundException'),
+		'log' => true
 	));
 
 /**
