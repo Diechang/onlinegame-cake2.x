@@ -467,30 +467,30 @@ class TitlesController extends AppController
 		$this->set("recommends", $recommends);
 	}
 
-	function search()
-	{
-		$this->_checkParams();
+// 	function search()
+// 	{
+// 		$this->_checkParams();
 
-		/**
-		 * データ取得
-		 */
-		//タイトルデータ
-		$this->Title->unbindAll(array("Titlesummary", "Category", "Style", "Service", "Fee"));
-		$title = $this->_getTitleData();
-		$this->_afterGetTitleData($title);
-//		pr($title);
-//		exit;
+// 		/**
+// 		 * データ取得
+// 		 */
+// 		//タイトルデータ
+// 		$this->Title->unbindAll(array("Titlesummary", "Category", "Style", "Service", "Fee"));
+// 		$title = $this->_getTitleData();
+// 		$this->_afterGetTitleData($title);
+// //		pr($title);
+// //		exit;
 
-		//おすすめ
-		$recommends = $this->Title->recommends(Set::extract('Cateogry/id', $title["Category"]), $title["Title"]["id"]);
-//		pr($recommends);
+// 		//おすすめ
+// 		$recommends = $this->Title->recommends(Set::extract('Cateogry/id', $title["Category"]), $title["Title"]["id"]);
+// //		pr($recommends);
 
-		/**
-		 * セット
-		 */
-		$this->set("title", $title);
-		$this->set("recommends", $recommends);
-	}
+// 		/**
+// 		 * セット
+// 		 */
+// 		$this->set("title", $title);
+// 		$this->set("recommends", $recommends);
+// 	}
 
 
 	/**
