@@ -271,6 +271,15 @@ class Title extends AppModel
 				$this->data["Title"]["test_start"] = null;
 				$this->data["Title"]["test_end"] = null;
 			}
+			//終了なら広告なし
+			if($this->data["Title"]["service_id"] == 1)
+			{
+				$this->data["Title"]["ad_use"] = 0;
+				$this->data["Title"]["ad_text"] = null;
+				$this->data["Title"]["ad_banner_s"] = null;
+				$this->data["Title"]["ad_banner_m"] = null;
+				$this->data["Title"]["ad_banner_l"] = null;
+			}
 		}
 		return true;
 	}
