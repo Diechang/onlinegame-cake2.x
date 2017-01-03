@@ -168,6 +168,7 @@
 			<th nowrap="nowrap">公式URL</th>
 			<td>
 				<?php echo $this->Form->input("official_url")?>
+				<?php echo $this->Common->linkConf($this->request->data["Title"]["official_url"], "Link")?>
 			</td>
 		</tr>
 		<tr>
