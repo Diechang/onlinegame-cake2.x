@@ -7,6 +7,17 @@
 		<div class="inputs"><?php echo $this->Form->text("keyword", array("value" => (isset($this->request->query["keyword"])) ? $this->request->query["keyword"] : null));?></div>
 	</fieldset>
 
+	<fieldset class="platforms">
+		<legend>プラットフォーム</legend>
+		<div class="inputs">
+			<ul>
+	<?php foreach($searchMst["Platforms"] as $mstPlatform):?>
+				<li><?php echo $this->SearchPage->checkList($mstPlatform, "Platform");?></li>
+	<?php endforeach;?>
+			</ul>
+		</div>
+	</fieldset>
+
 	<fieldset class="genres">
 		<legend>ジャンル</legend>
 		<div class="inputs">

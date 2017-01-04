@@ -349,6 +349,7 @@ class ElementPartsController extends AppController
 		));
 		//
 		return array(
+			"Platforms" => $mstPlatforms,
 			"Categories" => $mstCategories,
 			"Styles" => $mstStyles,
 			"Services" => $mstServices
