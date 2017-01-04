@@ -59,7 +59,7 @@
 					array('action' => 'add'));
 	Router::connect('/:controller/:path',
 					array('action' => 'index'),
-					array('pass' => array('path') , 'controller' => 'categories|styles|services|fees|ranking|links'));
+					array('pass' => array('path') , 'controller' => 'platforms|categories|styles|services|fees|ranking|links'));
 	//Review
 	Router::connect('/reviews',
 					array('controller' => 'review' , 'action' => 'index'));

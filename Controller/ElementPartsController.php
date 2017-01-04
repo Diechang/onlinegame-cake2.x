@@ -3,7 +3,7 @@ class ElementPartsController extends AppController
 {
 
 	var $name		= 'ElementParts';
-	var $uses		= array("Title", "Category", "Style", "Service", "Pcshop", "Moneycategory",
+	var $uses		= array("Title", "Platform", "Category", "Style", "Service", "Pcshop", "Moneycategory",
 							"AdCenterBottom", "AdLeftBottom", "AdLeftTop", "AdRightBottom", "AdRightTop");
 	var $helpers	= array("SearchPage");
 	var $components	= array("Auth");
@@ -100,6 +100,17 @@ class ElementPartsController extends AppController
 		));
 		//
 		$this->set("leftCategories", $leftCategories);
+	}
+
+	function left_platform()
+	{
+		$leftPlatforms = $this->Platform->find("all", array(
+			"conditions" => array("Platform.public" => 1),
+			"recursive" => -1,
+			"order" => "Platform.sort"
+		));
+		//
+		$this->set("leftPlatforms", $leftPlatforms);
 	}
 
 	function left_style()
@@ -317,6 +328,12 @@ class ElementPartsController extends AppController
 			"recursive" => -1,
 			"fields" => array("id", "str", "path"),
 			"order" => "Category.sort"
+		));
+		/** Platforms **/
+		$mstPlatforms = $this->Title->Platform->find("all", array(
+			"recursive" => -1,
+			"fields" => array("id", "str", "path"),
+			"order" => "Platform.sort"
 		));
 		/** Styles **/
 		$mstStyles = $this->Title->Style->find("all", array(

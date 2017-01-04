@@ -17,7 +17,7 @@
 				<?php echo $this->Form->input("str")?>
 			</td>
 		</tr>
-<?php if(in_array($this->request->params["controller"], array("categories", "styles", "services"))):?>
+<?php if(in_array($this->request->params["controller"], array("platforms", "categories", "styles", "services"))):?>
 		<tr>
 			<th nowrap="nowrap">サブ文字列</th>
 			<td>

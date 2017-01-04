@@ -108,6 +108,7 @@
 					<div class="floating">
 <?php
 	echo $this->element("ad_left_tops", array(), array("cache" => array("config" => "element")));
+	echo $this->element("left_platform", array(), array("cache" => array("config" => "element")));
 	echo $this->element("left_category", array(), array("cache" => array("config" => "element")));
 	echo $this->element("left_style", array(), array("cache" => array("config" => "element")));
 	echo $this->element("left_service", array(), array("cache" => array("config" => "element")));

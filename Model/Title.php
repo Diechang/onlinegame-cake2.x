@@ -171,6 +171,21 @@ class Title extends AppModel
 
 
 	var $hasAndBelongsToMany = array(
+		'Platform' => array(
+			'className' => 'Platform',
+			'joinTable' => 'platforms_titles',
+			'foreignKey' => 'title_id',
+			'associationForeignKey' => 'platform_id',
+			'unique' => true,
+			'conditions' => '',
+			'fields' => '',
+			'order' => 'sort',
+			'limit' => '',
+			'offset' => '',
+			'finderQuery' => '',
+			'deleteQuery' => '',
+			'insertQuery' => ''
+		),
 		'Category' => array(
 			'className' => 'Category',
 			'joinTable' => 'categories_titles',
@@ -292,6 +307,30 @@ class Title extends AppModel
 	 */
 
 /**
+ * プラットフォーム内タイトルIDリスト
+ *
+ * @param	mixed	$platform_id
+ * @return	array
+ * @access	public
+ */
+	function idListByPlatform(&$platform_id)
+	{
+		if(isset($platform_id))
+		{
+			$ids = $this->PlatformsTitle->find("list", array(
+				"conditions" => array("PlatformsTitle.platform_id" => $platform_id),
+				"fields" => "PlatformsTitle.title_id",
+			));
+		}
+		else
+		{
+			$ids = null;
+		}
+
+		return $ids;
+	}
+
+/**
  * カテゴリ内タイトルIDリスト
  *
  * @param	mixed	$category_id
@@ -343,6 +382,7 @@ class Title extends AppModel
  * 検索
  *
  * @param	mixed	$option to Extract
+ * @option	array	$platform_id
  * @option	array	$category_id
  * @option	array	$style_id
  * @option	array	$service_id
@@ -513,7 +553,12 @@ class Title extends AppModel
 	{
 		$this->unbindAll(array("Titlesummary"));
 		$conditions["vote_count_vote >"] = 0;
-		if(isset($titleIdList)){ $conditions["Title.id"] = $titleIdList; }
+
+		if(isset($titleIdList))
+		{
+			$conditions["Title.id"] = $titleIdList;
+		}
+		
 		$ranking = $this->find("all", array(
 			"conditions" => $conditions,
 			"order" => $this->setRankOrder($type),

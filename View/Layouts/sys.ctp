@@ -111,6 +111,10 @@
 				<li class="active"><?php else:?>
 				<li><?php endif;?><?php echo $this->Html->link("ポータル", array("controller" => "portals", "action" => "index", "sys" => true))?></li>
 
+<?php if($params["controller"] == "platforms"):?>
+				<li class="active"><?php else:?>
+				<li><?php endif;?><?php echo $this->Html->link("プラットフォーム", array("controller" => "platforms", "action" => "index", "sys" => true))?></li>
+
 <?php if($params["controller"] == "categories"):?>
 				<li class="active"><?php else:?>
 				<li><?php endif;?><?php echo $this->Html->link("カテゴリ", array("controller" => "categories", "action" => "index", "sys" => true))?></li>
