@@ -30,6 +30,7 @@ class SearchController extends AppController
 		// App::import('Sanitize');
 		
 		$query = $this->request->query;
+		$this->log($query, LOG_DEBUG);
 		if(empty($query["page"]))
 		{
 			$query["page"] = 1;
