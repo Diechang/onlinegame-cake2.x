@@ -13,6 +13,8 @@
  * @since         CakePHP(tm) v 0.10.0.1076
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
+	$this->assign("title", "404 Not Found");
+	$this->set("pankuz_for_layout", "404 Not Found");
 ?>
 <section>
 	<div class="flash">
