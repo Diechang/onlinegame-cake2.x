@@ -30,12 +30,22 @@ class SearchPageHelper extends AppHelper
 	 */
 	function checkList($item, $model)
 	{
-		return $this->output($this->Form->label(strtolower($model) . "_" . $item[$model]["id"],
-												$this->Form->checkbox(strtolower($model) . "[]", array(
-														"value" => $item[$model]["id"],
-														"checked" => (!empty($this->request->query[strtolower($model)]) && in_array($item[$model]["id"], $this->request->query[strtolower($model)])),
-														"id" => strtolower($model) . "_" . $item[$model]["id"],
-														"hiddenField" => false)) . " " . $item[$model]["str"]));
+		$key		= strtolower($model);
+		//query
+		if(!empty($this->request->query[$key]))
+		{
+			$checked = is_array($this->request->query[$key])
+						? in_array($item[$model]["id"], $this->request->query[$key])
+						: ($this->request->query[$key] == $item[$model]["id"]);
+		}
+		else $checked = false;
+
+		return $this->output($this->Form->label($key . "_" . $item[$model]["id"],
+					$this->Form->checkbox($key . "[]", array(
+						"value" => $item[$model]["id"],
+						"checked" => $checked,
+						"id" => $key . "_" . $item[$model]["id"],
+						"hiddenField" => false)) . " " . $item[$model]["str"]));
 	}
 
 	/**
@@ -50,9 +60,9 @@ class SearchPageHelper extends AppHelper
 		foreach($this->others as $key => $val)
 		{
 			$src .= "<li>" . $this->Form->label($key, $this->Form->checkbox($key, array(
-															"id" => $key,
-															"checked" => !empty($this->request->query[$key]),
-															"hiddenField" => false)) . " " . $val) . "</li>\n";
+								"id" => $key,
+								"checked" => !empty($this->request->query[$key]),
+								"hiddenField" => false)) . " " . $val) . "</li>\n";
 		}
 		return $this->output($src);
 	}
@@ -70,10 +80,10 @@ class SearchPageHelper extends AppHelper
 		foreach($this->orders as $key => $val)
 		{
 			$src .= "<li>" . $this->Form->label("order" . ucwords($key), $this->Form->input("order", array(
-															"type" => "radio",
-															"options" => array($key => (" " . $val)),
-															"default" => (isset($this->request->query["order"]) ? $this->request->query["order"] : "rating"),
-															"hiddenField" => false))) . "</li>\n";
+								"type" => "radio",
+								"options" => array($key => (" " . $val)),
+								"default" => (isset($this->request->query["order"]) ? $this->request->query["order"] : "rating"),
+								"hiddenField" => false))) . "</li>\n";
 			$count++;
 		}
 		return $this->output($src);
