@@ -7,8 +7,9 @@ class FansitesController extends AppController
 	var $name = 'Fansites';
 	var $components = array("LumpEdit", "Common");
 
-	function add($id)
+	function add($id = null)
 	{
+		$this->_emptyToHome($id);
 		/**
 		 * Title data
 		 */

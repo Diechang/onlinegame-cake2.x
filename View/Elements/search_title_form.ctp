@@ -45,7 +45,7 @@
 		<div class="inputs">
 			<ul>
 <?php foreach($searchMst["Services"] as $mstService):?>
-				<li><?php echo $this->SearchPage->checkList($mstService, "Service", "services")?></li>
+				<li><?php echo $this->SearchPage->checkList($mstService, "Service")?></li>
 <?php endforeach;?>
 			</ul>
 		</div>
