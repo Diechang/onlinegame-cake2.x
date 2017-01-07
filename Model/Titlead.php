@@ -1,7 +1,7 @@
 <?php
-class Titlesummary extends AppModel
+class Titlead extends AppModel
 {
-	var $name = 'Titlesummary';
+	var $name = 'Titlead';
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 	var $belongsTo = array(

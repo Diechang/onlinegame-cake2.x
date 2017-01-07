@@ -528,7 +528,7 @@ class TitlesController extends AppController
 		// pr($conditions);
 		// exit;
 
-		$this->Title->unbindAll(array("Titlesummary", "Service", "Fee", "Fansite", "Vote", "Spec", "Pc", "Event", "Package", "Category"));
+		$this->Title->unbindAll(array("Titlead", "Titlesummary", "Service", "Fee", "Fansite", "Vote", "Spec", "Pc", "Event", "Package", "Category"));
 		$this->Paginator->settings = array(
 			"Title" => array(
 				"conditions" => $conditions,
@@ -598,7 +598,7 @@ class TitlesController extends AppController
 			$this->_sysThumbUpload($this->request->data);
 			//
 			$this->Title->create();
-			if($this->Title->save($this->request->data))
+			if($this->Title->saveAssociated($this->request->data))
 			{
 				$this->request->data["Titlesummary"]["id"]		= $this->Title->id;
 				$this->request->data["Titlesummary"]["title_id"] = $this->Title->id;
@@ -641,7 +641,7 @@ class TitlesController extends AppController
 			//File upload
 			$this->_sysThumbUpload($this->request->data);
 			//
-			if($this->Title->save($this->request->data))
+			if($this->Title->saveAssociated($this->request->data))
 			{
 				$this->Session->setFlash(Configure::read("Success.modify"));
 				return $this->redirect('/sys');

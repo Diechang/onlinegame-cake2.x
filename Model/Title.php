@@ -85,6 +85,13 @@ class Title extends AppModel
 			'dependent' => true,
 			'conditions' => '',
 			'fields' => ''
+		),
+		'Titlead' => array(
+			'className' => 'Titlead',
+			'foreignKey' => 'title_id',
+			'dependent' => true,
+			'conditions' => '',
+			'fields' => ''
 		)
 	);
 
