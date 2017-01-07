@@ -501,18 +501,14 @@ class TitlesController extends AppController
 		//
 		$conditions = array();
 		$title_ids	= array();
-
-		// if(!empty($this->request->query["w"]) && !empty($this->request->query["category"]) && !empty($this->request->query["service"])){}
 		
 		//カテゴリ
-		// pr($this->request->query["category"]);
 		if(!empty($this->request->query["category"]))
 		{
 			$title_ids = $this->Title->idListByCategory($this->request->query["category"]);
 		}
 		// pr($title_ids);
 		// exit;
-		//スタイル
 
 		//タイトルID
 		if(!empty($title_ids)){ $conditions += array("Title.id" => $title_ids); }
@@ -526,21 +522,6 @@ class TitlesController extends AppController
 		$w			= (isset($this->request->query["w"])) ? urldecode($this->request->query["w"]) : null;
 		if(!empty($w))
 		{
-//			$w			= trim(str_replace("　", " ", $w));
-//			$w			= explode(" ", $w);
-//			$wConditions	= array();
-//			foreach($w as $val)
-//			{
-//				$wConditions = array_merge($wConditions, array(
-//						"Title.title_official LIKE '%" . $val . "%'",
-//						"Title.title_read LIKE '%" . $val . "%'",
-//						"Title.title_sub LIKE '%" . $val . "%'",
-//						"Title.title_abbr LIKE '%" . $val . "%'",
-//						"Title.url_str LIKE '%" . $val . "%'",
-//						"Title.description LIKE '%" . $val . "%'",
-//				));
-//			}
-			//
 			$conditions += array("OR" => $this->Title->wConditions($w));
 		}
 		//
@@ -548,22 +529,6 @@ class TitlesController extends AppController
 		// exit;
 
 		$this->Title->unbindAll(array("Titlesummary", "Service", "Fee", "Fansite", "Vote", "Spec", "Pc", "Event", "Package", "Category"));
-		//fields
-		$this->Title->belongsTo["Service"]["fields"] = array("id", "str");
-		$this->Title->belongsTo["Fee"]["fields"] = array("id", "path");
-
-		$this->Title->hasMany["Fansite"]["fields"] = array("id");
-		$this->Title->hasMany["Vote"]["fields"] = array("id");
-		$this->Title->hasMany["Spec"]["fields"] = array("id");
-		$this->Title->hasMany["Pc"]["fields"] = array("id");
-		$this->Title->hasMany["Event"]["fields"] = array("id");
-		$this->Title->hasMany["Package"]["fields"] = array("id");
-
-		$this->Title->hasAndBelongsToMany["Category"]["fields"] = array("id", "path");
-		// $this->Title->hasAndBelongsToMany["Style"]["fields"] = array("id", "path");
-		// $this->Title->hasAndBelongsToMany["Portal"]["fields"] = array("id", "url_str");
-		//
-		// pr($this->Title);
 		$this->Paginator->settings = array(
 			"Title" => array(
 				"conditions" => $conditions,
@@ -857,11 +822,12 @@ class TitlesController extends AppController
 	{
 		$services	= $this->Title->Service->find('list');
 		$fees		= $this->Title->Fee->find('list');
+		$platforms	= $this->Title->Platform->find('list');
 		$categories	= $this->Title->Category->find('list');
 		$styles		= $this->Title->Style->find('list');
 		$portals	= $this->Title->Portal->find('list');
 		//
-		$this->set(compact('services', 'fees', 'categories', 'styles', 'portals'));
+		$this->set(compact('services', 'fees', 'platforms', 'categories', 'styles', 'portals'));
 	}
 }
 ?>

@@ -121,7 +121,7 @@ class PlatformsController extends AppController
 		$this->Platform->recursive = 0;
 		$this->set('platforms', $this->Platform->find("all"));
 		//
-		$this->set("pankuz_for_layout", "スタイルマスタ");
+		$this->set("pankuz_for_layout", "プラットフォームマスタ");
 	}
 
 //	function sys_view($id = null)
@@ -182,7 +182,7 @@ class PlatformsController extends AppController
 		}
 		$titles = $this->Platform->Title->find('list', array("order" => "Title.title_official"));
 		$this->set(compact('titles'));
-		$this->set("pankuz_for_layout", array("スタイルマスタ", "編集"));
+		$this->set("pankuz_for_layout", array("プラットフォームマスタ", "編集"));
 	}
 
 	function sys_lump()

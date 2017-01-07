@@ -85,6 +85,14 @@
 			</td>
 		</tr>
 		<tr>
+			<th nowrap="nowrap">プラットフォーム</th>
+			<td>
+				<?php echo $this->Form->input("Platform", array(
+					"multiple" => "checkbox",
+				))?>
+			</td>
+		</tr>
+		<tr>
 			<th nowrap="nowrap">カテゴリ文字</th>
 			<td>
 				<?php echo $this->Form->input("category_text")?>
