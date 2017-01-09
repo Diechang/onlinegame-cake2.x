@@ -67,19 +67,19 @@
 		<tr>
 			<th nowrap="nowrap">正式サービス開始日</th>
 			<td>
-				<?php echo $this->Form->input("service_start", array("empty" => true, "class" => "input-mini"))?>
+				<?php echo $this->Form->text("service_start", array("type" => "date", "class" => "datePicker input-medium"))?>
 			</td>
 		</tr>
 		<tr>
 			<th nowrap="nowrap">テスト開始日</th>
 			<td>
-				<?php echo $this->Form->input("test_start", array("empty" => true, "class" => "input-mini"))?>
+				<?php echo $this->Form->text("test_start", array("type" => "date", "class" => "datePicker input-medium"))?>
 			</td>
 		</tr>
 		<tr>
 			<th nowrap="nowrap">テスト終了日</th>
 			<td>
-				<?php echo $this->Form->input("test_end", array("empty" => true, "class" => "input-mini"))?>
+				<?php echo $this->Form->text("test_end", array("type" => "date", "class" => "datePicker input-medium"))?>
 			</td>
 		</tr>
 		<tr>
@@ -241,21 +241,17 @@
 		</tr>
 		<tr>
 			<th nowrap="nowrap">広告開始日</th>
-			<td><?php echo $this->Form->input("Titlead.{$key}_start", array("empty" => true, "class" => "input-mini"))?></td>
+			<td><?php echo $this->Form->text("Titlead.{$key}_start", array("type" => "date", "class" => "datePicker input-medium"))?> 00:00</td>
 		</tr>
 		<tr>
 			<th nowrap="nowrap">広告終了日</th>
-			<td><?php echo $this->Form->input("Titlead.{$key}_end", array("empty" => true, "class" => "input-mini"))?></td>
+			<td><?php echo $this->Form->text("Titlead.{$key}_end", array("type" => "date", "class" => "datePicker input-medium"))?> 24:00</td>
 		</tr>
 		<tr>
 			<th nowrap="nowrap">リダイレクト</th>
 			<td>
 				<?php echo $this->Form->input("Titlead.{$key}_noredirect")?> しない
 			</td>
-		</tr>
-		<tr>
-			<th nowrap="nowrap">デフォルトURL</th>
-			<td><?php echo $this->Form->input("Titlead.{$key}_default_url")?></td>
 		</tr>
 		<tr>
 			<th nowrap="nowrap">登録</th>

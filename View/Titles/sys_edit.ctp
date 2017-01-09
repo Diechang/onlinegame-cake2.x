@@ -263,21 +263,17 @@
 		</tr>
 		<tr>
 			<th nowrap="nowrap">広告開始日</th>
-			<td><?php echo $this->Form->text("Titlead.{$key}_start", array("type" => "date", "class" => "datePicker input-medium"))?></td>
+			<td><?php echo $this->Form->text("Titlead.{$key}_start", array("type" => "date", "class" => "datePicker input-medium"))?> 00:00</td>
 		</tr>
 		<tr>
 			<th nowrap="nowrap">広告終了日</th>
-			<td><?php echo $this->Form->text("Titlead.{$key}_end", array("type" => "date", "class" => "datePicker input-medium"))?></td>
+			<td><?php echo $this->Form->text("Titlead.{$key}_end", array("type" => "date", "class" => "datePicker input-medium"))?> 24:00</td>
 		</tr>
 		<tr>
 			<th nowrap="nowrap">リダイレクト</th>
 			<td>
 				<?php echo $this->Form->input("Titlead.{$key}_noredirect")?> しない
 			</td>
-		</tr>
-		<tr>
-			<th nowrap="nowrap">デフォルトURL</th>
-			<td><?php echo $this->Form->input("Titlead.{$key}_default_url")?></td>
 		</tr>
 		<tr>
 			<th nowrap="nowrap">登録</th>
