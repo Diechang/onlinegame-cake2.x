@@ -69,19 +69,19 @@
 		<tr>
 			<th nowrap="nowrap">正式サービス開始日</th>
 			<td>
-				<?php echo $this->Form->input("service_start", array("empty" => true, "class" => "input-mini"))?>
+				<?php echo $this->Form->text("service_start", array("type" => "date", "class" => "datePicker input-medium"))?>
 			</td>
 		</tr>
 		<tr>
 			<th nowrap="nowrap">テスト開始日</th>
 			<td>
-				<?php echo $this->Form->input("test_start", array("empty" => true, "class" => "input-mini"))?>
+				<?php echo $this->Form->text("test_start", array("type" => "date", "class" => "datePicker input-medium"))?>
 			</td>
 		</tr>
 		<tr>
 			<th nowrap="nowrap">テスト終了日</th>
 			<td>
-				<?php echo $this->Form->input("test_end", array("empty" => true, "class" => "input-mini"))?>
+				<?php echo $this->Form->text("test_end", array("type" => "date", "class" => "datePicker input-medium"))?>
 			</td>
 		</tr>
 		<tr>
@@ -172,6 +172,27 @@
 			</td>
 		</tr>
 		<tr>
+			<th nowrap="nowrap">公式スマホURL</th>
+			<td>
+				<?php echo $this->Form->input("official_url_sp")?>
+				<?php echo $this->Common->linkConf($this->request->data["Title"]["official_url_sp"], "Link")?>
+			</td>
+		</tr>
+		<tr>
+			<th nowrap="nowrap">App Store URL</th>
+			<td>
+				<?php echo $this->Form->input("appdl_app_store")?>
+				<?php echo $this->Common->linkConf($this->request->data["Title"]["appdl_app_store"], "Link")?>
+			</td>
+		</tr>
+		<tr>
+			<th nowrap="nowrap">Google Play URL</th>
+			<td>
+				<?php echo $this->Form->input("appdl_google_play")?>
+				<?php echo $this->Common->linkConf($this->request->data["Title"]["appdl_google_play"], "Link")?>
+			</td>
+		</tr>
+		<tr>
 			<th nowrap="nowrap">Video</th>
 			<td>
 				<?php echo $this->Form->input("video")?>
@@ -242,15 +263,17 @@
 		</tr>
 		<tr>
 			<th nowrap="nowrap">広告開始日</th>
-			<td><?php echo $this->Form->input("Titlead.{$key}_start", array("empty" => true, "class" => "input-mini"))?></td>
+			<td><?php echo $this->Form->text("Titlead.{$key}_start", array("type" => "date", "class" => "datePicker input-medium"))?></td>
 		</tr>
 		<tr>
 			<th nowrap="nowrap">広告終了日</th>
-			<td><?php echo $this->Form->input("Titlead.{$key}_end", array("empty" => true, "class" => "input-mini"))?></td>
+			<td><?php echo $this->Form->text("Titlead.{$key}_end", array("type" => "date", "class" => "datePicker input-medium"))?></td>
 		</tr>
 		<tr>
-			<th nowrap="nowrap">リダイレクト不可</th>
-			<td><?php echo $this->Form->input("Titlead.{$key}_noredirect")?></td>
+			<th nowrap="nowrap">リダイレクト</th>
+			<td>
+				<?php echo $this->Form->input("Titlead.{$key}_noredirect")?> しない
+			</td>
 		</tr>
 		<tr>
 			<th nowrap="nowrap">デフォルトURL</th>

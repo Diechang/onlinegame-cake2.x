@@ -165,6 +165,24 @@
 			</td>
 		</tr>
 		<tr>
+			<th nowrap="nowrap">公式スマホURL</th>
+			<td>
+				<?php echo $this->Form->input("official_url_sp")?>
+			</td>
+		</tr>
+		<tr>
+			<th nowrap="nowrap">App Store URL</th>
+			<td>
+				<?php echo $this->Form->input("appdl_app_store")?>
+			</td>
+		</tr>
+		<tr>
+			<th nowrap="nowrap">Google Play URL</th>
+			<td>
+				<?php echo $this->Form->input("appdl_google_play")?>
+			</td>
+		</tr>
+		<tr>
 			<th nowrap="nowrap">Video</th>
 			<td>
 				<?php echo $this->Form->input("video")?>
@@ -230,8 +248,10 @@
 			<td><?php echo $this->Form->input("Titlead.{$key}_end", array("empty" => true, "class" => "input-mini"))?></td>
 		</tr>
 		<tr>
-			<th nowrap="nowrap">リダイレクト不可</th>
-			<td><?php echo $this->Form->input("Titlead.{$key}_noredirect")?></td>
+			<th nowrap="nowrap">リダイレクト</th>
+			<td>
+				<?php echo $this->Form->input("Titlead.{$key}_noredirect")?> しない
+			</td>
 		</tr>
 		<tr>
 			<th nowrap="nowrap">デフォルトURL</th>
