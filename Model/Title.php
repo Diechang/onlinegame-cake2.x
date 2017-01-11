@@ -518,7 +518,7 @@ class Title extends AppModel
  */
 	private function findSummaryRank(&$conditions, &$titleIdList, &$limit, &$type)
 	{
-		$this->unbindAll(array("Titlesummary"));
+		$this->unbindAll(array("Titlead", "Titlesummary"));
 		$conditions["vote_count_vote >"] = 0;
 		if(isset($titleIdList)){ $conditions["Title.id"] = $titleIdList; }
 		$ranking = $this->find("all", array(
@@ -565,6 +565,8 @@ class Title extends AppModel
 			$rank["Titlesummary"] = $rank[0];
 			unset($rank[0]);
 		}
+		debug($ranking);
+		exit;
 		return $ranking;
 	}
 

@@ -14,7 +14,7 @@ class TitlesController extends AppController
 		 * データ取得
 		 */
 		//タイトルデータ
-		$this->Title->unbindAll(array("Titlesummary", "Category", "Style", "Service", "Fee", "Spec", "Portal", "Package"));
+		$this->Title->unbindAll(array("Titlead", "Titlesummary", "Category", "Style", "Service", "Fee", "Spec", "Portal", "Package"));
 		$title = $this->_getTitleData();
 		$this->_afterGetTitleData($title);
 //		pr($title);
@@ -44,7 +44,7 @@ class TitlesController extends AppController
 		 * データ取得
 		 */
 		//タイトルデータ
-		$this->Title->unbindAll(array("Titlesummary", "Category", "Style", "Service", "Fee"));
+		$this->Title->unbindAll(array("Titlead", "Titlesummary", "Category", "Style", "Service", "Fee"));
 		$title = $this->_getTitleData();
 		$this->_afterGetTitleData($title);
 //		pr($title);
@@ -79,7 +79,7 @@ class TitlesController extends AppController
 		 * データ取得
 		 */
 		//タイトルデータ
-		$this->Title->unbindAll(array("Titlesummary", "Category", "Style", "Service", "Fee"));
+		$this->Title->unbindAll(array("Titlead", "Titlesummary", "Category", "Style", "Service", "Fee"));
 		$title = $this->_getTitleData();
 		$this->_afterGetTitleData($title);
 //		pr($title);
@@ -111,7 +111,7 @@ class TitlesController extends AppController
 // 		 * データ取得
 // 		 */
 // 		//タイトルデータ
-// 		$this->Title->unbindAll(array("Titlesummary", "Category", "Style", "Service", "Fee"));
+// 		$this->Title->unbindAll(array("Titlead", "Titlesummary", "Category", "Style", "Service", "Fee"));
 // 		$title = $this->_getTitleData();
 // 		$this->_afterGetTitleData($title);
 // //		pr($title);
@@ -147,7 +147,7 @@ class TitlesController extends AppController
 		 * データ取得
 		 */
 		//タイトルデータ
-		$this->Title->unbindAll(array("Titlesummary", "Category", "Style", "Service", "Fee"));
+		$this->Title->unbindAll(array("Titlead", "Titlesummary", "Category", "Style", "Service", "Fee"));
 		$title = $this->_getTitleData();
 		$this->_afterGetTitleData($title);
 //		pr($title);
@@ -207,7 +207,7 @@ class TitlesController extends AppController
 // 		 * データ取得
 // 		 */
 // 		//タイトルデータ
-// 		$this->Title->unbindAll(array("Titlesummary", "Category", "Style", "Service", "Fee"));
+// 		$this->Title->unbindAll(array("Titlead", "Titlesummary", "Category", "Style", "Service", "Fee"));
 // 		$title = $this->_getTitleData();
 // 		$this->_afterGetTitleData($title);
 
@@ -280,7 +280,7 @@ class TitlesController extends AppController
 // 		 * データ取得
 // 		 */
 // 		//タイトルデータ
-// 		$this->Title->unbindAll(array("Titlesummary", "Category", "Style", "Service", "Fee"));
+// 		$this->Title->unbindAll(array("Titlead", "Titlesummary", "Category", "Style", "Service", "Fee"));
 // 		$title = $this->_getTitleData();
 // 		$this->_afterGetTitleData($title);
 // //		pr($title);
@@ -332,7 +332,7 @@ class TitlesController extends AppController
 		 * データ取得
 		 */
 		//タイトルデータ
-		$this->Title->unbindAll(array("Titlesummary", "Category", "Style", "Service", "Fee"));
+		$this->Title->unbindAll(array("Titlead", "Titlesummary", "Category", "Style", "Service", "Fee"));
 		$title = $this->_getTitleData();
 		$this->_afterGetTitleData($title);
 //		pr($title);
@@ -431,7 +431,7 @@ class TitlesController extends AppController
 		 * データ取得
 		 */
 		//タイトルデータ
-		$this->Title->unbindAll(array("Titlesummary", "Category", "Style", "Service", "Fee", "Fansite"));
+		$this->Title->unbindAll(array("Titlead", "Titlesummary", "Category", "Style", "Service", "Fee", "Fansite"));
 		$title = $this->_getTitleData();
 		$this->_afterGetTitleData($title);
 //		pr($title);
@@ -475,7 +475,7 @@ class TitlesController extends AppController
 // 		 * データ取得
 // 		 */
 // 		//タイトルデータ
-// 		$this->Title->unbindAll(array("Titlesummary", "Category", "Style", "Service", "Fee"));
+// 		$this->Title->unbindAll(array("Titlead", "Titlesummary", "Category", "Style", "Service", "Fee"));
 // 		$title = $this->_getTitleData();
 // 		$this->_afterGetTitleData($title);
 // //		pr($title);

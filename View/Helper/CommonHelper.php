@@ -510,6 +510,41 @@ class CommonHelper extends AppHelper
 	}
 
 /**
+ * 公式リダイレクトリンク
+ *
+ * @param	model	$titleModel
+ * @param	model	$titleAdModel
+ * @param	string	$platform
+ * @param	bool	$titleName
+ * @return	html
+ * @access	public
+ */
+	function titleJumpText($str, $titleModel, $titleAdModel, $platform = "pc", $serviceCheck = true, $titleName = false)
+	{
+		if($serviceCheck == false or $titleModel["service_id"] != 1)
+		{
+			return ($titleAdModel["{$platform}_text_src"] && $titleAdModel["{$platform}_noredirect"]) 
+				? $titleAdModel["{$platform}_text_src"]
+				: $this->Html->link(
+					$str,
+					array("controller" => "jump", "action" => "title", $platform, $titleModel["id"]),
+					array("target" => "_blank", "escape" => false));
+		}
+		else
+		{//Titles only
+			if($titleName)
+			{
+				$ret = $str;
+			}
+			else
+			{
+				$ret = "サービス終了・休止中";
+			}
+			return '<span class="ended">' . $ret . '</span>';
+		}
+	}
+
+/**
  * 公式リンク
  *
  * @param	string	$str

@@ -61,7 +61,7 @@
 
 			<div class="official">
 				<span class="label label-official">公式サイト</span>
-				<?php echo $this->Common->officialLinkText($rank["Title"]["title_official"], $rank["Title"]["ad_use"], $rank["Title"]["ad_text"], $rank["Title"]["official_url"], $rank["Title"]["service_id"])?>
+				<?php echo $this->Common->titleJumpText($rank["Title"]["title_official"], $rank["Title"], $rank["Titlead"])?>
 			</div>
 		</div>
 	</li>

@@ -151,32 +151,25 @@ class ElementPartsController extends AppController
 	 */
 	function right_test()
 	{
-		$this->Title->unbindAll(array("Service"));
 		$rightTests = $this->Title->find("all", array(
 			"conditions" => array(
 				"Title.public" => 1,
 				"Title.service_id" => array(3,4),
 			),
 			"fields" => array(
-				"Title.title_official",
-				"Title.title_read",
-				"Title.url_str",
-				"Title.thumb_name",
-				"Title.description",
-				"Title.test_start",
-				"Title.test_end",
-				"Title.ad_use",
-				"Title.ad_text",
-				"Title.official_url",
-				"Service.*"
+				"Title.*",
+				"Titlead.*",
+				"Service.*",
 			),
+			"contain" => array("Titlead", "Service"),
 			"order" => array(
-				"Title.ad_use DESC",
+				"Titlead.pc_text_src is NULL ASC",
 				"Title.test_start DESC"
 			),
 			"limit" => 5
 		));
 		//
+		// debug($rightTests);
 		$this->set("rightTests", $rightTests);
 	}
 
@@ -186,29 +179,22 @@ class ElementPartsController extends AppController
 			"conditions" => array(
 				"Title.public" => 1,
 				"Title.service_id" => 2,
-				"Title.ad_use" => 1,
+				"NOT" => array(
+					"Titlead.pc_text_src" => null, 
+				)
 			),
 			"fields" => array(
-				"Title.title_official",
-				"Title.title_read",
-				"Title.url_str",
-				"Title.thumb_name",
-				"Title.description",
-				"Title.service_id",
-				"Title.service_start",
-				"Title.fee_id",
-				"Title.fee_text",
-				"Title.ad_use",
-				"Title.ad_text",
-				"Title.official_url",
+				"Title.*",
+				"Titlead.*",
 				"Fee.*",
 				"Service.*",
 			),
-			"contain" => array("Category", "Fee", "Service"),
+			"contain" => array("Titlead", "Category", "Fee", "Service"),
 			"order" => array("Title.service_start DESC"),
 			"limit" => 5
 		));
 		//
+		// debug($rightPickups);
 		$this->set("rightPickups", $rightPickups);
 	}
 
