@@ -5,7 +5,7 @@
 class JsonLdHelper extends AppHelper
 {
 	//Use Helper
-	var $helpers = array('Html');
+	var $helpers = array('Html', 'Common');
 
 
 
@@ -83,10 +83,12 @@ class JsonLdHelper extends AppHelper
 			"name" => ((!empty($name)) ? $name : $title["Title"]),
 			"aggregateRating" => array(
 				"@type" => "AggregateRating",
-				"ratingValue" => $title["Titlesummary"]["vote_avg_all"],
 				"ratingCount" => $title["Titlesummary"]["vote_count_vote"],
+				"reviewCount" => $title["Titlesummary"]["vote_count_review"],
 			)
 		);
+
+		if(!empty($title["Titlesummary"]["vote_count_vote"])) $data["aggregateRating"]["ratingValue"] = $this->Common->pointFormat($title["Titlesummary"]["vote_avg_all"]);
 
 		return $this->out($data);
 	}
@@ -118,7 +120,7 @@ class JsonLdHelper extends AppHelper
 			"datePublished" => date("Y-m-d", strtotime($vote["Vote"]["modified"])),
 			"reviewRating" => array(
 				"@type" => "Rating",
-				"ratingValue" => $vote["Vote"]["single_avg"]
+				"ratingValue" => $this->Common->pointFormat($vote["Vote"]["single_avg"])
 			)
 		);
 
