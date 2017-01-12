@@ -3,7 +3,6 @@
 <?php foreach($titles as $t):?>
 <url>
 	<loc><?php echo $this->Html->url(array("controller" => "titles", "action" => "index", "path" => $t["Title"]["url_str"], "ext" => "html"), true)?></loc>
-	<lastmod><?php echo $t["Title"]["modified"]?></lastmod>
 	<priority>1</priority>
 </url>
 <url>

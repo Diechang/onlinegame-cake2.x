@@ -69,10 +69,7 @@ class SitemapsController extends AppController
 				),
 			),
 			"fields" => array(
-				"Title.title_official",
-				"Title.title_read",
-				"Title.url_str",
-				"Title.modified",
+				"Title.*",
 				"Titlesummary.*",
 			),
 			"order" => "Title.title_official",
