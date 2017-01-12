@@ -9,4 +9,4 @@ SET
 WHERE
 	`titleads`.`title_id` = `titles`.`id`
 	AND
-	`titles`.`ad_use` = 1
+	`titles`.`ad_use` = 1;
