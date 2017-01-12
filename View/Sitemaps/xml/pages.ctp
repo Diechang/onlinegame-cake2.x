@@ -53,7 +53,7 @@
 
 <!--サイトメニュー-->
 <url><loc><?php echo $domain . $this->Html->url(array("controller" => "pages", "action" => "about", "ext" => "html"))?></loc></url>
-*<url><loc><?php echo $domain . $this->Html->url(array("controller" => "links", "path" => "index", "ext" => "html"))?></loc></url>
+<url><loc><?php echo $domain . $this->Html->url(array("controller" => "links", "path" => "index", "ext" => "html"))?></loc></url>
 <url><loc><?php echo $domain . $this->Html->url(array("controller" => "pages", "action" => "sitemap", "ext" => "html"))?></loc></url>
 <url><loc><?php echo $domain . $this->Html->url(array("controller" => "pages", "action" => "contact", "ext" => "html"))?></loc></url>
 
