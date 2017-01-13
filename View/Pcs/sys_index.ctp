@@ -20,8 +20,8 @@
 	<h2>PC一覧</h2>
 	<p id="results"></p>
 	<div class="controll">
-		<input type="submit" value="一括修正" class="btn" />
+		<?php echo $this->Form->submit("一括修正", array("class" => "btn"))?>
 	</div>
 	<?php echo $this->element("sys_list_pcs", array("pcs" => $pcs))?>
-	<div class="controll"><input type="submit" value="一括修正" class="btn" /></div>
+	<div class="controll"><?php echo $this->Form->submit("一括修正", array("class" => "btn"))?></div>
 <?php echo $this->Form->end()?>

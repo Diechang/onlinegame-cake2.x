@@ -3,7 +3,7 @@
 	<h2>小遣いサイト一覧</h2>
 	<p id="results"></p>
 	<div class="controll">
-		<input type="submit" value="一括修正" class="btn" />
+		<?php echo $this->Form->submit("一括修正", array("class" => "btn"))?>
 		<input type="text" id="word_searcher" />
 	</div>
 	<table class="list tablesorter table table-bordered">
@@ -39,5 +39,5 @@
 	<?php endforeach;?>
 		</tbody>
 	</table>
-	<div class="controll"><input type="submit" value="一括修正" class="btn" /></div>
+	<div class="controll"><?php echo $this->Form->submit("一括修正", array("class" => "btn"))?></div>
 <?php echo $this->Form->end()?>

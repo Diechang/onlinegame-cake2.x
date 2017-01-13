@@ -58,4 +58,5 @@
 </table>
 
 	<div class="controll"><input type="submit" value="一括修正" class="btn" /></div>
+	<?php echo $this->element("sys_paginate", array("counter" => false))?>
 <?php echo $this->Form->end()?>
