@@ -49,6 +49,7 @@
 			<td class="service" nowrap="nowrap">
 				<?php echo $this->Html->link($title["Service"]["str"], array("controller" => "titles", "action" => "index", "?" => array("service" => $title["Service"]["id"])))?>
 				<span><?php echo $title["Title"]["test_start"]?> - <?php echo $title["Title"]["test_end"]?></span>
+				<?php echo $this->Common->linkConf($title["Title"]["official_url"], "Link")?>
 			</td>
 			<td nowrap="nowrap"><?php echo $title["Title"]["service_start"]?></td>
 			<td class="tCenter" nowrap="nowrap"><?php echo $this->Html->link("<i class='icon-remove icon-white'></i>削除", array("controller" => "titles", "action" => "delete", $title["Title"]["id"]), array("class" => "btn btn-danger btn-small", "escape" => false), $title["Title"]["title_official"] . " を削除しますか?")?></td>
