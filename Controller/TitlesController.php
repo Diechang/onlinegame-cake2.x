@@ -821,10 +821,10 @@ class TitlesController extends AppController
  */
 	function _sysSetTitleAssociations()
 	{
-		$services	= $this->Title->Service->find('list');
-		$fees		= $this->Title->Fee->find('list');
-		$categories	= $this->Title->Category->find('list');
-		$styles		= $this->Title->Style->find('list');
+		$services	= $this->Title->Service->find('list', array('order' => 'sort'));
+		$fees		= $this->Title->Fee->find('list', array('order' => 'sort'));
+		$categories	= $this->Title->Category->find('list', array('order' => 'sort'));
+		$styles		= $this->Title->Style->find('list', array('order' => 'sort'));
 		$portals	= $this->Title->Portal->find('list');
 		//
 		$this->set(compact('services', 'fees', 'categories', 'styles', 'portals'));
