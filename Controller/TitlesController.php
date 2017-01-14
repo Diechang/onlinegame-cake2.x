@@ -545,7 +545,7 @@ class TitlesController extends AppController
 		//
 		$this->set("pankuz_for_layout", "タイトル一覧");
 		$this->set("categories", $this->Title->Category->find("list"));
-		$this->set("services", $this->Title->Service->find("list"));
+		$this->set("services", $this->Title->Service->find("list", array("order" => "sort")));
 	}
 
 //	function sys_view($id = null)
@@ -584,7 +584,7 @@ class TitlesController extends AppController
 		// pr($titles);
 		// exit;
 		$this->set("titles", $titles);
-		$this->set("services", $this->Title->Service->find("list"));
+		$this->set("services", $this->Title->Service->find("list", array("order" => "sort")));
 		//
 		$this->set("pankuz_for_layout", "広告付きタイトル一覧");
 	}
