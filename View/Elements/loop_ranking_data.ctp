@@ -61,7 +61,7 @@
 
 			<div class="official">
 				<span class="label label-official">公式サイト</span>
-				<?php echo $this->Common->titleJumpText($rank["Title"]["title_official"], $rank["Title"], $rank["Titlead"])?>
+				<?php echo $this->Common->titleJumpLink($rank["Title"]["title_official"], $rank["Title"], $rank["Titlead"])?>
 			</div>
 		</div>
 	</li>

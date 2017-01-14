@@ -1,1 +1,3 @@
-<?php echo $this->element("common_officiallink", array("link" => $this->Common->titleJumpText($titleWithStrs["Span"], $title["Title"], $title["Titlead"])))?>
+<?php echo $this->element("common_officiallink", array("link" => ($title["Title"]["service_id"] != 1) 
+		? $this->Common->titleJumpLink($titleWithStrs["Span"], $title["Title"], $title["Titlead"], "pc", false)
+		: '<span class="ended">サービス終了・休止中</span>'))?>

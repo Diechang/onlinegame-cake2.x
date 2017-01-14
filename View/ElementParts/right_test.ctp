@@ -26,7 +26,7 @@
 				</p>
 				<p class="data data-official">
 					<span class="label label-official">公式サイト</span>
-					<?php echo $this->Common->titleJumpText($rightTest["Title"]["title_official"], $rightTest["Title"], $rightTest["Titlead"], "pc", false)?>
+					<?php echo $this->Common->titleJumpLink($rightTest["Title"]["title_official"], $rightTest["Title"], $rightTest["Titlead"])?>
 				</p>
 			</li>
 <?php endforeach;?>
