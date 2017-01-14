@@ -538,10 +538,12 @@ class TitlesController extends AppController
 			)
 		);
 		$titles = $this->Paginator->paginate("Title");
+		$services = $this->Title->Service->find("list");
 		// pr($conditions);
 		// pr($titles);
 		// exit;
 		$this->set("titles", $titles);
+		$this->set("services", $services);
 		//
 		$this->set("pankuz_for_layout", "タイトル一覧");
 		$this->set("categories", $this->Title->Category->find("list"));
@@ -581,9 +583,11 @@ class TitlesController extends AppController
 			)
 		);
 		$titles = $this->Paginator->paginate("Title");
+		$services = $this->Title->Service->find("list");
 		// pr($titles);
 		// exit;
 		$this->set("titles", $titles);
+		$this->set("services", $services);
 		//
 		$this->set("pankuz_for_layout", "広告付きタイトル一覧");
 	}
