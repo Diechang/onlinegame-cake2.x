@@ -49,8 +49,9 @@
 			</td>
 			<td class="service" nowrap="nowrap">
 				<?php echo $this->Form->select("Title." . $key . ".service_id", $services, array("value" => $title["Title"]["service_id"], "class" => "input-medium", "empty" => false))?>
-				<!-- <?php echo $this->Html->link($title["Service"]["str"], array("controller" => "titles", "action" => "index", "?" => array("service" => $title["Service"]["id"])))?> -->
+	<?php if(!empty($title["Title"]["test_start"]) || !empty($title["Title"]["test_end"])):?>
 				<span><?php echo $title["Title"]["test_start"]?> - <?php echo $title["Title"]["test_end"]?></span>
+	<?php endif;?>
 			</td>
 			<td nowrap="nowrap"><?php echo $title["Title"]["service_start"]?></td>
 			<td class="<?php echo $this->Common->addClassZero(count($title["Vote"]), "tCenter")?>">

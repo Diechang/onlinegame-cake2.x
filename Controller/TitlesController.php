@@ -561,19 +561,25 @@ class TitlesController extends AppController
 	function sys_withads()
 	{
 		//タイトルデータ
-		$this->Title->unbindAll(array("Service"));
+		$this->Title->unbindAll(array("Titlead", "Service"));
 		$this->Paginator->settings = array(
 			"Title" => array(
 				"conditions" => array(
-					"OR" => array(
-						"ad_use" => true,
-						"NOT" => array(
-							"ad_text" => null,
-							"ad_banner_s" => null,
-							"ad_banner_m" => null,
-							"ad_banner_l" => null,
-						),
-					)
+					"TItle.id" => $this->Title->Titlead->find("list", array(
+						"fields" => array("Titlead.title_id"),
+						"conditions" => array(
+							"OR" => array(
+								"Titlead.pc_text_src NOT" => null,
+								"Titlead.pc_image_src NOT" => null,
+								"Titlead.sp_text_src NOT" => null,
+								"Titlead.sp_image_src NOT" => null,
+								"Titlead.ios_text_src NOT" => null,
+								"Titlead.ios_image_src NOT" => null,
+								"Titlead.android_text_src NOT" => null,
+								"Titlead.android_image_src NOT" => null,
+							)
+						)
+					))
 				),
 				"order" => "Title.id DESC",
 				 "limit" => 100,

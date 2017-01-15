@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: 2017 年 1 月 10 日 23:23
+-- Generation Time: 2017 年 1 月 15 日 11:17
 -- サーバのバージョン： 5.6.33
 -- PHP Version: 5.6.27
 
@@ -20,6 +20,7 @@ SET time_zone = "+00:00";
 -- テーブルの構造 `titleads`
 --
 
+DROP TABLE IF EXISTS `titleads`;
 CREATE TABLE `titleads` (
   `id` int(8) NOT NULL COMMENT 'ID',
   `title_id` int(8) NOT NULL COMMENT 'タイトルID',
