@@ -31,10 +31,10 @@ class SearchController extends AppController
 		
 		$query = $this->request->query;
 
-		$this->log(array(
-			"Server" => $_SERVER,
-			"Query" => $query,
-		), LOG_DEBUG);
+		// $this->log(array(
+		// 	"Server" => $_SERVER,
+		// 	"Query" => $query,
+		// ), LOG_DEBUG);
 
 		if(empty($query["page"]))
 		{

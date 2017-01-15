@@ -232,7 +232,10 @@
 if (Configure::read('debug') > 0)
 {
 	echo $this->element('sql_dump');
+	echo '<h2>$this->request</h2>';
 	debug($this->request);
+	echo '<h2>$this->viewVars</h2>';
+	debug($this->viewVars);
 }
 ?>
 </div>

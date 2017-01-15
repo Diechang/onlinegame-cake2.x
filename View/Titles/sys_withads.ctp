@@ -42,12 +42,14 @@
 			<td class="title" nowrap="nowrap">
 				<?php echo $title["Title"]["title_official"]?>
 				<span><?php echo $title["Title"]["title_read"]?></span>
+				<?php echo $this->Common->linkConf($title["Title"]["official_url"], "Link")?>
 			</td>
 			<td>
 				<?php echo $this->Html->image($this->Common->thumbName($title["Title"]["thumb_name"]), array("width" => 40))?>
 			</td>
 			<td class="service" nowrap="nowrap">
-				<?php echo $this->Html->link($title["Service"]["str"], array("controller" => "titles", "action" => "index", "?" => array("service" => $title["Service"]["id"])))?>
+				<?php echo $this->Form->select("Title." . $key . ".service_id", $services, array("value" => $title["Title"]["service_id"], "class" => "input-medium", "empty" => false))?>
+				<!-- <?php echo $this->Html->link($title["Service"]["str"], array("controller" => "titles", "action" => "index", "?" => array("service" => $title["Service"]["id"])))?> -->
 				<span><?php echo $title["Title"]["test_start"]?> - <?php echo $title["Title"]["test_end"]?></span>
 			</td>
 			<td nowrap="nowrap"><?php echo $title["Title"]["service_start"]?></td>
@@ -58,4 +60,5 @@
 </table>
 
 	<div class="controll"><input type="submit" value="一括修正" class="btn" /></div>
+	<?php echo $this->element("sys_paginate", array("counter" => false))?>
 <?php echo $this->Form->end()?>

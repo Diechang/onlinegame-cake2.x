@@ -7,7 +7,7 @@ class SitemapsController extends AppController
 
 	function index()
 	{
-		$files = array("pages", "votes", /*"events"*/);
+		$files = array("pages", "titles", "votes", /*"events"*/);
 		$this->set("files", $files);
 	}
 
@@ -31,19 +31,7 @@ class SitemapsController extends AppController
 			"order" => "Service.sort"
 		));
 //		pr($services);
-		//Title
-		$this->Title->unbindAll(array("Titlesummary"));
-		$titles = $this->Title->find("all", array(
-			"conditions" => array("public" => 1),
-			"fields" => array(
-				"Title.title_official",
-				"Title.title_read",
-				"Title.url_str",
-				"Titlesummary.*",
-			),
-			"order" => "Title.title_official",
-		));
-//		pr($titles);
+		//Portal
 		$portals = $this->Portal->find("all", array(
 			"recursive" => -1,
 			"conditions" => array("public" => 1),
@@ -65,9 +53,31 @@ class SitemapsController extends AppController
 		$this->set("categories", $categories);
 		$this->set("styles", $styles);
 		$this->set("services", $services);
-		$this->set("titles", $titles);
 		$this->set("portals", $portals);
 		$this->set("moneycategories", $moneycategories);
+	}
+
+	function titles()
+	{
+		//Title
+		$this->Title->unbindAll(array("Titlesummary"));
+		$titles = $this->Title->find("all", array(
+			"conditions" => array(
+				"public" => 1,
+				"NOT" => array(
+					"service_id" => 1,
+				),
+			),
+			"fields" => array(
+				"Title.*",
+				"Titlesummary.*",
+			),
+			"order" => "Title.title_official",
+		));
+//		pr($titles);
+		//
+		//Set
+		$this->set("titles", $titles);
 	}
 
 	function votes()

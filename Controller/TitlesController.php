@@ -545,7 +545,7 @@ class TitlesController extends AppController
 		//
 		$this->set("pankuz_for_layout", "タイトル一覧");
 		$this->set("categories", $this->Title->Category->find("list"));
-		$this->set("services", $this->Title->Service->find("list"));
+		$this->set("services", $this->Title->Service->find("list", array("order" => "sort")));
 	}
 
 //	function sys_view($id = null)
@@ -584,6 +584,7 @@ class TitlesController extends AppController
 		// pr($titles);
 		// exit;
 		$this->set("titles", $titles);
+		$this->set("services", $this->Title->Service->find("list", array("order" => "sort")));
 		//
 		$this->set("pankuz_for_layout", "広告付きタイトル一覧");
 	}
@@ -820,10 +821,10 @@ class TitlesController extends AppController
  */
 	function _sysSetTitleAssociations()
 	{
-		$services	= $this->Title->Service->find('list');
-		$fees		= $this->Title->Fee->find('list');
-		$categories	= $this->Title->Category->find('list');
-		$styles		= $this->Title->Style->find('list');
+		$services	= $this->Title->Service->find('list', array('order' => 'sort'));
+		$fees		= $this->Title->Fee->find('list', array('order' => 'sort'));
+		$categories	= $this->Title->Category->find('list', array('order' => 'sort'));
+		$styles		= $this->Title->Style->find('list', array('order' => 'sort'));
 		$portals	= $this->Title->Portal->find('list');
 		//
 		$this->set(compact('services', 'fees', 'categories', 'styles', 'portals'));

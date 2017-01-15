@@ -71,8 +71,9 @@
 	<?php echo $this->element("sys_paginate")?>
 
 	<div class="controll">
-		<input type="submit" value="一括修正" class="btn" />
+		<?php echo $this->Form->submit("一括修正", array("class" => "btn"))?>
 	</div>
 <?php echo $this->element("sys_list_fansites", array("fansites" => $fansites))?>
-	<div class="controll"><input type="submit" value="一括修正" class="btn" /></div>
+	<div class="controll"><?php echo $this->Form->submit("一括修正", array("class" => "btn"))?></div>
+	<?php echo $this->element("sys_paginate", array("counter" => false))?>
 <?php echo $this->Form->end()?>

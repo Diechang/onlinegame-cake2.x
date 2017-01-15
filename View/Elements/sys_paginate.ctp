@@ -1,4 +1,6 @@
+<?php if(!isset($counter) || $counter != false):?>
 <p><?php echo $this->Paginator->counter(array("format" => "<strong>%count%件中</strong> %start%件目 ～ %end%件表示"))?></p>
+<?php endif;?>
 <?php if($this->Paginator->hasPrev() || $this->Paginator->hasNext()):?>
 <div class="pagination">
 	<ul>
