@@ -66,6 +66,7 @@ class PortalsController extends AppController
 				"Portal.url_str" => $path,
 			),
 		));
+		$this->_emptyToURL($portal, array("action" => "index", "ext" => "html"));
 		// pr($portal);
 		// exit;
 		$portals = $this->Portal->find("all", array(
@@ -79,8 +80,6 @@ class PortalsController extends AppController
 		));
 //		pr($this->Portal->hasAndBelongsToMany["Title"]["conditions"]);
 //		exit;
-		$this->_emptyToURL($portal, array("action" => "index", "ext" => "html"));
-//		pr($portal);
 		//
 		//Set
 		$this->set("portal", $portal);
