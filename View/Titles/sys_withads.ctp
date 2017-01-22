@@ -35,12 +35,18 @@
 	<?php if(!empty($title["Titlead"]["pc_start"]) || !empty($title["Titlead"]["pc_end"])):?>
 				<div><?php echo $title["Titlead"]["pc_start"]?> - <?php echo $title["Titlead"]["pc_end"]?></div>
 	<?php endif;?>
+	<?php if(!empty($title["Titlead"]["pc_noredirect"])):?>
+				<div>(No redirect)</div>
+	<?php endif;?>
 			</td>
 			<td class="adBanner">
 				<div><?php echo $title["Titlead"]["sp_text_src"]?></div>
 				<div><?php echo $title["Titlead"]["sp_image_src"]?></div>
 	<?php if(!empty($title["Titlead"]["sp_start"]) || !empty($title["Titlead"]["sp_end"])):?>
 				<div><?php echo $title["Titlead"]["sp_start"]?> - <?php echo $title["Titlead"]["sp_end"]?></div>
+	<?php endif;?>
+	<?php if(!empty($title["Titlead"]["sp_noredirect"])):?>
+				<div>(No redirect)</div>
 	<?php endif;?>
 			</td>
 			<td class="adBanner">
@@ -49,6 +55,9 @@
 	<?php if(!empty($title["Titlead"]["ios_start"]) || !empty($title["Titlead"]["ios_end"])):?>
 				<div><?php echo $title["Titlead"]["ios_start"]?> - <?php echo $title["Titlead"]["ios_end"]?></div>
 	<?php endif;?>
+	<?php if(!empty($title["Titlead"]["ios_noredirect"])):?>
+				<div>(No redirect)</div>
+	<?php endif;?>
 			</td>
 			<td class="adBanner">
 				<div><?php echo $title["Titlead"]["android_text_src"]?></div>
@@ -56,11 +65,15 @@
 	<?php if(!empty($title["Titlead"]["android_start"]) || !empty($title["Titlead"]["android_end"])):?>
 				<div><?php echo $title["Titlead"]["android_start"]?> - <?php echo $title["Titlead"]["android_end"]?></div>
 	<?php endif;?>
+	<?php if(!empty($title["Titlead"]["android_noredirect"])):?>
+				<div>(No redirect)</div>
+	<?php endif;?>
 			</td>
 			<td class="title" nowrap="nowrap">
 				<?php echo $title["Title"]["title_official"]?>
 				<span><?php echo $title["Title"]["title_read"]?></span>
-				<?php echo $this->Common->linkConf($title["Title"]["official_url"], "Link")?>
+				<?php echo $this->Html->link($title["Title"]["url_str"], array("controller" => "titles", "action" => "index", "path" => $title["Title"]["url_str"], "sys" => false, "ext" => "html"), array("target" => "_blank"))?>
+				<?php echo $this->Common->linkConf($title["Title"]["official_url"], "Official")?>
 			</td>
 			<td>
 				<?php echo $this->Html->image($this->Common->thumbName($title["Title"]["thumb_name"]), array("width" => 40))?>
