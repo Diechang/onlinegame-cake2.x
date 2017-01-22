@@ -528,7 +528,7 @@ class CommonHelper extends AppHelper
 				? $titleAdModel["{$platform}_text_src"]
 				: $this->Html->link(
 					$str . $trackImg,
-					array("controller" => "jump", "action" => "title", $platform, $titleModel["id"]),
+					array("controller" => "jump", "action" => "title", $platform, $titleModel["url_str"]),
 					array("target" => "_blank", "escape" => false));;
 	}
 	function titleJumpLinkImage($image, $titleModel, $titleAdModel, $platform = "pc", $escape = false)
@@ -537,7 +537,7 @@ class CommonHelper extends AppHelper
 			? $titleAdModel["{$platform}_image_src"]
 			: $this->Html->link(
 				$image,
-				array("controller" => "jump", "action" => "title", $platform, $titleModel["id"]),
+				array("controller" => "jump", "action" => "title", $platform, $titleModel["url_str"]),
 				array("target" => "_blank", "escape" => $escape));
 	}
 

@@ -8,10 +8,10 @@ class JumpController extends AppController
 
 /** Modelds
 ------------------------------ **/
-	function title($platform = null, $id = null)
+	function title($platform = null, $path = null)
 	{
 		$this->_emptyToHome($platform);
-		$this->_emptyToHome($id);
+		$this->_emptyToHome($path);
 
 		$this->Title->virtualFields = array(
 			"pc_default_url" => "Title.official_url",
@@ -20,27 +20,28 @@ class JumpController extends AppController
 			"android_default_url" => "Title.appdl_google_play",
 		);
 		$title = $this->Title->find("first", array(
-			"conditions" => array("Title.id" => $id),
+			"conditions" => array("Title.url_str" => $path),
 			"contain" => array("Titlead"),
 		));
 		// debug($title);
 		// exit;
 
-		//set url
-		$url = $title["Title"]["{$platform}_default_url"];
-
+		// set times & flags
 		$times = array(
 			"now" => strtotime("now"),
-			"start" => strtotime(!empty($title["Titlead"]["{$platform}_start"])	? ($title["Titlead"]["{$platform}_start"] . "00:00") : false),
-			"end" => strtotime(!empty($title["Titlead"]["{$platform}_end"])		? ($title["Titlead"]["{$platform}_end"] . " 24:00") : false),
+			"start" => strtotime(!empty($title["Titlead"]["{$platform}_start"])	? ($title["Titlead"]["{$platform}_start"]) : false),
+			"end" => strtotime(!empty($title["Titlead"]["{$platform}_end"])		? ($title["Titlead"]["{$platform}_end"]) : false),
 		);
 		$flags = array(
 			"start" => (!empty($times["start"]) && $times["start"] < $times["now"]),
 			"end" => (!empty($times["end"]) && $times["end"] > $times["now"]),
-			"empties" => (empty($times["start"]) && empty($times["start"])),
+			"empties" => (empty($times["start"]) && empty($times["end"])),
 		);
 		// debug($times);
 		// debug($flags);
+		
+		//set url
+		$url = $title["Title"]["{$platform}_default_url"];
 		if(!empty($title["Titlead"]["{$platform}_part_url"]))
 		{
 			// between
@@ -54,6 +55,7 @@ class JumpController extends AppController
 		}
 		$this->set("url", $url);
 		// debug($url);
+		// exit;
 		//set options
 		$this->set("options", array(
 			"title" => $title["Title"]["title_official"] . " リンククリック"
