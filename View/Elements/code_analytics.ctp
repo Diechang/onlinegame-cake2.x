@@ -7,7 +7,11 @@
   })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-3634799-2', 'auto');
+ <?php if(isset($options)):?>
   ga('send', 'pageview', <?php echo json_encode($options, JSON_UNESCAPED_UNICODE)?>);
+ <?php else:?>
+  ga('send', 'pageview');
+ <?php endif;?>
 
 </script>
 <?php endif;?>
