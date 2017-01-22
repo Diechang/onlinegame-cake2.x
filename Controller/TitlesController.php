@@ -565,7 +565,7 @@ class TitlesController extends AppController
 		$this->Paginator->settings = array(
 			"Title" => array(
 				"conditions" => array(
-					"TItle.id" => $this->Title->Titlead->find("list", array(
+					"Title.id" => $this->Title->Titlead->find("list", array(
 						"fields" => array("Titlead.title_id"),
 						"conditions" => array(
 							"OR" => array(
