@@ -153,7 +153,7 @@ $this->element("title_ogp", array("titleWithStrs" => $titleWithStrs));
 							</div>
 							<div class="shop">
 								<?php echo $this->Html->link("商品の購入・詳細はこちら",
-											$this->Common->adLinkUrl($pickup["Pc"], "pc"),
+											$this->Common->adLinkUrl($pc["Pc"], "pc"),
 											array("class" => "button button-official", "target" => "_blank"))?>
 							</div>
 						</dd>
