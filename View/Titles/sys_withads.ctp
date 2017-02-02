@@ -29,46 +29,19 @@
 				<?php echo $this->Html->link("編集", array("controller" => "titles", "action" => "edit", $title["Title"]["id"]), array("class" => "btn"))?>
 				<?php echo $this->Form->hidden("Title." . $key . ".id", array("value" => $title["Title"]["id"]))?>
 			</td>
-			<td class="adBanner">
-				<div><?php echo $title["Titlead"]["pc_text_src"]?></div>
-				<div><?php echo $title["Titlead"]["pc_image_src"]?></div>
-	<?php if(!empty($title["Titlead"]["pc_start"]) || !empty($title["Titlead"]["pc_end"])):?>
-				<div><?php echo $title["Titlead"]["pc_start"]?> - <?php echo $title["Titlead"]["pc_end"]?></div>
+<?php $adPlatforms = array("pc", "sp", "ios", "android")?>
+<?php foreach($adPlatforms as $adPlatform):?>
+			<td class="adBanner<?php if((!empty($title["Titlead"]["{$adPlatform}_text_src"]) || !empty($title["Titlead"]["{$adPlatform}_image_src"])) && !$title["Titlead"]["{$adPlatform}_activation"]):?> adInactive<?php endif;?>">
+				<div><?php echo $title["Titlead"]["{$adPlatform}_text_src"]?></div>
+				<div><?php echo $title["Titlead"]["{$adPlatform}_image_src"]?></div>
+	<?php if(!empty($title["Titlead"]["{$adPlatform}_start"]) || !empty($title["Titlead"]["{$adPlatform}_end"])):?>
+				<div><?php echo $title["Titlead"]["{$adPlatform}_start"]?> - <?php echo $title["Titlead"]["{$adPlatform}_end"]?></div>
 	<?php endif;?>
-	<?php if(!empty($title["Titlead"]["pc_noredirect"])):?>
+	<?php if(!empty($title["Titlead"]["{$adPlatform}_noredirect"])):?>
 				<div>(No redirect)</div>
 	<?php endif;?>
 			</td>
-			<td class="adBanner">
-				<div><?php echo $title["Titlead"]["sp_text_src"]?></div>
-				<div><?php echo $title["Titlead"]["sp_image_src"]?></div>
-	<?php if(!empty($title["Titlead"]["sp_start"]) || !empty($title["Titlead"]["sp_end"])):?>
-				<div><?php echo $title["Titlead"]["sp_start"]?> - <?php echo $title["Titlead"]["sp_end"]?></div>
-	<?php endif;?>
-	<?php if(!empty($title["Titlead"]["sp_noredirect"])):?>
-				<div>(No redirect)</div>
-	<?php endif;?>
-			</td>
-			<td class="adBanner">
-				<div><?php echo $title["Titlead"]["ios_text_src"]?></div>
-				<div><?php echo $title["Titlead"]["ios_image_src"]?></div>
-	<?php if(!empty($title["Titlead"]["ios_start"]) || !empty($title["Titlead"]["ios_end"])):?>
-				<div><?php echo $title["Titlead"]["ios_start"]?> - <?php echo $title["Titlead"]["ios_end"]?></div>
-	<?php endif;?>
-	<?php if(!empty($title["Titlead"]["ios_noredirect"])):?>
-				<div>(No redirect)</div>
-	<?php endif;?>
-			</td>
-			<td class="adBanner">
-				<div><?php echo $title["Titlead"]["android_text_src"]?></div>
-				<div><?php echo $title["Titlead"]["android_image_src"]?></div>
-	<?php if(!empty($title["Titlead"]["android_start"]) || !empty($title["Titlead"]["android_end"])):?>
-				<div><?php echo $title["Titlead"]["android_start"]?> - <?php echo $title["Titlead"]["android_end"]?></div>
-	<?php endif;?>
-	<?php if(!empty($title["Titlead"]["android_noredirect"])):?>
-				<div>(No redirect)</div>
-	<?php endif;?>
-			</td>
+<?php endforeach;?>
 			<td class="title" nowrap="nowrap">
 				<?php echo $title["Title"]["title_official"]?>
 				<span><?php echo $title["Title"]["title_read"]?></span>

@@ -21,6 +21,7 @@
 		</tr>
 	</thead>
 	<tbody>
+<?php $adPlatforms = array("PC" => "info", "SP"=> "important", "iOS" => "inverse", "Android" => "success")?>
 <?php foreach($titles as $key => $title):?>
 		<tr class="title_id_<?php echo $title["Title"]["id"]?>">
 			<td class="tCenter" nowrap="nowrap"><?php echo $this->Html->link("編集", array("controller" => "titles", "action" => "edit", $title["Title"]["id"]), array("class" => "btn"))?></td>
@@ -29,7 +30,12 @@
 				<?php echo $this->Form->hidden("Title." . $key . ".id", array("value" => $title["Title"]["id"]))?>
 			</td>
 			<td class="tCenter">
-				<?php echo $this->Form->checkbox("Title." . $key . ".ad_use", array("checked" => (!empty($title["Title"]["ad_use"]))))?>
+<?php foreach($adPlatforms as $adPlatform => $label):?>
+	<?php $lowAdPlatform = strtolower($adPlatform)?>
+	<?php if(!empty($title["Titlead"]["{$lowAdPlatform}_text_src"]) || !empty($title["Titlead"]["{$lowAdPlatform}_image_src"])):?>
+				<span class="label label-<?php echo ($title["Titlead"]["{$lowAdPlatform}_activation"]) ? $label : "default"?>"><?php echo $adPlatform?></span>
+	<?php endif;?>
+<?php endforeach;?>
 			</td>
 			<td class="tRight"><?php echo $title["Title"]["id"]?></td>
 			<td class="title" nowrap="nowrap">
