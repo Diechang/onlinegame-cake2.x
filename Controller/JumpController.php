@@ -8,9 +8,60 @@ class JumpController extends AppController
 
 /** Modelds
 ------------------------------ **/
-	function title($id = null)
+	function title($platform = null, $path = null)
 	{
-		$this->_emptyToHome($id);
+		$this->_emptyToHome($platform);
+		$this->_emptyToHome($path);
+
+		$this->Title->virtualFields = array(
+			"pc_default_url" => "Title.official_url",
+			"sp_default_url" => "Title.official_url_sp",
+			"ios_default_url" => "Title.appdl_app_store",
+			"android_default_url" => "Title.appdl_google_play",
+		);
+		$title = $this->Title->find("first", array(
+			"conditions" => array("Title.url_str" => $path),
+			"contain" => array("Titlead"),
+		));
+		// debug($title);
+		// exit;
+
+		// set times & flags
+		$times = array(
+			"now" => strtotime("now"),
+			"start" => strtotime(!empty($title["Titlead"]["{$platform}_start"])	? ($title["Titlead"]["{$platform}_start"]) : false),
+			"end" => strtotime(!empty($title["Titlead"]["{$platform}_end"])		? ($title["Titlead"]["{$platform}_end"]) : false),
+		);
+		$flags = array(
+			"start" => (!empty($times["start"]) && $times["start"] < $times["now"]),
+			"end" => (!empty($times["end"]) && $times["end"] > $times["now"]),
+			"empties" => (empty($times["start"]) && empty($times["end"])),
+		);
+		// debug($times);
+		// debug($flags);
+		
+		//set url
+		$url = $title["Title"]["{$platform}_default_url"];
+		if(!empty($title["Titlead"]["{$platform}_part_url"]))
+		{
+			// between
+			if($flags["start"] && $flags["end"])			$url = $title["Titlead"]["{$platform}_part_url"];
+			// start
+			elseif($flags["start"] && empty($times["end"]))	$url = $title["Titlead"]["{$platform}_part_url"];
+			// end
+			elseif($flags["end"] && empty($times["start"]))	$url = $title["Titlead"]["{$platform}_part_url"];
+			// both empty
+			elseif($flags["empties"])						$url = $title["Titlead"]["{$platform}_part_url"];
+		}
+		$this->set("url", $url);
+		// debug($url);
+		// exit;
+		//set options
+		$this->set("options", array(
+			"title" => $title["Title"]["title_official"] . " リンククリック"
+		));
+
+		$this->_renderMetaRedirect();
 	}
 
 	function portal($id = null)
@@ -20,12 +71,12 @@ class JumpController extends AppController
 
 	function pc($id = null)
 	{
-		$this->_metaRedirect("Pc", $id);
+		$this->_metaAdRedirect("Pc", $id);
 	}
 
 	function package($id = null)
 	{
-		$this->_metaRedirect("Package", $id);
+		$this->_metaAdRedirect("Package", $id);
 	}
 
 /** Ad models
@@ -33,27 +84,27 @@ class JumpController extends AppController
 	//AdCenterBottom
 	function adcb($id = null)
 	{
-		$this->_metaRedirect("AdCenterBottom", $id);
+		$this->_metaAdRedirect("AdCenterBottom", $id);
 	}
 	//AdLeftBottom
 	function adlb($id = null)
 	{
-		$this->_metaRedirect("AdLeftBottom", $id);
+		$this->_metaAdRedirect("AdLeftBottom", $id);
 	}
 	//AdLeftTop
 	function adlt($id = null)
 	{
-		$this->_metaRedirect("AdLeftTop", $id);
+		$this->_metaAdRedirect("AdLeftTop", $id);
 	}
 	//AdRightBottom
 	function adrb($id = null)
 	{
-		$this->_metaRedirect("AdRightBottom", $id);
+		$this->_metaAdRedirect("AdRightBottom", $id);
 	}
 	//AdRightTop
 	function adrt($id = null)
 	{
-		$this->_metaRedirect("AdRightTop", $id);
+		$this->_metaAdRedirect("AdRightTop", $id);
 	}
 
 /** Other
@@ -84,17 +135,31 @@ class JumpController extends AppController
 
 
 /**
- * 単一モデル仕様のメタタグリダイレクト
+ * 単一広告モデル仕様のメタタグリダイレクト
  */
-	private function _metaRedirect($model, $id)
+	private function _metaAdRedirect($model, $id)
 	{
 		$this->_emptyToHome($id);
 		$this->$model->recursive = -1;
 		$jump = $this->$model->findById($id);
 		$this->set("url", $jump[$model]["ad_part_url"]);
+		$this->set("options", array(
+			"title" => (!empty($jump[$model]["ad_part_text"]))
+						? ($jump[$model]["ad_part_text"] . " リンククリック")
+						: ($jump[$model]["note"] . " バナークリック")
+		));
+
+		$this->_renderMetaRedirect();
+	}
+
+
+/**
+ * メタタグリダイレクト
+ */
+	private function _renderMetaRedirect()
+	{
 		//Use layout
 		$this->layout = false;
-
 		$this->render("/Layouts/metaredirect");
 	}
 }

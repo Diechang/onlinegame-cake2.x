@@ -47,6 +47,37 @@
 <?php endif;?>
 					</td>
 				</tr>
+<?php if($title["Service"]["id"] != 1):?>
+				<!-- 公式サイト -->
+				<tr>
+					<th>公式サイト</th>
+					<td>
+	<?php if(!empty($title["Titlead"]["pc_part_url"]) && $title["Titlead"]["pc_noredirect"] == false):?>
+						<?php echo $this->Common->titleJumpLink($title["Title"]["official_url"],
+							$title["Title"], $title["Titlead"], "pc"
+						)?>
+	<?php else:?>
+						<?php echo $this->Html->link($title["Title"]["official_url"], $title["Title"]["official_url"], array("target" => "_blank"));?>
+	<?php endif;?>
+					</td>
+				</tr>
+<?php endif;?>
+<?php if(!empty($title["Title"]["appdl_app_store"]) || !empty($title["Title"]["appdl_google_play"])):?>
+				<!-- アプリダウンロード -->
+				<tr>
+					<th>アプリダウンロード</th>
+					<td>
+						<?php if(!empty($title["Title"]["appdl_app_store"])) echo $this->Common->titleJumpLinkImage(
+							$this->Html->image("appbadge_app_store.png", array("width" => 135, "height" => 40, "alt" => "App Storeからダウンロード")),
+							$title["Title"], $title["Titlead"], "ios"
+						);?>
+						<?php if(!empty($title["Title"]["appdl_google_play"])) echo $this->Common->titleJumpLinkImage(
+							$this->Html->image("appbadge_google_play.png", array("width" => 135, "height" => 40, "alt" => "Google Playで手に入れよう")),
+							$title["Title"], $title["Titlead"], "android"
+						);?>
+					</td>
+				</tr>
+<?php endif;?>
 			</table>
 
 <?php if(isset($title["Title"]["votable"]) && $title["Title"]["votable"]):?>

@@ -67,19 +67,19 @@
 		<tr>
 			<th nowrap="nowrap">正式サービス開始日</th>
 			<td>
-				<?php echo $this->Form->input("service_start", array("empty" => true, "class" => "input-mini"))?>
+				<?php echo $this->Form->text("service_start", array("type" => "date", "class" => "input-medium"))?>
 			</td>
 		</tr>
 		<tr>
 			<th nowrap="nowrap">テスト開始日</th>
 			<td>
-				<?php echo $this->Form->input("test_start", array("empty" => true, "class" => "input-mini"))?>
+				<?php echo $this->Form->text("test_start", array("type" => "date", "class" => "input-medium"))?>
 			</td>
 		</tr>
 		<tr>
 			<th nowrap="nowrap">テスト終了日</th>
 			<td>
-				<?php echo $this->Form->input("test_end", array("empty" => true, "class" => "input-mini"))?>
+				<?php echo $this->Form->text("test_end", array("type" => "date", "class" => "input-medium"))?>
 			</td>
 		</tr>
 		<tr>
@@ -173,6 +173,24 @@
 			</td>
 		</tr>
 		<tr>
+			<th nowrap="nowrap">公式スマホURL</th>
+			<td>
+				<?php echo $this->Form->input("official_url_sp")?>
+			</td>
+		</tr>
+		<tr>
+			<th nowrap="nowrap">App Store URL</th>
+			<td>
+				<?php echo $this->Form->input("appdl_app_store")?>
+			</td>
+		</tr>
+		<tr>
+			<th nowrap="nowrap">Google Play URL</th>
+			<td>
+				<?php echo $this->Form->input("appdl_google_play")?>
+			</td>
+		</tr>
+		<tr>
 			<th nowrap="nowrap">Video</th>
 			<td>
 				<?php echo $this->Form->input("video")?>
@@ -185,4 +203,70 @@
 			</td>
 		</tr>
 	</table>
+
+<?php 
+	$adPlatforms = array(
+		"pc" => "PC",
+		"sp" => "スマホ",
+		"ios" => "iOS",
+		"android" => "Android",
+	);
+?>
+<?php foreach($adPlatforms as $key => $value):?>
+	<h2><?php echo $value?>広告設定</h2>
+	<table class="edit table table-bordered titleAds-table">
+		<tr>
+			<th nowrap="nowrap">テキスト広告</th>
+			<td>
+				<div class="titleAds-preview-text"></div>
+				<?php echo $this->Form->input("Titlead.{$key}_text_src", array("class" => "titleAds-ad-text focusSelect"))?>
+				<div><a href="javascript:void(0)" class="btn btn-info titleAds-get-text">GetTitleAdText</a></div>
+			</td>
+		</tr>
+		<tr>
+			<th nowrap="nowrap">イメージ広告</th>
+			<td>
+				<div class="titleAds-preview-image"></div>
+				<?php echo $this->Form->input("Titlead.{$key}_image_src", array("class" => "titleAds-ad-image focusSelect"))?>
+				<div><a href="javascript:void(0)" class="btn btn-info titleAds-get-image">GetTitleAdImage</a></div>
+			</td>
+		</tr>
+		<tr>
+			<th nowrap="nowrap">広告URL</th>
+			<td><?php echo $this->Form->input("Titlead.{$key}_part_url", array("class" => "titleAds-part-url"))?></td>
+		</tr>
+		<tr>
+			<th nowrap="nowrap">広告テキスト</th>
+			<td><?php echo $this->Form->input("Titlead.{$key}_part_text", array("class" => "titleAds-part-text"))?></td>
+		</tr>
+		<tr>
+			<th nowrap="nowrap">広告画像src</th>
+			<td><?php echo $this->Form->input("Titlead.{$key}_part_img_src", array("class" => "titleAds-part-img-src"))?></td>
+		</tr>
+		<tr>
+			<th nowrap="nowrap">広告トラッキングsrc</th>
+			<td><?php echo $this->Form->input("Titlead.{$key}_part_track_src", array("class" => "titleAds-part-track-src"))?></td>
+		</tr>
+		<tr>
+			<th nowrap="nowrap">広告開始日時</th>
+			<td><?php echo $this->Form->input("Titlead.{$key}_start", array("type" => "datetime-local", "step" => "1800", "value" => (!empty($this->request->data["Titlead"]["{$key}_start"]) ? date("Y-m-d\TH:i:s", strtotime($this->request->data["Titlead"]["{$key}_start"])) : null)))?></td>
+		</tr>
+		<tr>
+			<th nowrap="nowrap">広告終了日時</th>
+			<td><?php echo $this->Form->text("Titlead.{$key}_end", array("type" => "datetime-local", "step" => "1800", "value" => (!empty($this->request->data["Titlead"]["{$key}_end"]) ? date("Y-m-d\TH:i:s", strtotime($this->request->data["Titlead"]["{$key}_end"])) : null)))?></td>
+		</tr>
+		<tr>
+			<th nowrap="nowrap">リダイレクト</th>
+			<td>
+				<?php echo $this->Form->input("Titlead.{$key}_noredirect")?> しない
+			</td>
+		</tr>
+		<tr>
+			<th nowrap="nowrap">登録</th>
+			<td>
+				<?php echo $this->Form->submit("登録", array("class" => "btn btn-primary"))?>
+			</td>
+		</tr>
+	</table>
+<?php endforeach;?>
 <?php echo $this->Form->end()?>

@@ -26,7 +26,7 @@
 				</p>
 				<p class="data data-official">
 					<span class="label label-official">公式サイト</span>
-					<?php echo $this->Common->officialLinkText($rightPickup["Title"]["title_official"], $rightPickup["Title"]["ad_use"], $rightPickup["Title"]["ad_text"], $rightPickup["Title"]["official_url"])?>
+					<?php echo $this->Common->titleJumpLink($rightPickup["Title"]["title_official"], $rightPickup["Title"], $rightPickup["Titlead"])?>
 				</p>
 			</li>
 <?php endforeach;?>

@@ -172,9 +172,6 @@ class PagesController extends AppController
 				"Title.description",
 				"Title.test_start",
 				"Title.test_end",
-				"Title.ad_use",
-				"Title.ad_text",
-				"Title.official_url",
 				"Service.id",
 				"Service.str",
 				"Service.path",
@@ -202,9 +199,6 @@ class PagesController extends AppController
 				"Title.description",
 				"Title.test_start",
 				"Title.test_end",
-				"Title.ad_use",
-				"Title.ad_text",
-				"Title.official_url",
 				"Service.id",
 				"Service.str",
 				"Service.path",
@@ -360,14 +354,14 @@ class PagesController extends AppController
 					"Title.public" => 1,
 					"Titlesummary.vote_count_review <" => 30,
 					"OR" => array(
-						array("Title.ad_use" => 1, "Title.service_id NOT IN" => array(1, 2, 5)),
-						array("Title.service_start >" => date("Y-m-d", strtotime("-2 year")), "Title.service_id" => 2, "Title.ad_use" => 1),
+						array("Titlead.pc_text_src !=" => null, "Title.service_id NOT IN" => array(1, 2, 5)),
+						array("Title.service_start >" => date("Y-m-d", strtotime("-2 year")), "Title.service_id" => 2, "Titlead.pc_text_src !=" => null),
 						array("Title.service_start >" => date("Y-m-d", strtotime("-1 year")), "Title.service_id" => 2),
 					),
 				),
 			),
-			"order" => array("Title.ad_use DESC", "Title.service_id DESC" , "Title.service_start DESC"),
-			"contain" => "Titlesummary",
+			"order" => array("Titlead.pc_text_src IS NULL ASC", "Title.service_id DESC" , "Title.service_start DESC"),
+			"contain" => array("Titlesummary", "Titlead")
 		));
 		// pr($titles);
 		// exit;
@@ -472,7 +466,7 @@ class PagesController extends AppController
 		//
 		$this->set("pankuz_for_layout", "");
 		$this->set("categories", $this->Title->Category->find("list"));
-		$this->set("services", $this->Title->Service->find("list"));
+		$this->set("services", $this->Title->Service->find("list", array("order" => "sort")));
 	}
 
 /**
@@ -485,7 +479,6 @@ class PagesController extends AppController
 			"conditions" => array(
 				"Title.public" => 1,
 				"Title.service_id" => array(2,3,4,5),
-//				"Title.ad_use" => 1,
 			)
 		));
 //		pr($titles);

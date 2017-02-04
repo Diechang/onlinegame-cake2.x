@@ -14,7 +14,7 @@ class TitlesController extends AppController
 		 * データ取得
 		 */
 		//タイトルデータ
-		$this->Title->unbindAll(array("Titlesummary", "Category", "Style", "Service", "Fee", "Spec", "Portal", "Package"));
+		$this->Title->unbindAll(array("Titlead", "Titlesummary", "Category", "Style", "Service", "Fee", "Spec", "Portal", "Package"));
 		$title = $this->_getTitleData();
 		$this->_afterGetTitleData($title);
 //		pr($title);
@@ -44,7 +44,7 @@ class TitlesController extends AppController
 		 * データ取得
 		 */
 		//タイトルデータ
-		$this->Title->unbindAll(array("Titlesummary", "Category", "Style", "Service", "Fee"));
+		$this->Title->unbindAll(array("Titlead", "Titlesummary", "Category", "Style", "Service", "Fee"));
 		$title = $this->_getTitleData();
 		$this->_afterGetTitleData($title);
 //		pr($title);
@@ -79,7 +79,7 @@ class TitlesController extends AppController
 		 * データ取得
 		 */
 		//タイトルデータ
-		$this->Title->unbindAll(array("Titlesummary", "Category", "Style", "Service", "Fee"));
+		$this->Title->unbindAll(array("Titlead", "Titlesummary", "Category", "Style", "Service", "Fee"));
 		$title = $this->_getTitleData();
 		$this->_afterGetTitleData($title);
 //		pr($title);
@@ -111,7 +111,7 @@ class TitlesController extends AppController
 // 		 * データ取得
 // 		 */
 // 		//タイトルデータ
-// 		$this->Title->unbindAll(array("Titlesummary", "Category", "Style", "Service", "Fee"));
+// 		$this->Title->unbindAll(array("Titlead", "Titlesummary", "Category", "Style", "Service", "Fee"));
 // 		$title = $this->_getTitleData();
 // 		$this->_afterGetTitleData($title);
 // //		pr($title);
@@ -147,7 +147,7 @@ class TitlesController extends AppController
 		 * データ取得
 		 */
 		//タイトルデータ
-		$this->Title->unbindAll(array("Titlesummary", "Category", "Style", "Service", "Fee"));
+		$this->Title->unbindAll(array("Titlead", "Titlesummary", "Category", "Style", "Service", "Fee"));
 		$title = $this->_getTitleData();
 		$this->_afterGetTitleData($title);
 //		pr($title);
@@ -207,7 +207,7 @@ class TitlesController extends AppController
 // 		 * データ取得
 // 		 */
 // 		//タイトルデータ
-// 		$this->Title->unbindAll(array("Titlesummary", "Category", "Style", "Service", "Fee"));
+// 		$this->Title->unbindAll(array("Titlead", "Titlesummary", "Category", "Style", "Service", "Fee"));
 // 		$title = $this->_getTitleData();
 // 		$this->_afterGetTitleData($title);
 
@@ -280,7 +280,7 @@ class TitlesController extends AppController
 // 		 * データ取得
 // 		 */
 // 		//タイトルデータ
-// 		$this->Title->unbindAll(array("Titlesummary", "Category", "Style", "Service", "Fee"));
+// 		$this->Title->unbindAll(array("Titlead", "Titlesummary", "Category", "Style", "Service", "Fee"));
 // 		$title = $this->_getTitleData();
 // 		$this->_afterGetTitleData($title);
 // //		pr($title);
@@ -332,7 +332,7 @@ class TitlesController extends AppController
 		 * データ取得
 		 */
 		//タイトルデータ
-		$this->Title->unbindAll(array("Titlesummary", "Category", "Style", "Service", "Fee"));
+		$this->Title->unbindAll(array("Titlead", "Titlesummary", "Category", "Style", "Service", "Fee"));
 		$title = $this->_getTitleData();
 		$this->_afterGetTitleData($title);
 //		pr($title);
@@ -431,7 +431,7 @@ class TitlesController extends AppController
 		 * データ取得
 		 */
 		//タイトルデータ
-		$this->Title->unbindAll(array("Titlesummary", "Category", "Style", "Service", "Fee", "Fansite"));
+		$this->Title->unbindAll(array("Titlead", "Titlesummary", "Category", "Style", "Service", "Fee", "Fansite"));
 		$title = $this->_getTitleData();
 		$this->_afterGetTitleData($title);
 //		pr($title);
@@ -475,7 +475,7 @@ class TitlesController extends AppController
 // 		 * データ取得
 // 		 */
 // 		//タイトルデータ
-// 		$this->Title->unbindAll(array("Titlesummary", "Category", "Style", "Service", "Fee"));
+// 		$this->Title->unbindAll(array("Titlead", "Titlesummary", "Category", "Style", "Service", "Fee"));
 // 		$title = $this->_getTitleData();
 // 		$this->_afterGetTitleData($title);
 // //		pr($title);
@@ -528,7 +528,7 @@ class TitlesController extends AppController
 		// pr($conditions);
 		// exit;
 
-		$this->Title->unbindAll(array("Titlesummary", "Service", "Fee", "Fansite", "Vote", "Spec", "Pc", "Event", "Package", "Category"));
+		$this->Title->unbindAll(array("Titlead", "Titlesummary", "Service", "Fee", "Fansite", "Vote", "Spec", "Pc", "Event", "Package", "Category"));
 		$this->Paginator->settings = array(
 			"Title" => array(
 				"conditions" => $conditions,
@@ -545,7 +545,7 @@ class TitlesController extends AppController
 		//
 		$this->set("pankuz_for_layout", "タイトル一覧");
 		$this->set("categories", $this->Title->Category->find("list"));
-		$this->set("services", $this->Title->Service->find("list"));
+		$this->set("services", $this->Title->Service->find("list", array("order" => "sort")));
 	}
 
 //	function sys_view($id = null)
@@ -561,19 +561,25 @@ class TitlesController extends AppController
 	function sys_withads()
 	{
 		//タイトルデータ
-		$this->Title->unbindAll(array("Service"));
+		$this->Title->unbindAll(array("Titlead", "Service"));
 		$this->Paginator->settings = array(
 			"Title" => array(
 				"conditions" => array(
-					"OR" => array(
-						"ad_use" => true,
-						"NOT" => array(
-							"ad_text" => null,
-							"ad_banner_s" => null,
-							"ad_banner_m" => null,
-							"ad_banner_l" => null,
-						),
-					)
+					"Title.id" => $this->Title->Titlead->find("list", array(
+						"fields" => array("Titlead.title_id"),
+						"conditions" => array(
+							"OR" => array(
+								"Titlead.pc_text_src NOT" => null,
+								"Titlead.pc_image_src NOT" => null,
+								"Titlead.sp_text_src NOT" => null,
+								"Titlead.sp_image_src NOT" => null,
+								"Titlead.ios_text_src NOT" => null,
+								"Titlead.ios_image_src NOT" => null,
+								"Titlead.android_text_src NOT" => null,
+								"Titlead.android_image_src NOT" => null,
+							)
+						)
+					))
 				),
 				"order" => "Title.id DESC",
 				 "limit" => 100,
@@ -584,6 +590,7 @@ class TitlesController extends AppController
 		// pr($titles);
 		// exit;
 		$this->set("titles", $titles);
+		$this->set("services", $this->Title->Service->find("list", array("order" => "sort")));
 		//
 		$this->set("pankuz_for_layout", "広告付きタイトル一覧");
 	}
@@ -598,7 +605,7 @@ class TitlesController extends AppController
 			$this->_sysThumbUpload($this->request->data);
 			//
 			$this->Title->create();
-			if($this->Title->save($this->request->data))
+			if($this->Title->saveAssociated($this->request->data))
 			{
 				$this->request->data["Titlesummary"]["id"]		= $this->Title->id;
 				$this->request->data["Titlesummary"]["title_id"] = $this->Title->id;
@@ -641,7 +648,7 @@ class TitlesController extends AppController
 			//File upload
 			$this->_sysThumbUpload($this->request->data);
 			//
-			if($this->Title->save($this->request->data))
+			if($this->Title->saveAssociated($this->request->data))
 			{
 				$this->Session->setFlash(Configure::read("Success.modify"));
 				return $this->redirect('/sys');
@@ -820,11 +827,11 @@ class TitlesController extends AppController
  */
 	function _sysSetTitleAssociations()
 	{
-		$services	= $this->Title->Service->find('list');
-		$fees		= $this->Title->Fee->find('list');
-		$platforms	= $this->Title->Platform->find('list');
-		$categories	= $this->Title->Category->find('list');
-		$styles		= $this->Title->Style->find('list');
+		$services	= $this->Title->Service->find('list', array('order' => 'sort'));
+		$fees		= $this->Title->Fee->find('list', array('order' => 'sort'));
+		$platforms	= $this->Title->Platform->find('list', array('order' => 'sort'));
+		$categories	= $this->Title->Category->find('list', array('order' => 'sort'));
+		$styles		= $this->Title->Style->find('list', array('order' => 'sort'));
 		$portals	= $this->Title->Portal->find('list');
 		//
 		$this->set(compact('services', 'fees', 'platforms', 'categories', 'styles', 'portals'));

@@ -85,6 +85,13 @@ class Title extends AppModel
 			'dependent' => true,
 			'conditions' => '',
 			'fields' => ''
+		),
+		'Titlead' => array(
+			'className' => 'Titlead',
+			'foreignKey' => 'title_id',
+			'dependent' => true,
+			'conditions' => '',
+			'fields' => ''
 		)
 	);
 
@@ -551,7 +558,7 @@ class Title extends AppModel
  */
 	private function findSummaryRank(&$conditions, &$titleIdList, &$limit, &$type)
 	{
-		$this->unbindAll(array("Titlesummary"));
+		$this->unbindAll(array("Titlead", "Titlesummary"));
 		$conditions["vote_count_vote >"] = 0;
 
 		if(isset($titleIdList))
@@ -603,6 +610,8 @@ class Title extends AppModel
 			$rank["Titlesummary"] = $rank[0];
 			unset($rank[0]);
 		}
+		debug($ranking);
+		exit;
 		return $ranking;
 	}
 

@@ -510,6 +510,38 @@ class CommonHelper extends AppHelper
 	}
 
 /**
+ * 公式リダイレクトリンク
+ *
+ * @param	mixed	$str or $image
+ * @param	model	$titleModel
+ * @param	model	$titleAdModel
+ * @param	string	$platform
+ * @return	html
+ * @access	public
+ */
+	function titleJumpLink($str, $titleModel, $titleAdModel, $platform = "pc")
+	{
+		$trackImg	= (!empty($titleAdModel["{$platform}_part_track_src"]))
+						? $this->Html->image($titleAdModel["{$platform}_part_track_src"], array("class" => "adTrack", "width" => 1, "height" => 1)) : "";
+
+		return ($titleAdModel["{$platform}_text_src"] && $titleAdModel["{$platform}_noredirect"]) 
+				? $titleAdModel["{$platform}_text_src"]
+				: $this->Html->link(
+					$str . $trackImg,
+					array("controller" => "jump", "action" => "title", $platform, $titleModel["url_str"]),
+					array("target" => "_blank", "escape" => false));;
+	}
+	function titleJumpLinkImage($image, $titleModel, $titleAdModel, $platform = "pc", $escape = false)
+	{
+		return ($titleAdModel["{$platform}_image_src"] && $titleAdModel["{$platform}_noredirect"]) 
+			? $titleAdModel["{$platform}_image_src"]
+			: $this->Html->link(
+				$image,
+				array("controller" => "jump", "action" => "title", $platform, $titleModel["url_str"]),
+				array("target" => "_blank", "escape" => $escape));
+	}
+
+/**
  * 公式リンク
  *
  * @param	string	$str
@@ -602,6 +634,18 @@ class CommonHelper extends AppHelper
 			$text = "データ未登録";
 		}
 		return $text;
+	}
+
+/**
+ * 広告リンク url
+ *
+ * @param	array $modelData
+ * @return	html
+ * @access	public
+ */
+	function adLinkUrl($modelData, $action)
+	{
+		return $this->Html->url(array("controller" => "jump", "action" => $action, $modelData["id"]));
 	}
 
 /**

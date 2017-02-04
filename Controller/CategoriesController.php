@@ -52,9 +52,6 @@ class CategoriesController extends AppController
 					"Title.category_text",
 					"Title.fee_id",
 					"Title.fee_text",
-					"Title.ad_use",
-					"Title.ad_text",
-					"Title.official_url",
 					"Titlesummary.*",
 					"Service.*",
 					"Fee.*",
@@ -89,7 +86,18 @@ class CategoriesController extends AppController
 			"conditions" => array(
 				"Title.public" => 1,
 				"Title.id" => $titleIds,
-				"NOT" => array("Title.service_id" => 1),
+				"Title.service_id !=" => 1,
+				"Titlead.pc_text_src !=" => null,
+				"OR" => array(
+					"Titlead.pc_start <=" => date("Y-m-d H:i"),
+					"Titlead.pc_start" => null,
+				),
+				"AND" => array(
+					"OR" => array(
+						"Titlead.pc_end >=" => date("Y-m-d H:i"),
+						"Titlead.pc_end" => null,
+					),
+				),
 			),
 			"fields" => array(
 				"Title.title_official",
@@ -97,12 +105,11 @@ class CategoriesController extends AppController
 				"Title.url_str",
 				"Title.thumb_name",
 				"Title.service_id",
-				"Title.ad_use",
 				"Titlesummary.*"
 			),
 			"limit" => 5,
-			"order" => array("Title.ad_use DESC , Titlesummary.vote_avg_all DESC , Titlesummary.vote_count_vote DESC"),
-			"contain" => "Titlesummary",
+			"order" => array("Titlesummary.vote_avg_all DESC , Titlesummary.vote_count_vote DESC, Title.service_start DESC"),
+			"contain" => array("Titlesummary", "Titlead")
 		));
 		// pr($pickups);
 		// exit();

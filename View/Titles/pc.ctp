@@ -151,7 +151,11 @@ $this->element("title_ogp", array("titleWithStrs" => $titleWithStrs));
 									</tr>
 								</table>
 							</div>
-							<div class="shop"><a href="#" class="button button-official">商品の購入・詳細はこちら</a></div>
+							<div class="shop">
+								<?php echo $this->Html->link("商品の購入・詳細はこちら",
+											$this->Common->adLinkUrl($pc["Pc"], "pc"),
+											array("class" => "button button-official", "target" => "_blank"))?>
+							</div>
 						</dd>
 					<?php endforeach;?>
 					</dl>

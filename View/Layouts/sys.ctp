@@ -5,9 +5,11 @@
 <title>System Maintenance</title>
 
 <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<!-- <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.19/themes/smoothness/jquery-ui.css"> -->
 <link href="/css/bubblepopup/jquery.bubblepopup.css" rel="stylesheet" type="text/css" />
 <link href="/css/sys.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<!-- <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.19/jquery-ui.min.js"></script> -->
 <!-- <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script> -->
 <script type="text/javascript" src="/js/jquery.tablesorter.min.js"></script>
 <script type="text/javascript" src="/js/jquery.bubblepopup.min.js"></script>
@@ -234,7 +236,10 @@
 if (Configure::read('debug') > 0)
 {
 	echo $this->element('sql_dump');
+	echo '<h2>$this->request</h2>';
 	debug($this->request);
+	echo '<h2>$this->viewVars</h2>';
+	debug($this->viewVars);
 }
 ?>
 </div>
