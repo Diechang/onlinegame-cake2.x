@@ -68,20 +68,23 @@
 		</tr>
 		<tr>
 			<th nowrap="nowrap">正式サービス開始日</th>
-			<td>
-				<?php echo $this->Form->text("service_start", array("type" => "date", "class" => "input-medium"))?>
+			<td class="dateField">
+				<?php echo $this->Form->text("service_start", array("type" => "date", "class" => "dateField-input input-medium"))?>
+				<a href="javascript:void(0)" class="dateField-remove btn btn-small"><i class="icon-remove"></i></a>
 			</td>
 		</tr>
 		<tr>
 			<th nowrap="nowrap">テスト開始日</th>
-			<td>
-				<?php echo $this->Form->text("test_start", array("type" => "date", "class" => "input-medium"))?>
+			<td class="dateField">
+				<?php echo $this->Form->text("test_start", array("type" => "date", "class" => "dateField-input input-medium"))?>
+				<a href="javascript:void(0)" class="dateField-remove btn btn-small"><i class="icon-remove"></i></a>
 			</td>
 		</tr>
 		<tr>
 			<th nowrap="nowrap">テスト終了日</th>
-			<td>
-				<?php echo $this->Form->text("test_end", array("type" => "date", "class" => "input-medium"))?>
+			<td class="dateField">
+				<?php echo $this->Form->text("test_end", array("type" => "date", "class" => "dateField-input input-medium"))?>
+				<a href="javascript:void(0)" class="dateField-remove btn btn-small"><i class="icon-remove"></i></a>
 			</td>
 		</tr>
 		<tr>
@@ -263,11 +266,17 @@
 		</tr>
 		<tr>
 			<th nowrap="nowrap">広告開始日時</th>
-			<td><?php echo $this->Form->input("Titlead.{$key}_start", array("type" => "datetime-local", "step" => "1800", "value" => (!empty($this->request->data["Titlead"]["{$key}_start"]) ? date("Y-m-d\TH:i:s", strtotime($this->request->data["Titlead"]["{$key}_start"])) : null)))?></td>
+			<td class="dateField">
+				<?php echo $this->Form->input("Titlead.{$key}_start", array("type" => "datetime-local", "class" => "dateField-input", "step" => "1800", "value" => (!empty($this->request->data["Titlead"]["{$key}_start"]) ? date("Y-m-d\TH:i:s", strtotime($this->request->data["Titlead"]["{$key}_start"])) : null)))?>
+				<a href="javascript:void(0)" class="dateField-remove btn btn-small"><i class="icon-remove"></i></a>
+			</td>
 		</tr>
 		<tr>
 			<th nowrap="nowrap">広告終了日時</th>
-			<td><?php echo $this->Form->text("Titlead.{$key}_end", array("type" => "datetime-local", "step" => "1800", "value" => (!empty($this->request->data["Titlead"]["{$key}_end"]) ? date("Y-m-d\TH:i:s", strtotime($this->request->data["Titlead"]["{$key}_end"])) : null)))?></td>
+			<td class="dateField">
+				<?php echo $this->Form->text("Titlead.{$key}_end", array("type" => "datetime-local", "class" => "dateField-input", "step" => "1800", "value" => (!empty($this->request->data["Titlead"]["{$key}_end"]) ? date("Y-m-d\TH:i:s", strtotime($this->request->data["Titlead"]["{$key}_end"])) : null)))?>
+				<a href="javascript:void(0)" class="dateField-remove btn btn-small"><i class="icon-remove"></i></a>
+			</td>
 		</tr>
 		<tr>
 			<th nowrap="nowrap">リダイレクト</th>
