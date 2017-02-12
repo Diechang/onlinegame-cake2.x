@@ -13,7 +13,10 @@ class CategoriesController extends AppController
 		//Get
 		$pageData = $this->Category->find("first" , array(
 			"recursive" => -1,
-			"conditions" => array("Category.path" => $path)
+			"conditions" => array(
+				"Category.public" => 1,
+				"Category.path" => $path
+			)
 		));
 		//リダイレクト
 		$this->_emptyToHome($pageData);

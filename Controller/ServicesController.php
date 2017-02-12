@@ -13,7 +13,10 @@ class ServicesController extends AppController
 		//Get
 		$pageData = $this->Service->find("first", array(
 			"recursive" => -1,
-			"conditions" => array("Service.path" => $path)
+			"conditions" => array(
+				"Service.public" => 1,
+				"Service.path" => $path
+			)
 		));
 		//リダイレクト
 		$this->_emptyToHome($pageData);

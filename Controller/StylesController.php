@@ -13,7 +13,10 @@ class StylesController extends AppController
 		//Get
 		$pageData = $this->Style->find("first", array(
 			"recursive" => -1,
-			"conditions" => array("Style.path" => $path)
+			"conditions" => array(
+				"Style.public" => 1,
+				"Style.path" => $path
+			)
 		));
 		//リダイレクト
 		$this->_emptyToHome($pageData);

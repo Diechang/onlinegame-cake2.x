@@ -13,7 +13,10 @@ class PlatformsController extends AppController
 		//Get
 		$pageData = $this->Platform->find("first", array(
 			"recursive" => -1,
-			"conditions" => array("Platform.path" => $path)
+			"conditions" => array(
+				"Platform.public" => 1,
+				"Platform.path" => $path
+			)
 		));
 		//リダイレクト
 		$this->_emptyToHome($pageData);
