@@ -55,7 +55,7 @@ class ServicesController extends AppController
 				),
 				// "order" => array("Title.service_start DESC", "Title.test_start DESC", "Title.test_end DESC"),
 				"order" => (($pageData["Service"]["id"] == 3 || $pageData["Service"]["id"] == 4) ? "Title.test_start DESC" : "Title.service_start DESC"),
-				"contain" => array("Titlesummary", "Category", "Service", "Fee"),
+				"contain" => array("Titlesummary", "Platform", "Category", "Service", "Fee"),
 				"paramType" => "querystring",
 			)
 		);

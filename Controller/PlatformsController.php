@@ -79,7 +79,7 @@ class PlatformsController extends AppController
 				// "group" => array("Title.id"),
 				// "order" => array("Service.sort", "Title.service_start DESC", "Title.test_start DESC", "Title.test_end DESC"),
 				"order" => "Title.service_start DESC",
-				"contain" => array("Titlesummary", "Category", "Service", "Fee"),
+				"contain" => array("Titlesummary", "Platform", "Category", "Service", "Fee"),
 				"paramType" => "querystring",
 			)
 		);

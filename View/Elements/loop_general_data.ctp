@@ -17,6 +17,9 @@
 					</div>
 				</div>
 				<div class="description">
+					<div class="platformLabels">
+						<?php echo $this->Common->platformsLink($title["Platform"])?>
+					</div>
 					<p><?php echo strip_tags($title["Title"]["description"])?></p>
 				</div>
 			</div>

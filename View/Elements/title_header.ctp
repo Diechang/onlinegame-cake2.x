@@ -7,5 +7,8 @@
 				<?php echo (!empty($title["Title"]["title_read"])) ? '<span class="read">' . $title["Title"]["title_read"] . '</span>' : ""?>
 			</a>
 		</h1>
+		<div class="title-platforms">
+			<?php echo $this->Common->platformsLink($title["Platform"])?>
+		</div>
 	</div>
 </div>

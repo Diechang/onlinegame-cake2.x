@@ -574,6 +574,41 @@ class CommonHelper extends AppHelper
 	}
 
 /**
+ * プラットフォームリンク/テキスト
+ *
+ * @param	array	$platforms
+ * @param	string	$tag
+ * @return	html
+ * @access	public
+ */
+	function platformsLink($platforms, $tag = null)
+	{
+		$tagStart	= (!empty($tag)) ? "<" . $tag . ">" : "";
+		$tagEnd		= (!empty($tag)) ? "</" . $tag . ">" : "";
+
+		if(!empty($platforms))
+		{
+			if(is_array($platforms))
+			{
+				$text = "";
+				foreach($platforms as $category)
+				{
+					$text .= $tagStart . $this->Html->link($category['str'], array('controller' => 'platforms', 'path' => $category['path'], 'ext' => 'html')) . $tagEnd . "\n";
+				}
+			}
+			else
+			{
+				$text = $tagStart . $platforms . $tagEnd;
+			}
+		}
+		else
+		{
+			$text = "データ未登録";
+		}
+		return $text;
+	}
+
+/**
  * カテゴリリンク/テキスト
  *
  * @param	array	$categories
