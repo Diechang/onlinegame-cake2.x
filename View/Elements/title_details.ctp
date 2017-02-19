@@ -36,17 +36,19 @@
 						<?php echo $this->Common->stylesLink($title["Style"])?>
 					</td>
 				</tr>
+<?php if($title["Service"]["id"] == 2 || $title["Service"]["id"] == 3 || $title["Service"]["id"] == 4):?>
 				<tr>
 					<th><?php echo $title["Service"]["str"]?></th>
 					<td>
-<?php if($title["Service"]["id"] == 2):?>
+	<?php if($title["Service"]["id"] == 2):?>
 						<?php echo $this->Common->dateFormat($title["Title"]["service_start"], "date")?>
-<?php elseif($title["Service"]["id"] == 3 or $title["Service"]["id"] == 4):?>
+	<?php elseif($title["Service"]["id"] == 3 or $title["Service"]["id"] == 4):?>
 						<?php echo $this->Common->termFormat($title["Title"]["test_start"], $title["Title"]["test_end"])?>
-<?php else:?>
-<?php endif;?>
+	<?php else:?>
+	<?php endif;?>
 					</td>
 				</tr>
+<?php endif;?>
 <?php if($title["Service"]["id"] != 1):?>
 				<!-- 公式サイト -->
 				<tr>
