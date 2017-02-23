@@ -2,7 +2,7 @@
 <?php foreach($votes as $vote):?>
 <url>
 	<loc><?php echo $this->Html->url(array("controller" => "titles", "action" => "single", "path" => $vote["Title"]["url_str"], "voteid" => $vote["Vote"]["id"], "ext" => "html"), true)?></loc>
-	<lastmod><?php echo $vote["Vote"]["modified"]?></lastmod>
+	<lastmod><?php echo $this->Time->toAtom($vote["Vote"]["modified"])?></lastmod>
 </url>
 <?php endforeach;?>
 </urlset>

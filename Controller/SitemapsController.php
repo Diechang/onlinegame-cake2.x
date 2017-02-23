@@ -4,6 +4,7 @@ class SitemapsController extends AppController
 
 	var $name = 'Sitemaps';
 	var $uses = array("Vote", "Fansite", "Link", "Update", "Portal", "Money", "Event");
+	var $helpers	= array("Time");
 
 	function index()
 	{
