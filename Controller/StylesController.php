@@ -33,7 +33,6 @@ class StylesController extends AppController
 			"conditions" => array("style_id" => $pageData["Style"]["id"]),
 		));
 		//Get
-		// $this->Title->Behaviors->attach('Containable');
 		$this->Paginator->settings = array(
 			"Title" => array(
 				"conditions" => array(

@@ -33,7 +33,6 @@ class PlatformsController extends AppController
 			"conditions" => array("platform_id" => $pageData["Platform"]["id"]),
 		));
 		//Get
-		// $this->Title->Behaviors->attach('Containable');
 		$this->Paginator->settings = array(
 			"Title" => array(
 				"conditions" => array(

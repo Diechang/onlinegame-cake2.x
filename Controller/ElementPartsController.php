@@ -17,6 +17,7 @@ class ElementPartsController extends AppController
 		}
 		else
 		{
+			parent::beforeFilter();
 			//Auth allow
 			$this->Auth->allow();
 		}
@@ -166,6 +167,7 @@ class ElementPartsController extends AppController
 			"conditions" => array(
 				"Title.public" => 1,
 				"Title.service_id" => array(3,4),
+				"Title.id" => $this->Title->idListByPlatform($this->defaultPlatforms),
 			),
 			"fields" => array(
 				"Title.*",
@@ -190,6 +192,7 @@ class ElementPartsController extends AppController
 			"conditions" => array(
 				"Title.public" => 1,
 				"Title.service_id" => 2,
+				"Title.id" => $this->Title->idListByPlatform($this->defaultPlatforms),
 				"NOT" => array(
 					"Titlead.pc_text_src" => null, 
 				)

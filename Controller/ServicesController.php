@@ -29,7 +29,6 @@ class ServicesController extends AppController
 		 * Title Data
 		 */
 		//Get
-		// $this->Title->Behaviors->attach('Containable');
 		$this->Paginator->settings = array(
 			"Title" => array(
 				"conditions" => array(

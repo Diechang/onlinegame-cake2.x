@@ -33,7 +33,6 @@ class CategoriesController extends AppController
 			"conditions" => array("category_id" => $pageData["Category"]["id"]),
 		));
 		//Get
-		// $this->Title->Behaviors->attach('Containable');
 		$this->Paginator->settings = array(
 			"Title" => array(
 				"conditions" => array(

@@ -35,7 +35,6 @@ class PortalsController extends AppController
 		// );
 //		$this->Portal->hasAndBelongsToMany["Title"]["conditions"] = $defPortalTitleConditions;
 		$this->Portal->Behaviors->load('Containable');
-
 		$portal = $this->Portal->find("first", array(
 			"contain" => array(
 				"Title" => array(

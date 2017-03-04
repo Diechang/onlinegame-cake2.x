@@ -322,6 +322,7 @@ class Title extends AppModel
  */
 	function idListByPlatform(&$platform_id)
 	{
+		debug($platform_id);
 		if(isset($platform_id))
 		{
 			$ids = $this->PlatformsTitle->find("list", array(
@@ -333,7 +334,7 @@ class Title extends AppModel
 		{
 			$ids = null;
 		}
-
+debug($ids);
 		return $ids;
 	}
 

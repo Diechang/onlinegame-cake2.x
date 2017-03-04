@@ -62,6 +62,17 @@ class AppController extends Controller
 	var $host		= null;
 	var $cookey		= null;
 
+	/**
+	 * 1: Windows
+	 * 2: Mac
+	 * 3: PCブラウザ
+	 * 4: iOSアプリ
+	 * 5: Androidアプリ
+	 * 6: スマホブラウザ
+	 */
+	var $defaultPlatforms = null;
+
+
 	function beforeFilter()
 	{
 		/**
@@ -171,8 +182,10 @@ class AppController extends Controller
 			$this->Cookie->path = "/";
 			$this->cookey = $this->Cookie->read("cookey");
 
-			$this->Title->Behaviors->attach("Containable");
+			$this->Title->Behaviors->load("Containable");
 
+			// default platforms
+			$this->defaultPlatforms = array(1, 2, 3);
 
 			/**
 			 * Sidebar - Right

@@ -7,6 +7,10 @@ INSERT INTO `platforms` (`id`, `public`, `str`, `str_sub`, `description`, `path`
 (6, 1, 'スマホブラウザ', '', '<p>「ネイティブアプリ」と呼ばれる<a href="/platforms/ios.html">iOS</a>、<a href="/platforms/android.html">Android</a>アプリに対し、スマートフォンであってもブラウザタイプのゲームが数多く存在します。</p>\r\n<p>ネイティブアプリの多くがより高いスペックを要求するのに対し、低スペックであっても比較的よく動くのがスマホブラウザタイプのゲームの特徴です。</p>\r\n<p>表現技術ではネイティブアプリには及ばないものの、シンプルながらはまれる、工夫をこらしたゲームが多数存在しているのが特徴です。ネイティブアプリのように複雑な操作を要求されないため、落ち着いて楽しむことができるのはうれしい点です。</p>', 'spbrowser', 6);
 
 
+-- "Windows" all by 2017/03
+INSERT INTO `platforms_titles` (`platform_id`, `title_id`) 
+SELECT '1', `id` FROM `titles` WHERE 1;
+
 -- "Mac" style = 11 to platform = 2
 INSERT INTO `platforms_titles` (`platform_id`, `title_id`) 
 SELECT '2', `title_id` FROM `styles_titles` WHERE `style_id` = 11;
@@ -14,3 +18,12 @@ SELECT '2', `title_id` FROM `styles_titles` WHERE `style_id` = 11;
 -- "Browser" style = 9 to platform = 3
 INSERT INTO `platforms_titles` (`platform_id`, `title_id`) 
 SELECT '3', `title_id` FROM `styles_titles` WHERE `style_id` = 9;
+
+-- "iOS" titles.appdl_app_store is not null
+INSERT INTO `platforms_titles` (`platform_id`, `title_id`) 
+SELECT '4', `id` FROM `titles` WHERE `appdl_app_store` IS NOT NULL;
+
+-- "Android" titles.appdl_google_play is not null
+INSERT INTO `platforms_titles` (`platform_id`, `title_id`) 
+SELECT '5', `id` FROM `titles` WHERE `appdl_google_play` IS NOT NULL;
+
