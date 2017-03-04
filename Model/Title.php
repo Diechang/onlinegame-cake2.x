@@ -260,6 +260,9 @@ class Title extends AppModel
 				"ad_banner_m",
 				"ad_banner_l",
 				"official_url",
+				"official_url_sp",
+				"appdl_app_store",
+				"appdl_google_play",
 				"copyright",
 				"video",
 			);
