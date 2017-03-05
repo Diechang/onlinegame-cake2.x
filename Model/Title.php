@@ -325,7 +325,6 @@ class Title extends AppModel
  */
 	function idListByPlatform(&$platform_id)
 	{
-		debug($platform_id);
 		if(isset($platform_id))
 		{
 			$ids = $this->PlatformsTitle->find("list", array(
@@ -337,7 +336,7 @@ class Title extends AppModel
 		{
 			$ids = null;
 		}
-debug($ids);
+
 		return $ids;
 	}
 
@@ -415,6 +414,7 @@ debug($ids);
  * @option	string	$type "point" or "count"
  * @option	string	$term (null == "all") or "-90days" or "-1year"
  * @option	number	$limit
+ * @option	array	$platform_id
  * @option	array	$category_id
  * @option	array	$style_id
  * @option	array	$service_id
@@ -427,12 +427,10 @@ debug($ids);
 	{
 		//引数からオプション変数
 		extract($option);
-		if(!isset($type))
-		{
-			$type = "point";
-		}	//デフォルト点数ランキング
+		//デフォルト点数ランキング
+		if(!isset($type)) $type = "point";
 
-		$titleIdList = $this->getRankTitleIdList($category_id, $style_id);
+		$titleIdList = $this->getRankTitleIdList($category_id, $style_id, $platform_id);
 
 		/**
 		 * Find
@@ -458,7 +456,7 @@ debug($ids);
  * @return	array
  * @access	public
  */
-	function getCategoryRankings($limit = 1)
+	function getCategoryRankings($limit = 1, $platform_id = null)
 	{
 		$rankings = $this->Category->find("all", array(
 			"recursive" => -1,
@@ -466,10 +464,12 @@ debug($ids);
 		));
 		foreach($rankings as &$ranking)
 		{
-			$ranking["Ranking"] = $this->getRanking(array(
+			$rank = $this->getRanking(array(
+				"platform_id" => $platform_id,
 				"category_id" => $ranking["Category"]["id"],
 				"limit" => $limit,
 			));
+			$ranking["Ranking"] = $rank;
 		}
 
 		return $rankings;
@@ -478,20 +478,23 @@ debug($ids);
 /**
  * ランキング用タイトルID取得
  *
+ * @param	array	$platform_id
  * @param	array	$category_id
  * @param	array	$style_id
  * @return	array
  * @access	private
  */
-	private function getRankTitleIdList(&$category_id, &$style_id)
+	private function getRankTitleIdList(&$category_id = array(), &$style_id = array(), &$platform_id = array())
 	{
 		$titleIdList = array();
 		//カテゴリからタイトルID
-		$idListByCategory	= (isset($category_id))	? $this->idListByCategory($category_id)	: null;
+		$idListByCategory	= (!empty($category_id))	? $this->idListByCategory($category_id)	: null;
 		//スタイルからタイトルID
-		$idListByStyle		= (isset($style_id))	? $this->idListByStyle($style_id)		: null;
+		$idListByStyle		= (!empty($style_id))		? $this->idListByStyle($style_id)		: null;
+		//プラットフォームからタイトルID
+		$idListByPlatform	= (!empty($platform_id))	? $this->idListByPlatform($platform_id)	: null;
 		//タイトルID
-		if(!empty($idListByCategory) and !empty($idListByStyle))
+		if(!empty($idListByCategory) && !empty($idListByStyle))
 		{//カテゴリとスタイル指定時
 			$titleIdList	= array_intersect($idListByCategory, $idListByStyle);
 		}
@@ -503,11 +506,18 @@ debug($ids);
 		{//スタイルのみ指定時
 			$titleIdList	= $idListByStyle;
 		}
-		else
+
+		//プラットフォーム
+		if(!empty($idListByPlatform) && !empty($titleIdList))
 		{
-			$titleIdList	= null;
+			$titleIdList	= array_intersect($idListByPlatform, $titleIdList);
 		}
-//		pr($titleIdList);
+		elseif(!empty($idListByPlatform))
+		{
+			$titleIdList	= $idListByPlatform;
+		}
+
+		// pr($titleIdList);
 		return $titleIdList;
 	}
 

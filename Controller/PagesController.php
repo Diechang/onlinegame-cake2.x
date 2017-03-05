@@ -106,6 +106,7 @@ class PagesController extends AppController
 		 */
 		//Get
 		$rankings = $this->Title->getRanking(array(
+			"platform_id" => $this->defaultPlatforms,
 //			"category_id" => 2,
 //			"style_id" => array(1,2),
 //			"service_id" => array(2,3),
@@ -115,7 +116,7 @@ class PagesController extends AppController
 		));
 //		pr($rankings);
 //		exit;
-		$categoryRankings = $this->Title->getCategoryRankings();
+		$categoryRankings = $this->Title->getCategoryRankings(1, $this->defaultPlatforms);
 //		pr($categoryRankings);
 //		exit;
 		//

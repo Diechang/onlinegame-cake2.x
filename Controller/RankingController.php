@@ -75,6 +75,7 @@ class RankingController extends AppController
 			if(in_array($path, $pathes))
 			{//Category
 				$rankings = $this->Title->getRanking(array(
+					"platform_id" => $this->defaultPlatforms,
 					"category_id" => $pageData["Category"]["id"],
 					"idList" => true,
 				));
@@ -97,7 +98,10 @@ class RankingController extends AppController
 			}
 			else
 			{//All
-				$rankings = $this->Title->getRanking(array("idList" => true));
+				$rankings = $this->Title->getRanking(array(
+					"platform_id" => $this->defaultPlatforms,
+					"idList" => true
+				));
 				// $this->Title->unbindAll(array("Titlesummary"));
 				$norankings = $this->Title->find("all", array(
 					"contain" => array("Titlesummary"),
@@ -117,7 +121,7 @@ class RankingController extends AppController
 			// pr($rankings);
 			// pr($norankings);
 			// exit;
-			$categoryRankings = $this->Title->getCategoryRankings();
+			$categoryRankings = $this->Title->getCategoryRankings(1, $this->defaultPlatforms);
 			//
 			//Set
 			$this->set("rankings", $rankings);

@@ -150,6 +150,7 @@ class ElementPartsController extends AppController
 	function left_ranking()
 	{
 		$leftRankings = $this->Title->getRanking(array(
+			"platform_id" => $this->defaultPlatforms,
 			"limit" => 10,
 		));
 //		pr($leftRankings);
