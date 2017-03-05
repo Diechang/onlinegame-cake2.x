@@ -75,10 +75,10 @@ class PagesController extends AppController
 		 * New Games
 		 */
 		//Get
-		$this->Title->unbindAll(array("Titlesummary"));
 		$newGames = $this->Title->find("all", array(
 //			"recursive" => -1,
 			"conditions" => array(
+				"Title.id" => $this->Title->idListByPlatform($this->defaultPlatforms),
 				"Title.public" => 1,
 				"Title.service_id" => 2,
 				"NOT" => array("Title.thumb_name" => NULL),
@@ -91,11 +91,12 @@ class PagesController extends AppController
 				"Title.description",
 				"Titlesummary.vote_avg_all"
 			),
+			"contain" => array("Titlesummary"),
 			"order" => array("Title.service_start DESC", "Title.id DESC"),
 			"limit" => 10
 		));
-//		pr($newGames);
-//		exit;
+		// pr($newGames);
+		// exit;
 		//
 		//Set
 		$this->set("newGames", $newGames);
@@ -107,12 +108,7 @@ class PagesController extends AppController
 		//Get
 		$rankings = $this->Title->getRanking(array(
 			"platform_id" => $this->defaultPlatforms,
-//			"category_id" => 2,
-//			"style_id" => array(1,2),
-//			"service_id" => array(2,3),
 			"limit" => 5,
-//			"term" => "-1year",
-//			"start_year" => 2009,
 		));
 //		pr($rankings);
 //		exit;

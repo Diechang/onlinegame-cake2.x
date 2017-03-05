@@ -430,7 +430,7 @@ class Title extends AppModel
 		//デフォルト点数ランキング
 		if(!isset($type)) $type = "point";
 
-		$titleIdList = $this->getRankTitleIdList($category_id, $style_id, $platform_id);
+		$titleIdList = $this->getIdListsIntersect($category_id, $style_id, $platform_id);
 
 		/**
 		 * Find
@@ -476,24 +476,27 @@ class Title extends AppModel
 	}
 
 /**
- * ランキング用タイトルID取得
+ * タイトルID取得(array_intersect)
  *
  * @param	array	$platform_id
  * @param	array	$category_id
  * @param	array	$style_id
  * @return	array
- * @access	private
+ * @access	public
  */
-	private function getRankTitleIdList(&$category_id = array(), &$style_id = array(), &$platform_id = array())
+	public function getIdListsIntersect(&$category_id = array(), &$style_id = array(), &$platform_id = array())
 	{
-		$titleIdList = array();
+		// debug(array($category_id, $style_id, $platform_id));
+		// exit;
 		//カテゴリからタイトルID
 		$idListByCategory	= (!empty($category_id))	? $this->idListByCategory($category_id)	: null;
 		//スタイルからタイトルID
 		$idListByStyle		= (!empty($style_id))		? $this->idListByStyle($style_id)		: null;
 		//プラットフォームからタイトルID
 		$idListByPlatform	= (!empty($platform_id))	? $this->idListByPlatform($platform_id)	: null;
+
 		//タイトルID
+		$titleIdList = array();
 		if(!empty($idListByCategory) && !empty($idListByStyle))
 		{//カテゴリとスタイル指定時
 			$titleIdList	= array_intersect($idListByCategory, $idListByStyle);
@@ -896,8 +899,9 @@ UPDATE titlesummaries AS ts SET ts.avg_votes_item10 =(SELECT AVG(v.item10) FROM 
 	 */
 	function wConditions($w)
 	{
-		$w			= trim(str_replace("　", " ", $w));
+		$w			= mysql_real_escape_string(trim(str_replace("　", " ", $w)));
 		$w			= explode(" ", $w);
+
 		$wConditions	= array();
 		foreach($w as $val)
 		{

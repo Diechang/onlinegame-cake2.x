@@ -6,17 +6,6 @@ class SearchController extends AppController
 	var $uses = array("Title");
 	var $helpers = array("SearchPage");
 
-	var $queryParamNames = array(
-		"keyword",
-		"category",
-		"style",
-		"service",
-		"free",
-		"vote",
-		"fansite",
-		"order",
-	);
-
 	//表示件数
 	var $limit = 20;
 
@@ -41,30 +30,16 @@ class SearchController extends AppController
 			$query["page"] = 1;
 		}
 		// $query = Sanitize::clean($query, Configure::read("UseDbConfig"));
-		// pr($query);
-//		exit;
+		// debug($query);
+		// exit;
 
-		//category
-		$idListByCategory = $this->Title->idListByCategory($query["category"]);
-		//style
-		$idListByStyle = $this->Title->idListByStyle($query["style"]);
 		//ID list
-		$idList = null;
-		if(!empty($idListByCategory) && !empty($idListByStyle))
-		{
-//			$idList = array_merge($idListByCategory, $idListByStyle);
-			$idList = array_intersect($idListByCategory, $idListByStyle);
-		}
-		elseif(!empty($idListByCategory))
-		{
-			$idList = $idListByCategory;
-		}
-		elseif(!empty($idListByStyle))
-		{
-			$idList = $idListByStyle;
-		}
-//		pr($idListByCategory);
-//		pr($idListByStyle);
+		$category_id	= !empty($query["category"])	? $query["category"] : null;
+		$style_id		= !empty($query["style"])		? $query["style"] : null;
+		$platform_id	= !empty($query["platform"])	? $query["platform"] : null;
+		// debug(array($category_id, $style_id, $platform_id));
+		// exit;
+		$idList = $this->Title->getIdListsIntersect($category_id, $style_id, $platform_id);
 //		pr($idList);
 
 		/**
@@ -75,6 +50,7 @@ class SearchController extends AppController
 		if(!empty($query["keyword"]))
 		{
 			$conditions += array("OR" => $this->Title->wConditions($query["keyword"]));
+			// debug($conditions);
 		}
 		//id list
 		if(!empty($idList))
@@ -123,23 +99,8 @@ class SearchController extends AppController
 		}
 
 		/**
-		 * limit
-		 */
-		// $limitStart = (($query["page"] - 1) * $this->limit);
-		// $limit = $limitStart . "," . $this->limit;
-//		pr($limit);
-
-
-		/**
 		 * find
 		 */
-		// $this->Title->unbindAll(array("Titlesummary", "Category", "Service", "Fee"));
-		// $titles = $this->Title->find("all", array(
-		// 	"conditions" => $conditions,
-		// 	"order" => $order,
-		// 	"limit" => $this->limit,
-		// ));
-		// pr($titles);
 		$this->Paginator->settings = array(
 			"Title" => array(
 				"contain" => array("Titlesummary", "Category", "Service", "Fee"),
@@ -153,43 +114,8 @@ class SearchController extends AppController
 		$titles = $this->Paginator->paginate("Title");
 		// pr($titles);
 
-
-		/**
-		 * paging
-		 */
-		// $titlesCount = $this->Title->find("count", array(
-		// 	"conditions" => $conditions,
-		// 	"fields" => "DISTINCT Title.id",
-		// ));
-//		pr($titlesCount);
-		// $paging = array(
-		// 	"count" => $titlesCount,
-		// 	"pages" => ceil($titlesCount / $this->limit),
-		// 	"page" => $query["page"],
-		// 	"start" => $limitStart + 1,
-		// 	"end" => ($limitStart + $this->limit < $titlesCount) ? $limitStart + $this->limit : $titlesCount,
-		// 	"limit" => $this->limit,
-		// );
-//		pr($paging);
-
-		/**
-		 * Query params
-		 */
-		// $queryParams = array();
-		// foreach($this->queryParamNames as $paramName)
-		//
-		// {
-		// 	if(isset($query[$paramName]) && !empty($query[$paramName]))
-		// 	{
-		// 		$queryParams[$paramName] = $query[$paramName];
-		// 	}
-		// }
-//		pr($queryParams);
-
 		//set
 		$this->set("titles", $titles);
-		// $this->set("paging", $paging);
-		// $this->set("queryParams", $queryParams);
 	}
 
 /**

@@ -2,7 +2,7 @@
 <section class="tests framed">
 	<div class="framed-body">
 		<h2>
-			<span class="main">無料テスト中オンラインゲーム</span>
+			<span class="main">無料テスト情報</span>
 			<span class="sub">新作ゲームを無料で遊ぶチャンス！</span>
 		</h2>
 		<ul class="titles">
