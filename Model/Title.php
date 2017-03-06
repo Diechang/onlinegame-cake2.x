@@ -840,7 +840,7 @@ UPDATE titlesummaries AS ts SET ts.avg_votes_item10 =(SELECT AVG(v.item10) FROM 
 	 */
 	function wConditions($w)
 	{
-		$w			= trim(str_replace("　", " ", $w));
+		$w			= mysql_real_escape_string(trim(str_replace("　", " ", $w)));
 		$w			= explode(" ", $w);
 		$wConditions	= array();
 		foreach($w as $val)
