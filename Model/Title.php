@@ -840,18 +840,18 @@ UPDATE titlesummaries AS ts SET ts.avg_votes_item10 =(SELECT AVG(v.item10) FROM 
 	 */
 	function wConditions($w)
 	{
-		$w			= mysql_real_escape_string(trim(str_replace("　", " ", $w)));
+		$w			= trim(str_replace("　", " ", $w));
 		$w			= explode(" ", $w);
 		$wConditions	= array();
 		foreach($w as $val)
 		{
 			$wConditions = array_merge($wConditions, array(
-					"Title.title_official LIKE '%" . $val . "%'",
-					"Title.title_read LIKE '%" . $val . "%'",
-					"Title.title_sub LIKE '%" . $val . "%'",
-					"Title.title_abbr LIKE '%" . $val . "%'",
-					"Title.url_str LIKE '%" . $val . "%'",
-					"Title.description LIKE '%" . $val . "%'",
+					"Title.title_official LIKE" => "%" . $val . "%",
+					"Title.title_read LIKE" => "%" . $val . "%",
+					"Title.title_sub LIKE" => "%" . $val . "%",
+					"Title.title_abbr LIKE" => "%" . $val . "%",
+					"Title.url_str LIKE" => "%" . $val . "%",
+					"Title.description LIKE" => "%" . $val . "%",
 			));
 		}
 		return $wConditions;
