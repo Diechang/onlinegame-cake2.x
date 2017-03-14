@@ -54,13 +54,9 @@
 				<tr>
 					<th>公式サイト</th>
 					<td>
-	<?php if(!empty($title["Titlead"]["pc_part_url"]) && $title["Titlead"]["pc_noredirect"] == false):?>
 						<?php echo $this->Common->titleJumpLink($title["Title"]["official_url"],
 							$title["Title"], $title["Titlead"], "pc"
 						)?>
-	<?php else:?>
-						<?php echo $this->Html->link($title["Title"]["official_url"], $title["Title"]["official_url"], array("target" => "_blank"));?>
-	<?php endif;?>
 					</td>
 				</tr>
 <?php endif;?>
