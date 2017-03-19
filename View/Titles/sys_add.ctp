@@ -127,6 +127,7 @@
 				<?php echo $this->Form->text("fee_text")?>
 			</td>
 		</tr>
+<?php /*
 		<tr>
 			<th nowrap="nowrap">広告利用</th>
 			<td>
@@ -157,6 +158,7 @@
 				<?php echo $this->Form->textarea("ad_banner_l", array("class" => "focusSelect"))?>
 			</td>
 		</tr>
+*/ ?>
 		<tr>
 			<th nowrap="nowrap">Copyright</th>
 			<td><?php echo $this->Form->textarea("copyright")?></td>
@@ -199,75 +201,80 @@
 		</tr>
 	</table>
 
-<?php 
-	$adPlatforms = array(
-		"pc" => "PC",
-		"sp" => "スマホ",
-		"ios" => "iOS",
-		"android" => "Android",
-	);
-?>
+	<?php 
+		$adPlatforms = array(
+			"pc" => "PC",
+			"sp" => "スマホ",
+			"ios" => "iOS",
+			"android" => "Android",
+		);
+	?>
+	<div class="row-fluid">
 <?php foreach($adPlatforms as $key => $value):?>
-	<h2><?php echo $value?>広告設定</h2>
-	<table class="edit table table-bordered titleAds-table">
-		<tr>
-			<th nowrap="nowrap">テキスト広告</th>
-			<td>
-				<div class="titleAds-preview-text"></div>
-				<?php echo $this->Form->input("Titlead.{$key}_text_src", array("class" => "titleAds-ad-text focusSelect"))?>
-				<div><a href="javascript:void(0)" class="btn btn-info titleAds-get-text">GetTitleAdText</a></div>
-			</td>
-		</tr>
-		<tr>
-			<th nowrap="nowrap">イメージ広告</th>
-			<td>
-				<div class="titleAds-preview-image"></div>
-				<?php echo $this->Form->input("Titlead.{$key}_image_src", array("class" => "titleAds-ad-image focusSelect"))?>
-				<div><a href="javascript:void(0)" class="btn btn-info titleAds-get-image">GetTitleAdImage</a></div>
-			</td>
-		</tr>
-		<tr>
-			<th nowrap="nowrap">広告URL</th>
-			<td><?php echo $this->Form->input("Titlead.{$key}_part_url", array("class" => "titleAds-part-url"))?></td>
-		</tr>
-		<tr>
-			<th nowrap="nowrap">広告テキスト</th>
-			<td><?php echo $this->Form->input("Titlead.{$key}_part_text", array("class" => "titleAds-part-text"))?></td>
-		</tr>
-		<tr>
-			<th nowrap="nowrap">広告画像src</th>
-			<td><?php echo $this->Form->input("Titlead.{$key}_part_img_src", array("class" => "titleAds-part-img-src"))?></td>
-		</tr>
-		<tr>
-			<th nowrap="nowrap">広告トラッキングsrc</th>
-			<td><?php echo $this->Form->input("Titlead.{$key}_part_track_src", array("class" => "titleAds-part-track-src"))?></td>
-		</tr>
-		<tr>
-			<th nowrap="nowrap">広告開始日時</th>
-			<td class="dateField">
-				<?php echo $this->Form->input("Titlead.{$key}_start", array("type" => "datetime-local", "class" => "dateField-input", "step" => "1800"))?>
-				<a href="javascript:void(0)" class="dateField-remove btn btn-small"><i class="icon-remove"></i></a>
-			</td>
-		</tr>
-		<tr>
-			<th nowrap="nowrap">広告終了日時</th>
-			<td class="dateField">
-				<?php echo $this->Form->text("Titlead.{$key}_end", array("type" => "datetime-local", "class" => "dateField-input", "step" => "1800"))?>
-				<a href="javascript:void(0)" class="dateField-remove btn btn-small"><i class="icon-remove"></i></a>
-			</td>
-		</tr>
-		<tr>
-			<th nowrap="nowrap">リダイレクト</th>
-			<td>
-				<?php echo $this->Form->input("Titlead.{$key}_noredirect")?> しない
-			</td>
-		</tr>
-		<tr>
-			<th nowrap="nowrap">登録</th>
-			<td>
-				<?php echo $this->Form->submit("登録", array("class" => "btn btn-primary"))?>
-			</td>
-		</tr>
-	</table>
+	<?php if($key == "ios"):?></div><div class="row-fluid"><?php endif;?>
+		<div class="span6">
+			<h2><?php echo $value?>広告設定</h2>
+			<table class="edit table table-bordered titleAds-table">
+				<tr>
+					<th nowrap="nowrap">テキスト広告</th>
+					<td>
+						<div class="titleAds-preview-text"></div>
+						<?php echo $this->Form->input("Titlead.{$key}_text_src", array("class" => "titleAds-ad-text focusSelect"))?>
+						<div><a href="javascript:void(0)" class="btn btn-info titleAds-get-text">GetTitleAdText</a></div>
+					</td>
+				</tr>
+				<tr>
+					<th nowrap="nowrap">イメージ広告</th>
+					<td>
+						<div class="titleAds-preview-image"></div>
+						<?php echo $this->Form->input("Titlead.{$key}_image_src", array("class" => "titleAds-ad-image focusSelect"))?>
+						<div><a href="javascript:void(0)" class="btn btn-info titleAds-get-image">GetTitleAdImage</a></div>
+					</td>
+				</tr>
+				<tr>
+					<th nowrap="nowrap">広告URL</th>
+					<td><?php echo $this->Form->input("Titlead.{$key}_part_url", array("class" => "titleAds-part-url"))?></td>
+				</tr>
+				<tr>
+					<th nowrap="nowrap">広告テキスト</th>
+					<td><?php echo $this->Form->input("Titlead.{$key}_part_text", array("class" => "titleAds-part-text"))?></td>
+				</tr>
+				<tr>
+					<th nowrap="nowrap">広告画像src</th>
+					<td><?php echo $this->Form->input("Titlead.{$key}_part_img_src", array("class" => "titleAds-part-img-src"))?></td>
+				</tr>
+				<tr>
+					<th nowrap="nowrap">広告トラッキングsrc</th>
+					<td><?php echo $this->Form->input("Titlead.{$key}_part_track_src", array("class" => "titleAds-part-track-src"))?></td>
+				</tr>
+				<tr>
+					<th nowrap="nowrap">広告開始日時</th>
+					<td class="dateField">
+						<?php echo $this->Form->input("Titlead.{$key}_start", array("type" => "datetime-local", "class" => "dateField-input", "step" => "1800"))?>
+						<a href="javascript:void(0)" class="dateField-remove btn btn-small"><i class="icon-remove"></i></a>
+					</td>
+				</tr>
+				<tr>
+					<th nowrap="nowrap">広告終了日時</th>
+					<td class="dateField">
+						<?php echo $this->Form->text("Titlead.{$key}_end", array("type" => "datetime-local", "class" => "dateField-input", "step" => "1800"))?>
+						<a href="javascript:void(0)" class="dateField-remove btn btn-small"><i class="icon-remove"></i></a>
+					</td>
+				</tr>
+				<tr>
+					<th nowrap="nowrap">リダイレクト</th>
+					<td>
+						<?php echo $this->Form->input("Titlead.{$key}_noredirect")?> しない
+					</td>
+				</tr>
+				<tr>
+					<th nowrap="nowrap">登録</th>
+					<td>
+						<?php echo $this->Form->submit("登録", array("class" => "btn btn-primary"))?>
+					</td>
+				</tr>
+			</table>
+		</div>
 <?php endforeach;?>
+	</div>
 <?php echo $this->Form->end()?>
