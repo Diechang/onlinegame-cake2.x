@@ -845,7 +845,7 @@ UPDATE titlesummaries AS ts SET ts.avg_votes_item10 =(SELECT AVG(v.item10) FROM 
 		$wConditions	= array();
 		foreach($w as $val)
 		{
-			$wConditions = array_merge($wConditions, array(
+			$wConditions[] = array("OR" => array(
 					"Title.title_official LIKE" => "%" . $val . "%",
 					"Title.title_read LIKE" => "%" . $val . "%",
 					"Title.title_sub LIKE" => "%" . $val . "%",
