@@ -17,11 +17,11 @@ class TitlesController extends AppController
 		$this->Title->unbindAll(array("Titlead", "Titlesummary", "Platform", "Platform", "Category", "Style", "Service", "Fee", "Spec", "Portal", "Package"));
 		$title = $this->_getTitleData();
 		$this->_afterGetTitleData($title);
-//		pr($title);
-//		exit;
+		// debug($title);
+		// exit;
 
 		//おすすめ
-		$recommends = $this->Title->recommends(Set::extract('Cateogry/id', $title["Category"]), $title["Title"]["id"]);
+		$recommends = $this->Title->recommends(Hash::extract($title["Category"], "{n}.id"), $title["Title"]["id"]);
 //		pr($recommends);
 
 		//投稿データ
@@ -59,7 +59,7 @@ class TitlesController extends AppController
 //		exit;
 
 		//おすすめ
-		$recommends = $this->Title->recommends(Set::extract('Cateogry/id', $title["Category"]), $title["Title"]["id"]);
+		$recommends = $this->Title->recommends(Hash::extract($title["Category"], "{n}.id"), $title["Title"]["id"]);
 //		pr($recommends);
 
 		/**
@@ -91,7 +91,7 @@ class TitlesController extends AppController
 //		exit;
 
 		//おすすめ
-		$recommends = $this->Title->recommends(Set::extract('Cateogry/id', $title["Category"]), $title["Title"]["id"]);
+		$recommends = $this->Title->recommends(Hash::extract($title["Category"], "{n}.id"), $title["Title"]["id"]);
 //		pr($recommends);
 
 		/**
@@ -123,7 +123,7 @@ class TitlesController extends AppController
 // //		exit;
 
 // 		//おすすめ
-// 		$recommends = $this->Title->recommends(Set::extract('Cateogry/id', $title["Category"]), $title["Title"]["id"]);
+// 		$recommends = $this->Title->recommends(Hash::extract($title["Category"], "{n}.id"), $title["Title"]["id"]);
 // //		pr($recommends);
 
 // 		/**
@@ -181,7 +181,7 @@ class TitlesController extends AppController
 //		exit;
 
 		//おすすめ
-		$recommends = $this->Title->recommends(Set::extract('Cateogry/id', $title["Category"]), $title["Title"]["id"]);
+		$recommends = $this->Title->recommends(Hash::extract($title["Category"], "{n}.id"), $title["Title"]["id"]);
 //		pr($recommends);
 
 		/**
@@ -257,7 +257,7 @@ class TitlesController extends AppController
 // //		exit;
 
 // 		//おすすめ
-// 		$recommends = $this->Title->recommends(Set::extract('Cateogry/id', $title["Category"]), $title["Title"]["id"]);
+// 		$recommends = $this->Title->recommends(Hash::extract($title["Category"], "{n}.id"), $title["Title"]["id"]);
 // //		pr($recommends);
 
 // 		/**
@@ -312,7 +312,7 @@ class TitlesController extends AppController
 // //		exit;
 
 // 		//おすすめ
-// 		$recommends = $this->Title->recommends(Set::extract('Cateogry/id', $title["Category"]), $title["Title"]["id"]);
+// 		$recommends = $this->Title->recommends(Hash::extract($title["Category"], "{n}.id"), $title["Title"]["id"]);
 // //		pr($recommends);
 
 // 		/**
@@ -406,7 +406,7 @@ class TitlesController extends AppController
 //		exit;
 
 		//おすすめ
-		$recommends = $this->Title->recommends(Set::extract('Cateogry/id', $title["Category"]), $title["Title"]["id"]);
+		$recommends = $this->Title->recommends(Hash::extract($title["Category"], "{n}.id"), $title["Title"]["id"]);
 //		pr($recommends);
 
 		/**
@@ -456,7 +456,7 @@ class TitlesController extends AppController
 //		exit;
 
 		//おすすめ
-		$recommends = $this->Title->recommends(Set::extract('Cateogry/id', $title["Category"]), $title["Title"]["id"]);
+		$recommends = $this->Title->recommends(Hash::extract($title["Category"], "{n}.id"), $title["Title"]["id"]);
 //		pr($recommends);
 
 		/**
@@ -482,7 +482,7 @@ class TitlesController extends AppController
 // //		exit;
 
 // 		//おすすめ
-// 		$recommends = $this->Title->recommends(Set::extract('Cateogry/id', $title["Category"]), $title["Title"]["id"]);
+// 		$recommends = $this->Title->recommends(Hash::extract($title["Category"], "{n}.id"), $title["Title"]["id"]);
 // //		pr($recommends);
 
 // 		/**

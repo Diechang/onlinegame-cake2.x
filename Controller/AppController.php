@@ -186,6 +186,7 @@ class AppController extends Controller
 
 			// default platforms
 			$this->defaultPlatforms = array(1, 2, 3);
+			$this->Title->defaultPlatforms = $this->defaultPlatforms;
 
 			/**
 			 * Sidebar - Right

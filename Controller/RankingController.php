@@ -3,7 +3,7 @@ class RankingController extends AppController
 {
 
 	var $name = 'Ranking';
-	var $uses = array("Title", "Category");
+	var $uses = array("Category");
 
 	function index($path = null)
 	{

@@ -3,7 +3,7 @@ class JumpController extends AppController
 {
 
 	var $name		= 'Jump';
-	var $uses		= array("Title", "Portal", "Pc", "Package",
+	var $uses		= array("Portal", "Pc", "Package",
 							"AdCenterBottom", "AdLeftBottom", "AdLeftTop", "AdRightBottom", "AdRightTop");
 
 /** Modelds

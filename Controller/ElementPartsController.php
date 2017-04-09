@@ -3,7 +3,7 @@ class ElementPartsController extends AppController
 {
 
 	var $name		= 'ElementParts';
-	var $uses		= array("Title", "Platform", "Category", "Style", "Service", "Pcshop", "Moneycategory",
+	var $uses		= array("Platform", "Category", "Style", "Service", "Pcshop", "Moneycategory",
 							"AdCenterBottom", "AdLeftBottom", "AdLeftTop", "AdRightBottom", "AdRightTop");
 	var $helpers	= array("SearchPage");
 	var $components	= array("Auth");
@@ -312,29 +312,32 @@ class ElementPartsController extends AppController
 	 */
 	function search_title_form()
 	{
-
-		/** Categories **/
-		$mstCategories = $this->Title->Category->find("all", array(
-			"recursive" => -1,
-			"fields" => array("id", "str", "path"),
-			"order" => "Category.sort"
-		));
 		/** Platforms **/
 		$mstPlatforms = $this->Title->Platform->find("all", array(
+			"conditions" => array("public" => true),
 			"recursive" => -1,
-			"fields" => array("id", "str", "path"),
+			"fields" => array("public", "id", "str", "path"),
 			"order" => "Platform.sort"
+		));
+		/** Categories **/
+		$mstCategories = $this->Title->Category->find("all", array(
+			"conditions" => array("public" => true),
+			"recursive" => -1,
+			"fields" => array("public", "id", "str", "path"),
+			"order" => "Category.sort"
 		));
 		/** Styles **/
 		$mstStyles = $this->Title->Style->find("all", array(
+			"conditions" => array("public" => true),
 			"recursive" => -1,
-			"fields" => array("id", "str", "path"),
+			"fields" => array("public", "id", "str", "path"),
 			"order" => "Style.sort"
 		));
 		/** Services **/
 		$mstServices = $this->Title->Service->find("all", array(
+			"conditions" => array("public" => true),
 			"recursive" => -1,
-			"fields" => array("id", "str", "path"),
+			"fields" => array("public", "id", "str", "path"),
 			"order" => "Service.sort"
 		));
 		//

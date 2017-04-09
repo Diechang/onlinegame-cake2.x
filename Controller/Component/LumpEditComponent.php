@@ -17,7 +17,8 @@ class LumpEditComponent extends Component
 	{
 		$modelName = $model->name;
 
-		$ids	= Set::extract("/id", $data);
+		$ids	= Hash::extract($data, "{n}.id");
+		
 		$fields	= array();
 		foreach($data[0] as $key => $val)
 		{

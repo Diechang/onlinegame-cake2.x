@@ -3,7 +3,6 @@ class SearchController extends AppController
 {
 
 	var $name = 'Search';
-	var $uses = array("Title");
 	var $helpers = array("SearchPage");
 
 	//表示件数

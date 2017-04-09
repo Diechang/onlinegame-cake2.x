@@ -4,8 +4,7 @@ class FeedsController extends AppController
 
 	var $name		= 'Feeds';
 	var $components	= array('RequestHandler');
-	var $uses		= array("Title","Vote"/*,"Event"*/);
-	// var $helpers	= array("Rss");
+	var $uses		= array("Vote");
 
 	function index()
 	{

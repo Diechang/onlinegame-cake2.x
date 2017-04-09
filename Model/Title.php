@@ -3,6 +3,8 @@ class Title extends AppModel
 {
 	var $name = 'Title';
 
+	var $defaultPlatforms = null;
+
 	//Virtual Fields
 	// var $VF = array(
 	// 	'vote_count_vote'	=> 'SELECT COUNT( v.item1 ) FROM votes AS v WHERE v.title_id = Title.id AND v.public = 1 GROUP BY v.title_id',
@@ -336,7 +338,7 @@ class Title extends AppModel
 		{
 			$ids = null;
 		}
-
+		
 		return $ids;
 	}
 
@@ -627,8 +629,8 @@ class Title extends AppModel
 			$rank["Titlesummary"] = $rank[0];
 			unset($rank[0]);
 		}
-		debug($ranking);
-		exit;
+		// debug($ranking);
+		// exit;
 		return $ranking;
 	}
 
@@ -643,7 +645,12 @@ class Title extends AppModel
 	function recommends($categories, $title_id = null)
 	{
 		$titles = $this->idListByCategory($categories);
-//		pr($titles);
+
+		if(!empty($this->defaultPlatforms))
+		{
+			$titles = array_intersect($this->idListByPlatform($this->defaultPlatforms), $titles);
+		}
+
 		$this->unbindAll(array("Titlesummary"));
 		$data = $this->find("all", array(
 			"conditions" => array(
@@ -667,6 +674,7 @@ class Title extends AppModel
 			"limit" => 5,
 			"order" => array("Titlesummary.vote_avg_all DESC, Titlesummary.vote_count_vote DESC"),
 		));
+		// debug($data);
 		//
 		return $data;
 	}

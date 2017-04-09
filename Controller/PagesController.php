@@ -54,7 +54,7 @@ class PagesController extends AppController
  * @var array
  * @access public
  */
-	var $uses = array("Vote", "Fansite", "Link", "Update", "Portal", "Money", "Pc", "Package" /*, "Event"*/);
+	var $uses = array("Vote", "Fansite", "Link", "Update", "Portal", "Money", "Pc", "Package");
 
 /**
  * Components
