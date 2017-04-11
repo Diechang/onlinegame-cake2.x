@@ -3,6 +3,7 @@
 	<?php echo $this->Form->text("w", array("size" => 10, "onfocus" => "this.select()", "default" => $this->request->query("w")))?>
 	<?php echo $this->Form->select("category", $categories, array("empty" => "-カテゴリ-", "default" => $this->request->query("category")))?>
 	<?php echo $this->Form->select("service", $services, array("empty" => "-サービス-", "default" => $this->request->query("service")))?>
+		<?php echo $this->Form->select("portal", $portals, array("empty" => "-ポータル-", "default" => $this->request->query("portal")))?>
 	<?php echo $this->Form->submit("タイトル検索", array("div" => false, "class" => "btn"))?>
 <?php echo $this->Form->end()?>
 <?php echo $this->Form->create("Title", array("action" => "lump"))?>

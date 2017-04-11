@@ -467,6 +467,7 @@ class PagesController extends AppController
 		$this->set("pankuz_for_layout", "");
 		$this->set("categories", $this->Title->Category->find("list"));
 		$this->set("services", $this->Title->Service->find("list", array("order" => "sort")));
+		$this->set("portals", $this->Title->Portal->find("list"));
 	}
 
 /**

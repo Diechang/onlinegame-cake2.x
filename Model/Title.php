@@ -350,6 +350,30 @@ class Title extends AppModel
 	}
 
 /**
+ * ポータル内タイトルIDリスト
+ *
+ * @param	mixed	$portal_id
+ * @return	array
+ * @access	public
+ */
+	function idListByPortal(&$portal_id)
+	{
+		if(isset($portal_id))
+		{
+			$ids = $this->PortalsTitle->find("list", array(
+				"conditions" => array("PortalsTitle.portal_id" => $portal_id),
+				"fields" => "PortalsTitle.title_id",
+			));
+		}
+		else
+		{
+			$ids = null;
+		}
+
+		return $ids;
+	}
+
+/**
  * 検索
  *
  * @param	mixed	$option to Extract
