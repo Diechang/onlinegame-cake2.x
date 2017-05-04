@@ -185,7 +185,8 @@ class AppController extends Controller
 			$this->Title->Behaviors->load("Containable");
 
 			// default platforms
-			$this->defaultPlatforms = array(1, 2, 3);
+			// $this->defaultPlatforms = array(1, 2, 3);
+			$this->defaultPlatforms = array(4, 5, 6);
 			$this->Title->defaultPlatforms = $this->defaultPlatforms;
 
 			/**

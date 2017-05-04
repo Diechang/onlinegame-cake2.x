@@ -1,6 +1,7 @@
 <h3><?php echo $this->Html->link("タイトル新規登録", array("action" => "add"), array("class" => "btn btn-success"))?></h3>
 <?php echo $this->Form->create("Title", array("url" => array("action" => "index"), "type" => "get", "inputDefaults" => array("div" => false, "label" => false)))?>
 	<?php echo $this->Form->text("w", array("size" => 10, "onfocus" => "this.select()"))?>
+	<?php echo $this->Form->select("platform", $platforms, array("empty" => "-プラットフォーム-"))?>
 	<?php echo $this->Form->select("category", $categories, array("empty" => "-カテゴリ-"))?>
 	<?php echo $this->Form->select("service", $services, array("empty" => "-サービス-"))?>
 	<?php echo $this->Form->submit("タイトル検索", array("div" => false, "class" => "btn"))?>
