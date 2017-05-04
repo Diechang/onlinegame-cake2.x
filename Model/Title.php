@@ -186,7 +186,7 @@ class Title extends AppModel
 			'foreignKey' => 'title_id',
 			'associationForeignKey' => 'platform_id',
 			'unique' => true,
-			'conditions' => '',
+			'conditions' => array("Platform.public" => 1),
 			'fields' => '',
 			'order' => 'sort',
 			'limit' => '',
@@ -201,7 +201,7 @@ class Title extends AppModel
 			'foreignKey' => 'title_id',
 			'associationForeignKey' => 'category_id',
 			'unique' => true,
-			'conditions' => '',
+			'conditions' => array("Category.public" => 1),
 			'fields' => '',
 			'order' => 'sort',
 			'limit' => '',
@@ -216,7 +216,7 @@ class Title extends AppModel
 			'foreignKey' => 'title_id',
 			'associationForeignKey' => 'style_id',
 			'unique' => true,
-			'conditions' => '',
+			'conditions' => array("Style.public" => 1),
 			'fields' => '',
 			'order' => 'sort',
 			'limit' => '',
@@ -231,7 +231,7 @@ class Title extends AppModel
 			'foreignKey' => 'title_id',
 			'associationForeignKey' => 'portal_id',
 			'unique' => true,
-			'conditions' => '',
+			'conditions' => array("Portal.public" => 1),
 			'fields' => '',
 			'order' => '',
 			'limit' => '',
@@ -258,6 +258,7 @@ class Title extends AppModel
 		$this->clearElementCache("right_test");
 		$this->clearElementCache("left_ranking");
 	}
+
 	function beforeValidate($options = array())
 	{
 		if(!empty($this->data["Title"]))
@@ -308,6 +309,16 @@ class Title extends AppModel
 				$this->data["Title"]["ad_banner_l"] = null;
 			}
 		}
+		return true;
+	}
+	
+	function beforeSave($options = array())
+	{
+		
+		$this->hasAndBelongsToMany["Platform"]["conditions"]	= '';
+		$this->hasAndBelongsToMany["Category"]["conditions"]	= '';
+		$this->hasAndBelongsToMany["Style"]["conditions"]		= '';
+		$this->hasAndBelongsToMany["Portal"]["conditions"]		= '';
 		return true;
 	}
 
