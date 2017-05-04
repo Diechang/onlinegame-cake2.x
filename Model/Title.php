@@ -510,7 +510,7 @@ class Title extends AppModel
  * @return	array
  * @access	public
  */
-	public function getIdListsIntersect($category_id = array(), $style_id = array(), $platform_id = array())
+	public function getIdListsIntersect(&$category_id = array(), &$style_id = array(), &$platform_id = array())
 	{
 		// debug(array($category_id, $style_id, $platform_id));
 		// exit;

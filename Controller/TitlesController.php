@@ -506,10 +506,11 @@ class TitlesController extends AppController
 
 		//ID list
 		$category_id	= $this->request->query("category");
+		$style_id		= $this->request->query("style");
 		$platform_id	= $this->request->query("platform");
 		// debug(array($category_id, $style_id, $platform_id));
 		// exit;
-		$title_ids = $this->Title->getIdListsIntersect($category_id, null, $platform_id);
+		$title_ids = $this->Title->getIdListsIntersect($category_id, $style_id, $platform_id);
 
 		if(!empty($title_ids) && !!$this->request->query("portal"))
 		{
