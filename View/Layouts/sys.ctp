@@ -22,6 +22,14 @@
 <!--Header-->
 <div id="header">
 	<div class="logo"><a href="/sys/"><?php echo $this->Html->image("sys/logo.gif")?></a></div>
+
+<?php if(!empty($loginUser)):?>
+	<?php echo $this->Form->create("Title", array("url" => array("action" => "index"), "type" => "get", "class" => "form-search", "inputDefaults" => array("div" => false, "label" => false)))?>
+		<?php echo $this->Form->text("w", array("size" => 10, "placeholder" => "タイトル", "onfocus" => "this.select()"))?>
+		<?php echo $this->Form->submit("検索", array("class" => "btn btn-small", "div" => false))?>
+	<?php echo $this->Form->end()?>
+<?php endif;?>
+
 	<ul class="pankuz">
 		<li><a href="/sys/"><i class="icon-home"></i> SYSTOP</a></li>
 <?php

@@ -8,6 +8,7 @@
 			<th nowrap="nowrap">タイトル</th>
 			<th nowrap="nowrap">サムネ</th>
 			<th nowrap="nowrap">パス</th>
+			<th nowrap="nowrap">プラットフォーム</th>
 			<th nowrap="nowrap">カテゴリ</th>
 			<th nowrap="nowrap">状態</th>
 			<th nowrap="nowrap">開始日</th>
@@ -48,6 +49,11 @@
 				<?php echo $this->Html->image($this->Common->thumbName($title["Title"]["thumb_name"]), array("width" => 40))?>
 			</td>
 			<td><?php echo $this->Html->link($title["Title"]["url_str"], array("controller" => "titles", "action" => "index", "path" => $title["Title"]["url_str"], "sys" => false, "ext" => "html"), array("target" => "_blank"))?></td>
+			<td class="platforms">
+	<?php foreach($title["Platform"] as $platform):?>
+				<?php echo $this->Html->link($platform["path"], array("controller" => "titles", "action" => "index", "?" => array("platform" => $platform["id"])))?>
+	<?php endforeach;?>
+			</td>
 			<td class="categories">
 	<?php foreach($title["Category"] as $category):?>
 				<?php echo $this->Html->link($category["path"], array("controller" => "titles", "action" => "index", "?" => array("category" => $category["id"])))?>

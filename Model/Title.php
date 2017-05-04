@@ -186,7 +186,7 @@ class Title extends AppModel
 			'foreignKey' => 'title_id',
 			'associationForeignKey' => 'platform_id',
 			'unique' => true,
-			'conditions' => array("Platform.public" => true),
+			'conditions' => '',
 			'fields' => '',
 			'order' => 'sort',
 			'limit' => '',
@@ -201,7 +201,7 @@ class Title extends AppModel
 			'foreignKey' => 'title_id',
 			'associationForeignKey' => 'category_id',
 			'unique' => true,
-			'conditions' => array("Category.public" => true),
+			'conditions' => '',
 			'fields' => '',
 			'order' => 'sort',
 			'limit' => '',
@@ -216,7 +216,7 @@ class Title extends AppModel
 			'foreignKey' => 'title_id',
 			'associationForeignKey' => 'style_id',
 			'unique' => true,
-			'conditions' => array("Style.public" => true),
+			'conditions' => '',
 			'fields' => '',
 			'order' => 'sort',
 			'limit' => '',
@@ -391,6 +391,30 @@ class Title extends AppModel
 	}
 
 /**
+ * ポータル内タイトルIDリスト
+ *
+ * @param	mixed	$portal_id
+ * @return	array
+ * @access	public
+ */
+	function idListByPortal(&$portal_id)
+	{
+		if(isset($portal_id))
+		{
+			$ids = $this->PortalsTitle->find("list", array(
+				"conditions" => array("PortalsTitle.portal_id" => $portal_id),
+				"fields" => "PortalsTitle.title_id",
+			));
+		}
+		else
+		{
+			$ids = null;
+		}
+
+		return $ids;
+	}
+
+/**
  * 検索
  *
  * @param	mixed	$option to Extract
@@ -486,7 +510,7 @@ class Title extends AppModel
  * @return	array
  * @access	public
  */
-	public function getIdListsIntersect(&$category_id = array(), &$style_id = array(), &$platform_id = array())
+	public function getIdListsIntersect($category_id = array(), $style_id = array(), $platform_id = array())
 	{
 		// debug(array($category_id, $style_id, $platform_id));
 		// exit;
@@ -913,13 +937,13 @@ UPDATE titlesummaries AS ts SET ts.avg_votes_item10 =(SELECT AVG(v.item10) FROM 
 		$wConditions	= array();
 		foreach($w as $val)
 		{
-			$wConditions = array_merge($wConditions, array(
-					"Title.title_official LIKE '%" . $val . "%'",
-					"Title.title_read LIKE '%" . $val . "%'",
-					"Title.title_sub LIKE '%" . $val . "%'",
-					"Title.title_abbr LIKE '%" . $val . "%'",
-					"Title.url_str LIKE '%" . $val . "%'",
-					"Title.description LIKE '%" . $val . "%'",
+			$wConditions[] = array("OR" => array(
+					"Title.title_official LIKE" => "%" . $val . "%",
+					"Title.title_read LIKE" => "%" . $val . "%",
+					"Title.title_sub LIKE" => "%" . $val . "%",
+					"Title.title_abbr LIKE" => "%" . $val . "%",
+					"Title.url_str LIKE" => "%" . $val . "%",
+					"Title.description LIKE" => "%" . $val . "%",
 			));
 		}
 		return $wConditions;

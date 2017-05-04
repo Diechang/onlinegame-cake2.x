@@ -502,12 +502,21 @@ class TitlesController extends AppController
 		$conditions = array();
 		$title_ids	= array();
 		
-		//カテゴリ
-		if(!empty($this->request->query["category"]))
+		// //カテゴリ + プラットフォーム & ポータル
+
+		//ID list
+		$category_id	= $this->request->query("category");
+		$platform_id	= $this->request->query("platform");
+		// debug(array($category_id, $style_id, $platform_id));
+		// exit;
+		$title_ids = $this->Title->getIdListsIntersect($category_id, null, $platform_id);
+
+		if(!empty($title_ids) && !!$this->request->query("portal"))
 		{
-			$title_ids = $this->Title->idListByCategory($this->request->query["category"]);
+			$title_ids = array_intersect($title_ids, $this->Title->idListByPortal($this->request->query["portal"]));
 		}
-		// pr($title_ids);
+		elseif(!!$this->request->query("portal"))	$title_ids = $this->Title->idListByPortal($this->request->query["portal"]);
+		// debug($title_ids);
 		// exit;
 
 		//タイトルID
@@ -519,16 +528,15 @@ class TitlesController extends AppController
 			$conditions += array("Title.service_id" => $this->request->query["service"]);
 		}
 		//検索ワード
-		$w			= (isset($this->request->query["w"])) ? urldecode($this->request->query["w"]) : null;
-		if(!empty($w))
+		if(!!$this->request->query("w"))
 		{
-			$conditions += array("OR" => $this->Title->wConditions($w));
+			$conditions += array("OR" => $this->Title->wConditions($this->request->query("w")));
 		}
 		//
 		// pr($conditions);
 		// exit;
 
-		$this->Title->unbindAll(array("Titlead", "Titlesummary", "Service", "Fee", "Fansite", "Vote", "Spec", "Pc", "Event", "Package", "Category"));
+		$this->Title->unbindAll(array("Titlead", "Titlesummary", "Service", "Fee", "Fansite", "Vote", "Spec", "Pc", "Event", "Package", "Platform", "Category"));
 		$this->Paginator->settings = array(
 			"Title" => array(
 				"conditions" => $conditions,
@@ -547,6 +555,7 @@ class TitlesController extends AppController
 		$this->set("platforms", $this->Title->Platform->find("list", array("order" => "sort")));
 		$this->set("categories", $this->Title->Category->find("list", array("order" => "sort")));
 		$this->set("services", $this->Title->Service->find("list", array("order" => "sort")));
+		$this->set("portals", $this->Title->Portal->find("list"));
 	}
 
 //	function sys_view($id = null)

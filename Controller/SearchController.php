@@ -33,9 +33,9 @@ class SearchController extends AppController
 		// exit;
 
 		//ID list
-		$category_id	= !empty($query["category"])	? $query["category"] : null;
-		$style_id		= !empty($query["style"])		? $query["style"] : null;
-		$platform_id	= !empty($query["platform"])	? $query["platform"] : null;
+		$category_id	= $this->request->query("category");
+		$style_id		= $this->request->query("style");
+		$platform_id	= $this->request->query("platform");
 		// debug(array($category_id, $style_id, $platform_id));
 		// exit;
 		$idList = $this->Title->getIdListsIntersect($category_id, $style_id, $platform_id);

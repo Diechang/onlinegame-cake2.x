@@ -29,7 +29,7 @@
 		<table>
 			<tr class="head">
 				<th>評価項目</th>
-				<td class="taCenter">低い ＜ 普通 ＞ 高い</td>
+				<td class="taCenter">不満 ＜ 普通 ＞ 満足</td>
 			</tr>
 	<?php foreach($voteItems as $key => $voteItem):?>
 			<tr>
