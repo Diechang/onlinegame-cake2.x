@@ -24,7 +24,8 @@
 		<?php echo $this->TitlePage->specRows("その他", $spec["other_low"], $spec["other_high"])?>
 		<tr>
 			<th>更新日</th>
-			<td colspan="2">2010年12月16日</td>
+			<td colspan="2"><?php echo $this->Common->dateFormat($spec["modified"] , "date")?></td>
+
 		</tr>
 	</tbody>
 	<?php endforeach;?>
