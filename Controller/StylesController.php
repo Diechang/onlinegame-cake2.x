@@ -19,7 +19,7 @@ class StylesController extends AppController
 			)
 		));
 		//リダイレクト
-		$this->_emptyToHome($pageData);
+		$this->_emptyToNotFound($pageData);
 //		pr($pageData);
 		//
 		//Set

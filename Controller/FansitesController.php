@@ -9,7 +9,7 @@ class FansitesController extends AppController
 
 	function add($id = null)
 	{
-		$this->_emptyToHome($id);
+		$this->_emptyToNotFound($id);
 		/**
 		 * Title data
 		 */
@@ -81,8 +81,8 @@ class FansitesController extends AppController
 	//リンク切れ報告
 	function report($id = null)
 	{
-		$this->_emptyToHome($this->referer());
-		$this->_emptyToHome($id);
+		$this->_emptyToNotFound($this->referer());
+		$this->_emptyToNotFound($id);
 		$this->request->data = $this->Fansite->find("first", array(
 			"conditions" => array(
 				"Fansite.id" => $id,

@@ -19,7 +19,7 @@ class ServicesController extends AppController
 			)
 		));
 		//リダイレクト
-		$this->_emptyToHome($pageData);
+		$this->_emptyToNotFound($pageData);
 		// debug($pageData);
 		//
 		//Set

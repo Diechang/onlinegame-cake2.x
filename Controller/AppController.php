@@ -262,6 +262,22 @@ class AppController extends Controller
 	}
 
 /**
+ * データがemptyなら404
+ *
+ * @param	$data
+ * @param	$url
+ * @return	void
+ * @access private
+ */
+	function _emptyToNotFound(&$data, $message = null)
+	{
+		if(empty($data))
+		{
+			throw new NotFoundException($message);
+		}
+	}
+
+/**
  * データ取得前のパラメタチェック
  *
  * @return void

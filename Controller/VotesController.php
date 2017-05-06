@@ -123,7 +123,7 @@ class VotesController extends AppController
 
 	function edit($id = null)
 	{
-		$this->_emptyToHome($id);
+		$this->_emptyToNotFound($id);
 
 		//Get
 		$dataVote = $this->Vote->find("first", array(
@@ -145,8 +145,8 @@ class VotesController extends AppController
 		));
 //		pr($dataVote);
 		//
-		$this->_emptyToHome($dataVote); //投稿チェック
-		$this->_emptyToHome($dataVote["Vote"]["pass"]);
+		$this->_emptyToNotFound($dataVote); //投稿チェック
+		$this->_emptyToNotFound($dataVote["Vote"]["pass"]);
 		//Check votable
 		$dataVote["Title"]["votable"] = true;
 

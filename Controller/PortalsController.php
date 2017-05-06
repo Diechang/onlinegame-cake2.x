@@ -22,7 +22,7 @@ class PortalsController extends AppController
 
 	function view($path = null)
 	{
-		$this->_emptyToURL($path, array("action" => "index", "ext" => "html"));
+		$this->_emptyToNotFound($path);
 		//Get
 		// $this->Portal->Title->unbindAll(array("Fee", "Category", "Titlesummary"));
 
@@ -65,7 +65,7 @@ class PortalsController extends AppController
 				"Portal.url_str" => $path,
 			),
 		));
-		$this->_emptyToURL($portal, array("action" => "index", "ext" => "html"));
+		$this->_emptyToNotFound($portal);
 		// pr($portal);
 		// exit;
 		$portals = $this->Portal->find("all", array(

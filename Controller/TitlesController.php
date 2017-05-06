@@ -162,7 +162,7 @@ class TitlesController extends AppController
 				"Vote.title_id" => $title["Title"]["id"],
 			),
 		));
-		$this->_emptyToHome($vote);
+		$this->_emptyToNotFound($vote);
 //		pr($vote);
 //		exit;
 
@@ -297,7 +297,7 @@ class TitlesController extends AppController
 // 		));
 // //		pr($event);
 // //		exit;
-// 		$this->_emptyToHome($event);
+// 		$this->_emptyToNotFound($event);
 
 // 		//一覧
 // 		$events = $this->Title->Event->find("all", array(
@@ -790,7 +790,7 @@ class TitlesController extends AppController
 	function _afterGetTitleData(&$title)
 	{
 		//リダイレクト
-		$this->_emptyToHome($title["Title"]["public"]);
+		$this->_emptyToNotFound($title["Title"]["public"]);
 		//Check votable
 		$title["Title"]["votable"] = $this->TitleData->votable($title["Title"]["service_id"], $title["Title"]["test_start"]);
 	}
