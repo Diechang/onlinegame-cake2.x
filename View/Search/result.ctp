@@ -41,6 +41,9 @@ $this->assign("json_ld", $this->JsonLd->breadCrumbList(array(
 				</div>
 			</div>
 			<div class="data">
+				<div class="platformLabels">
+					<?php echo $this->Common->platformsLink($title["Platform"])?>
+				</div>
 				<div class="counts">
 					<div class="count count-total">
 						<div class="caption">総合評価</div>

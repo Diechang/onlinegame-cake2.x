@@ -102,7 +102,7 @@ class SearchController extends AppController
 		 */
 		$this->Paginator->settings = array(
 			"Title" => array(
-				"contain" => array("Titlesummary", "Category", "Service", "Fee"),
+				"contain" => array("Titlesummary", "Platform", "Category", "Service", "Fee"),
 				"conditions" => $conditions,
 				"order" => $order,
 				"limit" => $this->limit,

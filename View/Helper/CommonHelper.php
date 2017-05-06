@@ -591,9 +591,9 @@ class CommonHelper extends AppHelper
 			if(is_array($platforms))
 			{
 				$text = "";
-				foreach($platforms as $category)
+				foreach($platforms as $platform)
 				{
-					$text .= $tagStart . $this->Html->link($category['str'], array('controller' => 'platforms', 'path' => $category['path'], 'ext' => 'html')) . $tagEnd . "\n";
+					$text .= $tagStart . $this->Html->link($platform['str'], array('controller' => 'platforms', 'path' => $platform['path'], 'ext' => 'html'), array("class" => $platform["path"])) . $tagEnd . "\n";
 				}
 			}
 			else
