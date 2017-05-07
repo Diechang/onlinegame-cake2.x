@@ -25,6 +25,11 @@ class JumpController extends AppController
 		));
 		// debug($title);
 		// exit;
+		Debugger::log(array(
+			"platform" => $platform,
+			"path" => $path,
+			"title" => $title["Title"],
+		));
 
 		// set times & flags
 		$times = array(
