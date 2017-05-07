@@ -25,11 +25,6 @@ class JumpController extends AppController
 		));
 		// debug($title);
 		// exit;
-		Debugger::log(array(
-			"platform" => $platform,
-			"path" => $path,
-			"title" => $title["Title"],
-		));
 
 		// set times & flags
 		$times = array(
@@ -47,6 +42,12 @@ class JumpController extends AppController
 		
 		//set url
 		$url = $title["Title"]["{$platform}_default_url"];
+		if(empty($url)) Debugger::log(array(
+			"platform" => $platform,
+			"path" => $path,
+			"title" => $title["Title"],
+		));
+
 		if(!empty($title["Titlead"]["{$platform}_part_url"]))
 		{
 			// between
