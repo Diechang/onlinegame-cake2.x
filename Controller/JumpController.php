@@ -43,6 +43,8 @@ class JumpController extends AppController
 		//set url
 		$url = $title["Title"]["{$platform}_default_url"];
 		if(empty($url)) Debugger::log(array(
+			"url" => $this->request->url,
+			"referer" => $this->referer(),
 			"platform" => $platform,
 			"path" => $path,
 			"title" => $title["Title"],
