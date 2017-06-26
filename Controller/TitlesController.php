@@ -838,12 +838,12 @@ class TitlesController extends AppController
  */
 	function _sysSetTitleAssociations()
 	{
-		$services	= $this->Title->Service->find('list', array('public' => true, 'order' => 'sort'));
-		$fees		= $this->Title->Fee->find('list', array('public' => true, 'order' => 'sort'));
-		$platforms	= $this->Title->Platform->find('list', array('public' => true, 'order' => 'sort'));
-		$categories	= $this->Title->Category->find('list', array('public' => true, 'order' => 'sort'));
-		$styles		= $this->Title->Style->find('list', array('public' => true, 'order' => 'sort'));
-		$portals	= $this->Title->Portal->find('list', array('public' => true));
+		$services	= $this->Title->Service->find('list', array('conditions' => array('public' => true), 'order' => 'sort'));
+		$fees		= $this->Title->Fee->find('list', array('conditions' => array('public' => true), 'order' => 'sort'));
+		$platforms	= $this->Title->Platform->find('list', array('conditions' => array('public' => true), 'order' => 'sort'));
+		$categories	= $this->Title->Category->find('list', array('conditions' => array('public' => true), 'order' => 'sort'));
+		$styles		= $this->Title->Style->find('list', array('conditions' => array('public' => true), 'order' => 'sort'));
+		$portals	= $this->Title->Portal->find('list', array('conditions' => array('public' => true)));
 		//
 		$this->set(compact('services', 'fees', 'platforms', 'categories', 'styles', 'portals'));
 	}
