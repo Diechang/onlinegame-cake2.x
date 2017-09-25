@@ -280,14 +280,14 @@
 				<tr>
 					<th nowrap="nowrap">広告開始日時</th>
 					<td class="dateField">
-						<?php echo $this->Form->input("Titlead.{$key}_start", array("type" => "datetime-local", "class" => "dateField-input", "step" => "1800", "value" => (!empty($this->request->data["Titlead"]["{$key}_start"]) ? date("Y-m-d\TH:i:s", strtotime($this->request->data["Titlead"]["{$key}_start"])) : null)))?>
+						<?php echo $this->Form->input("Titlead.{$key}_start", array("type" => "datetime-local", "class" => "dateField-input", "step" => "60", "value" => (!empty($this->request->data["Titlead"]["{$key}_start"]) ? date("Y-m-d\TH:i:s", strtotime($this->request->data["Titlead"]["{$key}_start"])) : null)))?>
 						<a href="javascript:void(0)" class="dateField-remove btn btn-small"><i class="icon-remove"></i></a>
 					</td>
 				</tr>
 				<tr>
 					<th nowrap="nowrap">広告終了日時</th>
 					<td class="dateField">
-						<?php echo $this->Form->text("Titlead.{$key}_end", array("type" => "datetime-local", "class" => "dateField-input", "step" => "1800", "value" => (!empty($this->request->data["Titlead"]["{$key}_end"]) ? date("Y-m-d\TH:i:s", strtotime($this->request->data["Titlead"]["{$key}_end"])) : null)))?>
+						<?php echo $this->Form->text("Titlead.{$key}_end", array("type" => "datetime-local", "class" => "dateField-input", "step" => "60", "value" => (!empty($this->request->data["Titlead"]["{$key}_end"]) ? date("Y-m-d\TH:i:s", strtotime($this->request->data["Titlead"]["{$key}_end"])) : null)))?>
 						<a href="javascript:void(0)" class="dateField-remove btn btn-small"><i class="icon-remove"></i></a>
 					</td>
 				</tr>

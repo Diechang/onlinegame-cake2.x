@@ -258,14 +258,14 @@
 				<tr>
 					<th nowrap="nowrap">広告開始日時</th>
 					<td class="dateField">
-						<?php echo $this->Form->input("Titlead.{$key}_start", array("type" => "datetime-local", "class" => "dateField-input", "step" => "1800"))?>
+						<?php echo $this->Form->input("Titlead.{$key}_start", array("type" => "datetime-local", "class" => "dateField-input", "step" => "60"))?>
 						<a href="javascript:void(0)" class="dateField-remove btn btn-small"><i class="icon-remove"></i></a>
 					</td>
 				</tr>
 				<tr>
 					<th nowrap="nowrap">広告終了日時</th>
 					<td class="dateField">
-						<?php echo $this->Form->text("Titlead.{$key}_end", array("type" => "datetime-local", "class" => "dateField-input", "step" => "1800"))?>
+						<?php echo $this->Form->text("Titlead.{$key}_end", array("type" => "datetime-local", "class" => "dateField-input", "step" => "60"))?>
 						<a href="javascript:void(0)" class="dateField-remove btn btn-small"><i class="icon-remove"></i></a>
 					</td>
 				</tr>
