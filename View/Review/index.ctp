@@ -4,7 +4,7 @@ $this->Html->meta("canonical", $this->Html->url(array('controller' => 'review', 
 //set blocks
 $this->assign("title", "オンラインゲームレビュー一覧 " . $this->Paginator->current() . "ページ目");
 $this->assign("keywords", "レビュー,評価,オンラインゲーム");
-$this->assign("description", "当サイトに投稿されたオンラインゲームレビュー投稿一覧の" . $this->Paginator->current() . "ページ目です。");
+$this->assign("description", "レビュー投稿数" . number_format($this->Paginator->param("count")) . "件！当サイトに投稿されたオンラインゲームレビュー投稿一覧の" . $this->Paginator->param("page") . "/" . $this->Paginator->param("pageCount") . "ページ目です。");
 //pankuz
 $this->set("pankuz_for_layout", "レビュー投稿一覧 " . $this->Paginator->current() . "ページ目");
 //json ld
