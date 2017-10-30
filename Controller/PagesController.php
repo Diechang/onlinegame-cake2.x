@@ -269,6 +269,40 @@ class PagesController extends AppController
 		//
 		//Set
 		$this->set("updates", $updates);
+
+		/**
+		 * Counts
+		 */
+
+		//Counts
+		$countTitle = $this->Title->find("count", array(
+			"recursive" => -1,
+			"conditions" => array("Title.public" => 1),
+			"fields" => "DISTINCT Title.id",
+		));
+		$countReview = $this->Title->Vote->find("count", array(
+			"recursive" => -1,
+			"conditions" => array(
+				"Vote.public" => 1,
+				"NOT" => array("Vote.review" => null),
+			),
+			"fields" => "DISTINCT Vote.id",
+		));
+		$countVote = $this->Title->Vote->find("count", array(
+			"recursive" => -1,
+			"conditions" => array("Vote.public" => 1),
+			"fields" => "DISTINCT Vote.id",
+		));
+		$countFansite = $this->Title->Fansite->find("count", array(
+			"recursive" => -1,
+			"conditions" => array("Fansite.public" => 1),
+			"fields" => "DISTINCT Fansite.id",
+		));
+		//
+		$this->set("countTitle", $countTitle);
+		$this->set("countReview", $countReview);
+		$this->set("countVote", $countVote);
+		$this->set("countFansite", $countFansite);
 	}
 
 /**

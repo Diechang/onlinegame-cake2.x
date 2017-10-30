@@ -2,7 +2,7 @@
 //set blocks
 $this->assign("title", "【オンラインゲームライフ】-無料オンラインゲームの人気ランキング・レビュー");
 $this->assign("keywords", "オンラインゲーム,無料,オンライン,ゲーム,人気,ランキング,レビュー");
-$this->assign("description", "無料オンラインゲーム情報サイト。ユーザーによるレビュー・評価の投稿による人気オンラインゲームランキングや攻略サイトリンク集、ムービー検索も可能。");
+$this->assign("description", "掲載ゲーム数" . $countTitle . "件の無料オンラインゲーム情報サイト。ユーザーから投稿された" . $countReview . "件のレビューと、" . $countVote . "件の評価を元にした人気オンラインゲームランキングや、全" . $countFansite . "件の攻略サイトリンク集。");
 ?>
 <!-- information -->
 <div class="information">
