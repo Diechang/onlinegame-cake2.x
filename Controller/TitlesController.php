@@ -793,6 +793,7 @@ class TitlesController extends AppController
 		$this->_emptyToNotFound($title["Title"]["public"]);
 		//Check votable
 		$title["Title"]["votable"] = $this->TitleData->votable($title["Title"]["service_id"], $title["Title"]["test_start"]);
+		// $title["Title"]["is_votable"] = ();
 	}
 
 /**

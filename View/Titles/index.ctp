@@ -4,7 +4,7 @@ $titleWithStrs = $this->Common->titleWithStrs($title["Title"]["title_official"],
 //set blocks
 $this->assign("title", $titleWithStrs["All"]);
 $this->assign("keywords", $this->TitlePage->metaKeywords($this->request->params["action"], $title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"], $title["Title"]["title_sub"]));
-$this->assign("description", $titleWithStrs["Sub"] . "のトップページです。動作環境や関連動画、" . $titleWithStrs["Case"] . "の評価点数やレビューページへもこちらからどうぞ");
+$this->assign("description", $titleWithStrs["Sub"] . "のトップページです。" . (!empty($title["Title"]["Spec"]) ? "動作環境、" : "") . (!empty($title["Title"]["video"]) ? "関連動画、" : "") . "評価点数やレビューページへもこちらからどうぞ");
 //assigns
 $this->assign("title_header", $this->element("title_header"));
 $this->assign("title_nav_floating", $this->element("title_nav_floating", array("title" => $title)));

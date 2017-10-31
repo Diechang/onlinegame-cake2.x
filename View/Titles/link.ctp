@@ -73,7 +73,7 @@ $this->element("title_ogp", array("titleWithStrs" => $titleWithStrs));
 <?php else:?>
 		<div class="flash flash-info">
 			<div class="flash-title">ファンサイト情報が登録されていません。</div>
-			<div class="flash-body"><?php echo $titleWithStrs["Case"]?>の攻略サイト、Wikiサイト等を運営、またはご存知の方は<?php echo $this->Html->link("こちらから", array("controller" => "fansites", "action" => "add", $title["Title"]["id"]))?>ぜひご登録をお願いします。</div>
+			<div class="flash-body"><?php echo $titleWithStrs["Case"]?>のファンサイト、ブログ等を運営、またはご存知の方は<?php echo $this->Html->link("こちらから", array("controller" => "fansites", "action" => "add", $title["Title"]["id"]))?>ぜひご登録をお願いします。</div>
 		</div>
 <?php endif;?>
 		<?php echo $this->Html->link("攻略・ファンサイトリンク集に登録・推薦する", array("controller" => "fansites", "action" => "add", $title["Title"]["id"]), array("class" => "button button-block"))?>
