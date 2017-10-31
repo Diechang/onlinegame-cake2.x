@@ -2,9 +2,10 @@
 //Title vars
 $titleWithStrs = $this->Common->titleWithStrs($title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"], $title["Title"]["title_sub"]);
 //set blocks
-$this->assign("title", $titleWithStrs["Abbr"] . " 攻略・ファンサイトリンク集");
+$this->assign("title", "攻略・ファンサイトリンク集 | " . $titleWithStrs["Abbr"]);
 $this->assign("keywords", $this->TitlePage->metaKeywords($this->request->params["action"], $title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"], $title["Title"]["title_sub"]));
-$this->assign("description", $titleWithStrs["Sub"] . "の攻略・ファンサイトリンク集です。");
+$this->assign("description", $titleWithStrs["Sub"] . "の攻略・ファンサイトリンク集です。"
+							. (!empty($title["Titlesummary"]["fansite_count"]) ? $title["Titlesummary"]["fansite_count"] . "件のサイトが登録されています。" : ""));
 //assigns
 $this->assign("title_header", $this->element("title_header"));
 $this->assign("title_nav_floating", $this->element("title_nav_floating", array("title" => $title)));

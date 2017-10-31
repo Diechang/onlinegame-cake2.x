@@ -2,9 +2,11 @@
 //Title vars
 $titleWithStrs = $this->Common->titleWithStrs($title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"], $title["Title"]["title_sub"]);
 //set blocks
-$this->assign("title", $titleWithStrs["Abbr"] . " ユーザーレビュー");
+$this->assign("title", "ユーザーレビュー | " . $titleWithStrs["Abbr"]);
 $this->assign("keywords", $this->TitlePage->metaKeywords($this->request->params["action"], $title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"], $title["Title"]["title_sub"]));
-$this->assign("description", $titleWithStrs["Sub"] . "のユーザーレビューです。プレイヤーのみなさんのレビュー（口コミ）を読んで" . $titleWithStrs["Sub"] . "の評判をチェック！");
+$this->assign("description", $titleWithStrs["Sub"] . "のユーザーレビューです。"
+							. ((!empty($title["Titlesummary"]["vote_count_review"]) ? $title["Titlesummary"]["vote_count_review"] . "件のレビューが投稿されています。プレイヤーのみなさんのレビュー（口コミ）を読んでの評判をチェック！"
+								: "まだ投稿がありません。" . ($title["Title"]["votable"] ? "レビューの投稿をお待ちしております！" : ""))));
 //assigns
 $this->assign("title_header", $this->element("title_header"));
 $this->assign("title_nav_floating", $this->element("title_nav_floating", array("title" => $title)));

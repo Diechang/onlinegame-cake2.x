@@ -2,9 +2,11 @@
 //Title vars
 $titleWithStrs = $this->Common->titleWithStrs($title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"], $title["Title"]["title_sub"]);
 //set blocks
-$this->assign("title", $titleWithStrs["Abbr"] . " 評価点数");
+$this->assign("title", "評価点数 | " . $titleWithStrs["Abbr"]);
 $this->assign("keywords", $this->TitlePage->metaKeywords($this->request->params["action"], $title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"], $title["Title"]["title_sub"]));
-$this->assign("description", $titleWithStrs["Sub"] . "の評価点数です。投票期間・項目別にプレイヤーの評価を見ることができるのでオンラインゲーム選びの参考にどうぞ！");
+$this->assign("description", $titleWithStrs["Sub"] . "の評価点数です。"
+							. ((!empty($title["Titlesummary"]["vote_count_vote"]) ? $title["Titlesummary"]["vote_count_vote"] . "件の評価が投稿されています。オンラインゲーム選びの参考にどうぞ！"
+								: "まだ投稿がありません。" . (($title["Title"]["votable"]) ? "評価の投稿をお待ちしております！" : ""))));
 //assigns
 $this->assign("title_header", $this->element("title_header"));
 $this->assign("title_nav_floating", $this->element("title_nav_floating", array("title" => $title)));

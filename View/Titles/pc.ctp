@@ -2,9 +2,9 @@
 //Title vars
 $titleWithStrs = $this->Common->titleWithStrs($title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"], $title["Title"]["title_sub"]);
 //set blocks
-$this->assign("title", $titleWithStrs["Abbr"] . " 推奨PC（パソコン）");
+$this->assign("title", "推奨PC（パソコン） | " . $titleWithStrs["Abbr"]);
 $this->assign("keywords", $this->TitlePage->metaKeywords($this->request->params["action"], $title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"], $title["Title"]["title_sub"]));
-$this->assign("description", $titleWithStrs["Sub"] . "の推奨PC(パソコン)です。ショップが推奨するゲームモデルPCで快適プレイ！");
+$this->assign("description", $titleWithStrs["Sub"] . "の推奨PC(パソコン)です。ショップが推奨するゲームモデルPCで快適プレイ！" . $title["Titlesummary"]["pc_count"] . "件のPCが登録されています。");
 //assigns
 $this->assign("title_header", $this->element("title_header"));
 $this->assign("title_nav_floating", $this->element("title_nav_floating", array("title" => $title)));
