@@ -24,7 +24,7 @@ class LettersController extends AppController
 					//Send mail
 					$email = new CakeEmail("sakura");
 					$email->from(array($this->request->data["Letter"]["mail"] => $this->request->data["Letter"]["name"]));
-					$email->to('zilow@dz-life.net');
+					$email->to(Configure::read("Site.mail"));
 					$email->subject('[DZ]お問合せ');
 					$email->send($this->request->data["Letter"]["body"]);
 					//

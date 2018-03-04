@@ -64,7 +64,7 @@ else
 		<ul class="linksList">
 	<?php foreach($links as $link):?>
 			<li>
-				<div class="thumb"><?php echo $this->Html->link($this->Html->image("http://capture.heartrails.com/small?" . $link["Link"]["site_url"], array("alt" => $link["Link"]["site_name"])), $link["Link"]["site_url"], array("target" => "_blank", "escape" => false))?></div>
+				<div class="thumb"><?php echo $this->Html->link($this->Html->image("//capture.heartrails.com/small?" . $link["Link"]["site_url"], array("alt" => $link["Link"]["site_name"])), $link["Link"]["site_url"], array("target" => "_blank", "escape" => false))?></div>
 				<div class="title"><?php echo $this->Html->link($link["Link"]["site_name"], $link["Link"]["site_url"], array("target" => "_blank"))?></div>
 				<p class="description"><?php echo nl2br(h($link["Link"]["site_info"]))?></p>
 			</li>

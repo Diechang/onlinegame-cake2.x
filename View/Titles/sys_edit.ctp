@@ -212,10 +212,10 @@
 				<?php if(!empty($this->request->data["Title"]["video"])):?>
 				<div class="movie">
 					<object width="320" height="180">
-					<param name="movie" value="http://www.youtube.com/v/<?php echo $this->request->data["Title"]["video"]?>?fs=1&amp;hl=ja_JP"></param>
+					<param name="movie" value="https://www.youtube.com/v/<?php echo $this->request->data["Title"]["video"]?>?fs=1&amp;hl=ja_JP"></param>
 					<param name="allowFullScreen" value="true"></param>
 					<param name="allowscriptaccess" value="always"></param>
-					<embed src="http://www.youtube.com/v/<?php echo $this->request->data["Title"]["video"]?>?fs=1&amp;hl=ja_JP" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="320" height="180"></embed>
+					<embed src="https://www.youtube.com/v/<?php echo $this->request->data["Title"]["video"]?>?fs=1&amp;hl=ja_JP" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="320" height="180"></embed>
 					</object>
 				</div>
 				<?php endif;?>

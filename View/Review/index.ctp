@@ -26,7 +26,7 @@ $this->assign("json_ld", $this->JsonLd->breadCrumbList("レビュー投稿一覧
 
 <?php echo $this->element("comp_pages", array("urlOptions" => array('ext' => null)));?>
 
-		<div class="more"><a href="http://feeds.feedburner.com/dz-game/review" class="feed"><i class="icon icon-feed"></i> 新着レビューをRSSで！</a></div>
+		<div class="more"><a href="https://feeds.feedburner.com/dz-game/review" class="feed"><i class="icon icon-feed"></i> 新着レビューをRSSで！</a></div>
 
 	</section>
 

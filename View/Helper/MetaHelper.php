@@ -90,13 +90,12 @@ class MetaHelper extends AppHelper
  */
 	function ogpTags()
 	{
-		$site_url = Configure::read("Site.url");
 		//Default params
 		$params = Set::merge(array(
 			"type"			=> "website",
 			"title"			=> "オンラインゲームライフ",
-			"url"			=> $site_url,
-			"image"			=> $site_url . "img/design/logo.png",
+			"url"			=> $this->Html->url("/", true),
+			"image"			=> $this->Html->url("/img/design/logo.png", true),
 			"description"	=> "無料オンラインゲーム情報サイト。ユーザーによるレビュー・評価の投稿による人気オンラインゲームランキングや攻略サイトリンク集、ムービー検索も可能。",
 			"site_name"		=> "オンラインゲームライフ",
 		), $this->ogpOptions);

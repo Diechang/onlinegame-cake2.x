@@ -23,7 +23,7 @@ $this->assign("json_ld", $this->JsonLd->breadCrumbList(array(
 		<?php echo $this->Common->titleSeparatedSpan($portal["Portal"]["title_official"], $portal["Portal"]["title_read"])?>
 	</h1>
 	<div class="portal-summary">
-		<div class="capture"><img src="http://capture.heartrails.com/200x200?<?php echo $portal["Portal"]["official_url"]?>" alt="<?php echo $portal["Portal"]["title_official"]?>" width="200"></div>
+		<div class="capture"><img src="https://capture.heartrails.com/200x200?<?php echo $portal["Portal"]["official_url"]?>" alt="<?php echo $portal["Portal"]["title_official"]?>" width="200"></div>
 		<div class="description">
 			<?php echo $portal["Portal"]["description"]?>
 		</div>
@@ -100,7 +100,7 @@ $this->assign("json_ld", $this->JsonLd->breadCrumbList(array(
 			<div class="images">
 				<div class="thumb">
 					<a href="<?php echo $this->Html->url(array("controller" => "portals", "action" => "view", "path" => $portal["Portal"]["url_str"], "ext" => "html"))?>">
-						<img src="http://capture.heartrails.com/160x120?<?php echo $portal["Portal"]["official_url"]?>" alt="<?php echo $this->Common->titleWithCase($portal["Portal"]["title_official"], $portal["Portal"]["title_read"])?>">
+						<img src="https://capture.heartrails.com/160x120?<?php echo $portal["Portal"]["official_url"]?>" alt="<?php echo $this->Common->titleWithCase($portal["Portal"]["title_official"], $portal["Portal"]["title_read"])?>">
 					</a>
 				</div>
 			</div>

@@ -26,7 +26,22 @@
 /**
  * Original configure
  */
-
+if(!empty($_SERVER["HTTPS"]))
+{
+	Configure::write(
+		'Site' , array(
+			'name'		=> 'オンラインゲームライフ',
+			'url'		=> 'https://onlinegame.dz-life.net/',
+			'root'		=> 'https://onlinegame.dz-life.net',
+			'domain'	=> 'dz-life.net',
+			'subdomain'	=> 'onlinegame',
+			'protocol'	=> 'https://',
+			'mail'		=> 'zilow@dz-life.net',
+		)
+	);
+}
+else
+{
 	Configure::write(
 		'Site' , array(
 			'name'		=> 'オンラインゲームライフ',
@@ -35,18 +50,13 @@
 			'domain'	=> 'dz-life.net',
 			'subdomain'	=> 'onlinegame',
 			'protocol'	=> 'http://',
+			'mail'		=> 'zilow@dz-life.net',
 		)
 	);
+}
 	//DB
 	Configure::write('UseDbConfig', ($_SERVER['SERVER_ADDR'] == '127.0.0.1') ? 'local' : 
 									(($_SERVER['SERVER_NAME'] == 'onlinegame.dz-life.net') ? 'default' : 'test'));
-	//https
-//	if($_SERVER["SERVER_NAME"] == 'secure1560.sakura.ne.jp')
-//	{
-//		Configure::write('debug', 2);
-//		Configure::write('HttpsBaseUrl' , 'https://secure1560.sakura.ne.jp/onlinegame.dz-life.net/');
-//		pr($this->params);
-//	}
 
 
 

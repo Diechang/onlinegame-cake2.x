@@ -24,7 +24,6 @@ class FacebookComponent extends Component
 	var $tokenExpiration	= false;	//↑トークン期限切れ
 	
 	var $loginScope		= "manage_pages";
-	var $loginRedirect	= "http://onlinegame.dz-life.net/sys/shares";
 	
 	var $errorMessage	= "";
 	
@@ -84,7 +83,7 @@ class FacebookComponent extends Component
 	{
 		$params = array(
 			'scope' => $this->loginScope,
-			'redirect_uri' => $this->loginRedirect,
+			'redirect_uri' => Router::url("/sys/shares", true),
 		);
 		$loginUrl = $this->facebook->getLoginUrl($params);
 		$this->controller->redirect($loginUrl);
@@ -122,15 +121,12 @@ class FacebookComponent extends Component
 			$this->errorMessage = $e->getMessage();
 			if($errorMail)
 			{
-				$this->Email->from			= 'zilow@dz-life.net';
-				$this->Email->to			= 'zilow@dz-life.net';
+				$this->Email->from			= Configure::read("Site.mail");
+				$this->Email->to			= Configure::read("Site.mail");
 				$this->Email->subject		= '[DZ]Facebook投稿エラー';
 				$this->Email->send("
 ■エラーメッセージ
 {$this->errorMessage}
-
-■編集URL
-http://onlinegame.dz-life.net/sys/shares
 				");
 			}
 			return false;

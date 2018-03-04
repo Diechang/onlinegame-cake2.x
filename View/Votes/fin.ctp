@@ -22,7 +22,7 @@ $this->set("pankuz_for_layout", array(array("str" => $vote["Title"]["title_offic
 			<ul>
 				<li><fb:like href="<?php echo $url?>" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false"></fb:like></li>
 				<li><a href="https://twitter.com/share" class="twitter-share-button" data-url="<?php echo $url?>" data-text="<?php echo $vote["Title"]["title_official"] . "の" . ((!empty($vote["Vote"]["review"])) ? "レビュー書いて" : "評価して") . "みた"?>" data-count="horizontal">Tweet</a><script type="text/javascript" src="//platform.twitter.com/widgets.js"></script></li>
-				<li><div data-plugins-type="mixi-favorite" data-service-key="07a7f5521b36a765d5898f07c3b0e867a380434c" data-href="<?php echo $url?>" data-show-faces="false" data-show-count="true" data-show-comment="true" data-width="100"></div><script type="text/javascript">(function(d) {var s = d.createElement('script'); s.type = 'text/javascript'; s.async = true;s.src = 'http://static.mixi.jp/js/plugins.js#lang=ja';d.getElementsByTagName('head')[0].appendChild(s);})(document);</script></li>
+				<li><div data-plugins-type="mixi-favorite" data-service-key="07a7f5521b36a765d5898f07c3b0e867a380434c" data-href="<?php echo $url?>" data-show-faces="false" data-show-count="true" data-show-comment="true" data-width="100"></div><script type="text/javascript">(function(d) {var s = d.createElement('script'); s.type = 'text/javascript'; s.async = true;s.src = 'https://static.mixi.jp/js/plugins.js#lang=ja';d.getElementsByTagName('head')[0].appendChild(s);})(document);</script></li>
 				<li><g:plusone size="medium" href="<?php echo $url?>"></g:plusone></li>
 			</tr>
 		</div>

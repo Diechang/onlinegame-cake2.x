@@ -5,11 +5,11 @@
 <title>System Maintenance</title>
 
 <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-<!-- <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.19/themes/smoothness/jquery-ui.css"> -->
+<!-- <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.19/themes/smoothness/jquery-ui.css"> -->
 <link href="/css/bubblepopup/jquery.bubblepopup.css" rel="stylesheet" type="text/css" />
 <link href="/css/sys.css" rel="stylesheet" type="text/css" />
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<!-- <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.19/jquery-ui.min.js"></script> -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<!-- <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.19/jquery-ui.min.js"></script> -->
 <!-- <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script> -->
 <script type="text/javascript" src="/js/jquery.tablesorter.min.js"></script>
 <script type="text/javascript" src="/js/jquery.bubblepopup.min.js"></script>
@@ -212,8 +212,8 @@
 <?php if($params["controller"] == "pages" && $params["action"] == "acr_pr"):?>
 				<li class="active"><?php else:?>
 				<li><?php endif;?><?php echo $this->Html->link("ACR - PRテキスト", array("controller" => "pages", "action" => "acr_pr", "sys" => true))?></li>
-				<li><a href="http://pranking8.ziyu.net/edit.php?id=diechang" target="_blank">⇒ ACRページランク</a></li>
-				<li><a href="http://rranking12.ziyu.net/edit.php?id=diechang" target="_blank">⇒ ACRアクセスランク</a></li>
+				<li><a href="//pranking8.ziyu.net/edit.php?id=diechang" target="_blank">⇒ ACRページランク</a></li>
+				<li><a href="//rranking12.ziyu.net/edit.php?id=diechang" target="_blank">⇒ ACRアクセスランク</a></li>
 				<li><?php echo $this->Html->link("ログアウト", array("controller" => "users", "action" => "logout", "sys" => true))?></li>
 			</ul>
 		</dd>

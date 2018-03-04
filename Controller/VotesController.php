@@ -243,7 +243,7 @@ class VotesController extends AppController
 				$html = new HtmlHelper(new View());
 
 				$shareData = array(
-					"link" => Configure::read("Site.root") . $html->url(array("controller" => "titles", "action" => "single", "path" => $voteData["Title"]["url_str"], "voteid" => $voteId, "ext" => "html")),
+					"link" => $html->url(array("controller" => "titles", "action" => "single", "path" => $voteData["Title"]["url_str"], "voteid" => $voteId, "ext" => "html"), true),
 					"message" => $this->TitleData->titleTag($voteData["Title"]["title_official"], $voteData["Title"]["title_read"], $voteData["Title"]["title_abbr"], $voteData["Title"]["title_sub"])
 								. "への新着レビュー【" . $this->VoteData->pointFormat($voteData["Vote"]["single_avg"]) . "点】",
 				);

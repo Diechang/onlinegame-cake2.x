@@ -35,8 +35,8 @@ class FansitesController extends AppController
 					$email = new CakeEmail("sakura");
 					$email->from(!empty($this->request->data["Fansite"]["admin_mail"])
 						? $this->request->data["Fansite"]["admin_mail"]
-						: array("zilow@dz-life.net" => "DZ-LIFE"));
-					$email->to('zilow@dz-life.net');
+						: array(Configure::read("Site.mail") => "DZ-LIFE"));
+					$email->to(Configure::read("Site.mail"));
 					$email->subject('[DZ]ファンサイト登録依頼');
 
 					$email->send("
@@ -98,8 +98,8 @@ class FansitesController extends AppController
 				$listUrl	= Router::url(array('action' => 'index', "?" => array("title_id" => $this->request->data['Fansite']['title_id']), 'sys' => true), true);
 				$email = new CakeEmail("sakura");
 				//Send mail
-				$email->from(array("zilow@dz-life.net" => "DZ-LIFE"));
-				$email->to('zilow@dz-life.net');
+				$email->from(array(Configure::read("Site.mail") => "DZ-LIFE"));
+				$email->to(Configure::read("Site.mail"));
 				$email->subject('[DZ]ファンサイトリンク切れ報告');
 				$email->send("
 ■サイト名

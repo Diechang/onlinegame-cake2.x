@@ -37,7 +37,7 @@ $this->element("title_ogp", array("titleWithStrs" => $titleWithStrs));
 		<ul>
 	<?php foreach($sites["Caps"] as $site):?>
 			<li>
-				<div class="image"><?php echo $this->Html->link($this->Html->image("http://capture.heartrails.com/200x150?" . $site["site_url"], array("width" => 200, "alt" => $site["site_name"])), $site["site_url"], array("target" => "_blank", "escape" => false))?></div>
+				<div class="image"><?php echo $this->Html->link($this->Html->image("https://capture.heartrails.com/200x150?" . $site["site_url"], array("width" => 200, "alt" => $site["site_name"])), $site["site_url"], array("target" => "_blank", "escape" => false))?></div>
 				<div class="data">
 					<h3><?php echo $this->Html->link($site["site_name"], $site["site_url"], array("target" => "_blank"))?></h3>
 					<p class="description"><?php echo (!empty($site["description"])) ? nl2br(h($site["description"])) : $site["site_url"]?></p>
@@ -61,7 +61,7 @@ $this->element("title_ogp", array("titleWithStrs" => $titleWithStrs));
 		<ul>
 	<?php foreach($sites["Fans"] as $site):?>
 			<li>
-				<div class="image"><?php echo $this->Html->link($this->Html->image("http://capture.heartrails.com/200x150?" . $site["site_url"], array("width" => 200, "alt" => $site["site_name"])), $site["site_url"], array("target" => "_blank", "escape" => false))?></div>
+				<div class="image"><?php echo $this->Html->link($this->Html->image("https://capture.heartrails.com/200x150?" . $site["site_url"], array("width" => 200, "alt" => $site["site_name"])), $site["site_url"], array("target" => "_blank", "escape" => false))?></div>
 				<div class="data">
 					<h3><?php echo $this->Html->link($site["site_name"], $site["site_url"], array("target" => "_blank"))?></h3>
 					<p class="description"><?php echo (!empty($site["description"])) ? nl2br(h($site["description"])) : $site["site_url"]?></p>

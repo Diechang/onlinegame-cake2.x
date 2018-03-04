@@ -39,7 +39,7 @@ $this->assign("json_ld", $this->JsonLd->breadCrumbList("当サイトについて
 		<h2 class="headline">プライバシーポリシー</h2>
 		<p>当サイトでは、第三者配信による広告サービスを利用しています。<br>
 		このような広告配信事業者は、ユーザーの興味に応じた商品やサービスの広告を表示するため、当サイトや他サイトへのアクセスに関する情報(氏名、住所、メール アドレス、電話番号は含まれません)を使用することがあります。</p>
-		<p>このプロセスの詳細やこのような情報が広告配信事業者に使用されないようにする方法については、<a href="http://www.google.com/ads/preferences" target="_blank">ここ</a>（Google Ads   Preferences）をクリックしてください。 </p>
+		<p>このプロセスの詳細やこのような情報が広告配信事業者に使用されないようにする方法については、<a href="https://www.google.com/ads/preferences" target="_blank">ここ</a>（Google Ads   Preferences）をクリックしてください。 </p>
 	</section>
 	<section>
 		<h2 class="headline">ゲーム内容について</h2>

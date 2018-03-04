@@ -56,7 +56,7 @@ $this->assign("description", "掲載ゲーム数" . $countTitle . "件の無料�
 		</h2>
 
 		<?php echo $this->element("loop_review_waits", array("waits" => $waits))?>
-		<div class="more"><a href="http://feeds.feedburner.com/dz-game/review" class="feed"><i class="icon icon-feed"></i> 新着レビューをRSSで！</a></div>
+		<div class="more"><a href="https://feeds.feedburner.com/dz-game/review" class="feed"><i class="icon icon-feed"></i> 新着レビューをRSSで！</a></div>
 	</section>
 </section>
 

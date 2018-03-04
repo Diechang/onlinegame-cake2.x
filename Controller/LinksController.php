@@ -103,8 +103,8 @@ class LinksController extends AppController
 					$email = new CakeEmail("sakura");
 					$email->from(!empty($this->request->data["Link"]["admin_mail"])
 						? $this->request->data["Link"]["admin_mail"]
-						: array("zilow@dz-life.net" => "DZ-LIFE"));
-					$email->to('zilow@dz-life.net');
+						: array(Configure::read("Site.mail") => "DZ-LIFE"));
+					$email->to(Configure::read("Site.mail"));
 					$email->subject('[DZ]相互リンク依頼');
 					$email->send("
 ■サイト名
@@ -177,7 +177,7 @@ class LinksController extends AppController
 		if(!empty($this->request->data))
 		{
 			if(empty($this->request->data["Link"]["admin_name"])){ $this->request->data["Link"]["admin_name"] = "zilow"; }
-			if(empty($this->request->data["Link"]["admin_mail"])){ $this->request->data["Link"]["admin_mail"] = "zilow@dz-life.net"; }
+			if(empty($this->request->data["Link"]["admin_mail"])){ $this->request->data["Link"]["admin_mail"] = Configure::read("Site.mail"); }
 			$this->Link->create();
 			if($this->Link->save($this->request->data))
 			{

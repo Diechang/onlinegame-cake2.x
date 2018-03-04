@@ -16,7 +16,7 @@ $this->assign("json_ld", $this->JsonLd->breadCrumbList("オンラインゲーム
 	</h1>
 	<section>
 		<h2 class="headline">オンラインゲームポータルサイトとは</h2>
-		<div class="capture"><img src="http://capture.heartrails.com/200x300?http://wwww.hangame.co.jp/" alt="ハンゲーム" width="200"></div>
+		<div class="capture"><img src="https://capture.heartrails.com/200x300?http://www.hangame.co.jp/" alt="ハンゲーム" width="200"></div>
 		<p> オンラインゲームポータルサイトとは複数のゲームを提供しているサイトのことです。</p>
 		<p>一般的に言われるポータルサイトとは、YahooやGoogleなどのように、インターネットの入り口となるような巨大なWebサイトのことで、「インターネットを始めるならまずはここから」と言われるようなサイトのことですね。</p>
 		<p>オンラインゲームポータルサイトはそのオンラインゲーム版です。<br>
@@ -47,7 +47,7 @@ $this->assign("json_ld", $this->JsonLd->breadCrumbList("オンラインゲーム
 			<div class="images">
 				<div class="thumb">
 					<a href="<?php echo $this->Html->url(array("controller" => "portals", "action" => "view", "path" => $portal["Portal"]["url_str"], "ext" => "html"))?>">
-						<img src="http://capture.heartrails.com/160x120?<?php echo $portal["Portal"]["official_url"]?>" alt="<?php echo $this->Common->titleWithCase($portal["Portal"]["title_official"], $portal["Portal"]["title_read"])?>">
+						<img src="https://capture.heartrails.com/160x120?<?php echo $portal["Portal"]["official_url"]?>" alt="<?php echo $this->Common->titleWithCase($portal["Portal"]["title_official"], $portal["Portal"]["title_read"])?>">
 					</a>
 				</div>
 			</div>

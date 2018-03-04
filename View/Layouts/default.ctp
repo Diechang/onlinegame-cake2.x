@@ -15,10 +15,10 @@
 
 <?php echo $this->Meta->ogpTags()?>
 
-<link rel="alternate" type="application/rss+xml" title="最新オンラインゲーム" href="http://feeds.feedburner.com/dz-game/newstart">
-<link rel="alternate" type="application/rss+xml" title="新着レビュー投稿" href="http://feeds.feedburner.com/dz-game/review">
-<link rel="alternate" type="application/rss+xml" title="無料テスト情報" href="http://feeds.feedburner.com/dz-game/test">
-<link rel="alternate" type="application/rss+xml" title="新着オンラインゲーム" href="http://feeds.feedburner.com/dz-game/newgames">
+<link rel="alternate" type="application/rss+xml" title="最新オンラインゲーム" href="https://feeds.feedburner.com/dz-game/newstart">
+<link rel="alternate" type="application/rss+xml" title="新着レビュー投稿" href="https://feeds.feedburner.com/dz-game/review">
+<link rel="alternate" type="application/rss+xml" title="無料テスト情報" href="https://feeds.feedburner.com/dz-game/test">
+<link rel="alternate" type="application/rss+xml" title="新着オンラインゲーム" href="https://feeds.feedburner.com/dz-game/newgames">
 
 <!-- CSS Libs -->
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">

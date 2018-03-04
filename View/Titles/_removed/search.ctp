@@ -38,13 +38,13 @@ $this->element("title_ogp", array("titleWithStrs" => $titleWithStrs));
 //			<table>
 //				<tr>
 //					<td class="thumb">
-//						<a href="http://www.youtube.com/v/FJkZTL68Me0&amp;fs=1&amp;source=uds&amp;autoplay=1"><img width="80" alt="LUNA SEA - ROSIER 【LIVE・高画質/HQ】" src="http://1.gvt0.com/vi/FJkZTL68Me0/default.jpg"></a>
+//						<a href="https://www.youtube.com/v/FJkZTL68Me0&amp;fs=1&amp;source=uds&amp;autoplay=1"><img width="80" alt="LUNA SEA - ROSIER 【LIVE・高画質/HQ】" src="https://1.gvt0.com/vi/FJkZTL68Me0/default.jpg"></a>
 //						<div style="margin: 5px auto;" class="star50Back">
 //							<div style="width: 40px;" class="star50"><img alt="評価：0点" src="/img/design/rating_star50.gif"></div>
 //						</div>
 //					</td>
 //					<td class="data">
-//						<p class="title"><a href="http://www.youtube.com/v/FJkZTL68Me0&amp;fs=1&amp;source=uds&amp;autoplay=1">LUNA SEA</a></p>
+//						<p class="title"><a href="https://www.youtube.com/v/FJkZTL68Me0&amp;fs=1&amp;source=uds&amp;autoplay=1">LUNA SEA</a></p>
 //						<p class="description">LUNA SEA GOD BLESS YOU</p>
 //						<p class="data">[再生時間]6分17秒</p>
 //					</td>
@@ -56,7 +56,7 @@ $this->element("title_ogp", array("titleWithStrs" => $titleWithStrs));
 //			</p>
 ?>
 		</div>
-		<p id="moviePowered" class="tRight wBold"><a href="http://jp.youtube.com/results?search_type=&search_query=<?php echo urlencode($title["Title"]["title_official"])?>&aq=f" target="_blank">Powered by Youtube（<?php echo $title["Title"]["title_official"]?>）</a></p>
+		<p id="moviePowered" class="tRight wBold"><a href="https://jp.youtube.com/results?search_type=&search_query=<?php echo urlencode($title["Title"]["title_official"])?>&aq=f" target="_blank">Powered by Youtube（<?php echo $title["Title"]["title_official"]?>）</a></p>
 	</div>
 	<div id="blog" class="searchs">
 		<h2><img src="/img/design/titles_searchs_title_blog.gif" alt="ブログ記事検索" /></h2>
@@ -73,7 +73,7 @@ $this->element("title_ogp", array("titleWithStrs" => $titleWithStrs));
 //			</p>
 //			<table>
 //				<tr>
-//					<td class="thumb"><a href="' + blog.blogUrl + '" target="_blank"><img src="http://capture.heartrails.com/small?' + blog.blogUrl + '" width="80" /></a></td>
+//					<td class="thumb"><a href="' + blog.blogUrl + '" target="_blank"><img src="https://capture.heartrails.com/small?' + blog.blogUrl + '" width="80" /></a></td>
 //					<td class="data">
 //						<p class="title"><a href="#" target="_blank">今日のSUN</a></p>
 //						<p class="description">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
@@ -88,7 +88,7 @@ $this->element("title_ogp", array("titleWithStrs" => $titleWithStrs));
 //			</p>
 ?>
 		</div>
-		<p id="blogPowered" class="tRight wBold"><a href="http://blogsearch.google.co.jp/blogsearch?hl=ja&ie=UTF-8&q=<?php echo urlencode($title["Title"]["title_official"])?>&lr=lang_ja" target="_blank">Powered by Googleブログ検索（<?php echo $title["Title"]["title_official"]?>）</a></p>
+		<p id="blogPowered" class="tRight wBold"><a href="https://blogsearch.google.co.jp/blogsearch?hl=ja&ie=UTF-8&q=<?php echo urlencode($title["Title"]["title_official"])?>&lr=lang_ja" target="_blank">Powered by Googleブログ検索（<?php echo $title["Title"]["title_official"]?>）</a></p>
 	</div>
 	<div class="tCenter">
 		<!--Google Adsense 468-->
