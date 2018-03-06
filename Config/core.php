@@ -114,6 +114,7 @@
  * will override the automatic detection of full base URL and can be
  * useful when generating links from the CLI (e.g. sending emails)
  */
+	// さくらSSL仕様
 	if(isset($_SERVER['HTTP_X_SAKURA_FORWARDED_FOR']))
 	{
 		Configure::write('App.fullBaseUrl', 'https://' . $_SERVER["HTTP_HOST"]);
