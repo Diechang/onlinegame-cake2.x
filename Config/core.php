@@ -117,6 +117,8 @@
 	// さくらSSL仕様
 	if(isset($_SERVER['HTTP_X_SAKURA_FORWARDED_FOR']))
 	{
+		$_SERVER['HTTPS'] = 'on';
+		$_ENV['HTTPS'] = 'on';
 		Configure::write('App.fullBaseUrl', 'https://' . $_SERVER["HTTP_HOST"]);
 	}
 
