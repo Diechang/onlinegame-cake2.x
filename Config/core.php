@@ -114,7 +114,10 @@
  * will override the automatic detection of full base URL and can be
  * useful when generating links from the CLI (e.g. sending emails)
  */
-	//Configure::write('App.fullBaseUrl', 'http://example.com');
+	if(isset($_SERVER['HTTP_X_SAKURA_FORWARDED_FOR']))
+	{
+		Configure::write('App.fullBaseUrl', 'https://' . $_SERVER["HTTP_HOST"]);
+	}
 
 /**
  * Web path to the public images directory under webroot.
