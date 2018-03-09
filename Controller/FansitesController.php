@@ -81,7 +81,8 @@ class FansitesController extends AppController
 	//リンク切れ報告
 	function report($id = null)
 	{
-		$this->_emptyToNotFound($this->referer());
+		$referer = $this->referer();
+		$this->_emptyToNotFound($referer);
 		$this->_emptyToNotFound($id);
 		$this->request->data = $this->Fansite->find("first", array(
 			"conditions" => array(
@@ -127,7 +128,7 @@ class FansitesController extends AppController
 		{
 			$this->Session->setFlash("すでに非公開リンクとなっています。", "flash_default", array("body" => "ご協力ありがとうございました。", "type" => "success"));
 		}
-		return $this->redirect($this->referer());
+		return $this->redirect($referer);
 	}
 
 	/**
