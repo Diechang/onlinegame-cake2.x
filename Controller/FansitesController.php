@@ -81,14 +81,14 @@ class FansitesController extends AppController
 	//リンク切れ報告
 	function report($id = null)
 	{
-		$referer = $this->referer();
-		$this->_emptyToNotFound($referer);
+		$this->_emptyToNotFound($_POST);
 		$this->_emptyToNotFound($id);
 		$this->request->data = $this->Fansite->find("first", array(
 			"conditions" => array(
 				"Fansite.id" => $id,
 			),
 		));
+
 		$reported = $this->request->data["Fansite"]["public"];
 		if($reported)
 		{
@@ -115,9 +115,6 @@ class FansitesController extends AppController
 ■{$this->request->data['Title']['title_official']}ファンサイト一覧
 {$listUrl}
 
-■リファラ
-{$this->request->referer()}
-
 ■IP
 {$this->request->clientIp()}
 
@@ -137,7 +134,7 @@ class FansitesController extends AppController
 		{
 			$this->Session->setFlash("すでに非公開リンクとなっています。", "flash_default", array("body" => "ご協力ありがとうございました。", "type" => "success"));
 		}
-		return $this->redirect($referer);
+		return $this->redirect("/"); //とりあえず
 	}
 
 	/**
