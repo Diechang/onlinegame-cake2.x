@@ -115,6 +115,15 @@ class FansitesController extends AppController
 ■{$this->request->data['Title']['title_official']}ファンサイト一覧
 {$listUrl}
 
+■リファラ
+{$this->request->referer()}
+
+■IP
+{$this->request->clientIp()}
+
+■User Agent
+{$this->request->header('User-Agent')}
+
 				");
 				//
 				$this->Session->setFlash("リンク切れ報告を受け付けました。", "flash_default", array("body" => "ご協力ありがとうございました。", "type" => "success"));
