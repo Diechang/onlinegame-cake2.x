@@ -134,7 +134,7 @@ class FansitesController extends AppController
 		{
 			$this->Session->setFlash("すでに非公開リンクとなっています。", "flash_default", array("body" => "ご協力ありがとうございました。", "type" => "success"));
 		}
-		return $this->redirect(array("controller" => "titles", "action" => "link", "path" => $this->Title->field("url_str", array("Title.id" => $this->request->data["Fansite"]["title_id"])), "ext" => "html")); //とりあえず
+		return $this->redirect(array("controller" => "titles", "action" => "link", "path" => $this->Title->field("url_str", array("Title.id" => $this->request->data["Fansite"]["title_id"])), "ext" => "html"));
 	}
 
 	/**
