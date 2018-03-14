@@ -65,7 +65,7 @@ $this->element("title_ogp", array("titleWithStrs" => $titleWithStrs));
 				<div class="data">
 					<h3><?php echo $this->Html->link($site["site_name"], $site["site_url"], array("target" => "_blank"))?></h3>
 					<p class="description"><?php echo (!empty($site["description"])) ? nl2br(h($site["description"])) : $site["site_url"]?></p>
-					<p class="report"><?php echo $this->Html->link('<i class="zmdi zmdi-info"></i> リンク切れ報告', array("controller" => "fansites", "action" => "report", $site["id"]), array("onclick" => "return confirm('リンク切れ報告を送信しますか？')", "rel" => "nofollow", "escape" => false))?></p>
+					<p class="report"><?php echo $this->Html->link('<i class="zmdi zmdi-info"></i> リンク切れ報告', "javascript:void(0)", array("onclick" => "if(confirm('リンク切れ報告を送信しますか？')) location.href='" . $this->Html->url(array("controller" => "fansites", "action" => "report", $site["id"])) . "'", "rel" => "nofollow", "escape" => false))?></p>
 				</div>
 			</li>
 	<?php endforeach;?>

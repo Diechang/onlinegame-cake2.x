@@ -267,7 +267,8 @@ class PcsController extends AppController
 			return $this->redirect(array('action' => 'index', "?" => array("title_id" => $this->request->data["Pc"]["title_id"])));
 		}
 		$this->Session->setFlash(Configure::read("Error.copy"));
-		return $this->redirect($this->referer());
+		$referer = $this->referer();
+		return $this->redirect($referer);
 	}
 
 	function sys_delete($id = null)
@@ -283,7 +284,8 @@ class PcsController extends AppController
 			return $this->redirect(array('action'=>'index'));
 		}
 		$this->Session->setFlash(Configure::read("Error.delete"));
-		return $this->redirect($this->referer());
+		$referer = $this->referer();
+		return $this->redirect($referer);
 	}
 }
 ?>
