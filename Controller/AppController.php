@@ -123,8 +123,8 @@ class AppController extends Controller
 //			pr($this->Auth);
 //			exit;
 
-			//Use layout
-			$this->layout = "sys";
+			//Use theme & layout
+			$this->theme	= "Sys";
 			$this->set("params", $this->request->params);
 
 			/**
@@ -184,6 +184,9 @@ class AppController extends Controller
 
 			$this->Title->Behaviors->load("Containable");
 
+
+			$this->theme = "Pc";
+
 			// default platforms
 			$this->defaultPlatforms = array(1, 2, 3);
 			// $this->defaultPlatforms = array(4, 5, 6);
@@ -229,6 +232,28 @@ class AppController extends Controller
 
 /** Private methods
 ------------------------------ **/
+
+/**
+ * PC
+ *
+ * @return	void
+ * @access private
+ */
+	function _beforeIsPC()
+	{
+
+	}
+
+/**
+ * SmartPhone
+ *
+ * @return	void
+ * @access private
+ */
+	function _beforeIsSP()
+	{
+
+	}
 
 /**
  * データがemptyならホームへリダイレクト
