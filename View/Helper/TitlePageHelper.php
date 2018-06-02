@@ -5,7 +5,7 @@
 class TitlePageHelper extends AppHelper
 {
 	//Use Helper
-	var $helpers = array('Html', 'Common');
+	// var $helpers = array('Html', 'Common');
 
 /**
  * メタキーワード

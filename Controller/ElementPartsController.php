@@ -348,5 +348,34 @@ class ElementPartsController extends AppController
 			"Services" => $mstServices
 		);
 	}
+	 
+
+	/**
+	 * SP prefix actions
+	 */
+	function sp_global_header()
+	{
+		//Menu
+		$headerPlatforms = $this->Platform->find("all", array(
+			"conditions" => array("Platform.public" => 1),
+			"recursive" => -1,
+			"order" => "Platform.sort"
+		));
+		$headerCategories = $this->Category->find("all", array(
+			"conditions" => array("Category.public" => 1),
+			"recursive" => -1,
+			"order" => "Category.sort"
+		));
+		$headerStyles = $this->Style->find("all", array(
+			"conditions" => array("Style.public" => 1),
+			"recursive" => -1,
+			"order" => "Style.sort"
+		));
+		// 
+		$this->set("headerPlatforms", $headerPlatforms);
+		$this->set("headerCategories", $headerCategories);
+		$this->set("headerStyles", $headerStyles);
+	}
+	
 }
 ?>

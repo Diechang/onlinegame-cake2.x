@@ -43,7 +43,7 @@
 ?>
 
 <?php
-	echo $this->element('global_header', array(), array("cache" => array("config" => "element")));
+	echo $this->element('global_header', array(), array("cache" => array("config" => "element_pc")));
 ?>
 	
 	<aside class="pankuz">
@@ -70,7 +70,7 @@
 					<main>
 					<?php
 						echo $this->fetch("content");
-						echo $this->element("ad_center_bottoms", array(), array("cache" => array("config" => "element")));
+						echo $this->element("ad_center_bottoms", array(), array("cache" => array("config" => "element_pc")));
 					?>
 					</main>
 				</div>
@@ -78,17 +78,17 @@
 				<div class="contents-side">
 					<div class="floating">
 <?php
-	echo $this->element("ad_left_tops", array(), array("cache" => array("config" => "element")));
-	echo $this->element("left_platform", array(), array("cache" => array("config" => "element")));
-	echo $this->element("left_category", array(), array("cache" => array("config" => "element")));
-	echo $this->element("left_style", array(), array("cache" => array("config" => "element")));
-	echo $this->element("left_service", array(), array("cache" => array("config" => "element")));
+	echo $this->element("ad_left_tops", array(), array("cache" => array("config" => "element_pc")));
+	echo $this->element("left_platform", array(), array("cache" => array("config" => "element_pc")));
+	echo $this->element("left_category", array(), array("cache" => array("config" => "element_pc")));
+	echo $this->element("left_style", array(), array("cache" => array("config" => "element_pc")));
+	echo $this->element("left_service", array(), array("cache" => array("config" => "element_pc")));
 	echo $this->element("left_pushsite");
-	echo $this->element("left_pcshop", array(), array("cache" => array("config" => "element")));
+	echo $this->element("left_pcshop", array(), array("cache" => array("config" => "element_pc")));
 	echo $this->element("left_feeds");
 	// echo $this->element("left_share");
-	echo $this->element("left_ranking", array(), array("cache" => array("config" => "element")));
-	echo $this->element("ad_left_bottoms", array(), array("cache" => array("config" => "element")));
+	echo $this->element("left_ranking", array(), array("cache" => array("config" => "element_pc")));
+	echo $this->element("ad_left_bottoms", array(), array("cache" => array("config" => "element_pc")));
 ?>
 					</div>
 				</div>
@@ -99,12 +99,12 @@
 				<div class="floating">
 
 <?php
-	echo $this->element("ad_right_tops", array(), array("cache" => array("config" => "element")));
-	echo $this->element('right_test', array(), array("cache" => array("config" => "element")));
-	echo $this->element('right_pickup', array(), array("cache" => array("config" => "element")));
+	echo $this->element("ad_right_tops", array(), array("cache" => array("config" => "element_pc")));
+	echo $this->element('right_test', array(), array("cache" => array("config" => "element_pc")));
+	echo $this->element('right_pickup', array(), array("cache" => array("config" => "element_pc")));
 	echo $this->element('right_voted');
 	echo $this->element('right_fblikebox');
-	echo $this->element("ad_right_bottoms", array(), array("cache" => array("config" => "element")));
+	echo $this->element("ad_right_bottoms", array(), array("cache" => array("config" => "element_pc")));
 ?>
 				</div>
 			</div>
@@ -119,7 +119,7 @@
 <!-- header floating -->
 <header class="floating">
 <?php
-	echo $this->element('global_header_floating', array(), array("cache" => array("config" => "element")));
+	echo $this->element('global_header_floating', array(), array("cache" => array("config" => "element_pc")));
 	//title nav
 	echo $this->fetch("title_nav_floating");
 ?>

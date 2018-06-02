@@ -110,8 +110,8 @@ class PagesController extends AppController
 			"platform_id" => $this->defaultPlatforms,
 			"limit" => 5,
 		));
-//		pr($rankings);
-//		exit;
+		// pr($rankings);
+		// exit;
 		$categoryRankings = $this->Title->getCategoryRankings(1, $this->defaultPlatforms);
 //		pr($categoryRankings);
 //		exit;
@@ -414,6 +414,16 @@ class PagesController extends AppController
 			return $this->redirect("/");
 		}
 	}
+
+
+/**
+ * SP actions - Index view
+ */
+	function sp_home()
+	{
+		$this->home();
+	}
+
 
 /**
  * System root action - Index view

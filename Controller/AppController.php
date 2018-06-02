@@ -35,7 +35,9 @@
 class AppController extends Controller
 {
 
-	var $helpers	= array("Html" => array('configFile' => 'html5_tags'), "Form", "Session", "Paginator", "Common", "Gads", "Meta", "JsonLd");
+	var $helpers	= array("Html" => array('configFile' => 'html5_tags'), "Form", "Session", "Paginator", "Gads", "Meta", "JsonLd");
+	// var $helpers_pc	= array("CommonPC");
+	// var $helpers_sp	= array("CommonSP");
 	var $uses		= array("Title", "User");
 	var $components	= array("Session" ,/* "Security", */"Cookie", "RequestHandler", "Paginator", 
 						"Auth" => array(
@@ -84,47 +86,12 @@ class AppController extends Controller
 		{
 			//デバッグ
 //			Configure::write('debug', 2);
-			
-			//Basic認証
-//			$this->Security->loginOptions = array(
-//				"type"=>"basic",
-//				"realm"=>"System Maintenance"
-//			);
-//			$this->Security->loginUsers = array(
-//				"daisuke"=>"daisuke"
-//			);
-//			$this->Security->requireLogin();
-
-			//Auth認証
-//			$this->Auth->userModel = "User";
-//			$this->Auth->fields = array(
-//				"username"=>"name",
-//				"password"=>"passwd"
-//			);
-			// $this->Auth->loginAction = array(
-			// 	"controller" => "users",
-			// 	"action" => "login",
-			// 	"sys" => true,
-			// );
-			// $this->Auth->loginRedirect = array(
-			// 	"controller" => "pages",
-			// 	"action" => "home",
-			// 	"sys" => true,
-			// );
-			// $this->Auth->logoutRedirect = array(
-			// 	"controller" => "users",
-			// 	"action" => "login",
-			// 	"sys" => true,
-			// );
-//			$this->Auth->allow("login", "logout");
-			// $this->Auth->loginError = "ユーザ名もしくはパスワードが違います。";
-			// $this->Auth->authError = "管理者としてログインする必要があります";
 			$this->set("loginUser", $this->Auth->user());
 //			pr($this->Auth);
 //			exit;
 
-			//Use theme & layout
-			$this->theme	= "Sys";
+			//Use theme
+			$this->theme = "Sys";
 			$this->set("params", $this->request->params);
 
 			/**
@@ -184,48 +151,8 @@ class AppController extends Controller
 
 			$this->Title->Behaviors->load("Containable");
 
-
-			$this->theme = "Pc";
-
-			// default platforms
-			$this->defaultPlatforms = array(1, 2, 3);
-			// $this->defaultPlatforms = array(4, 5, 6);
-			$this->Title->defaultPlatforms = $this->defaultPlatforms;
-
-			/**
-			 * Sidebar - Right
-			 */
-
-			/** Voted **/
-			if($this->cookey)
-			{
-				//Get
-				$rightVoted = $this->Title->Vote->find("all", array(
-					"conditions" => array(
-						"Vote.public" => 1,
-						"Title.public" => 1,
-//						"Vote.ip" => $this->ip,
-//						"Vote.host" => $this->host,
-						"Vote.cookey" => $this->cookey,
-					),
-					"fields" => array(
-						"Vote.id",
-						"Vote.pass",
-						"Vote.modified",
-						"Title.title_official",
-						"Title.title_read",
-						"Title.url_str",
-						"Title.thumb_name",
-					),
-					"order" => "Vote.modified DESC",
-					"limit" => 3,
-				));
-//				pr($rightVoted);
-				//
-				//Set
-				$this->set("rightVoted", $rightVoted);
-			}
-
+			if(isset($this->request->sp))		$this->_beforeIsSP();
+			else								$this->_beforeIsPC();
 		}
 	}
 
@@ -241,7 +168,47 @@ class AppController extends Controller
  */
 	function _beforeIsPC()
 	{
+		// extend helpers
+		$this->helpers["Common"] = array("className" => "CommonPc");
+		// Themed
+		$this->theme = "Pc";
 
+		// default platforms
+		$this->defaultPlatforms = array(1, 2, 3);
+		$this->Title->defaultPlatforms = $this->defaultPlatforms;
+
+		/**
+		 * Sidebar - Right
+		 */
+		/** Voted **/
+		if($this->cookey)
+		{
+			//Get
+			$rightVoted = $this->Title->Vote->find("all", array(
+				"conditions" => array(
+					"Vote.public" => 1,
+					"Title.public" => 1,
+//						"Vote.ip" => $this->ip,
+//						"Vote.host" => $this->host,
+					"Vote.cookey" => $this->cookey,
+				),
+				"fields" => array(
+					"Vote.id",
+					"Vote.pass",
+					"Vote.modified",
+					"Title.title_official",
+					"Title.title_read",
+					"Title.url_str",
+					"Title.thumb_name",
+				),
+				"order" => "Vote.modified DESC",
+				"limit" => 3,
+			));
+//				pr($rightVoted);
+			//
+			//Set
+			$this->set("rightVoted", $rightVoted);
+		}
 	}
 
 /**
@@ -252,7 +219,14 @@ class AppController extends Controller
  */
 	function _beforeIsSP()
 	{
+		// extend helpers
+		$this->helpers["Common"] = array("className" => "CommonSp");
+		// Themed
+		$this->theme = "Sp";
 
+		// default platforms
+		$this->defaultPlatforms = array(4, 5, 6);
+		$this->Title->defaultPlatforms = $this->defaultPlatforms;
 	}
 
 /**

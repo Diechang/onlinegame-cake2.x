@@ -156,7 +156,7 @@
  *	`manager_index()` and `/manager/controller/index`
  *
  */
-	Configure::write('Routing.prefixes', array('sys'));
+	Configure::write('Routing.prefixes', array('sp', 'sys'));
 
 /**
  * Turn off all caching application-wide.
@@ -399,6 +399,20 @@ Cache::config('_cake_model_', array(
 Cache::config('element', array(
 	'engine' => $engine,
 	'prefix' => $prefix . 'element_',
+	'path' => CACHE . 'elements' . DS,
+	'serialize' => ($engine === 'File'),
+	'duration' => $duration
+));
+Cache::config('element_pc', array(
+	'engine' => $engine,
+	'prefix' => $prefix . 'element_pc_',
+	'path' => CACHE . 'elements' . DS,
+	'serialize' => ($engine === 'File'),
+	'duration' => $duration
+));
+Cache::config('element_sp', array(
+	'engine' => $engine,
+	'prefix' => $prefix . 'element_sp_',
 	'path' => CACHE . 'elements' . DS,
 	'serialize' => ($engine === 'File'),
 	'duration' => $duration

@@ -612,7 +612,7 @@ class Title extends AppModel
  */
 	private function findSummaryRank(&$conditions, &$titleIdList, &$limit, &$type)
 	{
-		$this->unbindAll(array("Titlead", "Titlesummary"));
+		$this->unbindAll(array("Titlead", "Titlesummary", "Platform", "Category", "Style"));
 		$conditions["vote_count_vote >"] = 0;
 
 		if(isset($titleIdList))

@@ -5,13 +5,31 @@
 class GadsHelper extends AppHelper
 {
 /**
+ * Both responsive
+ *
+ * @param	bool	$withdiv
+ * @return	html
+ * @access	public
+ */
+	function adsResponsive($withdiv = true)
+	{
+		$src = "";
+		$src .= ($withdiv) ?  "<div class=\"gAds\">\n" : "";
+		
+		$src .= $this->bothResponsive();
+		
+		$src .= ($withdiv) ? "</div>\n" : "";
+
+		return $this->output($src);
+	}
+	
+/**
  * Both 468x60
  *
  * @param	bool	$withdiv
  * @return	html
  * @access	public
  */
-	//468x60
 	function ads468($withdiv = true)
 	{
 		$src = "";
@@ -49,30 +67,6 @@ HIRE;
 	}
 
 /**
- * Both 250x250
- *
- * @return	html
- * @access	public
- */
-	function both250()
-	{
-		$src = <<< HIRE
-<script type="text/javascript"><!--
-google_ad_client = "ca-pub-5378944923532596";
-/* [DZ]onlinegame both250 */
-google_ad_slot = "7936952978";
-google_ad_width = 250;
-google_ad_height = 250;
-//-->
-</script>
-<script type="text/javascript"
-src="//pagead2.googlesyndication.com/pagead/show_ads.js">
-</script>
-HIRE;
-		return $src;
-	}
-
-/**
  * Image 300x250
  *
  * @return	html
@@ -89,31 +83,6 @@ google_ad_width = 300;
 google_ad_height = 250;
 </script>
 <!-- [DZ]onlinegame image300 -->
-<script type="text/javascript"
-src="//pagead2.googlesyndication.com/pagead/show_ads.js">
-</script>
-HIRE;
-		return $src;
-	}
-
-/**
- * Image 250x250
- *
- * @return	html
- * @access	public
- */
-	function image250()
-	{
-		$src = <<< HIRE
-<!-- Google Adsense 250 -->
-<script type="text/javascript"><!--
-google_ad_client = "pub-5378944923532596";
-/* [DZ]onlinegame image250 */
-google_ad_slot = "9970475856";
-google_ad_width = 250;
-google_ad_height = 250;
-//-->
-</script>
 <script type="text/javascript"
 src="//pagead2.googlesyndication.com/pagead/show_ads.js">
 </script>
@@ -145,29 +114,27 @@ HIRE;
 		return $src;
 	}
 
-
 /**
- * Linkunit 160x90
+ * Both responsive
  *
  * @return	html
  * @access	public
  */
-	function link160()
+	function bothResponsive()
 	{
 		$src = <<< HIRE
-<script type="text/javascript"><!--
-google_ad_client = "ca-pub-5378944923532596";
-/* [DZ]onlinegame link160 */
-google_ad_slot = "9937819886";
-google_ad_width = 160;
-google_ad_height = 90;
-//-->
-</script>
-<script type="text/javascript"
-src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- [DZ]onlinegame bothResponsive -->
+<ins class="adsbygoogle"
+	style="display:block"
+	data-ad-client="ca-pub-5378944923532596"
+	data-ad-slot="6068122704"
+	data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 HIRE;
-		return $src;
+			return $src;
 	}
 }
 ?>
