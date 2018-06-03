@@ -10,6 +10,8 @@
 				<li><?php echo $this->Html->link("リンク集", array("controller" => "links", "path" => "index", "ext" => "html"))?></li>
 				<li><?php echo $this->Html->link("サイトマップ", array("controller" => "pages", "action" => "sitemap", "ext" => "html"))?></li>
 				<li><?php echo $this->Html->link("お問合せ", array("controller" => "pages", "action" => "contact", "ext" => "html"))?></li>
+				<li><a href="<?php echo $this->Html->url(array("controller" => "mode", "action" => "pc", "ext" => "html", "sp" => false))?>"><i class="zmdi zmdi-laptop"></i> PC版</a></li>
+				<li><a href="#"><i class="zmdi zmdi-chevron-up"></i> ページトップへ</a></li>
 			</ul>
 		</nav>
 		<div class="copyright">

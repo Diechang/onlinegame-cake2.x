@@ -136,5 +136,28 @@ HIRE;
 HIRE;
 			return $src;
 	}
+
+/**
+ * Text responsive
+ *
+ * @return	html
+ * @access	public
+ */
+	function textResponsive()
+	{
+		$src = <<< HIRE
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- [DZ]onlinegame textResponsive -->
+<ins class="adsbygoogle"
+		style="display:block"
+		data-ad-client="ca-pub-5378944923532596"
+		data-ad-slot="5183428205"
+		data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+HIRE;
+			return $src;
+	}
 }
 ?>
