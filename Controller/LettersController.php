@@ -44,6 +44,14 @@ class LettersController extends AppController
 	}
 
 	/**
+	 * SP
+	 */
+	function sp_add()
+	{
+		$this->add();
+	}
+
+	/**
 	 * Sys
 	 */
 	function sys_index()

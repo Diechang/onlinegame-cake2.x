@@ -49,6 +49,8 @@
 		<?php
 			echo $this->fetch("content");
 		?>
+
+		<?php echo $this->Gads->adsResponsive();?>
 	</div>
 
 <?php

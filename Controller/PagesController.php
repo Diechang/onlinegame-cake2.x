@@ -417,11 +417,17 @@ class PagesController extends AppController
 
 
 /**
- * SP actions - Index view
+ * SP actions
  */
+	// Index view
 	function sp_home()
 	{
 		$this->home();
+	}
+	// display
+	function sp_display()
+	{
+		call_user_func_array(array($this, "display"), func_get_args());
 	}
 
 
@@ -540,8 +546,8 @@ class PagesController extends AppController
 	function display()
 	{
 		$path = func_get_args();
-//pr($path);
-//exit;
+// pr($path);
+// exit;
 		//homeだったらリダイレクト
 		if($path[0] == "home")
 		{

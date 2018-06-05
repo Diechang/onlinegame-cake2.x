@@ -3,15 +3,22 @@ class ModeController extends AppController
 {
 	function pc()
 	{
-		pr(Router::parse($this->referer(array("controller" => "pages", "action" => "home", "sp" => false))));
-		exit;
-		$this->redirect($this->referer(array("sp" => false)));
+		$this->Cookie->write("mode", "pc", false);
+		$this->redirect("/");
 	}
 	function sp()
 	{
-		pr(Router::parse($this->referer(array("controller" => "pages", "action" => "home", "sp" => true))));
-		exit;
-		$this->redirect($this->referer(array("sp" => true)));
+		$this->Cookie->write("mode", "sp", false);
+		$this->redirect("/sp/");
+	}
+	// from sp
+	function sp_pc()
+	{
+		$this->pc();
+	}
+	function sp_sp()
+	{
+		$this->sp();
 	}
 }
 ?>

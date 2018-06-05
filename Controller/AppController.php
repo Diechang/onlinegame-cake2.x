@@ -147,12 +147,20 @@ class AppController extends Controller
 			$this->Cookie->name = "game";
 			$this->Cookie->time = "90 Days";
 			$this->Cookie->path = "/";
-			$this->cookey = $this->Cookie->read("cookey");
+			$this->cookey	= $this->Cookie->read("cookey");
 
 			$this->Title->Behaviors->load("Containable");
 
-			if(isset($this->request->sp))		$this->_beforeIsSP();
-			else								$this->_beforeIsPC();
+			// check device
+			// var_dump(!$this->Cookie->check("mode"));
+			// var_dump($this->Cookie->read("mode") != "pc");
+			// var_dump($this->request->is("mobile"));
+			// var_dump($this->request->here);
+			// var_dump("/sp" . $this->request->here);
+			// exit;
+			if(isset($this->request->sp))			$this->_beforeIsSP();
+			else if((!$this->Cookie->check("mode") || $this->Cookie->read("mode") != "pc") && $this->request->is("mobile"))	$this->redirect("/sp" . $this->request->here);
+			else									$this->_beforeIsPC();
 		}
 	}
 

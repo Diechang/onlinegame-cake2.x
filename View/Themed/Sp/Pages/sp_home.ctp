@@ -42,9 +42,7 @@ $this->assign("description", "掲載ゲーム数" . $countTitle . "件の無料�
 <section class="review">
 	<h2>新着ユーザーレビュー</h2>
 	<section class="recents">
-		<ul class="borderedLinks textLinks imageLinks">
-			<?php echo $this->element("loop_review_data", array("reviews" => $recents))?>
-		</ul>
+		<?php echo $this->element("loop_review_data", array("reviews" => $recents))?>
 	</section>
 	<section class="waits">
 		<h3>レビュー・評価投稿募集中</h3>
@@ -141,5 +139,3 @@ $this->assign("description", "掲載ゲーム数" . $countTitle . "件の無料�
 		</ul>
 	</section>
 </section>
-
-<?php echo $this->Gads->adsResponsive();?>
