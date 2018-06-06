@@ -32,7 +32,7 @@
 
 </head>
 
-<body<?php if(isset($body_class)):?> class="<?php echo $body_class?>"<?php endif;?>>
+<body class="<?php echo $this->fetch("body_class") ? $this->fetch("body_class") : $this->request->controller?>">
 <?php
 	echo $this->element('code_analytics');
 	echo $this->element('code_fbsdk');

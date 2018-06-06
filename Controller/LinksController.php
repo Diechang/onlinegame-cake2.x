@@ -151,6 +151,20 @@ class LinksController extends AppController
 
 
 	/**
+	 * SP
+	 */
+	function sp_index($path = null)
+	{
+		$this->index($path);
+	}
+	function sp_add()
+	{
+		$this->add();
+	}
+
+
+
+	/**
 	 * Sys
 	 */
 	function sys_index()

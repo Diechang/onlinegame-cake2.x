@@ -34,7 +34,7 @@ else
 <!-- about -->
 <div class="link-about pageInfo">
 	<h1 class="pageTitle">
-		<span class="main"><?php echo (!empty($label)) ? '<span class="label label-primary">' . $label . '</span>' : ""?></span>リンク集</span>
+		<span class="main"><?php echo (!empty($label)) ? '<span class="label label-primary">' . $label . '</span>' : ""?>リンク集</span>
 		<span class="sub">相互リンクしていただいているおすすめサイト集です</span>
 	</h1>
 	

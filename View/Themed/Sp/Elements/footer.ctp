@@ -1,8 +1,8 @@
 	<!-- footer -->
 	<footer>
 		<ul class="social">	
-			<li class="facebook"><?php echo $this->Html->image("design_sp/social_facebook.png", array("alt" => "Facebook", "width" => 40, "height" => 40, "url" => "//www.facebook.com/onlinegame.life"));?></li>
-			<li class="twitter"><?php echo $this->Html->image("design_sp/social_twitter.png", array("alt" => "Twitter", "width" => 40, "height" => 40, "url" => "//twitter.com/diechang1031"));?></li>
+			<li class="facebook"><a href="//www.facebook.com/onlinegame.life" target="_blank"><?php echo $this->Html->image("design_sp/social_facebook.png", array("alt" => "Facebook", "width" => 40, "height" => 40));?></a></li>
+			<li class="twitter"><a href="//twitter.com/diechang1031" target="_blank"><?php echo $this->Html->image("design_sp/social_twitter.png", array("alt" => "Twitter", "width" => 40, "height" => 40));?></a></li>
 		</ul>
 		<nav class="about">
 			<ul>
