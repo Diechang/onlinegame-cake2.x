@@ -24,6 +24,25 @@ class GadsHelper extends AppHelper
 	}
 	
 /**
+ * Image 320x50
+ *
+ * @param	bool	$withdiv
+ * @return	html
+ * @access	public
+ */
+	function ads320($withdiv = true)
+	{
+		$src = "";
+		$src .= ($withdiv) ?  "<div class=\"gAds\">\n" : "";
+		
+		$src .= $this->image320();
+		
+		$src .= ($withdiv) ? "</div>\n" : "";
+
+		return $this->output($src);
+	}
+	
+/**
  * Both 468x60
  *
  * @param	bool	$withdiv
@@ -85,6 +104,29 @@ google_ad_height = 250;
 <!-- [DZ]onlinegame image300 -->
 <script type="text/javascript"
 src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+HIRE;
+		return $src;
+	}
+
+
+/**
+ * Image 320x50
+ *
+ * @return	html
+ * @access	public
+ */
+function image320()
+{
+	$src = <<< HIRE
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- [DZ]onlinegame image320 -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:320px;height:50px"
+     data-ad-client="ca-pub-5378944923532596"
+     data-ad-slot="3255316590"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 HIRE;
 		return $src;

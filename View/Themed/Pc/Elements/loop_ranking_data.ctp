@@ -1,7 +1,7 @@
 <?php if(!empty($rankings[0])):?>
 <ul class="list">
 <?php foreach($rankings as $key => $rank):?>
-<?php if(is_numeric($key)):?>
+<?php if(is_numeric($key)): //idList取ってるから?>
 <?php $rank_num = $key + 1?>
 	<!-- <?php echo $rank_num?> -->
 	<li class="no<?php echo $rank_num;?>">

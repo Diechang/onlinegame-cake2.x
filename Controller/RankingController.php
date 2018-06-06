@@ -129,5 +129,14 @@ class RankingController extends AppController
 			$this->set("norankings", $norankings);
 		}
 	}
+
+
+	/**
+	 * SP
+	 */
+	function sp_index($path = null)
+	{
+		$this->index($path);
+	}
 }
 ?>

@@ -42,6 +42,7 @@ else
 		<a href="#form" class="inline">依頼フォーム</a>より登録をお願いします。</p>
 	</div>
 </div>
+<?php echo $this->Gads->ads320();?>
 <!-- sites -->
 <section class="sites">
 	<ul class="categories">

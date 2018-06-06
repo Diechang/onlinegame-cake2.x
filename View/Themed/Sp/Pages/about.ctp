@@ -11,7 +11,7 @@ $this->assign("description", "オンラインゲームライフについての�
 
 <!-- documents -->
 <section class="about-doc">
-<div class="pageInfo">
+	<div class="pageInfo">
 		<h1 class="pageTitle">当サイトについて</h1>
 	</div>
 	<!-- documents -->

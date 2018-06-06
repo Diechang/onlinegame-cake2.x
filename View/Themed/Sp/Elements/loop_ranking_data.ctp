@@ -3,6 +3,7 @@
 <?php else:?>
 <ul class="borderedLinks imageLinks">
 	<?php foreach($rankings as $key => $rank):?>
+	<?php if(is_numeric($key)): //idList取ってるから?>
 	<?php $rank_num = $key + 1?>
 	<!-- <?php echo $rank_num?> -->
 	<li>
@@ -35,6 +36,7 @@
 			</div>
 		</a>
 	</li>
+	<?php endif;?>
 	<?php endforeach;?>
 </ul>
 <?php endif;?>
