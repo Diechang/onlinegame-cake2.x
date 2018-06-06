@@ -24,16 +24,6 @@ class PortalsController extends AppController
 	{
 		$this->_emptyToNotFound($path);
 		//Get
-		// $this->Portal->Title->unbindAll(array("Fee", "Category", "Titlesummary"));
-
-//		$defPortalTitleConditions = $this->Portal->hasAndBelongsToMany["Title"]["conditions"];
-		// $this->Portal->hasAndBelongsToMany["Title"]["conditions"] = array(
-		// 	"Title.public" => 1,
-		// 	"NOT" => array(
-		// 		"Title.service_id" => 1
-		// 	)
-		// );
-//		$this->Portal->hasAndBelongsToMany["Title"]["conditions"] = $defPortalTitleConditions;
 		$this->Portal->Behaviors->load('Containable');
 		$portal = $this->Portal->find("first", array(
 			"contain" => array(
@@ -48,6 +38,9 @@ class PortalsController extends AppController
 					"Titlesummary" => array(
 						"fields" => array("vote_avg_all")
 					),
+					"Platform" => array(
+						"fields" => array("str", "path")
+					),
 					"Category" => array(
 						"fields" => array("str", "path")
 					),
@@ -55,7 +48,7 @@ class PortalsController extends AppController
 						"fields" => array("str", "path")
 					),
 					"Service" => array(
-						"fields" => array("str", "path")
+						"fields" => array("id", "str", "path")
 					)
 				)
 			),
@@ -85,15 +78,29 @@ class PortalsController extends AppController
 		$this->set("portals", $portals);
 	}
 
+
+	/**
+	 * SP
+	 */
+	function sp_index()
+	{
+		$this->index();
+	}
+	function sp_view($path = null)
+	{
+		$this->view($path);
+	}
+
+
 	/**
 	 * Sys
 	 */
 	function sys_index()
 	{
-		$this->Portal->recursive = 0;
-		$this->set('portals', $this->Portal->find("all", array("order" => "id DESC")));
-		//
-		$this->set("pankuz_for_layout", "ポータルマスタ");
+	$this->Portal->recursive = 0;
+	$this->set('portals', $this->Portal->find("all", array("order" => "id DESC")));
+	//
+	$this->set("pankuz_for_layout", "ポータルマスタ");
 	}
 
 //	function sys_view($id = null)

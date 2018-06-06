@@ -46,5 +46,14 @@ class ReviewController extends AppController
 		$this->set("reviews", $reviews);
 		$this->set("waits", $waits);
 	}
+
+
+	/**
+	 * SP
+	 */
+	function sp_index()
+	{
+		$this->index();
+	}
 }
 ?>

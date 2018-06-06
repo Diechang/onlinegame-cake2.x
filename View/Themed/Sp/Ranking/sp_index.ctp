@@ -28,7 +28,6 @@ $this->assign("description", "【" . $label . "】人気オンラインゲーム
 		<h2>評価がまだ投稿されていないゲーム</h2>
 		<ul class="borderedLinks textLinks">
 <?php foreach($norankings as $key => $norank):?>
-			<?php if($key > 10) break;?>
 			<li>
 				<a href="<?php echo $this->Common->titleLinkUrl($norank["Title"]["url_str"]);?>">
 					<?php echo $this->Common->titleSeparatedDiv($norank["Title"]["title_official"], $norank["Title"]["title_read"])?>

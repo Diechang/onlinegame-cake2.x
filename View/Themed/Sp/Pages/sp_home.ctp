@@ -24,6 +24,7 @@ $this->assign("description", "掲載ゲーム数" . $countTitle . "件の無料�
 <?php endforeach;?>
 	</div>
 </div>
+<?php echo $this->Gads->ads320();?>
 <!-- ranking -->
 <section class="ranking">
 	<h2>人気オンラインゲームランキング</h2>

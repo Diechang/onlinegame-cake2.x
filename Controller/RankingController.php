@@ -93,7 +93,8 @@ class RankingController extends AppController
 							"Title.test_start > " => date("Y-m-d", strtotime("-2year"))
 						),
 					),
-					"order" => "Title.title_official",
+					"order" => "Title.service_start desc",
+					"limit" => 10,
 				));
 			}
 			else
@@ -115,7 +116,8 @@ class RankingController extends AppController
 							"Title.test_start > " => date("Y-m-d", strtotime("-2year"))
 						),
 					),
-					"order" => "Title.title_official",
+					"order" => "Title.service_start desc",
+					"limit" => 10,
 				));
 			}
 			// pr($rankings);
