@@ -4,7 +4,7 @@ class TitlesController extends AppController
 
 	var $name		= 'Titles';
 	var $components	= array("TitleData", "LumpEdit");
-	var $helpers	= array("TitlePage", "VotePage");
+	var $helpers	= array("TitlePage");
 
 	function index()
 	{

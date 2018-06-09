@@ -87,38 +87,6 @@ class CommonPcHelper extends CommonHelper
 			"url"	=> $this->titleLinkUrl($path, $action)
 		));
 	}
-
-	/**
-	 * 公式リンク
-	 *
-	 * @param	string	$str
-	 * @param	bool	$ad_use
-	 * @param	string	$ad_text
-	 * @param	string	$official_url
-	 * @param	number	$service_id
-	 * @param	bool	$titleName
-	 * @return	html
-	 * @access	public
-	 */
-		function officialLinkText($str, $ad_use, $ad_text, $official_url, $service_id = null, $titleName = false)
-		{
-			if($service_id != 1 or $service_id == null)
-			{
-				return (!empty($ad_use) && !empty($ad_text)) ? $ad_text : $this->Html->link($str, $official_url, array("target" => "_blank", "escape" => false));
-			}
-			else
-			{//Titles only
-				if($titleName)
-				{
-					$ret = $str;
-				}
-				else
-				{
-					$ret = "サービス終了・休止中";
-				}
-				return '<span class="ended">' . $ret . '</span>';
-			}
-		}
 	
 	/**
 	 * プラットフォームリンク/テキスト

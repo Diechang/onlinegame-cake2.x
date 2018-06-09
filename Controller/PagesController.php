@@ -214,21 +214,26 @@ class PagesController extends AppController
 		 */
 		//Get
 		$newers = $this->Title->find("all", array(
-			"recursive" => -1,
 			"conditions"	=> array("Title.public"	=> 1),
 			"fields"		=> array(
 				"Title.title_official",
 				"Title.title_read",
 				"Title.url_str",
-				"Title.thumb_name"
+				"Title.thumb_name",
 			),
 			"order" => array(
 				"Title.created DESC",
 				"Title.id DESC",
 			),
-			"limit"			=> 10
+			"limit"			=> 10,
+			"contain" => array(
+				"Platform.id",
+				"Platform.str",
+				"Platform.path",
+			),
 		));
-//		pr($newers);
+		// pr($newers);
+		// exit;
 		//
 		//Set
 		$this->set("newers", $newers);

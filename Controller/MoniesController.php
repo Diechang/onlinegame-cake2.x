@@ -73,6 +73,19 @@ class MoniesController extends AppController
 	/*
 	 * Sys
 	 */
+	function sp_index()
+	{
+		$this->index();
+	}
+	function sp_view($path = null)
+	{
+		$this->view($path);
+	}
+
+
+	/*
+	 * Sys
+	 */
 	function sys_index()
 	{
 		$this->set('monies', $this->Money->find("all", array("order" => "Money.id")));

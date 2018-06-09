@@ -14,7 +14,7 @@ class GadsHelper extends AppHelper
 	function adsResponsive($withdiv = true)
 	{
 		$src = "";
-		$src .= ($withdiv) ?  "<div class=\"gAds\">\n" : "";
+		$src .= ($withdiv) ?  "<div class=\"gAds gAds-responsive\">\n" : "";
 		
 		$src .= $this->bothResponsive();
 		

@@ -64,11 +64,7 @@ $this->assign("description", "オンラインゲームポータル【" . $portal
 					</div>
 					<dl class="attributes">
 						<dt><span class="label label-service">サービス</span></dt>
-						<dd>
-							<?php if($pTitle["Service"]["id"] == 3 or $pTitle["Service"]["id"] == 4):?>
-								<?php echo $this->Common->termFormat($pTitle["test_start"], $pTitle["test_end"])?>
-							<?php endif;?>
-						</dd>
+						<dd><?php echo $pTitle["Service"]["str"]?></dd>
 						<dt><span class="label label-fee">料金</span></dt>
 						<dd><?php echo $pTitle["Fee"]["str"]?></dd>
 						<dt><span class="label label-genre">ジャンル</span></dt>

@@ -58,7 +58,7 @@ $this->assign("description", "掲載ゲーム数" . $countTitle . "件の無料�
 <?php if(empty($testCurrents)):?>
 		<p class="none">現在実施中のテスト情報がありません</p>
 <?php else:?>
-		<ul class="borderedLinks imageLinks imageLinks-s">
+		<ul class="borderedLinks imageLinks">
 	<?php foreach($testCurrents as $test):?>
 			<li>
 				<a href="<?php echo $this->Common->titleLinkUrl($test["Title"]["url_str"]);?>">
@@ -111,20 +111,25 @@ $this->assign("description", "掲載ゲーム数" . $countTitle . "件の無料�
 <section class="news">
 	<section class="title">
 		<h2>新着オンラインゲーム</h2>
-		<ul class="borderedLinks textLinks imageLinks imageLinks-s">
+		<div class="slide slide-s">
 <?php foreach($newers as $newer):?>
-			<li>
+			<div class="slide-item">
 				<a href="<?php echo $this->Common->titleLinkUrl($newer["Title"]["url_str"]);?>">
 					<div class="images">
 						<div class="thumb"><?php echo $this->Common->titleThumb($newer["Title"]);?></div>
 					</div>
-					<div class="data">
-						<?php echo $this->Common->titleSeparatedDiv($newer["Title"]["title_official"], $newer["Title"]["title_read"]);?>
+					<div class="texts">
+						<div class="title">
+							<?php echo $this->Common->titleSeparatedSpan($newer["Title"]["title_official"], $newer["Title"]["title_read"]);?>
+						</div>
+						<ul class="platformLabels">
+							<?php echo $this->Common->platformsList($newer["Platform"], "li")?>
+						</ul>
 					</div>
 				</a>
-			</li>
+			</div>
 <?php endforeach;?>
-		</ul>
+</div>
 	</section>
 	<section class="fansite">
 		<h2>新着ファンサイト</h2>
