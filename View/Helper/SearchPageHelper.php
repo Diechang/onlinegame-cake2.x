@@ -17,6 +17,11 @@ class SearchPageHelper extends AppHelper
 					"start"		=> "サービス開始順<span>（正式サービス前のタイトルは後ろに表示されます）</span>",
 					"name"		=> "タイトル名順<span>（A～Z、あ～お）</span>",
 				);
+	var $orders_stripped = array(
+					"rating"	=> "評価の高い順",
+					"start"		=> "サービス開始順（正式サービス前のタイトルは後ろに表示されます）",
+					"name"		=> "タイトル名順（A～Z、あ～お）",
+				);
 
 	var $urlParamStrings = null;
 
@@ -31,21 +36,12 @@ class SearchPageHelper extends AppHelper
 	function checkList($item, $model)
 	{
 		$key		= strtolower($model);
-		//query
-		if(!empty($this->request->query[$key]))
-		{
-			$checked = is_array($this->request->query[$key])
-						? in_array($item[$model]["id"], $this->request->query[$key])
-						: ($this->request->query[$key] == $item[$model]["id"]);
-		}
-		else $checked = false;
 
-		return $this->output($this->Form->label($key . "_" . $item[$model]["id"],
-					$this->Form->checkbox($key . "[]", array(
-						"value" => $item[$model]["id"],
-						"checked" => $checked,
-						"id" => $key . "_" . $item[$model]["id"],
-						"hiddenField" => false)) . " " . $item[$model]["str"]));
+		return $this->output($this->Form->checkbox($key . "[]", array(
+			"value" => $item[$model]["id"],
+			"checked" => ($this->request->query($key) && in_array($item[$model]["id"], $this->request->query($key))),
+			"id" => $key . "_" . $item[$model]["id"],
+			"hiddenField" => false)) . " " . $this->Form->label($key . "_" . $item[$model]["id"], $item[$model]["str"]));
 	}
 
 	/**
@@ -59,33 +55,43 @@ class SearchPageHelper extends AppHelper
 		$src = "";
 		foreach($this->others as $key => $val)
 		{
-			$src .= "<li>" . $this->Form->label($key, $this->Form->checkbox($key, array(
-								"id" => $key,
-								"checked" => !empty($this->request->query[$key]),
-								"hiddenField" => false)) . " " . $val) . "</li>\n";
+			$src .= "<li>" . $this->Form->checkbox($key, array(
+				"checked" => $this->request->query($key),
+				"hiddenField" => false)) . " " . $this->Form->label($key, $val) . "</li>" . PHP_EOL;
 		}
 		return $this->output($src);
 	}
 
 	/**
-	 * 並び順チェックボックス
+	 * 並び順ラジオ
 	 *
 	 * @return html
 	 * @access public
 	 */
-	function orderCheckList()
+	function orderRadioList()
 	{
 		$src	= "";
-		$count	= 0;
 		foreach($this->orders as $key => $val)
 		{
-			$src .= "<li>" . $this->Form->label("order" . ucwords($key), $this->Form->input("order", array(
-								"type" => "radio",
-								"options" => array($key => (" " . $val)),
-								"default" => (isset($this->request->query["order"]) ? $this->request->query["order"] : "rating"),
-								"hiddenField" => false))) . "</li>\n";
-			$count++;
+			$src .= "<li>" . $this->Form->radio("order", array($key => " " . $val), array(
+				"checked" => ($this->request->query("order") == $key),
+				"hiddenField" => false)) . "</li>" . PHP_EOL;
 		}
+		return $this->output($src);
+	}
+
+	/**
+	 * 並び順セレクト
+	 *
+	 * @return html
+	 * @access public
+	 */
+	function orderSelect()
+	{
+		$src = $this->Form->select("order", $this->orders_stripped, array(
+			"value" => $this->request->query("order"),
+			"empty" => false,
+			"class" => "input-select"));
 		return $this->output($src);
 	}
 }

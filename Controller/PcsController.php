@@ -46,6 +46,15 @@ class PcsController extends AppController
 
 
 	/**
+	 * SP
+	 */
+	function sp_index()
+	{
+		$this->index();
+	}
+
+
+	/**
 	 * Sys
 	 */
 	function sys_index()

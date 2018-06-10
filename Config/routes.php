@@ -79,6 +79,8 @@
 	Router::connect('/sp/:controller/:path', array('sp' => true, 'action' => 'index'), array('pass' => array('path'), 'controller' => 'platforms|categories|styles|services|fees|ranking|links'));
 	//Review
 	Router::connect('/sp/reviews', array('sp' => true, 'controller' => 'review', 'action' => 'index'));
+	//Search
+	Router::connect('/sp/search', array('sp' => true, 'controller' => 'search', 'action' => 'index'));
 	//Event
 	Router::connect('/sp/events', array('sp' => true, 'controller' => 'events', 'action' => 'index'));
 	//Pages

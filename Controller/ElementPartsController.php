@@ -376,6 +376,10 @@ class ElementPartsController extends AppController
 		$this->set("headerCategories", $headerCategories);
 		$this->set("headerStyles", $headerStyles);
 	}
+	function sp_search_title_form()
+	{
+		return $this->search_title_form();
+	}
 	
 }
 ?>

@@ -122,6 +122,22 @@ class SearchController extends AppController
  */
 	function gsearch()
 	{
+		// google results
+	}
+
+
+/**
+ * SP
+ */
+	function sp_index()
+	{
+	}
+	function sp_result()
+	{
+		$this->result();
+	}
+	function sp_gsearch()
+	{
 	}
 }
 ?>
