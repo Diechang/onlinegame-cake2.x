@@ -58,22 +58,6 @@ class CategoriesController extends AppController
 					"Service.*",
 					"Fee.*",
 				),
-				// "joins" => array(
-				// 	array(
-				// 		'table' => 'categories_titles',
-				// 		'alias' => 'CategoriesTitle',
-				// 		'type' => 'INNER',
-				// 		'conditions' => 'CategoriesTitle.title_id = Title.id'
-				// 	),
-				// 	array(
-				// 		'table' => 'categories',
-				// 		'alias' => 'Category',
-				// 		'type' => 'INNER',
-				// 		'conditions' => 'Category.id = CategoriesTitle.category_id'
-				// 	)
-				// ),
-				// "group" => array("Title.id"),
-				// "order" => array("Service.sort, Title.service_start DESC, Title.test_start DESC, Title.test_end DESC"),
 				"order" => "Title.service_start DESC",
 				"contain" => array("Titlesummary", "Platform", "Category", "Service", "Fee"),
 				"paramType" => "querystring",
@@ -123,6 +107,15 @@ class CategoriesController extends AppController
 
 
 	/**
+	 * SP
+	 */
+	function sp_index($path = null)
+	{
+		$this->index($path);
+	}
+
+
+	/**
 	 * Sys
 	 */
 	function sys_index()
@@ -132,16 +125,6 @@ class CategoriesController extends AppController
 		//
 		$this->set("pankuz_for_layout" , "カテゴリマスタ");
 	}
-
-//	function sys_view($id = null)
-//	{
-//		if(!$id)
-//	{
-//			$this->Session->setFlash(sprintf(__('Invalid %s'), 'category'));
-//			return $this->redirect(array('action' => 'index'));
-//		}
-//		$this->set('category', $this->Category->read(null, $id));
-//	}
 
 	function sys_add()
 	{

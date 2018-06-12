@@ -61,22 +61,6 @@ class PlatformsController extends AppController
 					"Service.*",
 					"Fee.*",
 				),
-				// "joins" => array(
-				// 	array(
-				// 		'table' => 'platforms_titles',
-				// 		'alias' => 'PlatformsTitle',
-				// 		'type' => 'INNER',
-				// 		'conditions' => 'PlatformsTitle.title_id = Title.id'
-				// 	),
-				// 	array(
-				// 		'table' => 'platforms',
-				// 		'alias' => 'Platform',
-				// 		'type' => 'INNER',
-				// 		'conditions' => 'Platform.id = PlatformsTitle.platform_id'
-				// 	)
-				// ),
-				// "group" => array("Title.id"),
-				// "order" => array("Service.sort", "Title.service_start DESC", "Title.test_start DESC", "Title.test_end DESC"),
 				"order" => "Title.service_start DESC",
 				"contain" => array("Titlesummary", "Platform", "Category", "Service", "Fee"),
 				"paramType" => "querystring",
@@ -116,6 +100,15 @@ class PlatformsController extends AppController
 
 
 	/**
+	 * SP
+	 */
+	function sp_index($path = null)
+	{
+		$this->index($path);
+	}
+
+
+	/**
 	 * Sys
 	 */
 	function sys_index()
@@ -125,16 +118,6 @@ class PlatformsController extends AppController
 		//
 		$this->set("pankuz_for_layout", "プラットフォームマスタ");
 	}
-
-//	function sys_view($id = null)
-//	{
-//		if(!$id)
-//	{
-//			$this->Session->setFlash(sprintf(__('Invalid %s'), 'platform'));
-//			return $this->redirect(array('action' => 'index'));
-//		}
-//		$this->set('platform', $this->Platform->read(null, $id));
-//	}
 
 	function sys_add()
 	{

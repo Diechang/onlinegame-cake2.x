@@ -58,22 +58,6 @@ class StylesController extends AppController
 					"Service.*",
 					"Fee.*",
 				),
-				// "joins" => array(
-				// 	array(
-				// 		'table' => 'styles_titles',
-				// 		'alias' => 'StylesTitle',
-				// 		'type' => 'INNER',
-				// 		'conditions' => 'StylesTitle.title_id = Title.id'
-				// 	),
-				// 	array(
-				// 		'table' => 'styles',
-				// 		'alias' => 'Style',
-				// 		'type' => 'INNER',
-				// 		'conditions' => 'Style.id = StylesTitle.style_id'
-				// 	)
-				// ),
-				// "group" => array("Title.id"),
-				// "order" => array("Service.sort", "Title.service_start DESC", "Title.test_start DESC", "Title.test_end DESC"),
 				"order" => "Title.service_start DESC",
 				"contain" => array("Titlesummary", "Platform", "Category", "Service", "Fee"),
 				"paramType" => "querystring",
@@ -123,6 +107,15 @@ class StylesController extends AppController
 
 
 	/**
+	 * SP
+	 */
+	function sp_index($path = null)
+	{
+		$this->index($path);
+	}
+
+
+	/**
 	 * Sys
 	 */
 	function sys_index()
@@ -132,16 +125,6 @@ class StylesController extends AppController
 		//
 		$this->set("pankuz_for_layout", "スタイルマスタ");
 	}
-
-//	function sys_view($id = null)
-//	{
-//		if(!$id)
-//	{
-//			$this->Session->setFlash(sprintf(__('Invalid %s'), 'style'));
-//			return $this->redirect(array('action' => 'index'));
-//		}
-//		$this->set('style', $this->Style->read(null, $id));
-//	}
 
 	function sys_add()
 	{
