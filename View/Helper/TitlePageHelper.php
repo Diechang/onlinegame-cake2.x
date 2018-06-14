@@ -44,11 +44,11 @@ class TitlePageHelper extends AppHelper
  * @return	html
  * @access	public
  */
-	function videoEmbed($id)
+	function videoEmbed($id, $width = 640, $height = 360)
 	{//$id = youtube v param
 		if(!empty($id))
 		{
-			return '<div class="video"><iframe width="640" height="360" src="https://www.youtube.com/embed/' . $id . '" frameborder="0" allowfullscreen></iframe></div>';
+			return '<div class="video"><iframe width="' . $width . '" height="' . $height . '" src="https://www.youtube.com/embed/' . $id . '" frameborder="0" allowfullscreen></iframe></div>';
 		}
 		else
 		{

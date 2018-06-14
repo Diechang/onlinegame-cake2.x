@@ -44,6 +44,11 @@
 
 	<!-- Contents -->
 	<div class="contents">
+		<?php
+			//title header
+			echo $this->fetch("title_header");
+		?>
+		
 		<?php echo $this->Session->flash()?>
 		
 		<?php

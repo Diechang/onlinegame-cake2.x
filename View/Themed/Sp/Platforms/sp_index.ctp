@@ -23,6 +23,7 @@ $this->assign("meta", $this->Meta->pagePrevNext(array('controller' => $this->req
 		echo $this->element('archive_pickups', array('pickups' => $pickups, "mainStr" => $pageData["Platform"]["str"]));
 	}
 ?>
+<?php echo $this->Gads->ads320();?>
 <?php endif;?>
 
 <!-- titles -->

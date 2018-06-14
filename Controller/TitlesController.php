@@ -103,38 +103,6 @@ class TitlesController extends AppController
 		$this->set("recommends", $recommends);
 	}
 
-// 	function _allvotes()
-// 	{
-// 		$this->_checkParams();
-
-// 		/**
-// 		 * データ取得
-// 		 */
-// 		//タイトルデータ
-// 		$this->Title->unbindAll(array("Titlead", "Titlesummary", "Platform", "Platform", "Category", "Style", "Service", "Fee"));
-// 		$title = $this->_getTitleData();
-// 		$this->_afterGetTitleData($title);
-// //		pr($title);
-// //		exit;
-
-// 		//レビュー
-// 		$votes = $this->Title->Vote->getNewer($title["Title"]["id"]);
-// //		pr($votes);
-// //		exit;
-
-// 		//おすすめ
-// 		$recommends = $this->Title->recommends(Hash::extract($title["Category"], "{n}.id"), $title["Title"]["id"]);
-// //		pr($recommends);
-
-// 		/**
-// 		 * セット
-// 		 */
-// 		$this->set("title", $title);
-// 		$this->set("votes", $votes);
-// 		$this->set("voteItems", $this->Title->Vote->voteItems);
-// 		$this->set("recommends", $recommends);
-// 	}
-
 	function single()
 	{
 		$this->_checkParams();
@@ -198,131 +166,6 @@ class TitlesController extends AppController
 			$this->set("metaTags", array("noindex"));
 		}
 	}
-
-// 	function _events()
-// 	{
-// 		$this->_checkParams();
-
-// 		/**
-// 		 * データ取得
-// 		 */
-// 		//タイトルデータ
-// 		$this->Title->unbindAll(array("Titlead", "Titlesummary", "Platform", "Platform", "Category", "Style", "Service", "Fee"));
-// 		$title = $this->_getTitleData();
-// 		$this->_afterGetTitleData($title);
-
-// 		/**
-// 		 * イベントデータ
-// 		 */
-// 		if(!empty($title["Titlesummary"]["event_count"]))
-// 		{
-// 			$now = date("Y-m-d H:i:s");
-// 			//開催中
-// 			$events["current"] = $this->Title->Event->find("all", array(
-// 				"recursive" => -1,
-// 				"conditions" => array(
-// 					"Event.title_id" => $title["Title"]["id"],
-// 					"Event.public" => 1,
-// 					"Event.start <=" => $now,
-// 					"Event.end >=" => $now,
-// 				),
-// 				"order" => "Event.start DESC"
-// 			));
-// 			//開催予定
-// 			$events["future"] = $this->Title->Event->find("all", array(
-// 				"recursive" => -1,
-// 				"conditions" => array(
-// 					"Event.title_id" => $title["Title"]["id"],
-// 					"Event.public" => 1,
-// 					"Event.start >=" => $now,
-// 				),
-// 				"order" => "Event.start DESC"
-// 			));
-// 			//開催済み
-// 			$events["back"] = $this->Title->Event->find("all", array(
-// 				"recursive" => -1,
-// 				"conditions" => array(
-// 					"Event.title_id" => $title["Title"]["id"],
-// 					"Event.public" => 1,
-// 					"Event.end <=" => $now,
-// 				),
-// 				"order" => "Event.start DESC"
-// 			));
-// 		}
-// 		else
-// 		{
-// 			$events = null;
-// 		}
-// //		pr($events);
-// //		exit;
-
-// 		//おすすめ
-// 		$recommends = $this->Title->recommends(Hash::extract($title["Category"], "{n}.id"), $title["Title"]["id"]);
-// //		pr($recommends);
-
-// 		/**
-// 		 * セット
-// 		 */
-// 		$this->set("title", $title);
-// 		$this->set("events", $events);
-// 		$this->set("recommends", $recommends);
-// 	}
-
-// 	function _event()
-// 	{
-// 		$this->_checkParams();
-// 		if(empty($this->request->params["eventid"]))
-// 		{
-// 			return $this->redirect(array("controller" => "titles", "action" => "events", "path" => $this->request->params["path"], "ext" => "html"));
-// 		}
-
-// 		/**
-// 		 * データ取得
-// 		 */
-// 		//タイトルデータ
-// 		$this->Title->unbindAll(array("Titlead", "Titlesummary", "Platform", "Platform", "Category", "Style", "Service", "Fee"));
-// 		$title = $this->_getTitleData();
-// 		$this->_afterGetTitleData($title);
-// //		pr($title);
-// //		exit;
-
-// 		//イベントデータ
-// 		$event = $this->Title->Event->find("first", array(
-// 			"recursive" => -1,
-// 			"conditions" => array(
-// 				"Event.public" => 1,
-// 				"Event.id" => $this->request->params["eventid"],
-// 				"Event.title_id" => $title["Title"]["id"],
-// 			),
-// 		));
-// //		pr($event);
-// //		exit;
-// 		$this->_emptyToNotFound($event);
-
-// 		//一覧
-// 		$events = $this->Title->Event->find("all", array(
-// 			"recursive" => -1,
-// 			"conditions" => array(
-// 				"Event.public" => 1,
-// 				"Event.title_id" => $title["Title"]["id"],
-// 			),
-// 			"order" => "Event.start DESC",
-// 		));
-// //		pr($events);
-// //		exit;
-
-// 		//おすすめ
-// 		$recommends = $this->Title->recommends(Hash::extract($title["Category"], "{n}.id"), $title["Title"]["id"]);
-// //		pr($recommends);
-
-// 		/**
-// 		 * セット
-// 		 */
-// 		$this->set("title", $title);
-// 		$this->set("event", $event);
-// 		$this->set("events", $events);
-// 		$this->set("recommends", $recommends);
-// 	}
 
 	function pc()
 	{
@@ -467,30 +310,34 @@ class TitlesController extends AppController
 		$this->set("recommends", $recommends);
 	}
 
-// 	function search()
-// 	{
-// 		$this->_checkParams();
 
-// 		/**
-// 		 * データ取得
-// 		 */
-// 		//タイトルデータ
-// 		$this->Title->unbindAll(array("Titlead", "Titlesummary", "Platform", "Platform", "Category", "Style", "Service", "Fee"));
-// 		$title = $this->_getTitleData();
-// 		$this->_afterGetTitleData($title);
-// //		pr($title);
-// //		exit;
-
-// 		//おすすめ
-// 		$recommends = $this->Title->recommends(Hash::extract($title["Category"], "{n}.id"), $title["Title"]["id"]);
-// //		pr($recommends);
-
-// 		/**
-// 		 * セット
-// 		 */
-// 		$this->set("title", $title);
-// 		$this->set("recommends", $recommends);
-// 	}
+	/**
+	 * SP
+	 */
+	function sp_index()
+	{
+		$this->index();
+	}
+	function sp_rating()
+	{
+		$this->rating();
+	}
+	function sp_review()
+	{
+		$this->review();
+	}
+	function sp_single()
+	{
+		$this->single();
+	}
+	function sp_pc()
+	{
+		$this->pc();
+	}
+	function sp_link()
+	{
+		$this->link();
+	}
 
 
 	/**

@@ -413,6 +413,104 @@ class CommonHelper extends AppHelper
 
 /** Links
 ------------------------------ **/
+	
+/**
+ * プラットフォームリンク/テキスト
+ *
+ * @param	array	$platforms
+ * @param	string	$tag
+ * @return	html
+ * @access	public
+ */
+	function platformsLink($platforms, $tag = null)
+	{
+		$tagStart	= (!empty($tag)) ? "<" . $tag . ">" : "";
+		$tagEnd		= (!empty($tag)) ? "</" . $tag . ">" : "";
+
+		if(!empty($platforms))
+		{
+			if(is_array($platforms))
+			{
+				$text = "";
+				foreach($platforms as $platform)
+				{
+					$text .= $tagStart . $this->Html->link($platform['str'], array('controller' => 'platforms', 'path' => $platform['path'], 'ext' => 'html'), array("class" => $platform["path"])) . $tagEnd . "\n";
+				}
+			}
+			else
+			{
+				$text = $tagStart . $platforms . $tagEnd;
+			}
+		}
+		else
+		{
+			$text = "データ未登録";
+		}
+		return $text;
+	}
+
+/**
+ * カテゴリリンク/テキスト
+ *
+ * @param	array	$categories
+ * @param	string	$tag
+ * @return	html
+ * @access	public
+ */
+	function categoriesLink($categories, $tag = null)
+	{
+		$tagStart	= (!empty($tag)) ? "<" . $tag . ">" : "";
+		$tagEnd		= (!empty($tag)) ? "</" . $tag . ">" : "";
+
+		if(!empty($categories))
+		{
+			if(is_array($categories))
+			{
+				$text = "";
+				foreach($categories as $category)
+				{
+					$text .= $tagStart . $this->Html->link($category['str'], array('controller' => 'categories', 'path' => $category['path'], 'ext' => 'html')) . $tagEnd . "\n";
+				}
+			}
+			else
+			{
+				$text = $tagStart . $categories . $tagEnd;
+			}
+		}
+		else
+		{
+			$text = "データ未登録";
+		}
+		return $text;
+	}
+
+/**
+ * スタイルリンク/テキスト
+ *
+ * @param	array	$styles
+ * @param	string	$tag
+ * @return	html
+ * @access	public
+ */
+	function stylesLink($styles, $tag = null)
+	{
+		$tagStart	= (!empty($tag)) ? "<" . $tag . ">" : "";
+		$tagEnd		= (!empty($tag)) ? "</" . $tag . ">" : "";
+
+		if(!empty($styles))
+		{
+			$text = "";
+			foreach($styles as $style)
+			{
+				$text .= $tagStart . $this->Html->link($style['str'], array('controller' => 'styles', 'path' => $style['path'], 'ext' => 'html')) . $tagEnd . "\n";
+			}
+		}
+		else
+		{
+			$text = "データ未登録";
+		}
+		return $text;
+	}
 
 /**
  * タイトルページURL
@@ -447,7 +545,7 @@ class CommonHelper extends AppHelper
 				? $titleAdModel["{$platform}_text_src"]
 				: $this->Html->link(
 					$str . $trackImg,
-					array("controller" => "jump", "action" => "title", $platform, $titleModel["url_str"]),
+					array("controller" => "jump", "action" => "title", $platform, $titleModel["url_str"], "sp" => false),
 					array("target" => "_blank", "escape" => false));;
 	}
 	function titleJumpLinkImage($image, $titleModel, $titleAdModel, $platform = "pc", $escape = false)
@@ -456,7 +554,7 @@ class CommonHelper extends AppHelper
 			? $titleAdModel["{$platform}_image_src"]
 			: $this->Html->link(
 				$image,
-				array("controller" => "jump", "action" => "title", $platform, $titleModel["url_str"]),
+				array("controller" => "jump", "action" => "title", $platform, $titleModel["url_str"], "sp" => false),
 				array("target" => "_blank", "escape" => $escape));
 	}
 

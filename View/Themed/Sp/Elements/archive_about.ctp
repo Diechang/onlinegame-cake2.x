@@ -9,4 +9,3 @@
 		<?php echo $pageData["description"]?>
 	</div>
 </div>
-<?php echo $this->Gads->ads320();?>

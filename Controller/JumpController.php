@@ -6,6 +6,7 @@ class JumpController extends AppController
 	var $uses		= array("Portal", "Pc", "Package",
 							"AdCenterBottom", "AdLeftBottom", "AdLeftTop", "AdRightBottom", "AdRightTop");
 
+
 /** Modelds
 ------------------------------ **/
 	function title($platform = null, $path = null)
@@ -121,6 +122,50 @@ class JumpController extends AppController
 	{
 		$this->_emptyToHome($word);
 		return $this->redirect("https://hb.afl.rakuten.co.jp/hgc/0f2e5b02.017da200.0f2e5b03.c8eee4aa/?pc=http%3a%2f%2fsearch.rakuten.co.jp%2fsearch%2fmall%2f" . urlencode($word) . "%2f-%2f%3fscid%3daf_ich_link_urltxt&m=http%3a%2f%2fm.rakuten.co.jp%2f");
+	}
+
+
+/** SP
+------------------------------ **/
+	function sp_title($platform = null, $path = null)
+	{
+		$this->title($platform, $path);
+	}
+	function sp_portal($id = null)
+	{
+		$this->portal($id);
+	}
+	function sp_pc($id = null)
+	{
+		$this->pc($id);
+	}
+	function sp_package($id = null)
+	{
+		$this->package($id);
+	}
+	function sp_adcb($id = null)
+	{
+		$this->adcb($id);
+	}
+	function sp_adlb($id = null)
+	{
+		$this->adlb($id);
+	}
+	function sp_adlt($id = null)
+	{
+		$this->adlt($id);
+	}
+	function sp_adrb($id = null)
+	{
+		$this->adrb($id);
+	}
+	function sp_adrt($id = null)
+	{
+		$this->adrt($id);
+	}
+	function sp_rakutensearch($word = null)
+	{
+		$this->rakutensearch($word);
 	}
 
 
