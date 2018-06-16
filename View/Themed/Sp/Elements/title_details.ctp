@@ -105,7 +105,7 @@
 	
 	<section class="bottom">
 		<!--Official Link-->
-		<?php echo $this->element("title_officiallink", array("titleWithStrs" => $titleWithStrs))?>
+		<?php echo $this->element("title_officiallink", array("title" => $title, "titleWithStrs" => $titleWithStrs))?>
 <?if(!isset($share) or $share != false):?>
 		<?php echo $this->element("comp_shares", array("url" => $this->Html->url(array("controller" => "titles", "action" => "index", "path" => $title["Title"]["url_str"], "ext" => "html"), true)))?>
 <?php endif;?>

@@ -536,7 +536,11 @@ class CommonHelper extends AppHelper
  * @return	html
  * @access	public
  */
-	function titleJumpLink($str, $titleModel, $titleAdModel, $platform = "pc")
+	function titleJumpUrl($titleModel, $platform = "pc")
+	{
+		return $this->Html->url(array("controller" => "jump", "action" => "title", $platform, $titleModel["url_str"], "sp" => false));
+	}
+	function titleJumpLink($str, $titleModel, $titleAdModel, $platform = "pc", $linkOptions = array())
 	{
 		$trackImg	= (!empty($titleAdModel["{$platform}_part_track_src"]))
 						? $this->Html->image($titleAdModel["{$platform}_part_track_src"], array("class" => "adTrack", "width" => 1, "height" => 1)) : "";
@@ -545,17 +549,17 @@ class CommonHelper extends AppHelper
 				? $titleAdModel["{$platform}_text_src"]
 				: $this->Html->link(
 					$str . $trackImg,
-					array("controller" => "jump", "action" => "title", $platform, $titleModel["url_str"], "sp" => false),
-					array("target" => "_blank", "escape" => false));;
+					$this->titleJumpUrl($titleModel, $platform),
+					array_merge(array("target" => "_blank"), $linkOptions));
 	}
-	function titleJumpLinkImage($image, $titleModel, $titleAdModel, $platform = "pc", $escape = false)
+	function titleJumpLinkImage($image, $titleModel, $titleAdModel, $platform = "pc", $linkOptions = array())
 	{
 		return ($titleAdModel["{$platform}_image_src"] && $titleAdModel["{$platform}_noredirect"]) 
 			? $titleAdModel["{$platform}_image_src"]
 			: $this->Html->link(
 				$image,
-				array("controller" => "jump", "action" => "title", $platform, $titleModel["url_str"], "sp" => false),
-				array("target" => "_blank", "escape" => $escape));
+				$this->titleJumpUrl($titleModel, $platform),
+				array_merge(array("target" => "_blank", "escape" => false), $linkOptions));
 	}
 
 /**
@@ -599,7 +603,7 @@ class CommonHelper extends AppHelper
  */
 	function adLinkUrl($modelData, $action)
 	{
-		return $this->Html->url(array("controller" => "jump", "action" => $action, $modelData["id"]));
+		return $this->Html->url(array("controller" => "jump", "action" => $action, $modelData["id"], "sp" => false, "sys" => false));
 	}
 
 /**
@@ -618,7 +622,7 @@ class CommonHelper extends AppHelper
 		else
 		{
 			return $this->Html->link($modelData["ad_part_text"],
-					array("controller" => "jump", "action" => $action, $modelData["id"]),
+					$this->adLinkUrl($modelData, $action),
 					array("target" => "_blank", "rel" => "nofollow"));
 		}
 	}
@@ -640,7 +644,7 @@ class CommonHelper extends AppHelper
 		{
 			return $this->Html->link($this->Html->image($modelData["ad_part_img_src"],
 					array("alt" => (!empty($modelData["ad_part_text"])) ? $modelData["ad_part_text"] : "")),
-					array("controller" => "jump", "action" => $action, $modelData["id"], "sys" => false),
+					$this->adLinkUrl($modelData, $action),
 					array("target" => "_blank", "rel" => "nofollow", "escape" => false));
 		}
 	}

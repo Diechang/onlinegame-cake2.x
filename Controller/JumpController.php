@@ -41,8 +41,10 @@ class JumpController extends AppController
 		// debug($times);
 		// debug($flags);
 		
-		//set url
+		//デフォルトURL
 		$url = $title["Title"]["{$platform}_default_url"];
+		// SPかつURLなかったらPC
+		if(empty($url) && $platform == "sp") $url = $title["Title"]["pc_default_url"];
 		if(empty($url)) Debugger::log(array(
 			"url" => $this->request->url,
 			"referer" => $this->referer(),
@@ -50,7 +52,7 @@ class JumpController extends AppController
 			"path" => $path,
 			"title" => $title["Title"],
 		));
-
+		// 広告あれば上書き
 		if(!empty($title["Titlead"]["{$platform}_part_url"]))
 		{
 			// between
