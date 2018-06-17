@@ -613,7 +613,7 @@ class CommonHelper extends AppHelper
  * @return	html
  * @access	public
  */
-	function adLinkText($modelData, $action)
+	function adLinkText($modelData, $action, $linkOptions = array())
 	{
 		if($modelData["ad_noredirect"])
 		{
@@ -623,7 +623,7 @@ class CommonHelper extends AppHelper
 		{
 			return $this->Html->link($modelData["ad_part_text"],
 					$this->adLinkUrl($modelData, $action),
-					array("target" => "_blank", "rel" => "nofollow"));
+					array_merge(array("target" => "_blank", "rel" => "nofollow"), $linkOptions));
 		}
 	}
 
@@ -634,7 +634,7 @@ class CommonHelper extends AppHelper
  * @return	html
  * @access	public
  */
-	function adLinkImage($modelData, $action)
+	function adLinkImage($modelData, $action, $linkOptions = array())
 	{
 		if($modelData["ad_noredirect"])
 		{
@@ -645,7 +645,7 @@ class CommonHelper extends AppHelper
 			return $this->Html->link($this->Html->image($modelData["ad_part_img_src"],
 					array("alt" => (!empty($modelData["ad_part_text"])) ? $modelData["ad_part_text"] : "")),
 					$this->adLinkUrl($modelData, $action),
-					array("target" => "_blank", "rel" => "nofollow", "escape" => false));
+					array_merge(array("target" => "_blank", "rel" => "nofollow", "escape" => false), $linkOptions));
 		}
 	}
 

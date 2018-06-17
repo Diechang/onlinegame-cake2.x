@@ -63,7 +63,7 @@
 					</td>
 				</tr>
 <?php endif;?>
-<?php if(!empty($title["Title"]["appdl_app_store"]) || !empty($title["Title"]["appdl_google_play"])):?>
+<?php if(!empty($intro) && (!empty($title["Title"]["appdl_app_store"]) || !empty($title["Title"]["appdl_google_play"]))):?>
 				<!-- アプリダウンロード -->
 				<tr>
 					<td colspan="2" class="taRight">
@@ -104,9 +104,9 @@
 <?php endif;?>
 	
 	<section class="bottom">
+<?if(!isset($share) or $share != false):?>
 		<!--Official Link-->
 		<?php echo $this->element("title_officiallink", array("title" => $title, "titleWithStrs" => $titleWithStrs))?>
-<?if(!isset($share) or $share != false):?>
 		<?php echo $this->element("comp_shares", array("url" => $this->Html->url(array("controller" => "titles", "action" => "index", "path" => $title["Title"]["url_str"], "ext" => "html"), true)))?>
 <?php endif;?>
 		<?php echo $this->Common->copyright($title["Title"]["copyright"])?>

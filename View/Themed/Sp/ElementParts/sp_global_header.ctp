@@ -78,6 +78,14 @@
 <?php endforeach;?>
 									</ul>
 								</dd>
+								<dt>サービス状態から探す</dt>
+								<dd>
+									<ul>
+<?php foreach($headerServices as $service):?>
+										<li><?php echo $this->Html->link($service["Service"]["str"], array("controller" => "services", "action" => "index", "path" => $service["Service"]["path"], "ext" => "html"))?></li>
+<?php endforeach;?>
+									</ul>
+								</dd>
 							</dl>
 						</li>
 					</ul>

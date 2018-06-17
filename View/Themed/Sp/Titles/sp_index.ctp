@@ -24,6 +24,7 @@ $this->element("title_ogp", array("titleWithStrs" => $titleWithStrs));
 <?php echo $this->element("title_details", array("titleWithStrs" => $titleWithStrs, "intro" => true))?>
 
 <!-- spec -->
+<?php if(!empty($title["Spec"])):?>
 <section class="title-spec">
 	<h2>動作環境</h2>
 	<?php echo $this->element("title_specs", array("specs" => $title["Spec"]))?>
@@ -32,8 +33,10 @@ $this->element("title_ogp", array("titleWithStrs" => $titleWithStrs));
 	<div class="moreLink"><a href="<?php echo $this->Common->titleLinkUrl($title["Title"]["url_str"], "pc")?>"><i class="zmdi zmdi-laptop"></i> 快適動作の推奨スペックPCを探す</a></div>
 <?php endif;?>
 </section>
+<?php endif;?>
 
 <!-- movie -->
+<?php if(!empty($title["Title"]["video"])):?>
 <section class="title-movie">
 	<h2>関連動画</h2>
 	<?php echo $this->TitlePage->videoEmbed($title["Title"]["video"], "100%", 200)?>
@@ -42,6 +45,7 @@ $this->element("title_ogp", array("titleWithStrs" => $titleWithStrs));
 		<?php echo $this->element("title_officiallink", array("titleWithStrs" => $titleWithStrs))?>
 	</section>
 </section>
+<?php endif;?>
 
 
 <?php if(!empty($title["Titlesummary"]["package_count"])):?>

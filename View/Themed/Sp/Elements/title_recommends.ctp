@@ -15,6 +15,7 @@
 					<div class="title">
 						<?php echo $this->Common->titleSeparatedDiv($recommend["Title"]["title_official"], $recommend["Title"]["title_read"])?>
 					</div>
+					<?php echo $this->Common->starZmdi($recommend["Titlesummary"]["vote_avg_all"]);?>
 				</div>
 			</a>
 		</li>

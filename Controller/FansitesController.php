@@ -138,6 +138,15 @@ class FansitesController extends AppController
 	}
 
 	/**
+	 * SP
+	 */
+	function sp_add($id = null)
+	{
+		$this->add($id);
+	}
+
+
+	/**
 	 * Sys
 	 */
 	function sys_index()

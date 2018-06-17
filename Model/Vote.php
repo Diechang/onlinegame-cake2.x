@@ -308,6 +308,7 @@ class Vote extends AppModel
 				"recursive" => -1,
 				"conditions" => $conditions,
 				"fields" => array(
+					"id",
 					"item1",
 					"item2",
 					"item3",
@@ -337,7 +338,8 @@ class Vote extends AppModel
 			{
 				foreach($details as $key => $val)
 				{
-					$details[$key][$vote["Vote"][$key] . "pt"]++;
+					// if 0 >
+					if($vote["Vote"][$key]) $details[$key][$vote["Vote"][$key] . "pt"] += 1;
 				}
 			}
 			$ret["details"] = $details;

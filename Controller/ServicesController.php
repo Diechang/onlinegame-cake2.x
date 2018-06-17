@@ -67,6 +67,15 @@ class ServicesController extends AppController
 
 
 	/**
+	 * SP
+	 */
+	function sp_index($path = null)
+	{
+		$this->index($path);
+	}
+
+
+	/**
 	 * Sys
 	 */
 	function sys_index()

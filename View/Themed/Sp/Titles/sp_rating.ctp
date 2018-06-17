@@ -3,21 +3,21 @@
 $titleWithStrs = $this->Common->titleWithStrs($title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"], $title["Title"]["title_sub"]);
 //set blocks
 $this->assign("title", "評価点数 | " . $titleWithStrs["Abbr"]);
-$this->assign("keywords", $this->TitlePage->metaKeywords($this->request->params["action"], $title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"], $title["Title"]["title_sub"]));
+$this->assign("keywords", $this->TitlePage->metaKeywords(str_replace("sp_", "", $this->request->params["action"]), $title["Title"]["title_official"], $title["Title"]["title_read"], $title["Title"]["title_abbr"], $title["Title"]["title_sub"]));
 $this->assign("description", $titleWithStrs["Sub"] . "の評価点数です。"
 							. ((!empty($title["Titlesummary"]["vote_count_vote"]) ? $title["Titlesummary"]["vote_count_vote"] . "件の評価が投稿されています。オンラインゲーム選びの参考にどうぞ！"
 								: "まだ投稿がありません。" . (($title["Title"]["votable"]) ? "評価の投稿をお待ちしております！" : ""))));
 //assigns
 $this->assign("title_header", $this->element("title_header"));
-$this->assign("title_nav_floating", $this->element("title_nav_floating", array("title" => $title)));
+// $this->assign("title_nav_floating", $this->element("title_nav_floating", array("title" => $title)));
 //pankuz
-$this->set("pankuz_for_layout", array(array("str" => $titleWithStrs["Case"], "url" => array("action" => "index", "path" => $title["Title"]["url_str"], "ext" => "html")), "評価点数"));
+// $this->set("pankuz_for_layout", array(array("str" => $titleWithStrs["Case"], "url" => array("action" => "index", "path" => $title["Title"]["url_str"], "ext" => "html")), "評価点数"));
 //json ld
-$this->assign("json_ld", $this->JsonLd->breadCrumbList(array(
-	array("name" => $titleWithStrs["Case"], "id" => $this->Html->url(array("action" => "index", "path" => $title["Title"]["url_str"], "ext" => "html")), true),
-	"評価点数",
-)));
-$this->append("json_ld", $this->JsonLd->titleRating($title, $titleWithStrs["Case"]));
+// $this->assign("json_ld", $this->JsonLd->breadCrumbList(array(
+// 	array("name" => $titleWithStrs["Case"], "id" => $this->Html->url(array("action" => "index", "path" => $title["Title"]["url_str"], "ext" => "html")), true),
+// 	"評価点数",
+// )));
+// $this->append("json_ld", $this->JsonLd->titleRating($title, $titleWithStrs["Case"]));
 //OGP
 $this->element("title_ogp", array("titleWithStrs" => $titleWithStrs));
 ?>
@@ -26,22 +26,22 @@ $this->element("title_ogp", array("titleWithStrs" => $titleWithStrs));
 <?php echo $this->element("title_nav")?>
 
 
+<h1 class="title-headline">
+	<span class="main">プレイヤーの評価</span>
+	<span class="sub"><?php echo $title["Title"]["title_official"]?>のプレイヤー評価</span>
+</h1>
+
 <!-- rating -->
 <section class="title-rating">
-	<h1>
-		<span class="main">プレイヤーの評価</span>
-		<span class="sub"><?php echo $title["Title"]["title_official"]?>のプレイヤー評価</span>
-	</h1>
-	<!-- total -->
-	<section class="total">
-		<div class="counts">
-			<div class="rate">
-				<div class="caption">総合評価</div>
-				<div class="value">
-					<span class="num"><?php echo $this->Common->pointFormat($title["Titlesummary"]["vote_avg_all"], " -- ")?></span>点
-				</div>
-				<?php echo $this->Common->starBlock($title["Titlesummary"]["vote_avg_all"])?>
+	<div class="counts">
+		<div class="rate">
+			<div class="caption">総合評価</div>
+			<div class="value">
+				<span class="num"><?php echo $this->Common->pointFormat($title["Titlesummary"]["vote_avg_all"], " -- ")?></span>点
 			</div>
+			<?php echo $this->Common->starZmdi($title["Titlesummary"]["vote_avg_all"], 125)?>
+		</div>
+		<div class="counts-bottom">
 			<div class="count count-review">
 				<div class="caption">レビュー</div>
 				<div class="value"><span class="num"><?php echo number_format($title["Titlesummary"]["vote_count_review"])?></span>件</div>
@@ -51,53 +51,29 @@ $this->element("title_ogp", array("titleWithStrs" => $titleWithStrs));
 				<div class="value"><span class="num"><?php echo number_format($title["Titlesummary"]["vote_count_vote"])?></span>件</div>
 			</div>
 		</div>
+	</div>
 
-		<div class="rates">
-			<ul>
+	<div class="rates">
+		<ul>
 <?php foreach($ratings["details"] as $detKey => $detail):?>
-				<li>
-					<div class="caption"><?php echo $detail["label"]?></div>
-					<div class="num"><?php echo $this->Common->pointFormat($ratings["ratings"]["vote_avg_" . $detKey])?>点</div>
-					<?php echo $this->Common->starBlock($ratings["ratings"]["vote_avg_" . $detKey])?>
-				</li>
+			<li>
+				<div class="caption"><?php echo $detail["label"]?></div>
+				<?php echo $this->Common->starZmdi($ratings["ratings"]["vote_avg_" . $detKey])?>
+				<div class="num"><?php echo $this->Common->pointFormat($ratings["ratings"]["vote_avg_" . $detKey])?>点</div>
+			</li>
 <?php endforeach;?>
-			</ul>
-		</div>
+		</ul>
+	</div>
 
-		<!--Official Link-->
-		<?php echo $this->element("title_officiallink", array("titleWithStrs" => $titleWithStrs))?>
-	</section>
-
-	
-	<section class="separates">
-		<div class="separates-wrap">
-<?php foreach($ratings["details"] as $detail):?>
-			<div class="separate">
-				<h2><?php echo $detail["label"]?></h2>
-				<ul>
-	<?php for($i = 5; $i > 0 ; $i--):?>
-					<li>
-						<div class="graph"><div class="bar" style="width: <?php echo (($detail[$i . "pt"] == 0) ? 0 : ($detail[$i . "pt"] / $ratings["ratings"]["vote_count_vote"]) * 100)?>%;"></div></div>
-						<div class="point"><?php echo $i;?>点</div>
-						<div class="count"><?php echo $detail[$i . "pt"]?>件</div>
-					</li>
-	<?php endfor;?>
-				</ul>
-			</div>
-<?php endforeach;?>
-		</div>
-
-		<!--Official Link-->
-		<?php echo $this->element("title_officiallink", array("titleWithStrs" => $titleWithStrs))?>
-	</section>
+<!--Official Link-->
+<?php echo $this->element("title_officiallink", array("titleWithStrs" => $titleWithStrs))?>
 </section>
+
+<?php echo $this->Gads->adsResponsive()?>
 
 <!-- vote form -->
 <section id="form" class="title-form-vote">
-	<h1>
-		<span class="main">レビュー・評価を投稿する</span>
-		<span class="sub">みなさまの投稿がランキングに反映されます</span>
-	</h1>
+	<h2>レビュー・評価を投稿する</h2>
 <?php echo $this->element("form_vote", array(
 	"titleId"	=> $title["Title"]["id"],
 	"serviceId"	=> $title["Title"]["service_id"],

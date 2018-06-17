@@ -371,10 +371,16 @@ class ElementPartsController extends AppController
 			"recursive" => -1,
 			"order" => "Style.sort"
 		));
+		$headerServices = $this->Service->find("all", array(
+			"conditions" => array("Service.public" => 1),
+			"recursive" => -1,
+			"order" => "Service.sort"
+		));
 		// 
 		$this->set("headerPlatforms", $headerPlatforms);
 		$this->set("headerCategories", $headerCategories);
 		$this->set("headerStyles", $headerStyles);
+		$this->set("headerServices", $headerServices);
 	}
 	function sp_search_title_form()
 	{

@@ -207,12 +207,10 @@ class VotesController extends AppController
 					"Title.service_id" => 2, //正式のみ
 				),
 				"fields" => array(
-					"Title.id",
-					"Title.title_official",
-					"Title.title_read",
-					"Title.url_str",
+					"Title.*",
 				),
-				"order" => array("Title.title_official"),
+				"order" => array("Title.service_start desc"),
+				"limit" => 20,
 			));
 //			pr($noneTitles);
 			//
@@ -225,6 +223,24 @@ class VotesController extends AppController
 			return $this->redirect("/");
 		}
 	}
+
+
+	/**
+	 * SP
+	 */
+	function sp_add()
+	{
+		$this->add();
+	}
+	function sp_edit($id = null)
+	{
+		$this->edit($id);
+	}
+	function sp_fin($id = null)
+	{
+		$this->fin($id);
+	}
+
 
 	/**
 	 * Private
