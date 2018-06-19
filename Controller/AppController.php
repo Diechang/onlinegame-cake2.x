@@ -64,6 +64,8 @@ class AppController extends Controller
 	var $host		= null;
 	var $cookey		= null;
 
+	var $onlyPcController = array("sitemaps");
+
 	/**
 	 * 1: Windows
 	 * 2: Mac
@@ -159,7 +161,11 @@ class AppController extends Controller
 			// var_dump("/sp" . $this->request->here);
 			// exit;
 			if(isset($this->request->sp))			$this->_beforeIsSP();
-			else if((!$this->Cookie->check("mode") || $this->Cookie->read("mode") != "pc") && $this->request->is("mobile"))	$this->redirect("/sp" . $this->request->here);
+			else if(
+				(!$this->Cookie->check("mode") || $this->Cookie->read("mode") != "pc")
+				&& $this->request->is("mobile")
+				&& !in_array($this->request->controller, $this->onlyPcController)
+			)	$this->redirect("/sp" . $this->request->here);
 			else									$this->_beforeIsPC();
 		}
 	}

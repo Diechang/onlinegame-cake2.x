@@ -48,7 +48,7 @@
 	//Review
 	Router::connect('/reviews', array('controller' => 'review', 'action' => 'index'));
 	//Event
-	Router::connect('/events', array('controller' => 'events', 'action' => 'index'));
+	// Router::connect('/events', array('controller' => 'events', 'action' => 'index'));
 	//Pages
 //	Router::connect('/pages/sitemap', array('controller' => 'pages', 'action' => 'sitemap'));
 //	Router::connect('/pages/jump', array('controller' => 'pages', 'action' => 'jump'));
@@ -82,7 +82,7 @@
 	//Search
 	Router::connect('/sp/search', array('sp' => true, 'controller' => 'search', 'action' => 'index'));
 	//Event
-	Router::connect('/sp/events', array('sp' => true, 'controller' => 'events', 'action' => 'index'));
+	// Router::connect('/sp/events', array('sp' => true, 'controller' => 'events', 'action' => 'index'));
 	//Pages
 //	Router::connect('/sp/pages/sitemap', array('sp' => true, 'controller' => 'pages', 'action' => 'sitemap'));
 //	Router::connect('/sp/pages/jump', array('sp' => true, 'controller' => 'pages', 'action' => 'jump'));
