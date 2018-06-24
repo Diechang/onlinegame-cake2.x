@@ -550,7 +550,7 @@ class CommonHelper extends AppHelper
 				: $this->Html->link(
 					$str . $trackImg,
 					$this->titleJumpUrl($titleModel, $platform),
-					array_merge(array("target" => "_blank"), $linkOptions));
+					array_merge(array("target" => "_blank", "escape" => false), $linkOptions));
 	}
 	function titleJumpLinkImage($image, $titleModel, $titleAdModel, $platform = "pc", $linkOptions = array())
 	{

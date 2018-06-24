@@ -39,9 +39,15 @@
 					<div class="rates">
 						<?php echo $this->Form->input($key, array(
 							"type" => "radio",
-							"options" => array(1, 2, 3, 4, 5),
+							"options" => array(
+								"1" => 1,
+								"2" => 2,
+								"3" => 3,
+								"4" => 4,
+								"5" => 5
+							),
 							"label" => array("class" => "rate"),
-							"default" => 2))?>
+							"default" => 3))?>
 					</div>
 				</td>
 			</tr>
