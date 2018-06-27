@@ -7,6 +7,10 @@
 <head>
 <meta charset="utf-8">
 
+<?php echo ($this->fetch("alternate"))
+			? $this->fetch("alternate")
+			: $this->Html->tag("link", null, array("rel" => "alternate", "media" => "only screen and (max-width: 640px)", "href" => $this->Html->url("/sp/" . $this->request->url, true)))?>
+
 <title><?php echo $this->fetch("title")?> - オンラインゲームライフ</title>
 <meta name="Keywords" content="<?php echo $this->fetch("keywords")?>">
 <meta name="Description" content="<?php echo $this->fetch("description")?>">

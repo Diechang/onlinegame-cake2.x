@@ -7,6 +7,8 @@
 <head>
 <meta charset="utf-8">
 
+<?php echo $this->Html->tag("link", null, array("rel" => "alternate", "media" => "only screen and (max-width: 640px)", "href" => $this->Html->url("/sp/", true)))?>
+
 <title><?php echo $this->fetch("title")?></title>
 <meta name="Keywords" content="<?php echo $this->fetch("keywords")?>">
 <meta name="Description" content="<?php echo $this->fetch("description")?>">
