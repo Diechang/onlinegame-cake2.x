@@ -120,6 +120,14 @@ class AppModel extends Model
 		$cacheConfig	= Cache::config("element");
 		$cacheSettings	= $cacheConfig["settings"];
 		@unlink($cacheSettings["path"] . $cacheSettings["prefix"] . "element_" . $key . "_" . $name . "_cache_callbacks");
+		// PC
+		$cacheConfig	= Cache::config("element_pc");
+		$cacheSettings	= $cacheConfig["settings"];
+		@unlink($cacheSettings["path"] . $cacheSettings["prefix"] . "element_" . $key . "_" . $name . "_cache_callbacks");
+		// SP
+		$cacheConfig	= Cache::config("element_sp");
+		$cacheSettings	= $cacheConfig["settings"];
+		@unlink($cacheSettings["path"] . $cacheSettings["prefix"] . "element_" . $key . "_" . $name . "_cache_callbacks");
 	}
 
 /**
