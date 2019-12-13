@@ -2,3 +2,5 @@ Config/database.php
 Config.bak/database.php
 Config/email.php
 tmp/*
+
+.DS_Store
