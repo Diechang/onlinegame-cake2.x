@@ -22,7 +22,7 @@ class LettersController extends AppController
 				if($this->Letter->save($this->request->data))
 				{
 					//Send mail
-					$email = new CakeEmail("sakura");
+					$email = new CakeEmail("zcom");
 					$email->from(array($this->request->data["Letter"]["mail"] => $this->request->data["Letter"]["name"]));
 					$email->to(Configure::read("Site.mail"));
 					$email->subject('[DZ]お問合せ');

@@ -32,7 +32,7 @@ class FansitesController extends AppController
 					$editUrl	= Router::url(array('action' => 'edit', $this->Fansite->id, 'sys' => true), true);
 					$listUrl	= Router::url(array('action' => 'index', "?" => array("title_id" => $title["Title"]["id"]), 'sys' => true), true);
 					//Send mail
-					$email = new CakeEmail("sakura");
+					$email = new CakeEmail("zcom");
 					$email->from(!empty($this->request->data["Fansite"]["admin_mail"])
 						? $this->request->data["Fansite"]["admin_mail"]
 						: array(Configure::read("Site.mail") => "DZ-LIFE"));
@@ -97,7 +97,7 @@ class FansitesController extends AppController
 			{
 				$editUrl	= Router::url(array('action' => 'edit', $this->request->data['Fansite']['id'], 'sys' => true), true);
 				$listUrl	= Router::url(array('action' => 'index', "?" => array("title_id" => $this->request->data['Fansite']['title_id']), 'sys' => true), true);
-				$email = new CakeEmail("sakura");
+				$email = new CakeEmail("zcom");
 				//Send mail
 				$email->from(array(Configure::read("Site.mail") => "DZ-LIFE"));
 				$email->to(Configure::read("Site.mail"));
