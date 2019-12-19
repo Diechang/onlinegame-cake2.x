@@ -8,9 +8,9 @@
 	<?php echo $this->Form->select("portal", $portals, array("empty" => "-ポータル-", "default" => $this->request->query("portal")))?>
 	<?php echo $this->Form->submit("タイトル検索", array("div" => false, "class" => "btn"))?>
 <?php echo $this->Form->end()?>
-<?php echo $this->Form->create("Title", array("action" => "lump"))?>
+<?php echo $this->Form->create("Title", array("url" => array("action" => "lump")))?>
 	<h2>タイトル一覧</h2>
-	
+
 	<?php echo $this->element("sys_paginate")?>
 
 	<div class="controll">

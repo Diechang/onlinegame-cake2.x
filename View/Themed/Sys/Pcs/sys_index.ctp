@@ -7,7 +7,7 @@
 		}
 	?>
 </h3>
-<?php echo $this->Form->create("Pc", array("action" => "index", "type" => "get", "inputDefaults" => array("div" => false, "label" => false)))?>
+<?php echo $this->Form->create("Pc", array("url" => array("action" => "index"), "type" => "get", "inputDefaults" => array("div" => false, "label" => false)))?>
 	<?php echo $this->Form->text("w", array("value" => $w, "size" => 10, "onfocus" => "this.select()"))?>
 	<?php echo $this->Form->select("title_id", $titlesCount, array("value" => $title_id, "empty" => "すべて"))?>
 	<?php echo $this->Form->select("pcshop_id", $pcshops, array("value" => $pcshop_id, "empty" => "すべて"))?><br />
@@ -16,7 +16,7 @@
 	<?php echo $this->Form->submit("PC検索", array("div" => false, "class" => "btn"))?>
 <?php echo $this->Form->end()?>
 
-<?php echo $this->Form->create("Pc", array("action" => "lump"))?>
+<?php echo $this->Form->create("Pc", array("url" => array("action" => "lump")))?>
 	<h2>PC一覧</h2>
 	<p id="results"></p>
 	<div class="controll">

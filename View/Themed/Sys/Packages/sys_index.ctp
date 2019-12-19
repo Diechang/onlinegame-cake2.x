@@ -1,4 +1,4 @@
-<?php echo $this->Form->create("Package", array("action" => "add", "inputDefaults" => array("div" => false, "label" => false, "monthNames" => false, "dateFormat" => "YMD", "minYear" => 1990, "maxYear" => date("Y") + 2)))?>
+<?php echo $this->Form->create("Package", array("url" => array("action" => "add"), "inputDefaults" => array("div" => false, "label" => false, "monthNames" => false, "dateFormat" => "YMD", "minYear" => 1990, "maxYear" => date("Y") + 2)))?>
 	<h2>パッケージ新規登録</h2>
 	<table class="edit table table-bordered">
 		<tr>
@@ -81,12 +81,12 @@
 <?php echo $this->Form->end()?>
 
 <h2>パッケージ一覧</h2>
-<?php echo $this->Form->create("Package", array("action" => "index", "type" => "get", "inputDefaults" => array("div" => false, "label" => false)))?>
+<?php echo $this->Form->create("Package", array("url" => array("action" => "index"), "type" => "get", "inputDefaults" => array("div" => false, "label" => false)))?>
 	<?php echo $this->Form->text("w", array("size" => 10))?>
 	<?php echo $this->Form->select("title_id", $titlesCount, array("value" => $title_id, "empty" => "すべて"))?>
 	<?php echo $this->Form->submit("検索", array("div" => false, "class" => "btn"))?>
 <?php echo $this->Form->end()?>
-<?php echo $this->Form->create("Package", array("action" => "lump"))?>
+<?php echo $this->Form->create("Package", array("url" => array("action" => "lump")))?>
 	<p id="results"></p>
 	<div class="controll">
 		<?php echo $this->Form->submit("一括修正", array("class" => "btn"))?>

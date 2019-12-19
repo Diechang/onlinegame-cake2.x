@@ -36,8 +36,8 @@ class Title extends AppModel
 			),
 		),
 		"title_official" => array(
-			"notEmpty" => array(
-				"rule" => "notEmpty",
+			"notBlank" => array(
+				"rule" => "notBlank",
 				"message" => "※必須",
 			),
 		),
@@ -46,8 +46,8 @@ class Title extends AppModel
 				"rule" => "isUnique",
 				"message" => "重複しています"
 			),
-			"notEmpty" => array(
-				"rule" => "notEmpty",
+			"notBlank" => array(
+				"rule" => "notBlank",
 				"message" => "※必須",
 			),
 		),
@@ -311,10 +311,10 @@ class Title extends AppModel
 		}
 		return true;
 	}
-	
+
 	function beforeSave($options = array())
 	{
-		
+
 		$this->hasAndBelongsToMany["Platform"]["conditions"]	= '';
 		$this->hasAndBelongsToMany["Category"]["conditions"]	= '';
 		$this->hasAndBelongsToMany["Style"]["conditions"]		= '';
@@ -349,7 +349,7 @@ class Title extends AppModel
 		{
 			$ids = null;
 		}
-		
+
 		return $ids;
 	}
 
@@ -488,7 +488,7 @@ class Title extends AppModel
 
 /**
  * カテゴリ別ランキング取得
- * 
+ *
  * @param	number	$limit
  * @return	array
  * @access	public
@@ -619,7 +619,7 @@ class Title extends AppModel
 		{
 			$conditions["Title.id"] = $titleIdList;
 		}
-		
+
 		$ranking = $this->find("all", array(
 			"conditions" => $conditions,
 			"order" => $this->setRankOrder($type),

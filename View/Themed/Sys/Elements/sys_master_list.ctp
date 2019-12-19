@@ -1,4 +1,4 @@
-<?php echo $this->Form->create($model, array("action" => "lump", "sys" => true))?>
+<?php echo $this->Form->create($model, array("url" => array("action" => "lump")))?>
 	<h2><?php echo $str?>一覧</h2>
 	<table class="list tablesorter table table-bordered table-striped">
 		<thead>

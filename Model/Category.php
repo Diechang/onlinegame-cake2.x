@@ -4,7 +4,7 @@ class Category extends AppModel
 	var $name = 'Category';
 	var $displayField = 'str';
 	var $validate = array(
-		'str' => 'notEmpty',
+		'str' => 'notBlank',
 		'path' => array(
 			"alphaNumeric" => array(
 				"rule" => "alphaNumeric",

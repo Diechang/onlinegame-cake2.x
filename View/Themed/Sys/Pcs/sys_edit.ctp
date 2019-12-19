@@ -1,4 +1,4 @@
-<?php echo $this->Form->create("Pc", array("action" => "edit", "inputDefaults" => array("div" => false, "label" => false, "cols" => null, "rows" => null)))?>
+<?php echo $this->Form->create("Pc", array("url" => array("action" => "edit"), "inputDefaults" => array("div" => false, "label" => false, "cols" => null, "rows" => null)))?>
 	<h2>PC編集</h2>
 	<table class="edit pc table table-bordered">
 		<tr>

@@ -1,4 +1,4 @@
-<?php echo $this->Form->create("Moneycategory", array("action" => "add", "inputDefaults" => array("div" => false, "label" => false, "legend" => false)))?>
+<?php echo $this->Form->create("Moneycategory", array("url" => array("action" => "add"), "inputDefaults" => array("div" => false, "label" => false, "legend" => false)))?>
 	<h2>小遣いカテゴリ新規登録</h2>
 	<table class="edit table table-bordered">
 		<tr>

@@ -1,5 +1,5 @@
 <?php if($this->Paginator->current() == 1):?>
-<?php echo $this->Form->create("Fansite", array("action" => "add", "inputDefaults" => array("div" => false, "label" => false, "legend" => false)))?>
+<?php echo $this->Form->create("Fansite", array("url" => array("action" => "add"), "inputDefaults" => array("div" => false, "label" => false, "legend" => false)))?>
 	<h2>ファンサイト新規登録</h2>
 	<table class="edit table table-bordered">
 		<tr>
@@ -61,13 +61,13 @@
 <?php endif;?>
 
 <h2>ファンサイト一覧</h2>
-<?php echo $this->Form->create("Fansite", array("action" => "index", "type" => "get", "inputDefaults" => array("div" => false, "label" => false)))?>
+<?php echo $this->Form->create("Fansite", array("url" => array("action" => "index"), "type" => "get", "inputDefaults" => array("div" => false, "label" => false)))?>
 	<?php echo $this->Form->text("w", array("size" => 10))?>
 	<?php echo $this->Form->select("title_id", $titlesCount, array("value" => $title_id, "empty" => "すべて"))?>
 	<?php echo $this->Form->submit("検索", array("div" => false, "class" => "btn"))?>
 <?php echo $this->Form->end()?>
-<?php echo $this->Form->create("Fansite", array("action" => "lump"))?>
-	
+<?php echo $this->Form->create("Fansite", array("url" => array("action" => "lump")))?>
+
 	<?php echo $this->element("sys_paginate")?>
 
 	<div class="controll">

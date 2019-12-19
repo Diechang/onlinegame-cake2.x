@@ -1,4 +1,4 @@
-<?php echo $this->Form->create("Update", array("action" => "edit", "inputDefaults" => array("div" => false, "label" => false, "legend" => false)))?>
+<?php echo $this->Form->create("Update", array("url" => array("action" => "edit"), "inputDefaults" => array("div" => false, "label" => false, "legend" => false)))?>
 	<h2>更新履歴編集</h2>
 	<table class="edit table table-bordered">
 		<tr>

@@ -4,7 +4,7 @@ class Platform extends AppModel
 	var $name = 'Platform';
 	var $displayField = 'str';
 	var $validate = array(
-		'str' => 'notEmpty',
+		'str' => 'notBlank',
 		'path' => array(
 			"alphaNumeric" => array(
 				"rule" => "alphaNumeric",

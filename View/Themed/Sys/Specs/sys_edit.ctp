@@ -1,4 +1,4 @@
-<?php echo $this->Form->create("Spec", array("action" => "edit", "inputDefaults" => array("div" => false, "label" => false, "cols" => null, "rows" => null)))?>
+<?php echo $this->Form->create("Spec", array("url" => array("action" => "edit"), "inputDefaults" => array("div" => false, "label" => false, "cols" => null, "rows" => null)))?>
 	<h2>ファンサイト編集</h2>
 	<table class="edit spec table table-bordered">
 		<tr>

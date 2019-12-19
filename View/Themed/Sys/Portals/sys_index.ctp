@@ -1,5 +1,5 @@
 <h3><?php echo $this->Html->link("ポータル新規登録", array("action" => "add"), array("class" => "btn btn-success"))?></a></h3>
-<?php echo $this->Form->create("Portal", array("action" => "lump"))?>
+<?php echo $this->Form->create("Portal", array("url" => array("action" => "lump")))?>
 	<h2>ポータル一覧</h2>
 	<p id="results"></p>
 	<div class="controll">

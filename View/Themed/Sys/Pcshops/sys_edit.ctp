@@ -1,4 +1,4 @@
-<?php echo $this->Form->create("Pcshop", array("action" => "edit", "inputDefaults" => array("div" => false, "label" => false, "cols" => null, "rows" => null)))?>
+<?php echo $this->Form->create("Pcshop", array("url" => array("action" => "edit"), "inputDefaults" => array("div" => false, "label" => false, "cols" => null, "rows" => null)))?>
 	<h2>ショップ編集</h2>
 	<table class="edit spec table table-bordered">
 		<tr>

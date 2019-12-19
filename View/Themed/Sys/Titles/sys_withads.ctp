@@ -1,8 +1,8 @@
-<?php echo $this->Form->create("Title", array("action" => "lump"))?>
+<?php echo $this->Form->create("Title", array("url" => array("action" => "lump")))?>
 	<h2>広告付きタイトル一覧</h2>
-	
+
 	<?php echo $this->element("sys_paginate")?>
-	
+
 	<div class="controll">
 		<input type="submit" value="一括修正" class="btn" />
 	</div>

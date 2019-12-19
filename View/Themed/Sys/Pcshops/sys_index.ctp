@@ -1,4 +1,4 @@
-<?php echo $this->Form->create("Pcshop", array("action" => "add", "inputDefaults" => array("div" => false, "label" => false, "cols" => null, "rows" => null)))?>
+<?php echo $this->Form->create("Pcshop", array("url" => array("action" => "add"), "inputDefaults" => array("div" => false, "label" => false, "cols" => null, "rows" => null)))?>
 	<h2>ショップ新規登録</h2>
 	<table class="edit spec table table-bordered">
 		<tr>
@@ -40,7 +40,7 @@
 	</table>
 <?php echo $this->Form->end()?>
 
-<?php echo $this->Form->create("Pcshop", array("action" => "lump"))?>
+<?php echo $this->Form->create("Pcshop", array("url" => array("action" => "lump")))?>
 	<h2>ショップ一覧</h2>
 	<p id="results"></p>
 	<div class="controll">

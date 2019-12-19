@@ -1,4 +1,4 @@
-<?php echo $this->Form->create("Portal", array("action" => "add", "inputDefaults" => array("div" => false, "label" => false, "legend" => false)))?>
+<?php echo $this->Form->create("Portal", array("url" => array("action" => "add"), "inputDefaults" => array("div" => false, "label" => false, "legend" => false)))?>
 	<table class="edit table table-bordered">
 		<tr>
 			<th nowrap="nowrap">ID</th>

@@ -1,4 +1,4 @@
-<?php echo $this->Form->create("Share", array("action" => "post", "inputDefaults" => array("div" => false, "label" => false, "cols" => null, "rows" => null)))?>
+<?php echo $this->Form->create("Share", array("url" => array("action" => "post"), "inputDefaults" => array("div" => false, "label" => false, "cols" => null, "rows" => null)))?>
 	<h2>SNS投稿</h2>
 	<table class="edit shares table table-bordered">
 		<tr>

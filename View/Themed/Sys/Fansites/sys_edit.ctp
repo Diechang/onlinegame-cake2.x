@@ -1,4 +1,4 @@
-<?php echo $this->Form->create("Fansite", array("action" => "edit", "inputDefaults" => array("div" => false, "label" => false, "legend" => false)))?>
+<?php echo $this->Form->create("Fansite", array("url" => array("action" => "edit"), "inputDefaults" => array("div" => false, "label" => false, "legend" => false)))?>
 	<h2>ファンサイト編集</h2>
 	<table class="edit table table-bordered">
 		<tr>

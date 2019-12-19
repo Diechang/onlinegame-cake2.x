@@ -4,7 +4,7 @@ class Fee extends AppModel
 	var $name = 'Fee';
 	var $displayField = 'str';
 	var $validate = array(
-		'str' => 'notEmpty',
+		'str' => 'notBlank',
 		'path' => array(
 			"alphaNumeric" => array(
 				"rule" => "alphaNumeric",
@@ -15,7 +15,7 @@ class Fee extends AppModel
 		),
 		'sort' => 'numeric',
 	);
-	
+
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 	var $hasMany = array(

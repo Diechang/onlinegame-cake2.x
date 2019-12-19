@@ -1,5 +1,5 @@
 <h3><?php echo $this->Html->link("小遣いサイト新規登録", array("action" => "add"), array("class" => "btn btn-success"))?></a></h3>
-<?php echo $this->Form->create("Money", array("action" => "lump"))?>
+<?php echo $this->Form->create("Money", array("url" => array("action" => "lump")))?>
 	<h2>小遣いサイト一覧</h2>
 	<p id="results"></p>
 	<div class="controll">

@@ -8,7 +8,7 @@
 <section class="about-contact">
 	<h2>お問い合わせフォーム</h2>
 	<div class="form">
-		<?php echo $this->Form->create("Letter", array("action" =>"add", "inputDefaults" => array("div" => false, "label" => false, "legend" => false)))?>
+		<?php echo $this->Form->create("Letter", array("url" => array("action" =>"add"), "inputDefaults" => array("div" => false, "label" => false, "legend" => false)))?>
 			<table>
 				<tr>
 					<th class="must">お名前</th>

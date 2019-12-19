@@ -1,4 +1,4 @@
-<?php echo $this->Form->create("Link", array("action" => "edit", "inputDefaults" => array("div" => false, "label" => false, "legend" => false)))?>
+<?php echo $this->Form->create("Link", array("url" => array("action" => "edit"), "inputDefaults" => array("div" => false, "label" => false, "legend" => false)))?>
 	<h2>相互リンク編集</h2>
 	<table class="edit table table-bordered">
 		<tr>

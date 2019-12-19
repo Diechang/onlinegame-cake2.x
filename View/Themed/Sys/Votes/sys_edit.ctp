@@ -1,4 +1,4 @@
-<?php echo $this->Form->create("Vote", array("action" => "edit"))?>
+<?php echo $this->Form->create("Vote", array("url" => array("action" => "edit")))?>
 	<h2>投稿編集</h2>
 	<table class="edit table table-bordered">
 		<tr>

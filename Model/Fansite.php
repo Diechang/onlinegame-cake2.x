@@ -5,8 +5,8 @@ class Fansite extends AppModel
 	var $displayField = 'site_name';
 	var $validate = array(
 		"site_name" => array(
-			"notEmpty" => array(
-				"rule" => "notEmpty",
+			"notBlank" => array(
+				"rule" => "notBlank",
 				"message" => "必須項目です",
 			)
 		),

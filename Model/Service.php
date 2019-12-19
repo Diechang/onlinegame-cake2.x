@@ -4,10 +4,10 @@ class Service extends AppModel
 	var $name = 'Service';
 	var $displayField = 'str';
 	var $validate = array(
-		'str' => 'notEmpty',
+		'str' => 'notBlank',
 		'path' => array(
-			"notEmpty" => array(
-				"rule" => "notEmpty",
+			"notBlank" => array(
+				"rule" => "notBlank",
 			),
 			"isUnique" => array(
 				"rule" => "isUnique",

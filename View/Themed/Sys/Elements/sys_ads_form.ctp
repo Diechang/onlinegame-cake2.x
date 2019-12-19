@@ -1,4 +1,4 @@
-<?php echo $this->Form->create($model, array("action" => "add", "inputDefaults" => array("div" => false, "label" => false, "legend" => false)))?>
+<?php echo $this->Form->create($model, array("url" => array("action" => "add"), "inputDefaults" => array("div" => false, "label" => false, "legend" => false)))?>
 	<h2><?php echo $str?>新規登録</h2>
 	<table class="edit table table-bordered">
 		<tr>

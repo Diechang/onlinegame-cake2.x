@@ -1,4 +1,4 @@
-<?php echo $this->Form->create($model, array("action" => "lump", "sys" => true))?>
+<?php echo $this->Form->create($model, array("url" => array("action" => "lump")))?>
 	<h2><?php echo $str?>一覧
 		/ <?php echo $this->Html->link("公開", array("action" => "index", "sys" => "true"))?>
 		/ <?php echo $this->Html->link("すべて", array("action" => "index", "sys" => "true", "all"))?></h2>

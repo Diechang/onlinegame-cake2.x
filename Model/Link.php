@@ -5,14 +5,14 @@ class Link extends AppModel
 	var $displayField = 'site_name';
 	var $validate = array(
 		"site_name" => array(
-			"notEmpty" => array(
-				"rule" => "notEmpty",
+			"notBlank" => array(
+				"rule" => "notBlank",
 				"message" => "必須項目です",
 			),
 		),
 		"site_url" => array(
-			"notEmpty" => array(
-				"rule" => "notEmpty",
+			"notBlank" => array(
+				"rule" => "notBlank",
 				"message" => "必須項目です",
 			),
 			"url" => array(
@@ -21,8 +21,8 @@ class Link extends AppModel
 			),
 		),
 		"link_url" => array(
-			"notEmpty" => array(
-				"rule" => "notEmpty",
+			"notBlank" => array(
+				"rule" => "notBlank",
 				"message" => "必須項目です",
 			),
 			"url" => array(
@@ -31,14 +31,14 @@ class Link extends AppModel
 			),
 		),
 		"admin_name" => array(
-			"notEmpty" => array(
-				"rule" => "notEmpty",
+			"notBlank" => array(
+				"rule" => "notBlank",
 				"message" => "必須項目です",
 			),
 		),
 		"admin_mail" => array(
-			"notEmpty" => array(
-				"rule" => "notEmpty",
+			"notBlank" => array(
+				"rule" => "notBlank",
 				"message" => "必須項目です",
 			),
 			"email" => array(

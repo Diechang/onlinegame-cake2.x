@@ -1,4 +1,4 @@
-<?php echo $this->Form->create("Package", array("action" => "edit", "inputDefaults" => array("div" => false, "label" => false, "monthNames" => false, "dateFormat" => "YMD", "minYear" => 1990, "maxYear" => date("Y") + 2)))?>
+<?php echo $this->Form->create("Package", array("url" => array("action" => "edit"), "inputDefaults" => array("div" => false, "label" => false, "monthNames" => false, "dateFormat" => "YMD", "minYear" => 1990, "maxYear" => date("Y") + 2)))?>
 	<h2>パッケージ編集</h2>
 	<table class="edit table table-bordered">
 		<tr>

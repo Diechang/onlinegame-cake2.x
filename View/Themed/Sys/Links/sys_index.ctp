@@ -1,4 +1,4 @@
-<?php echo $this->Form->create("Link", array("action" => "lump"))?>
+<?php echo $this->Form->create("Link", array("url" => array("action" => "lump")))?>
 	<h2>相互リンク一覧</h2>
 	<p id="results"></p>
 	<div class="controll">

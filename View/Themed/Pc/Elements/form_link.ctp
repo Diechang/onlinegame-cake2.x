@@ -2,7 +2,7 @@
 <section class="link-form" id="form">
 	<h1>相互リンク集登録依頼フォーム</h1>
 	<div class="form">
-		<?php echo $this->Form->create("Link", array("action" => "add", "inputDefaults" => array("div" => false, "label" => false, "legend" => false)))?>
+		<?php echo $this->Form->create("Link", array("url" => array("action" => "add"), "inputDefaults" => array("div" => false, "label" => false, "legend" => false)))?>
 			<table>
 				<tr>
 					<th class="must">サイト名</th>

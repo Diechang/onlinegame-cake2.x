@@ -1,4 +1,4 @@
-<?php echo $this->Form->create("Title", array("action" => "add", "type" => "file", "inputDefaults" => array("div" => false, "label" => false, "monthNames" => false, "dateFormat" => "YMD", "minYear" => 1990, "maxYear" => date("Y") + 2)))?>
+<?php echo $this->Form->create("Title", array("url" => array("action" => "add"), "type" => "file", "inputDefaults" => array("div" => false, "label" => false, "monthNames" => false, "dateFormat" => "YMD", "minYear" => 1990, "maxYear" => date("Y") + 2)))?>
 	<table class="edit table table-bordered">
 		<tr>
 			<th nowrap="nowrap">ID</th>
@@ -209,7 +209,7 @@
 		</tr>
 	</table>
 
-	<?php 
+	<?php
 		$adPlatforms = array(
 			"pc" => "PC",
 			"sp" => "スマホ",
