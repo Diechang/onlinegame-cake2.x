@@ -55,7 +55,7 @@ else
 	);
 }
 	//DB
-	Configure::write('UseDbConfig', ($_SERVER['SERVER_ADDR'] == '127.0.0.1') ? 'local' : 
+	Configure::write('UseDbConfig', ($_SERVER['REMOTE_ADDR'] == '58.89.192.112') ? 'local' :
 									(($_SERVER['SERVER_NAME'] == 'onlinegame.dz-life.net') ? 'default' : 'test'));
 
 
