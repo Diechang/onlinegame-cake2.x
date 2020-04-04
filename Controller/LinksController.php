@@ -100,7 +100,7 @@ class LinksController extends AppController
 					$editUrl	= Router::url(array('action' => 'edit', $this->Link->id, 'sys' => true), true);
 					$linksUrl	= Router::url(array('action' => 'index', 'sys'=>true), true);
 					//Send mail
-					$email = new CakeEmail("zcom");
+					$email = new CakeEmail("conoha");
 					$email->from(!empty($this->request->data["Link"]["admin_mail"])
 						? $this->request->data["Link"]["admin_mail"]
 						: array(Configure::read("Site.mail") => "DZ-LIFE"));
