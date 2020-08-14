@@ -34,6 +34,7 @@
 	switch($_SERVER['SERVER_NAME']) {
 		case 'onlinegame.dz-life.net':
 			Configure::write('debug', 0);
+			break;
 		default:
 			Configure::write('debug', 2);
 	}
