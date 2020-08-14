@@ -62,7 +62,6 @@ switch ($_SERVER['SERVER_NAME']) {
 	default:
 		Configure::write('UseDbConfig', 'local');
 }
-echo Configure::read('UseDbConfig');
 // Configure::write('UseDbConfig', ($_SERVER['REMOTE_ADDR'] != '220.96.75.132') ? 'local' :
 // 								(($_SERVER['SERVER_NAME'] == 'onlinegame.dz-life.net') ? 'default' : 'test'));
 
