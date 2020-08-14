@@ -31,7 +31,13 @@
  * In production mode, flash messages redirect after a time interval.
  * In development mode, you need to click the flash message to continue.
  */
-	Configure::write('debug', (!empty($_SERVER) && $_SERVER['REMOTE_ADDR'] != '58.89.192.112') ? 2 : 0);
+	switch($_SERVER['SERVER_NAME']) {
+		case 'onlinegame.dz-life.net':
+			Configure::write('debug', 0);
+		default:
+			Configure::write('debug', 2);
+	}
+	// Configure::write('debug', (!empty($_SERVER) && $_SERVER['REMOTE_ADDR'] != '58.89.192.112') ? 2 : 0);
 
 /**
  * Configure the Error handler used to handle errors for your application. By default

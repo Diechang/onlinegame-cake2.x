@@ -54,9 +54,15 @@ else
 		)
 	);
 }
-	//DB
-	Configure::write('UseDbConfig', ($_SERVER['REMOTE_ADDR'] != '58.89.192.112') ? 'local' :
-									(($_SERVER['SERVER_NAME'] == 'onlinegame.dz-life.net') ? 'default' : 'test'));
+//DB
+switch ($_SERVER['SERVER_NAME']) {
+    case 'onlinegame.dz-life.net':
+        Configure::write('UseDbConfig', 'default');
+	default:
+		Configure::write('UseDbConfig', 'local');
+}
+// Configure::write('UseDbConfig', ($_SERVER['REMOTE_ADDR'] != '220.96.75.132') ? 'local' :
+// 								(($_SERVER['SERVER_NAME'] == 'onlinegame.dz-life.net') ? 'default' : 'test'));
 
 
 
